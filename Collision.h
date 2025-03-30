@@ -13,12 +13,12 @@ public:
 	);
 
 	static bool Check(
-		const Transform& transform1, const CircleCollider* box2,
-		const Transform& transform2, const BoxCollider* box1
+		const Transform& transform1, const BoxCollider* box1,
+		const Transform& transform2, const CircleCollider* circle
 	);
 
 	static bool Check(
-		const Transform& transform1, const CircleCollider* box1,
-		const Transform& transform2, const CircleCollider* box2
+		const Transform& transform1, const CircleCollider* circle1,
+		const Transform& transform2, const CircleCollider* circle2
 	);
 };

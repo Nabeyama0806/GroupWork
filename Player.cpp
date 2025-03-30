@@ -6,6 +6,7 @@
 #include "ModelLoader.h"
 #include "ModelAnimation.h"
 
+#include "CircleCollider.h"
 //コンストラクタ
 Player::Player(Camera* camera) :
 	ModelActor("Player"),
@@ -27,7 +28,8 @@ Player::Player(Camera* camera) :
 
 	Vector3 colliderScale = Vector3(100, 170, 100) * Scale.x;
 	//衝突判定
-	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
+	//m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
+	m_collider = new CircleCollider(colliderScale.x, ColliderOffset.Scale(m_transform.scale));
 }
 
 //更新
