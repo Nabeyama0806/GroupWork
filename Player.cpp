@@ -6,13 +6,13 @@
 #include "ModelLoader.h"
 #include "ModelAnimation.h"
 
-#include "CircleCollider.h"
 //コンストラクタ
 Player::Player(Camera* camera) :
 	ModelActor("Player"),
 	m_camera(camera),
 	m_onGround(false),
-	m_onWall(false)
+	m_onWall(false),
+	m_holdMove(0,0,0)
 {
 	//アニメーションの登録
 	m_model = new Model("Man/Man.mv1");
@@ -28,8 +28,7 @@ Player::Player(Camera* camera) :
 
 	Vector3 colliderScale = Vector3(100, 170, 100) * Scale.x;
 	//衝突判定
-	//m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
-	m_collider = new CircleCollider(colliderScale.x, ColliderOffset.Scale(m_transform.scale));
+	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
 }
 
 //更新
@@ -61,13 +60,13 @@ void Player::Update()
 	{
 		//移動
 		move.Normalize();
+		m_transform.position += move * Speed * speedRate;
+		// 壁に当たっていたら動きをなくす
 		if (m_onWall)
 		{
 			m_transform.position -= move * Speed * speedRate;	// 少し離す
-		}
-		else
-		{
-			m_transform.position += move * Speed * speedRate;
+			// 移動量を保持
+			if (m_holdMove == Vector3(0,0,0)) m_holdMove = move * Speed * speedRate;
 		}
 
 		//回転
@@ -78,6 +77,11 @@ void Player::Update()
 
 		//移動アニメーションを設定
 		animeIndex = static_cast<int>(Model::Anime::Run);
+	}
+	else
+	{
+		if (m_onWall) m_transform.position -= m_holdMove;	// 少し離す
+		else m_holdMove = Vector3(0, 0, 0);
 	}
 
 	if (!m_onGround)
@@ -91,7 +95,6 @@ void Player::Update()
 	{
 
 	}
-
 
 	
 	//設定したアニメーションの再生

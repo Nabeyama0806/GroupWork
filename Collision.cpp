@@ -63,13 +63,20 @@ bool Collision::Check(
 	Vector3 center2 = transform2.position + circle2->m_offset;
 	int size2 = circle2->m_radius;
 
-	//各軸の中心座標同士の距離と、サイズの合計を比較
-	if (abs(center1.x - center2.x) <= size1 + size2
-	&&  abs(center1.y - center2.y) <= size1 + size2
-	&&  abs(center1.z - center2.z) <= size1 + size2)
+	//円形の中心の距離が半径二つを足した長さより小さいかどうか
+	if (abs(center1.x - center2.x) * abs(center1.x - center2.x) + 
+		abs(center1.y - center2.y) * abs(center1.y - center2.y) <=
+		abs(size1 + size2) * abs(size1 + size2)
+
+	&&  abs(center1.x - center2.x) * abs(center1.x - center2.x) +
+		abs(center1.z - center2.z) * abs(center1.z - center2.z) <=
+		abs(size1 + size2) * abs(size1 + size2)
+
+	&&  abs(center1.y - center2.y) * abs(center1.y - center2.y) +
+		abs(center1.z - center2.z) * abs(center1.z - center2.z) <=
+		abs(size1 + size2) * abs(size1 + size2))
 	{
 		return true;
 	}
-	return false;
 	return false;
 }
