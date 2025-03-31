@@ -26,7 +26,7 @@ Player::Player(Camera* camera) :
 	m_transform.position = SpawnPos;
 	m_transform.scale = Scale;
 
-	Vector3 colliderScale = Vector3(100, 170, 100) * Scale.x;
+	Vector3 colliderScale = ColliderSize * Scale.x;
 	//衝突判定
 	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
 }
@@ -115,9 +115,17 @@ void Player::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Wall")
 	{
 		m_onWall = true;
-		Vector3 hitPos = other->GetPosition();
+		
+		// 壁のサイズ
+		Vector3 colSize = other->GetCollider()->GetSize(other->GetCollider());
+		Vector3 colCenter = other->GetPosition();
+		
+		double xRatio = colSize.z / colSize.x;
+
+		// プレイヤーが当たっている壁がどの方向か
 		m_transform.position -= m_holdMove;
-		if (abs(hitPos.x - m_transform.position.x) >= abs(hitPos.z - m_transform.position.z))
+		if (abs(colCenter.x - m_transform.position.x - ColliderSize.x / 2) * xRatio + ColliderSize.x / 2 >=
+			abs(colCenter.z - m_transform.position.z))
 		{
 			m_transform.position += m_holdMove;
 			m_transform.position.x -= m_holdMove.x;	// 動いた分戻す
