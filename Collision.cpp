@@ -36,18 +36,12 @@ bool Collision::Check(
 {
 	//各矩形と円形の中心座標とサイズを算出
 	Vector3 center1 = transform1.position + box->m_offset;
-	Vector3 size1 = box->m_size;
+	Vector3 boxSize = box->m_size;
 
 	Vector3 center2 = transform2.position + circle->m_offset;
-	int size2 = circle->m_radius;
+	int circleSize = circle->m_radius;
 
-	//各軸の中心座標同士の距離と、サイズの合計を比較
-	if (abs(center1.x - center2.x) <= (size1.x / 2) + size2
-	&&  abs(center1.y - center2.y) <= (size1.y / 2) + size2
-	&&  abs(center1.z - center2.z) <= (size1.z / 2) + size2)
-	{
-		return true;
-	}
+	
 	return false;
 }
 
@@ -63,18 +57,21 @@ bool Collision::Check(
 	Vector3 center2 = transform2.position + circle2->m_offset;
 	int size2 = circle2->m_radius;
 
+	// 1と2の中心座標の差の二乗
+	float distanceX2 = abs(center1.x - center2.x) * abs(center1.x - center2.x);
+	float distanceY2 = abs(center1.y - center2.y) * abs(center1.y - center2.y);
+	float distanceZ2 = abs(center1.z - center2.z) * abs(center1.z - center2.z);
+
+	// 斜辺の長さの二乗
+	float hypotenuseX = distanceX2 + distanceY2;
+	float hypotenuseY = distanceY2 + distanceZ2;
+	float hypotenuseZ = distanceZ2 + distanceX2;
+
+	// 2つの半径の合計の二乗
+	float sumSize = abs(size1 + size2) * abs(size1 + size2);
+
 	//円形の中心の距離が半径二つを足した長さより小さいかどうか
-	if (abs(center1.x - center2.x) * abs(center1.x - center2.x) + 
-		abs(center1.y - center2.y) * abs(center1.y - center2.y) <=
-		abs(size1 + size2) * abs(size1 + size2)
-
-	&&  abs(center1.x - center2.x) * abs(center1.x - center2.x) +
-		abs(center1.z - center2.z) * abs(center1.z - center2.z) <=
-		abs(size1 + size2) * abs(size1 + size2)
-
-	&&  abs(center1.y - center2.y) * abs(center1.y - center2.y) +
-		abs(center1.z - center2.z) * abs(center1.z - center2.z) <=
-		abs(size1 + size2) * abs(size1 + size2))
+	if (hypotenuseX <= sumSize && hypotenuseY <= sumSize &&	hypotenuseZ <= sumSize)
 	{
 		return true;
 	}

@@ -115,8 +115,20 @@ void Player::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Wall")
 	{
 		m_onWall = true;
-		m_transform.position -= m_holdMove;	// “®‚¢‚½•ª–ß‚·
-		m_holdMove = Vector3(0, 0, 0);
+		Vector3 hitPos = other->GetPosition();
+		m_transform.position -= m_holdMove;
+		if (abs(hitPos.x - m_transform.position.x) >= abs(hitPos.z - m_transform.position.z))
+		{
+			m_transform.position += m_holdMove;
+			m_transform.position.x -= m_holdMove.x;	// “®‚¢‚½•ª–ß‚·
+			m_holdMove = Vector3(0, 0, 0);
+		}
+		else
+		{
+			m_transform.position += m_holdMove;
+			m_transform.position.z -= m_holdMove.z;	// “®‚¢‚½•ª–ß‚·
+			m_holdMove = Vector3(0, 0, 0);
+		}
 	}
 
 	if (other->GetName() == "Ground")
