@@ -60,14 +60,16 @@ void Player::Update()
 	{
 		//移動
 		move.Normalize();
-		m_transform.position += move * Speed * speedRate;
-		// 壁に当たっていたら動きをなくす
+		m_holdMove = move * Speed * speedRate;
+		m_transform.position += m_holdMove;
+
+		/*
 		if (m_onWall)
 		{
 			m_transform.position -= move * Speed * speedRate;	// 少し離す
 			// 移動量を保持
-			if (m_holdMove == Vector3(0,0,0)) m_holdMove = move * Speed * speedRate;
 		}
+		*/
 
 		//回転
 		m_transform.rotation = Quaternion::Slerp(
@@ -78,11 +80,6 @@ void Player::Update()
 		//移動アニメーションを設定
 		animeIndex = static_cast<int>(Model::Anime::Run);
 	}
-	else
-	{
-		if (m_onWall) m_transform.position -= m_holdMove;	// 少し離す
-		else m_holdMove = Vector3(0, 0, 0);
-	}
 
 	if (!m_onGround)
 	{
@@ -91,9 +88,9 @@ void Player::Update()
 	}
 
 	// ジャンプ
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE))
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE) && m_onGround)
 	{
-
+		//m_transform.position.y += 100;
 	}
 
 	
@@ -118,7 +115,8 @@ void Player::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Wall")
 	{
 		m_onWall = true;
-		//m_transform.position = SpawnPos;
+		m_transform.position -= m_holdMove;	// 動いた分戻す
+		m_holdMove = Vector3(0, 0, 0);
 	}
 
 	if (other->GetName() == "Ground")
