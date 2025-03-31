@@ -79,7 +79,6 @@ void Sprite::Draw(const Transform& transform)
 	{
 		//Œo‰ßŽžŠÔ
 		gridIndex = static_cast<int> (m_elapsedTime / GetFrameTime());
-
 	}
 	//•`‰æ
 	DrawRectRotaGraph(

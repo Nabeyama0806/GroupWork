@@ -5,6 +5,8 @@
 class UiBottle : public SpriteActor
 {
 private:
+	static constexpr Vector3 SizeOffset = Vector3(100, 100, 100);
+
 	//画像のファイルパス
 	const char* FilePath[static_cast<int>(Bottle::Type::Length)] =
 	{
@@ -22,9 +24,13 @@ private:
 	};
 
 	Bottle::Type m_type;	//自身の属性
+	int m_select;			//選択している属性
 
 protected:
 	virtual void Update() override;	//更新
 	virtual void Draw() override;	//描画
 
+public:
+	//コンストラクタ
+	UiBottle();
 };

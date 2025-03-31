@@ -46,6 +46,7 @@
     <ClCompile Include="ThunderBottle.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="SpriteActor.cpp" />
+    <ClCompile Include="UiBottle.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="WaterBottle.cpp" />
@@ -88,6 +89,7 @@
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="SpriteActor.h" />
+    <ClInclude Include="UiBottle.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="WaterBottle.h" />
