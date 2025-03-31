@@ -84,7 +84,7 @@ void Player::Update()
 	if (!m_onGround)
 	{
 		// d—Í
-		//m_transform.position.y -= GravityScale;
+		m_transform.position.y -= GravityScale;
 	}
 
 	// ƒWƒƒƒ“ƒv

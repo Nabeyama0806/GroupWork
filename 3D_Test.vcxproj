@@ -53,7 +53,7 @@
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Collision.h" />
-    <ClInclude Include="HitBox.h" />
+    <ClInclude Include="HitCollider.h" />
     <ClInclude Include="ModelActor.h" />
     <ClInclude Include="ActorBase.h" />
     <ClInclude Include="ModelActorCollision.h" />

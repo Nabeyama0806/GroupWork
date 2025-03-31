@@ -10,7 +10,7 @@
 #include "Sprite.h"
 #include "ModelActor.h"
 #include "SpriteActor.h"
-#include "HitBox.h"
+#include "HitCollider.h"
 #include "Camera.h"
 #include "Player.h"
 #include "DxLib.h"
@@ -54,8 +54,8 @@ void SceneGame::Initialize()
 
 	//壁
 	Vector3 wallPos	 = Vector3(0, 100, 1500);
-	Vector3 wallSize = Vector3(300, 300, 300);
-	actorLayer->AddChild(new HitBox(
+	int wallSize = 150;
+	actorLayer->AddChild(new HitCollider(
 		"Wall",
 		wallPos,
 		wallSize
@@ -63,15 +63,15 @@ void SceneGame::Initialize()
 
 	// 床
 	Vector3 floorPos = Vector3(0, -20, 0);
-	Vector3 floorSize = Vector3(2000, 50, 2000);
-	actorLayer->AddChild(new HitBox(
+	Vector3 floorSize = Vector3(4000, 40, 4000);
+	actorLayer->AddChild(new HitCollider(
 		"Ground",
 		floorPos,
 		floorSize
 	));
 
 	//魔法瓶の表示
-	ModelActor* model = new ModelActor("kaminari", "Resource/kaminariポーション.mv1", wallPos);
+	ModelActor* model = new ModelActor("kaminari", "Resource/bottle_thuder.mv1", wallPos);
 	model->ChangeScale(70);
 	actorLayer->AddChild(model);
 
