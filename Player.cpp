@@ -84,7 +84,7 @@ void Player::Update()
 	if (!m_onGround)
 	{
 		// 重力
-		m_transform.position.y -= GravityScale;
+		//m_transform.position.y -= GravityScale;
 	}
 
 	// ジャンプ
@@ -115,16 +115,16 @@ void Player::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Wall")
 	{
 		m_onWall = true;
-		
+		/*
 		// 壁のサイズ
 		Vector3 colSize = other->GetCollider()->GetSize(other->GetCollider());
 		Vector3 colCenter = other->GetPosition();
 		
-		double xRatio = colSize.z / colSize.x;
+		float xRatio = colSize.z / colSize.x;
 
 		// プレイヤーが当たっている壁がどの方向か
 		m_transform.position -= m_holdMove;
-		if (abs(colCenter.x - m_transform.position.x - ColliderSize.x / 2) * xRatio + ColliderSize.x / 2 >=
+		if (abs(abs(colCenter.x - m_transform.position.x) - ColliderSize.x / 2) * xRatio + ColliderSize.x / 2 >
 			abs(colCenter.z - m_transform.position.z))
 		{
 			m_transform.position += m_holdMove;
@@ -137,6 +137,9 @@ void Player::OnCollision(const ModelActor* other)
 			m_transform.position.z -= m_holdMove.z;	// 動いた分戻す
 			m_holdMove = Vector3(0, 0, 0);
 		}
+		*/
+		m_transform.position -= m_holdMove;
+		m_holdMove = Vector3(0, 0, 0);
 	}
 
 	if (other->GetName() == "Ground")

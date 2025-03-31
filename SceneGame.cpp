@@ -54,12 +54,28 @@ void SceneGame::Initialize()
 	uiLayer->AddChild(m_tmpUi);
 
 	//•Ç
-	Vector3 wallPos	 = Vector3(0, 100, 1500);
-	Vector3 wallSize = Vector3(300, 300, 300);
+	Vector3 wallPos	 = Vector3(0, 100, 2000);
+	Vector3 wallSize = Vector3(4000, 500, 100);
+
 	actorLayer->AddChild(new HitCollider(
 		"Wall",
-		wallPos,
-		wallSize
+		Vector3(0, 100, 2000),
+		Vector3(4000, 500, 100)
+	));
+	actorLayer->AddChild(new HitCollider(
+		"Wall",
+		Vector3(0, 100, -2000),
+		Vector3(4000, 500, 100)
+	));
+	actorLayer->AddChild(new HitCollider(
+		"Wall",
+		Vector3(2000, 100, 0),
+		Vector3(100, 500, 4000)
+	));
+	actorLayer->AddChild(new HitCollider(
+		"Wall",
+		Vector3(-2000, 100, 0),
+		Vector3(100, 500, 4000)
 	));
 
 	// °
@@ -71,10 +87,12 @@ void SceneGame::Initialize()
 		floorSize
 	));
 
+	/*
 	//‘®«ƒrƒ“‚Ì•\Ž¦
 	ModelActor* model = new ModelActor("kaminari", "Resource/bottle_thunder.mv1", wallPos);
 	model->ChangeScale(70);
 	actorLayer->AddChild(model);
+	*/
 
 	//UI‚Ì•\Ž¦
  	uiLayer->AddChild(new UiBottle(m_player));
