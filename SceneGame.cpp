@@ -13,6 +13,7 @@
 #include "HitCollider.h"
 #include "Camera.h"
 #include "Player.h"
+#include "UiBottle.h"
 #include "DxLib.h"
 
 //初期化
@@ -54,7 +55,7 @@ void SceneGame::Initialize()
 
 	//壁
 	Vector3 wallPos	 = Vector3(0, 100, 1500);
-	int wallSize = 150;
+	Vector3 wallSize = Vector3(300, 300, 300);
 	actorLayer->AddChild(new HitCollider(
 		"Wall",
 		wallPos,
@@ -70,10 +71,13 @@ void SceneGame::Initialize()
 		floorSize
 	));
 
-	//魔法瓶の表示
-	ModelActor* model = new ModelActor("kaminari", "Resource/bottle_thuder.mv1", wallPos);
+	//属性ビンの表示
+	ModelActor* model = new ModelActor("kaminari", "Resource/bottle_thunder.mv1", wallPos);
 	model->ChangeScale(70);
 	actorLayer->AddChild(model);
+
+	//UIの表示
+ 	uiLayer->AddChild(new UiBottle(wallPos));
 
 	//BGM
 

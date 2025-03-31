@@ -3,8 +3,8 @@
 #include "Input.h"
 
 //コンストラクタ
-UiBottle::UiBottle() :
-	SpriteActor("UiBottle"),
+UiBottle::UiBottle(Vector3 position) :
+	SpriteActor("UiBottle", nullptr, position),
 	m_type(Bottle::Type::Fire),
 	m_select(0)
 {	
@@ -14,9 +14,13 @@ UiBottle::UiBottle() :
 	{
 		m_sprite->Register(TextureName[i], SpriteAnimation(FilePath[i]));
 	}
+	m_sprite->Play(TextureName[m_select]);
 
 	//サイズ調整
 	m_transform.scale = SizeOffset;
+
+	//表示する座標の調整
+	m_transform.position = Screen::BottomRight + ScreenOffset;
 }
 
 //更新
@@ -26,19 +30,23 @@ void UiBottle::Update()
 	SpriteActor::Update();
 
 	//属性ビンの切り替え
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_RIGHT))
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_RIGHT))
 	{
 		//インデックスを超えると先頭要素に戻す
 		m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
 			m_select = static_cast<int>(Bottle::Type::Fire) :
 			m_select++;
+
+		m_sprite->Play(TextureName[m_select]);
 	}
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_LEFT))
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_LEFT))
 	{
 		//インデックスを超えると先頭要素に戻す
 		m_select == static_cast<int>(Bottle::Type::Fire) ?
-			m_select++ :
-			m_select = static_cast<int>(Bottle::Type::Length) - 1;
+			m_select = static_cast<int>(Bottle::Type::Length) - 1 :
+			m_select--;
+
+		m_sprite->Play(TextureName[m_select]);
 	}
 }
 
@@ -47,7 +55,4 @@ void UiBottle::Draw()
 {
 	//本来の描画
 	SpriteActor::Draw();
-
-	//選択している画像の描画
-	m_sprite->Play(TextureName[m_select]);
 }

@@ -5,14 +5,16 @@
 class UiBottle : public SpriteActor
 {
 private:
-	static constexpr Vector3 SizeOffset = Vector3(100, 100, 100);
+	static constexpr Vector3 SizeOffset = Vector3(0.05f, 0.05f, 0.05f);
+	static constexpr Vector3 ScreenOffset = Vector3(-100, -70, 0);
 
 	//画像のファイルパス
 	const char* FilePath[static_cast<int>(Bottle::Type::Length)] =
 	{
-		"Resouce/bottle_fire.png",
-		"Resouce/bottle_thunder.png",
-		"Resouce/bottle_water.png"
+		"Resource/bottle_fire.png",
+		"Resource/bottle_thunder.png",
+		"Resource/bottle_water.png",
+		"Resource/bottle_wind.png"
 	};
 
 	//画像の名前
@@ -20,7 +22,8 @@ private:
 	{
 		"Fire",
 		"Thunder",
-		"Water"
+		"Water",
+		"WInd"
 	};
 
 	Bottle::Type m_type;	//自身の属性
@@ -32,5 +35,5 @@ protected:
 
 public:
 	//コンストラクタ
-	UiBottle();
+	UiBottle(Vector3 position);
 };
