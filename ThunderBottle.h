@@ -10,5 +10,5 @@ protected:
 
 public:
 	//コンストラクタ
-	ThunderBottle(Vector3& position, Vector3& addForce);
+	ThunderBottle(const Vector3& position);
 };

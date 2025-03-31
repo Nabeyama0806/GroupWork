@@ -35,6 +35,7 @@ void ModelActorCollision::Update()
 	}
 }
 
+#ifdef _DEBUG
 void ModelActorCollision::Draw()
 {
 	for (auto it = m_modelActorList.begin(); it != m_modelActorList.end(); ++it)
@@ -46,3 +47,4 @@ void ModelActorCollision::Draw()
 		}
 	}
 }
+#endif

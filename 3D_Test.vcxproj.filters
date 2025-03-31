@@ -144,6 +144,9 @@
     <ClCompile Include="ThunderBottle.cpp">
       <Filter>ソース ファイル\Bottle</Filter>
     </ClCompile>
+    <ClCompile Include="WindBottle.cpp">
+      <Filter>ソース ファイル\Bottle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneBase.h">
@@ -267,6 +270,9 @@
       <Filter>ヘッダー ファイル\Bottle</Filter>
     </ClInclude>
     <ClInclude Include="WaterBottle.h">
+      <Filter>ヘッダー ファイル\Bottle</Filter>
+    </ClInclude>
+    <ClInclude Include="WindBottle.h">
       <Filter>ヘッダー ファイル\Bottle</Filter>
     </ClInclude>
   </ItemGroup>

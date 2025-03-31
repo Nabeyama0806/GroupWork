@@ -77,7 +77,7 @@ void SceneGame::Initialize()
 	actorLayer->AddChild(model);
 
 	//UI‚Ì•\Ž¦
- 	uiLayer->AddChild(new UiBottle(wallPos));
+ 	uiLayer->AddChild(new UiBottle(m_player));
 
 	//BGM
 

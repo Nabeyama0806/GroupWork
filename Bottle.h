@@ -15,6 +15,7 @@ public:
 		Length
 	};
 
+	static constexpr int Scale = 40;		//大きさの調整
 private:
 	static constexpr float Gravity = 1.2f;	//重力
 
@@ -28,5 +29,5 @@ protected:
 
 public:
 	//コンストラクタ
-	Bottle(Vector3& position);
+	Bottle(const Vector3& position);
 };

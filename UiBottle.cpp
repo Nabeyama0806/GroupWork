@@ -1,12 +1,18 @@
 #include "UiBottle.h"
+#include "FireBottle.h"
+#include "ThunderBottle.h"
+#include "WaterBottle.h"
+#include "WindBottle.h"
 #include "Sprite.h"
+#include "Player.h"
 #include "Input.h"
 
 //コンストラクタ
-UiBottle::UiBottle(Vector3 position) :
-	SpriteActor("UiBottle", nullptr, position),
+UiBottle::UiBottle(Player* player) :
+	SpriteActor("UiBottle"),
 	m_type(Bottle::Type::Fire),
-	m_select(0)
+	m_select(0),
+	m_player(player)
 {	
 	//画像の登録	
 	m_sprite = new Sprite();
@@ -30,7 +36,7 @@ void UiBottle::Update()
 	SpriteActor::Update();
 
 	//属性ビンの切り替え
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_RIGHT))
+	if (Input::GetInstance()->GetMouseHweelRot())
 	{
 		//インデックスを超えると先頭要素に戻す
 		m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
@@ -39,14 +45,11 @@ void UiBottle::Update()
 
 		m_sprite->Play(TextureName[m_select]);
 	}
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_LEFT))
-	{
-		//インデックスを超えると先頭要素に戻す
-		m_select == static_cast<int>(Bottle::Type::Fire) ?
-			m_select = static_cast<int>(Bottle::Type::Length) - 1 :
-			m_select--;
 
-		m_sprite->Play(TextureName[m_select]);
+	//左クリックでボトルを生成
+	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT))
+	{
+		AddChild(new ThunderBottle(m_player->GetPosition()));
 	}
 }
 

@@ -2,12 +2,11 @@
 #include "Model.h"
 
 //コンストラクタ
-FireBottle::FireBottle(Vector3& position, Vector3& addForce) :
+FireBottle::FireBottle(const Vector3& position) :
 	Bottle(position)
 {
-	m_model = new Model("Resource/honouポーション.mv1");
-
-	m_addForce = addForce;
+	m_model = new Model("Resource/bottle_fire.mv1");
+	m_transform.scale *= Scale;
 }
 
 //更新
@@ -17,7 +16,7 @@ void FireBottle::Update()
 	ModelActor::Update();
 	
 	//投げる
-	Throw(m_transform.position, m_addForce);
+	//Throw(m_transform.position, m_addForce);
 }
 
 //描画

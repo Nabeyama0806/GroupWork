@@ -1,7 +1,7 @@
 #pragma once
 #include "Bottle.h"
 
-class FireBottle : public Bottle
+class WindBottle : public Bottle
 {
 protected:
 	virtual void Update() override;			//更新
@@ -10,5 +10,5 @@ protected:
 
 public:
 	//コンストラクタ
-	FireBottle(const Vector3& position);
-};
+	WindBottle(Vector3& position, Vector3& addForce);
+}; 

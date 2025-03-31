@@ -2,11 +2,13 @@
 #include "SpriteActor.h"
 #include "Bottle.h"
 
+class Player;
+
 class UiBottle : public SpriteActor
 {
 private:
-	static constexpr Vector3 SizeOffset = Vector3(0.05f, 0.05f, 0.05f);
-	static constexpr Vector3 ScreenOffset = Vector3(-100, -70, 0);
+	static constexpr Vector3 SizeOffset = Vector3(0.1f, 0.1f, 0.1f);
+	static constexpr Vector3 ScreenOffset = Vector3(-200, -150, 0);
 
 	//画像のファイルパス
 	const char* FilePath[static_cast<int>(Bottle::Type::Length)] =
@@ -27,6 +29,7 @@ private:
 	};
 
 	Bottle::Type m_type;	//自身の属性
+	Player* m_player;
 	int m_select;			//選択している属性
 
 protected:
@@ -35,5 +38,5 @@ protected:
 
 public:
 	//コンストラクタ
-	UiBottle(Vector3 position);
+	UiBottle(Player* player);
 };

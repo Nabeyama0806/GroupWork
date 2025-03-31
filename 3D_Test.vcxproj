@@ -50,6 +50,7 @@
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="WaterBottle.cpp" />
+    <ClCompile Include="WindBottle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bottle.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="WaterBottle.h" />
+    <ClInclude Include="WindBottle.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
