@@ -35,15 +35,25 @@ void UiBottle::Update()
 	//本来の更新
 	SpriteActor::Update();
 
+	int mouseHweel = Input::GetInstance()->GetMouseHweelRot();
 	//属性ビンの切り替え
-	if (Input::GetInstance()->GetMouseHweelRot())
+	if (mouseHweel != 0)
 	{
-		//インデックスを超えると先頭要素に戻す
-		m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
-			m_select = static_cast<int>(Bottle::Type::Fire) :
-			m_select++;
+		if (mouseHweel < 0)
+		{
+			m_select == static_cast<int>(Bottle::Type::Fire) ?
+				m_select = static_cast<int>(Bottle::Type::Length) - 1 :
+				m_select--;
+		}
+		else
+		{
+			m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
+				m_select = static_cast<int>(Bottle::Type::Fire) :
+				m_select++;
+		}
 
 		m_sprite->Play(TextureName[m_select]);
+		m_type = static_cast<Bottle::Type>(m_select);
 	}
 
 	//左クリックでボトルを生成
