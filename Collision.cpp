@@ -34,14 +34,6 @@ bool Collision::Check(
 	const Transform& transform2, const CircleCollider* circle
 	)
 {
-	//各矩形と円形の中心座標とサイズを算出
-	Vector3 center1 = transform1.position + box->m_offset;
-	Vector3 boxSize = box->m_size;
-
-	Vector3 center2 = transform2.position + circle->m_offset;
-	int circleSize = circle->m_radius;
-
-	
 	return false;
 }
 
