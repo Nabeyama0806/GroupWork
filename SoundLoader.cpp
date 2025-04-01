@@ -3,10 +3,10 @@
 
 int SoundLoader::LoadResource(const char* path)
 {
-	return LoadGraph(path);
+	return LoadSoundMem(path);
 }
 
 void SoundLoader::DeleteResource(int id)
 {
-	DeleteGraph(id);
+	DeleteSoundMem(id);
 }
