@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 #include "SceneTitle.h"
 #include "SceneGame.h"
-#include "ImageLoader.h"
+#include "SpriteLoader.h"
 #include "ModelActorCollision.h"
 #include "Fade.h"
 #include "Input.h"
@@ -81,7 +81,7 @@ void GameMain::Run()
 		ModelActorCollision::GetInstance()->Draw();
 
 		//画像ローダー
-		//ImageLoader::GetInstance()->Draw();
+		//SpriteLoader::GetInstance()->Draw();
 #endif
 		//フェード
 		Fade::GetInstance()->Update(m_screen);

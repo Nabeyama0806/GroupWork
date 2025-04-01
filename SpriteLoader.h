@@ -2,10 +2,10 @@
 #include "LoaderBase.h"
 
 //画像ローダークラス
-class ImageLoader : public LoaderBase
+class SpriteLoader : public LoaderBase
 {
 private:
-	ImageLoader() {}
+	SpriteLoader() {}
 
 protected:
 	virtual int LoadResource(const char* path) override;
@@ -13,9 +13,9 @@ protected:
 
 public:
 	//シングルトン
-	static ImageLoader* GetInstance()
+	static SpriteLoader* GetInstance()
 	{
-		static ImageLoader instance;
+		static SpriteLoader instance;
 		return &instance;
 	}
 };

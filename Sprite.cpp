@@ -1,6 +1,6 @@
 #include "Sprite.h"
 #include "Time.h"
-#include "ImageLoader.h"
+#include "SpriteLoader.h"
 #include "DxLib.h"
 
 //デストラクタ
@@ -20,7 +20,7 @@ void Sprite::Load()
 		//pair.secon：データ
 
 		//データから画像パスを読み込んで決める
-		pair.second.textureId = ImageLoader::GetInstance()->Load(pair.second.textureName);
+		pair.second.textureId = SpriteLoader::GetInstance()->Load(pair.second.textureName);
 
 		if (!firstTexture)
 		{
@@ -41,7 +41,7 @@ void Sprite::Release()
 {
 	for (auto& pair : m_spriteAnimationList)
 	{
-		ImageLoader::GetInstance()->Delete(pair.second.textureName);
+		SpriteLoader::GetInstance()->Delete(pair.second.textureName);
 	}
 
 	m_spriteAnimationList.clear();

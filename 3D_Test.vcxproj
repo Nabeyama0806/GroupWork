@@ -28,7 +28,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="GameMain.cpp" />
-    <ClCompile Include="ImageLoader.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SpriteLoader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Lerp.cpp" />
     <ClCompile Include="LoaderBase.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneResult.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="SoundLoader.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="ThunderBottle.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -67,7 +69,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="GameMain.h" />
-    <ClInclude Include="ImageLoader.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SpriteLoader.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Lerp.h" />
     <ClInclude Include="LoadData.h" />
@@ -84,6 +87,7 @@
     <ClInclude Include="SceneResult.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="SoundLoader.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteAnimation.h" />
     <ClInclude Include="ThunderBottle.h" />
