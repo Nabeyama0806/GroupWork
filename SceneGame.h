@@ -8,6 +8,7 @@ class Node;
 class Player;
 class Camera;
 class SpriteActor;
+class UiBottle;
 
 //	ゲームシーン
 class SceneGame : public SceneBase
@@ -23,7 +24,7 @@ private:
 	Player* m_player;	//プレイヤー
 	Camera* m_mainCamera;	//プレイヤー
 	SpriteActor* m_tmpUi;	// 仮置きのUI
-
+	UiBottle* m_uiBottle;	
 
 	Vector3 cameraPos = Vector3(0, 0, -700);
 
@@ -36,6 +37,7 @@ public:
 		m_player(nullptr),
 		m_mainCamera(nullptr),
 		m_tmpUi(nullptr),
+		m_uiBottle(nullptr),
 		m_resultTransitionTime(ResultTransitionTime),
 		m_bgm(0){}
 

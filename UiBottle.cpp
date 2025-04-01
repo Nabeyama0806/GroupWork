@@ -8,11 +8,10 @@
 #include "Input.h"
 
 //コンストラクタ
-UiBottle::UiBottle(Player* player) :
+UiBottle::UiBottle() :
 	SpriteActor("UiBottle"),
 	m_type(Bottle::Type::Fire),
-	m_select(0),
-	m_player(player)
+	m_select(0)
 {	
 	//画像の登録	
 	m_sprite = new Sprite();
@@ -52,32 +51,6 @@ void UiBottle::Update()
 
 	m_type = static_cast<Bottle::Type>(m_select);
 	m_sprite->Play(TextureName[m_select]);
-
-	//左クリックでボトルを生成
-	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT))
-	{
-		switch (m_type)
-		{
-		case Bottle::Type::Fire:
-			AddChild(new FireBottle(m_player->GetPosition()));
-			break;
-
-		case Bottle::Type::Thunder:
-			AddChild(new ThunderBottle(m_player->GetPosition()));
-			break;
-
-		case Bottle::Type::Water:
-			AddChild(new WaterBottle(m_player->GetPosition()));
-			break;
-
-		case Bottle::Type::Wind:
-			AddChild(new WindBottle(m_player->GetPosition()));
-			break;
-
-		default:
-			break;
-		}
-	}
 }
 
 //描画

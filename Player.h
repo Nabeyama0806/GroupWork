@@ -6,6 +6,7 @@
 #include <vector>
 
 class Camera;
+class UiBottle;
 
 class Player : public ModelActor
 {
@@ -26,18 +27,20 @@ private:
 	};
 
 	Camera* m_camera;
-
+	UiBottle* m_uiBottle;
+	Vector3 m_holdMove;
 	bool m_onGround;	// 地面についているかどうか
 	bool m_onWall;		// 壁に当たっているかどうか
 
-	Vector3 m_holdMove;
+	void Move();			//移動処理
+	void CreateBottle();	//指定されたボトルの作成
+
 protected:
 	virtual void Update() override;	//更新
-	virtual void Draw() override;	//描画
 
 public:
 	//コンストラクタ
-	Player(Camera* camera);
+	Player(Camera* camera, UiBottle* uiBottle);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

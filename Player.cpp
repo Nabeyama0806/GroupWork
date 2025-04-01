@@ -1,4 +1,9 @@
 #include "Player.h"
+#include "FireBottle.h"
+#include "ThunderBottle.h"
+#include "WaterBottle.h"
+#include "WindBottle.h"
+#include "UiBottle.h"
 #include "Input.h"
 #include "Time.h"
 #include "Quaternion.h"
@@ -7,9 +12,10 @@
 #include "ModelAnimation.h"
 
 //コンストラクタ
-Player::Player(Camera* camera) :
+Player::Player(Camera* camera, UiBottle* uiBottle) :
 	ModelActor("Player"),
 	m_camera(camera),
+	m_uiBottle(uiBottle),
 	m_onGround(false),
 	m_onWall(false),
 	m_holdMove(0,0,0)
@@ -26,8 +32,8 @@ Player::Player(Camera* camera) :
 	m_transform.position = SpawnPos;
 	m_transform.scale = Scale;
 
-	Vector3 colliderScale = ColliderSize * Scale.x;
 	//衝突判定
+	Vector3 colliderScale = ColliderSize * Scale.x;
 	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
 }
 
@@ -37,13 +43,56 @@ void Player::Update()
 	//本来の更新
 	ModelActor::Update();
 
+	//移動
+	Move();
+
+	//左クリックでボトルを生成
+	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT))
+	{
+		CreateBottle();
+	}
+
+	// 地面と壁との当たり判定のリセット
+	m_onGround = false;
+	m_onWall = false;
+}
+
+//指定されたボトルの作成
+void Player::CreateBottle()
+{
+	switch (m_uiBottle->GetType())
+	{
+	case Bottle::Type::Fire:
+		AddChild(new FireBottle(m_transform.position));
+		break;
+
+	case Bottle::Type::Thunder:
+		AddChild(new ThunderBottle(m_transform.position));
+		break;
+
+	case Bottle::Type::Water:
+		AddChild(new WaterBottle(m_transform.position));
+		break;
+
+	case Bottle::Type::Wind:
+		AddChild(new WindBottle(m_transform.position));
+		break;
+
+	default:
+		break;
+	}
+}
+
+//移動
+void Player::Move()
+{
 	//入力方向の取得
 	Vector3 move = Vector3(0, 0, 0);
 	float speedRate = 1.0f;
 	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_LSHIFT))	speedRate = DashSpeed;
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_W)) move.z =  1;
+	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_W)) move.z = 1;
 	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_S)) move.z = -1;
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_D)) move.x =  1;
+	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_D)) move.x = 1;
 	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_A)) move.x = -1;
 
 	//カメラの正面ベクトルを作成
@@ -73,31 +122,14 @@ void Player::Update()
 		animeIndex = static_cast<int>(Model::Anime::Run);
 	}
 
+	// 重力
 	if (!m_onGround)
 	{
-		// 重力
 		m_transform.position.y -= GravityScale;
 	}
 
-	// ジャンプ
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE) && m_onGround)
-	{
-		m_transform.position.y += 100;
-	}
-
-	
 	//設定したアニメーションの再生
 	m_model->PlayAnime(animeIndex);
-
-	// 地面と壁との当たり判定のリセット
-	m_onGround = false;
-	m_onWall = false;
-}
-
-//描画
-void Player::Draw()
-{
-	ModelActor::Draw();
 }
 
 //衝突イベント
@@ -123,10 +155,6 @@ void Player::OnCollision(const ModelActor* other)
 		{
 			m_transform.position.z -= m_holdMove.z;	// 動いた分戻す
 		}
-		/*
-		m_transform.position -= m_holdMove;
-		m_holdMove = Vector3(0, 0, 0);
-		*/
 	}
 
 	if (other->GetName() == "Ground")

@@ -42,15 +42,14 @@ void SceneGame::Initialize()
 	Node* uiLayer = new Node();
 	m_rootNode->AddChild(uiLayer);
 
+	//UIの表示
+	m_uiBottle = new UiBottle();
+	uiLayer->AddChild(m_uiBottle);
+
 	//プレイヤー
-	m_player = new Player(m_mainCamera);
+	m_player = new Player(m_mainCamera, m_uiBottle);
 	actorLayer->AddChild(m_player);
 	m_mainCamera->SetlookAt(m_player);
-
-	// Ui(仮置き)
-	m_tmpUi = new SpriteActor("ui", "Resource/ポーション候補3.png", Screen::BottomLeft);
-	m_tmpUi->ChangeScale(0.1f);
-	uiLayer->AddChild(m_tmpUi);
 
 	//壁
 	Vector3 wallPos	 = Vector3(0, 100, 2000);
@@ -85,16 +84,6 @@ void SceneGame::Initialize()
 		floorPos,
 		floorSize
 	));
-
-	/*
-	//属性ビンの表示
-	ModelActor* model = new ModelActor("kaminari", "Resource/bottle_thunder.mv1", wallPos);
-	model->ChangeScale(70);
-	actorLayer->AddChild(model);
-	*/
-
-	//UIの表示
- 	uiLayer->AddChild(new UiBottle(m_player));
 
 	//BGM
 

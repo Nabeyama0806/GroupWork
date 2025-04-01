@@ -29,7 +29,6 @@ private:
 	};
 
 	Bottle::Type m_type;	//自身の属性
-	Player* m_player;		
 	int m_select;			//選択している属性
 
 protected:
@@ -38,5 +37,11 @@ protected:
 
 public:
 	//コンストラクタ
-	UiBottle(Player* player);
+	UiBottle();
+
+	//選択されているボトルの取得
+	Bottle::Type GetType()
+	{
+		return m_type;
+	}
 };
