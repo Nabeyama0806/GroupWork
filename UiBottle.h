@@ -29,7 +29,7 @@ private:
 	};
 
 	Bottle::Type m_type;	//©g‚Ì‘®«
-	Player* m_player;
+	Player* m_player;		
 	int m_select;			//‘I‘ğ‚µ‚Ä‚¢‚é‘®«
 
 protected:

@@ -1,7 +1,6 @@
 #include "SceneGame.h"
 #include "SceneResult.h"
 #include "ModelLoader.h"
-#include "ImageLoader.h"
 #include "Screen.h"
 #include "Fade.h"
 #include "Time.h"

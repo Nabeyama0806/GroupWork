@@ -10,5 +10,5 @@ protected:
 
 public:
 	//コンストラクタ
-	WaterBottle(Vector3& position, Vector3& addForce);
+	WaterBottle(const Vector3& position);
 };

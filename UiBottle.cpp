@@ -35,31 +35,48 @@ void UiBottle::Update()
 	//本来の更新
 	SpriteActor::Update();
 
-	int mouseHweel = Input::GetInstance()->GetMouseHweelRot();
 	//属性ビンの切り替え
-	if (mouseHweel != 0)
+	int mouseHweel = Input::GetInstance()->GetMouseHweelRot();
+	if (mouseHweel < 0)
 	{
-		if (mouseHweel < 0)
-		{
-			m_select == static_cast<int>(Bottle::Type::Fire) ?
-				m_select = static_cast<int>(Bottle::Type::Length) - 1 :
-				m_select--;
-		}
-		else
-		{
-			m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
-				m_select = static_cast<int>(Bottle::Type::Fire) :
-				m_select++;
-		}
-
-		m_sprite->Play(TextureName[m_select]);
-		m_type = static_cast<Bottle::Type>(m_select);
+		m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
+			m_select = static_cast<int>(Bottle::Type::Fire) :
+			m_select++;
 	}
+	if(mouseHweel > 0)
+	{
+		m_select == static_cast<int>(Bottle::Type::Fire) ?
+			m_select = static_cast<int>(Bottle::Type::Length) - 1 :
+			m_select--;
+	}
+
+	m_type = static_cast<Bottle::Type>(m_select);
+	m_sprite->Play(TextureName[m_select]);
 
 	//左クリックでボトルを生成
 	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT))
 	{
-		AddChild(new ThunderBottle(m_player->GetPosition()));
+		switch (m_type)
+		{
+		case Bottle::Type::Fire:
+			AddChild(new FireBottle(m_player->GetPosition()));
+			break;
+
+		case Bottle::Type::Thunder:
+			AddChild(new ThunderBottle(m_player->GetPosition()));
+			break;
+
+		case Bottle::Type::Water:
+			AddChild(new WaterBottle(m_player->GetPosition()));
+			break;
+
+		case Bottle::Type::Wind:
+			AddChild(new WindBottle(m_player->GetPosition()));
+			break;
+
+		default:
+			break;
+		}
 	}
 }
 

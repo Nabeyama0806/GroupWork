@@ -14,9 +14,6 @@ void FireBottle::Update()
 {
 	//–{—ˆ‚ÌXV
 	ModelActor::Update();
-	
-	//“Š‚°‚é
-	//Throw(m_transform.position, m_addForce);
 }
 
 //•`‰æ

@@ -2,12 +2,11 @@
 #include "Model.h"
 
 //コンストラクタ
-WindBottle::WindBottle(Vector3& position, Vector3& addForce) :
+WindBottle::WindBottle(const Vector3& position) :
 	Bottle(position)
 {
-	m_model = new Model("Resource/honouポーション.mv1");
-
-	m_addForce = addForce;
+	m_model = new Model("Resource/bottle_wind.mv1");
+	m_transform.scale *= Scale;
 }
 
 //更新
@@ -15,9 +14,6 @@ void WindBottle::Update()
 {
 	//本来の更新
 	ModelActor::Update();
-
-	//投げる
-	Throw(m_transform.position, m_addForce);
 }
 
 //描画

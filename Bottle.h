@@ -8,8 +8,8 @@ public:
 	enum class  Type
 	{
 		Fire,		//‰Š
-		Water,		//…
 		Thunder,	//—‹
+		Water,		//…
 		Wind,		//•—
 
 		Length

@@ -10,5 +10,5 @@ protected:
 
 public:
 	//コンストラクタ
-	WindBottle(Vector3& position, Vector3& addForce);
+	WindBottle(const Vector3& position);
 }; 

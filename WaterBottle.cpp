@@ -2,12 +2,11 @@
 #include "Model.h"
 
 //コンストラクタ
-WaterBottle::WaterBottle(Vector3& position, Vector3& addForce) :
+WaterBottle::WaterBottle(const Vector3& position) :
 	Bottle(position)
 {
-	m_model = new Model("Resource/honouポーション.mv1");
-
-	m_addForce = addForce;
+	m_model = new Model("Resource/bottle_water.mv1");
+	m_transform.scale *= Scale;
 }
 
 //更新
@@ -15,9 +14,6 @@ void WaterBottle::Update()
 {
 	//本来の更新
 	ModelActor::Update();
-
-	//投げる
-	Throw(m_transform.position, m_addForce);
 }
 
 //描画
