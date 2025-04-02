@@ -3,6 +3,7 @@
 #include "ThunderBottle.h"
 #include "WaterBottle.h"
 #include "WindBottle.h"
+#include "SoundManager.h"
 #include "Sprite.h"
 #include "Player.h"
 #include "Input.h"
@@ -36,17 +37,21 @@ void UiBottle::Update()
 
 	//‘®«ƒrƒ“‚ÌØ‚è‘Ö‚¦
 	int mouseHweel = Input::GetInstance()->GetMouseHweelRot();
-	if (mouseHweel < 0)
+	if (mouseHweel != 0)
 	{
-		m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
-			m_select = static_cast<int>(Bottle::Type::Fire) :
-			m_select++;
-	}
-	if(mouseHweel > 0)
-	{
-		m_select == static_cast<int>(Bottle::Type::Fire) ?
-			m_select = static_cast<int>(Bottle::Type::Length) - 1 :
-			m_select--;
+		if (mouseHweel < 0)
+		{
+			m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
+				m_select = static_cast<int>(Bottle::Type::Fire) :
+				m_select++;
+		}
+		if (mouseHweel > 0)
+		{
+			m_select == static_cast<int>(Bottle::Type::Fire) ?
+				m_select = static_cast<int>(Bottle::Type::Length) - 1 :
+				m_select--;
+		}
+		SoundManager::GetInstance()->SoundPlay("sound/se_bottle_select.mp3");
 	}
 
 	m_type = static_cast<Bottle::Type>(m_select);

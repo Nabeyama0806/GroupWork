@@ -1,4 +1,5 @@
 #pragma once
+#include "DxLib.h"
 
 class SoundManager
 {
@@ -10,5 +11,6 @@ public:
 		return &instance;
 	}
 
-	void SoundPlay(int id, int type, int topPositionFlag = 1);
+	void SoundPlay(int id, int type = DX_PLAYTYPE_BACK, int topPositionFlag = 1);
+	void SoundPlay(const char* path, int type = DX_PLAYTYPE_BACK, int topPositionFlag = 1);
 };

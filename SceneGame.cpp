@@ -1,5 +1,6 @@
 #include "SceneGame.h"
 #include "SceneResult.h"
+#include "SoundManager.h"
 #include "ModelLoader.h"
 #include "Screen.h"
 #include "Fade.h"
@@ -86,7 +87,7 @@ void SceneGame::Initialize()
 	));
 
 	//BGM
-
+	SoundManager::GetInstance()->SoundPlay(m_bgm, DX_PLAYTYPE_LOOP);
 }
 
 //èIóπ

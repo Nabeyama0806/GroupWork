@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "Time.h"
 #include "Quaternion.h"
+#include "SoundManager.h"
 #include "BoxCollider.h"
 #include "ModelLoader.h"
 #include "ModelAnimation.h"
@@ -50,6 +51,7 @@ void Player::Update()
 	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT))
 	{
 		CreateBottle();
+		SoundManager::GetInstance()->SoundPlay("sound/se_bottle_create.mp3");
 	}
 
 	// 地面と壁との当たり判定のリセット

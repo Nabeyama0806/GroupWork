@@ -1,5 +1,6 @@
 #pragma once
 #include"SceneBase.h"
+#include "SoundLoader.h"
 #include "Vector3.h"
 #include <list>
 
@@ -39,7 +40,10 @@ public:
 		m_tmpUi(nullptr),
 		m_uiBottle(nullptr),
 		m_resultTransitionTime(ResultTransitionTime),
-		m_bgm(0){}
+		m_bgm(0)
+	{
+		m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");
+	}
 
 	virtual void Initialize() override;		//‰Šú‰»
 	virtual void Finalize() override;		//I—¹
