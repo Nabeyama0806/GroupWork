@@ -14,19 +14,19 @@ void Camera::Update()
 	if (m_lookAt != nullptr)
 	{
 		m_targetPos = m_lookAt->GetPosition();		//注視点を設定
-		m_targetPos.y += LookAtHeight;				//注視点のオフセット
+		m_targetPos.y += m_lookAtHeight;				//注視点のオフセット
 	}
 	else
 	{
-		m_targetPos.y = LookAtHeight;
+		m_targetPos.y = m_lookAtHeight;
 	}
 
 	//最初に垂直角度を反映した位置を算出
 	float sinParam = static_cast<float>(sin(Math::DegToRad(m_cameraVAngle)));
 	float cosParam = static_cast<float>(cos(Math::DegToRad(m_cameraVAngle)));
 	tempPosition1.x = 0.0f;
-	tempPosition1.y = sinParam * CameraDistance;
-	tempPosition1.z = -cosParam * CameraDistance;
+	tempPosition1.y = sinParam * m_cameraDistance;
+	tempPosition1.z = -cosParam * m_cameraDistance;
 
 	//次に水平角度を反映した位置を算出
 	sinParam = static_cast<float>(sin(Math::DegToRad(m_cameraHAngle)));

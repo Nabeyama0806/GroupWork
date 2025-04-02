@@ -33,7 +33,8 @@ void SceneGame::Initialize()
 	m_rootNode->AddChild(m_mainCamera);
 
 	//背景
-	m_rootNode->AddChild(new ModelActor("Ground", "Environment/Environment.mv1"));
+	m_stage = new ModelActor("Ground", "Environment/Environment.mv1");
+	m_rootNode->AddChild(m_stage);
 
 	//アクターレイヤー
 	Node* actorLayer = new Node();
@@ -50,7 +51,7 @@ void SceneGame::Initialize()
 	//プレイヤー
 	m_player = new Player(m_mainCamera, m_uiBottle);
 	actorLayer->AddChild(m_player);
-	m_mainCamera->SetlookAt(m_player);
+	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
 
 	//壁
 	Vector3 wallPos	 = Vector3(0, 100, 2000);
@@ -113,6 +114,13 @@ SceneBase* SceneGame::Update()
 {
 	//ノードの更新
 	m_rootNode->TreeUpdate();
+
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_1))
+	{
+		m_isLookPlayer = !m_isLookPlayer;
+		m_mainCamera->SetLookAt(m_isLookPlayer ? m_player : m_stage, m_isLookPlayer);
+	}
+
 	return this;
 }
 

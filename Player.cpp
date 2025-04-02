@@ -21,6 +21,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_onWall(false),
 	m_holdMove(0,0,0)
 {
+	/*
 	//アニメーションの登録
 	m_model = new Model("Man/Man.mv1");
 	for (int i = 0; i < AnimeAmount; ++i)
@@ -28,6 +29,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 		//アニメーションのファイルパスを渡す
 		m_model->Register(AnimeFileName[i]);
 	}
+	*/
 
 	//姿勢情報の調整
 	m_transform.position = SpawnPos;
@@ -43,6 +45,8 @@ void Player::Update()
 {
 	//本来の更新
 	ModelActor::Update();
+
+	if (!m_camera->GetIsPlayer()) return;
 
 	//移動
 	Move();
@@ -131,7 +135,7 @@ void Player::Move()
 	}
 
 	//設定したアニメーションの再生
-	m_model->PlayAnime(animeIndex);
+	//m_model->PlayAnime(animeIndex);
 }
 
 //衝突イベント
