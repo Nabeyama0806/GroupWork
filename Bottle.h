@@ -15,16 +15,18 @@ public:
 		Length
 	};
 
-	static constexpr int Scale = 40;		//‘å‚«‚³‚Ì’²®
+	static constexpr int Scale = 20;		//‘å‚«‚³‚Ì’²®
 private:
 	static constexpr float Gravity = 1.2f;	//d—Í
+	static constexpr float AddForce = 20;	//“Š‚°‚é—Í
+	static constexpr float Mass = 2;		//¿—Ê
 
 	Vector3 m_effectiveArea;	//Œø‰Ê‚Ì—LŒø”ÍˆÍ
 	Type m_type;				//©g‚Ì‘®«
 
 protected:
 	virtual void ActiveEffect() = 0;		//ÚG‚Ì”­“®Œø‰Ê
-	void Throw(Vector3& position, Vector3& addforce);
+	Vector3 Throw(Vector3& position, float addforce) const;
 	Vector3 m_addForce;			//“Š‚°‚ç‚ê‚é—Í
 
 public:

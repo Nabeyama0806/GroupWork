@@ -14,7 +14,7 @@ public:
 	}
 
 	//‰~Œ`‚Ì“–‚½‚è”»’è
-	HitCollider(const char* name, const Vector3& position, const int size) :
+	HitCollider(const char* name, const Vector3& position, const float size) :
 		ModelActor(name, nullptr, position)
 	{
 		m_collider = new CircleCollider(size);

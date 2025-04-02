@@ -60,7 +60,7 @@ bool Collision::Check(
 	float hypotenuseZ = distanceZ2 + distanceX2;
 
 	// 2‚Â‚Ì”¼Œa‚Ì‡Œv‚Ì“ñæ
-	float sumSize = abs(size1 + size2) * abs(size1 + size2);
+	int sumSize = abs(size1 + size2) * abs(size1 + size2);
 
 	//‰~Œ`‚Ì’†S‚Ì‹——£‚ª”¼Œa“ñ‚Â‚ğ‘«‚µ‚½’·‚³‚æ‚è¬‚³‚¢‚©‚Ç‚¤‚©
 	if (hypotenuseX <= sumSize && hypotenuseY <= sumSize &&	hypotenuseZ <= sumSize)

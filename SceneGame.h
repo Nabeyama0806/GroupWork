@@ -16,7 +16,12 @@ class UiBottle;
 class SceneGame : public SceneBase
 {
 private:
-	const std::list<const char*> ImagePreload =
+	const std::list<const char*> SpritePreload =
+	{
+		//"title.png"
+	};
+
+	const std::list<const char*> ModelPreload =
 	{
 		//"title.png"
 	};

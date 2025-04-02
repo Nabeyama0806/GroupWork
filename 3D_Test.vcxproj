@@ -61,6 +61,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="FireBottle.h" />
+    <ClInclude Include="GameConfig.h" />
     <ClInclude Include="HitCollider.h" />
     <ClInclude Include="ModelActor.h" />
     <ClInclude Include="ActorBase.h" />

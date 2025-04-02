@@ -2,6 +2,7 @@
 #include "SceneResult.h"
 #include "SoundManager.h"
 #include "ModelLoader.h"
+#include "SpriteLoader.h"
 #include "Screen.h"
 #include "Fade.h"
 #include "Time.h"
@@ -20,9 +21,15 @@
 void SceneGame::Initialize()
 {
 	//画像の事前読み込み
-	for (auto image : ImagePreload)
+	for (auto sprite : SpritePreload)
 	{
-		ModelLoader::GetInstance()->Load(image);
+		SpriteLoader::GetInstance()->Load(sprite);
+	}
+
+	//モデルの事前読み込み
+	for (auto model : ModelPreload)
+	{
+		ModelLoader::GetInstance()->Load(model);
 	}
 
 	//ルート
@@ -94,10 +101,16 @@ void SceneGame::Initialize()
 //終了
 void SceneGame::Finalize()
 {
-	//事前読み込みした画像の破棄
-	for (auto image : ImagePreload)
+	//画像の事前読み込み
+	for (auto sprite : SpritePreload)
 	{
-		ModelLoader::GetInstance()->Delete(image);
+		SpriteLoader::GetInstance()->Delete(sprite);
+	}
+
+	//モデルの事前読み込み
+	for (auto model : ModelPreload)
+	{
+		ModelLoader::GetInstance()->Delete(model);
 	}
 
 	//ノードの削除

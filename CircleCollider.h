@@ -6,10 +6,10 @@
 class CircleCollider : public Collider
 {
 public:
-	int m_radius;
+	float m_radius;
 
 	//コンストラクタ
-	CircleCollider(int radius, const Vector3& offset = Vector3()) :
+	CircleCollider(float radius, const Vector3& offset = Vector3()) :
 		Collider(offset),
 		m_radius(radius) {
 	}

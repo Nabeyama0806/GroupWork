@@ -51,13 +51,12 @@ void SceneManager::Updeta()
 		//フェードアウト
 	case Phase::FadeOut :
 		//フェードアウトが終わるまで待機
-		if (Fade::GetInstance()->IsFade())
+		if (!Fade::GetInstance()->IsFade())
 		{
-			break;
+			//フェードが終わったのでシーン遷移する
+			m_phase = Phase::Transition;
 		}
-
-		//フェードが終わったのでシーン遷移する
-		m_phase = Phase::Transition;
+		
 		break;
 
 		//シーン遷移
@@ -78,7 +77,7 @@ void SceneManager::Updeta()
 		m_nextScene = nullptr;
 
 		//フェードイン
-		Fade::GetInstance()->StartFadeIn(0.2f);
+		Fade::GetInstance()->StartFadeIn();
 
 		m_phase = Phase::Run;
 		break;

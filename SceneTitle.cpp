@@ -1,8 +1,9 @@
 #include "SceneTitle.h"
-#include"SceneGame.h"
-#include "DxLib.h"
+#include "SceneGame.h"
+#include "SpriteActor.h"
 #include "Input.h"
 #include "Screen.h"
+#include "DxLib.h"
 
 //‰Šú‰»
 void SceneTitle::Initialize()
@@ -10,6 +11,7 @@ void SceneTitle::Initialize()
 	m_rootNode = new Node();
 
 	//”wŒi
+	m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/title.png", Screen::Center));
 }
 
 //I—¹

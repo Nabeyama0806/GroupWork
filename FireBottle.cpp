@@ -1,4 +1,5 @@
 #include "FireBottle.h"
+#include "Time.h"
 #include "Model.h"
 
 //コンストラクタ
@@ -7,6 +8,7 @@ FireBottle::FireBottle(const Vector3& position) :
 {
 	m_model = new Model("Resource/bottle_fire.mv1");
 	m_transform.scale *= Scale;
+	m_transform.position = position;
 }
 
 //更新
