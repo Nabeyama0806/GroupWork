@@ -3,6 +3,9 @@
 
 class FireBottle : public Bottle
 {
+private :
+	Vector3 m_forward;
+
 protected:
 	virtual void Update() override;			//更新
 	virtual void Draw() override;			//描画
@@ -10,5 +13,5 @@ protected:
 
 public:
 	//コンストラクタ
-	FireBottle(const Vector3& position);
+	FireBottle(const Vector3& position, const Vector3& forward, const Quaternion& rotation);
 };

@@ -2,11 +2,14 @@
 #include "Model.h"
 
 //コンストラクタ
-ThunderBottle::ThunderBottle(const Vector3& position) :
-	Bottle(position)
+ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, const Quaternion& rotation) :
+	Bottle(position),
+	m_forward(forward)
 {
 	m_model = new Model("Resource/bottle_thunder.mv1");
 	m_transform.scale *= Scale;
+	m_transform.position = position;
+	m_transform.rotation = rotation;
 }
 
 //更新
@@ -14,6 +17,8 @@ void ThunderBottle::Update()
 {
 	//本来の更新
 	ModelActor::Update();
+
+	m_transform.position += Bottle::Throw(m_forward);
 }
 
 //描画

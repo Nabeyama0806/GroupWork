@@ -70,19 +70,19 @@ void Player::CreateBottle()
 	switch (m_uiBottle->GetType())
 	{
 	case Bottle::Type::Fire:
-		AddChild(new FireBottle(m_transform.position));
+		AddChild(new FireBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
 		break;
 
 	case Bottle::Type::Thunder:
-		AddChild(new ThunderBottle(m_transform.position));
+		AddChild(new ThunderBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
 		break;
 
 	case Bottle::Type::Water:
-		AddChild(new WaterBottle(m_transform.position));
+		AddChild(new WaterBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
 		break;
 
 	case Bottle::Type::Wind:
-		AddChild(new WindBottle(m_transform.position));
+		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
 		break;
 
 	default:

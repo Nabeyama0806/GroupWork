@@ -8,8 +8,9 @@ Bottle::Bottle(const Vector3& position) :
 
 }
 
-Vector3 Bottle::Throw(Vector3& position, float addForce) const
+Vector3 Bottle::Throw(Vector3& position) const
 {
 	//³‹K‰»
-	return position.Normalized() * addForce * Time::GetInstance()->GetDeltaTime() / Mass;
+	position.y -= Gravity;
+	return position.Normalized() * AddForce * Time::GetInstance()->GetDeltaTime() / Mass;
 }
