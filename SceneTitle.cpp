@@ -2,6 +2,8 @@
 #include "SceneGame.h"
 #include "SpriteActor.h"
 #include "Input.h"
+#include "SoundManager.h"
+#include "SoundLoader.h"
 #include "Screen.h"
 #include "DxLib.h"
 
@@ -12,6 +14,10 @@ void SceneTitle::Initialize()
 
 	//”wŒi
 	m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/title.png", Screen::Center));
+
+	//BGM
+	m_bgm = SoundLoader::GetInstance()->Load("sound/bgm_title.mp3");
+	SoundManager::GetInstance()->SoundPlay(m_bgm, DX_PLAYTYPE_LOOP);
 }
 
 //I—¹
@@ -28,6 +34,10 @@ SceneBase* SceneTitle::Update()
 	//‚¢‚¸‚ê‚©‚ÌƒL[‚ª‰Ÿ‚³‚ê‚½‚çƒQ[ƒ€ƒV[ƒ“‚ÖˆÚ“®
 	if (Input::GetInstance()->IsAnyKeyDown())
 	{
+		//Œø‰Ê‰¹
+		SoundManager::GetInstance()->SoundPlay("sound/se_start.mp3");
+		StopSoundMem(m_bgm);
+
 		return new SceneGame();
 	}
 

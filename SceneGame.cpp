@@ -1,8 +1,6 @@
 #include "SceneGame.h"
 #include "SceneResult.h"
 #include "SoundManager.h"
-#include "ModelLoader.h"
-#include "SpriteLoader.h"
 #include "Screen.h"
 #include "Fade.h"
 #include "Time.h"
@@ -20,18 +18,6 @@
 //初期化
 void SceneGame::Initialize()
 {
-	//画像の事前読み込み
-	for (auto sprite : SpritePreload)
-	{
-		SpriteLoader::GetInstance()->Load(sprite);
-	}
-
-	//モデルの事前読み込み
-	for (auto model : ModelPreload)
-	{
-		ModelLoader::GetInstance()->Load(model);
-	}
-
 	//ルート
 	m_rootNode = new Node();
 
@@ -40,7 +26,7 @@ void SceneGame::Initialize()
 	m_rootNode->AddChild(m_mainCamera);
 
 	//背景
-	m_stage = new ModelActor("Ground", "Environment/Environment.mv1");
+	m_stage = new ModelActor("Ground", "Environment/BaseStage3.0.mv1");
 	m_rootNode->AddChild(m_stage);
 
 	//アクターレイヤー
@@ -51,9 +37,12 @@ void SceneGame::Initialize()
 	Node* uiLayer = new Node();
 	m_rootNode->AddChild(uiLayer);
 
-	//UIの表示
+	//ボトルUIの表示
 	m_uiBottle = new UiBottle();
 	uiLayer->AddChild(m_uiBottle);
+
+	//照準の表示
+	uiLayer->AddChild(new SpriteActor("reticle", "Resource/reticle.png", Screen::Center));
 
 	//プレイヤー
 	m_player = new Player(m_mainCamera, m_uiBottle);
@@ -95,6 +84,7 @@ void SceneGame::Initialize()
 	));
 
 	//BGM
+	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");
 	SoundManager::GetInstance()->SoundPlay(m_bgm, DX_PLAYTYPE_LOOP);
 }
 

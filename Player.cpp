@@ -58,7 +58,6 @@ void Player::Update()
 	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT))
 	{
 		CreateBottle();
-		SoundManager::GetInstance()->SoundPlay("sound/se_bottle_create.mp3");
 	}
 
 	// 地面と壁との当たり判定のリセット
@@ -96,6 +95,8 @@ void Player::CreateBottle()
 	default:
 		break;
 	}
+
+	SoundManager::GetInstance()->SoundPlay("sound/se_bottle_create.mp3");
 }
 
 //移動

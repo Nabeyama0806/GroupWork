@@ -1,5 +1,7 @@
 #pragma once
 #include"SceneBase.h"
+#include "ModelLoader.h"
+#include "SpriteLoader.h"
 #include "SoundLoader.h"
 #include "Vector3.h"
 #include <list>
@@ -18,12 +20,15 @@ class SceneGame : public SceneBase
 private:
 	const std::list<const char*> SpritePreload =
 	{
-		//"title.png"
+		//特になし
 	};
 
 	const std::list<const char*> ModelPreload =
 	{
-		//"title.png"
+		"Resource/bottle_fire.mv1",
+		"Resource/bottle_thunder.mv1",
+		"Resource/bottle_water.mv1",
+		"Resource/bottle_wind.mv1",
 	};
 
 	static constexpr float ResultTransitionTime = 2.0f;	//プレイヤーが死んでからリザルト画面に遷移するまでの時間
@@ -53,7 +58,20 @@ public:
 		m_resultTransitionTime(ResultTransitionTime),
 		m_bgm(0)
 	{
-		m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");
+		//背景色の変更
+		SetBackgroundColor(255, 255, 255);
+
+		//画像の事前読み込み
+		for (auto sprite : SpritePreload)
+		{
+			SpriteLoader::GetInstance()->Load(sprite);
+		}
+
+		//モデルの事前読み込み
+		for (auto model : ModelPreload)
+		{
+			ModelLoader::GetInstance()->Load(model);
+		}
 	}
 
 	virtual void Initialize() override;		//初期化
