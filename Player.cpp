@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Bottle.h"
 #include "FireBottle.h"
 #include "ThunderBottle.h"
 #include "WaterBottle.h"
@@ -17,6 +18,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	ModelActor("Player"),
 	m_camera(camera),
 	m_uiBottle(uiBottle),
+	m_createBottle(nullptr),
 	m_onGround(false),
 	m_onWall(false),
 	m_holdMove(0,0,0)
@@ -67,25 +69,28 @@ void Player::Update()
 //指定されたボトルの作成
 void Player::CreateBottle()
 {
+	if (m_createBottle) return;
+
 	switch (m_uiBottle->GetType())
 	{
 	case Bottle::Type::Fire:
-		// どういう計算式かわからんけどなんかいろんな方向向く
-		AddChild(new FireBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
+		m_createBottle = new FireBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
+		AddChild(m_createBottle);
 		break;
 
 	case Bottle::Type::Thunder:
-		// 常にｙだけ正面を向く
-		AddChild(new ThunderBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
+		m_createBottle = new ThunderBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
+		AddChild(m_createBottle);
 		break;
 
 	case Bottle::Type::Water:
-		// 常に全部の角度がこっちを向く
-		AddChild(new WaterBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
+		m_createBottle = new WaterBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
+		AddChild(m_createBottle);
 		break;
 
 	case Bottle::Type::Wind:
-		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
+		m_createBottle = new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
+		AddChild(m_createBottle);
 		break;
 
 	default:
@@ -179,5 +184,14 @@ void Player::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Ground")
 	{
 		m_onGround = true;
+	}
+
+	if (other->GetName() == "Bottle")
+	{
+		if (m_createBottle->GetType() == Bottle::Type::Wind)
+		{
+			// タイプを取れているかの確認
+			int a = 0;
+		}
 	}
 }

@@ -7,6 +7,7 @@
 
 class Camera;
 class UiBottle;
+class Bottle;
 
 class Player : public ModelActor
 {
@@ -28,6 +29,7 @@ private:
 
 	Camera* m_camera;
 	UiBottle* m_uiBottle;
+	Bottle* m_createBottle;	// 生成したボトル
 	Vector3 m_holdMove;
 	bool m_onGround;	// 地面についているかどうか
 	bool m_onWall;		// 壁に当たっているかどうか
@@ -42,6 +44,8 @@ protected:
 public:
 	//コンストラクタ
 	Player(Camera* camera, UiBottle* uiBottle);
+
+	void DestroyBottle() { m_createBottle = nullptr; }
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

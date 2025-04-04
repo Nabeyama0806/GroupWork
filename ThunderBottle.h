@@ -1,10 +1,13 @@
 #pragma once
 #include "Bottle.h"
 
+class Player;
+
 class ThunderBottle : public Bottle
 {
 private:
 	Vector3 m_forward;
+	Player* m_player;
 
 protected:
 	virtual void Update() override;			//更新
@@ -13,7 +16,7 @@ protected:
 
 public:
 	//コンストラクタ
-	ThunderBottle(const Vector3& position, const Vector3& forward, const Quaternion& rotation);
+	ThunderBottle(const Vector3& position, const Vector3& forward, Player* player);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

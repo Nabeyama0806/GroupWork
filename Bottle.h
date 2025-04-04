@@ -32,5 +32,7 @@ protected:
 
 public:
 	//コンストラクタ
-	Bottle(const Vector3& position);
+	Bottle(const Vector3& position, Type type);
+
+	Type GetType() { return m_type; }
 };
