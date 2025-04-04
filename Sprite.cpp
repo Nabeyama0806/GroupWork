@@ -88,7 +88,7 @@ void Sprite::Draw(const Transform& transform)
 		transform.scale.x,
 		transform.rotation.x,
 		m_runningAnime->textureId,
-		false,
+		true,
 		flipX, flipY
 	);
 

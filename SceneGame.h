@@ -14,7 +14,7 @@ class Camera;
 class SpriteActor;
 class UiBottle;
 
-//	ゲームシーン
+//ゲームシーン
 class SceneGame : public SceneBase
 {
 private:
@@ -58,9 +58,6 @@ public:
 		m_resultTransitionTime(ResultTransitionTime),
 		m_bgm(0)
 	{
-		//背景色の変更
-		SetBackgroundColor(255, 255, 255);
-
 		//画像の事前読み込み
 		for (auto sprite : SpritePreload)
 		{

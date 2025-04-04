@@ -7,16 +7,16 @@ class Player;
 class UiBottle : public SpriteActor
 {
 private:
-	static constexpr Vector3 SizeOffset = Vector3(0.1f, 0.1f, 0.1f);
-	static constexpr Vector3 ScreenOffset = Vector3(-200, -150, 0);
+	static constexpr Vector3 SizeOffset = Vector3(0.07f, 0.07f, 0.07f);
+	static constexpr Vector3 ScreenOffset = Vector3(-140, -140, 0);
 
 	//画像のファイルパス
 	const char* FilePath[static_cast<int>(Bottle::Type::Length)] =
 	{
-		"Resource/bottle_fire.png",
-		"Resource/bottle_thunder.png",
-		"Resource/bottle_water.png",
-		"Resource/bottle_wind.png"
+		"Resource/bottle_fire2.png",
+		"Resource/bottle_thunder2.png",
+		"Resource/bottle_water2.png",
+		"Resource/bottle_wind2.png"
 	};
 
 	//画像の名前
