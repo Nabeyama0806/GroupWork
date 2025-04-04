@@ -14,4 +14,7 @@ protected:
 public:
 	//コンストラクタ
 	WaterBottle(const Vector3& position, const Vector3& forward, const Quaternion& rotation);
+
+	//衝突イベント
+	virtual void OnCollision(const ModelActor* other) override;
 };

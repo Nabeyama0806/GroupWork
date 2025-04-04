@@ -1,5 +1,6 @@
 #include "WaterBottle.h"
 #include "Model.h"
+#include "BoxCollider.h"
 
 //コンストラクタ
 WaterBottle::WaterBottle(const Vector3& position, const Vector3& forward, const Quaternion& rotation) :
@@ -10,6 +11,8 @@ WaterBottle::WaterBottle(const Vector3& position, const Vector3& forward, const 
 	m_transform.scale *= Scale;
 	m_transform.position = position;
 	m_transform.rotation = rotation;
+
+	m_collider = new BoxCollider(ColliderSize);
 }
 
 //更新
@@ -33,4 +36,13 @@ void WaterBottle::ActiveEffect()
 {
 	//自身を削除
 	Destroy();
+}
+
+//衝突イベント
+void WaterBottle::OnCollision(const ModelActor* other)
+{
+	if (other->GetName() != "Player" && other->GetName() != "Bottle")
+	{
+		ActiveEffect();
+	}
 }

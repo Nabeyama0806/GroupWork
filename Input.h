@@ -95,7 +95,7 @@ public:
 	}
 
 	//マウスボタンが押されている時
-	bool IsMousePrees(int button)
+	bool IsMousePress(int button)
 	{
 		return (m_mouseButton & button);
 	}

@@ -24,6 +24,8 @@ private:
 	Type m_type;				//©g‚Ì‘®«
 
 protected:
+	static constexpr Vector3 ColliderSize = Vector3(80, 80, 80);
+
 	virtual void ActiveEffect() = 0;		//ÚG‚Ì”­“®Œø‰Ê
 	Vector3 Throw(Vector3& position) const;
 

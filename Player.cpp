@@ -70,19 +70,22 @@ void Player::CreateBottle()
 	switch (m_uiBottle->GetType())
 	{
 	case Bottle::Type::Fire:
-		AddChild(new FireBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
+		// ‚Ç‚¤‚¢‚¤ŒvŽZŽ®‚©‚í‚©‚ç‚ñ‚¯‚Ç‚È‚ñ‚©‚¢‚ë‚ñ‚È•ûŒüŒü‚­
+		AddChild(new FireBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
 		break;
 
 	case Bottle::Type::Thunder:
-		AddChild(new ThunderBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
+		// í‚É‚™‚¾‚¯³–Ê‚ðŒü‚­
+		AddChild(new ThunderBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
 		break;
 
 	case Bottle::Type::Water:
-		AddChild(new WaterBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
+		// í‚É‘S•”‚ÌŠp“x‚ª‚±‚Á‚¿‚ðŒü‚­
+		AddChild(new WaterBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
 		break;
 
 	case Bottle::Type::Wind:
-		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation));
+		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), m_transform.rotation.LookRotation(-m_camera->GetForward())));
 		break;
 
 	default:
