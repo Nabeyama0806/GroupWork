@@ -17,7 +17,7 @@ private:
 	static constexpr Vector3 ColliderOffset = Vector3(0, 80, 0);	// コライダーのオフセット
 	static constexpr Vector3 ColliderSize = Vector3(100, 170, 100);	// コライダーのサイズ
 	static constexpr float Speed = 7.5f * Scale.y;	//自身のサイズに合せた移動速度
-	static constexpr float GravityScale = 3.0f;			// 重力
+	static constexpr float GravityScale = 13.0f;			// 重力
 	static constexpr float DashSpeed = 1.4f;		//ダッシュ時の速度倍率
 	static constexpr int AnimeAmount = 2;			//アニメーションの総数
 

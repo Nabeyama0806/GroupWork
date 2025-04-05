@@ -2,6 +2,7 @@
 #include "Model.h"
 #include "BoxCollider.h"
 #include "Player.h"
+#include "WindGimmick.h"
 
 //コンストラクタ
 WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* player) :
@@ -37,6 +38,7 @@ void WindBottle::Draw()
 void WindBottle::ActiveEffect()
 {
 	m_player->DestroyBottle();
+	m_player->AddChild(new WindGimmick(m_transform.position));
 	//自身を削除
 	Destroy();
 }
@@ -44,7 +46,7 @@ void WindBottle::ActiveEffect()
 //衝突イベント
 void WindBottle::OnCollision(const ModelActor* other)
 {
-	if (other->GetName() != "Player" && other->GetName() != "Bottle")
+	if (other->GetName() == "Ground")
 	{
 		ActiveEffect();
 	}

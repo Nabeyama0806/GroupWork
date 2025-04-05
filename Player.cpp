@@ -187,12 +187,9 @@ void Player::OnCollision(const ModelActor* other)
 		m_onGround = true;
 	}
 
-	if (other->GetName() == "Bottle")
+	if (other->GetName() == "Wind")
 	{
-		if (m_createBottle->GetType() == Bottle::Type::Wind)
-		{
-			// タイプを取れているかの確認
-			int a = 0;
-		}
+		m_onGround = true;
+		m_transform.position.y += GravityScale;
 	}
 }

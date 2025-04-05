@@ -49,6 +49,12 @@
     <Filter Include="ソース ファイル\Bottle">
       <UniqueIdentifier>{9e3799d5-a1a1-4cdd-b458-1cc05ee1de34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Gimmick">
+      <UniqueIdentifier>{6c556d04-ec41-45d6-a506-a18cf3a6704a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Gimmick">
+      <UniqueIdentifier>{9df30c46-aa14-46e4-9063-9c0cdcdeb145}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -152,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="WindGimmick.cpp">
+      <Filter>ソース ファイル\Gimmick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="GameConfig.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="WindGimmick.h">
+      <Filter>ヘッダー ファイル\Gimmick</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
