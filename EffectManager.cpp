@@ -9,9 +9,6 @@ EffectManager::EffectManager()
 {
     // 初期化
     Initialize();
-
-    // 読み込み
-    Load();
 }
 
 // デストラクタ
@@ -50,10 +47,10 @@ void EffectManager::Initialize()
 }
 
 // 読み込み
-void EffectManager::Load()
+void EffectManager::Load(const char* effectFilePath)
 {
     // エフェクトのリソースを読み込む
-    effectResourceHandle = LoadEffekseerEffect(EffectFilePath, EffectSize);
+    effectResourceHandle = LoadEffekseerEffect(effectFilePath, EffectSize);
 }
 
 /// <summary>

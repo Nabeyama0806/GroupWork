@@ -6,16 +6,22 @@
 class EffectManager
 {
 public:
-	EffectManager();					// コンストラクタ
-	~EffectManager();					// デストラクタ
+	//シングルトン
+	static EffectManager* GetInstance()
+	{
+		static EffectManager instance;
+		return &instance;
+	}
+
 	void Initialize();					// 初期化
-	void Load();						// 読み込み
+	void Load(const char* filePath);	// 読み込み
 	void Update(Vector3 playPosition);	// 更新
 	void Draw();						// 描画
 private:
+	EffectManager();					// コンストラクタ
+	~EffectManager();					// デストラクタ
 	// 定数
 	const int	EffectParticleLimit = 20000;				// 画面に表示できる最大パーティクル数
-	const char* EffectFilePath = "Data/Flame.efk";		// エフェクトのファイルパ
 	const float EffectSize = 1.0f;					// エフェクトのサイズ
 	const int	EffectPlayInterval = 300;					// エフェクトを再生する周期
 	const float	EffectMoveSpeed = 0.2f;					// エフェクトが移動する速度

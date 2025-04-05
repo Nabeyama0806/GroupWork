@@ -1,5 +1,6 @@
 #include "WindGimmick.h"
 #include "BoxCollider.h"
+#include "EffectManager.h"
 
 WindGimmick::WindGimmick(Vector3 position) :
 	ModelActor("Wind")
@@ -11,12 +12,16 @@ WindGimmick::WindGimmick(Vector3 position) :
 	//Õ“Ë”»’è
 	Vector3 colliderScale = ColliderSize * Scale.x;
 	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
+
+	EffectManager::GetInstance()->Load("Resource/Effect/Wind.efk");
 }
 
 void WindGimmick::Update()
 {
 	//–{—ˆ‚ÌXV
 	ModelActor::Update();
+
+	EffectManager::GetInstance()->Update(m_transform.position);
 }
 
 void WindGimmick::Draw()
