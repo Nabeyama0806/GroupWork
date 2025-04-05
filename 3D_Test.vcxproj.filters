@@ -162,6 +162,9 @@
     <ClCompile Include="WindGimmick.cpp">
       <Filter>ソース ファイル\Gimmick</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneBase.h">
@@ -301,6 +304,9 @@
     </ClInclude>
     <ClInclude Include="WindGimmick.h">
       <Filter>ヘッダー ファイル\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
