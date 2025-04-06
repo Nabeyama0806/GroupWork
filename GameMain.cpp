@@ -10,6 +10,7 @@
 #include "Input.h"
 #include "Time.h"
 #include "DxLib.h"
+#include <EffekseerForDXLib.h>
 
 //デストラクタ
 GameMain::~GameMain()
@@ -20,6 +21,9 @@ GameMain::~GameMain()
 	//シーンの破棄
 	delete m_sceneManager;
 	m_sceneManager = nullptr;
+
+	// Effekseerを終了する。
+	Effkseer_End();
 
 	// DxLib 終了
 	DxLib_End();

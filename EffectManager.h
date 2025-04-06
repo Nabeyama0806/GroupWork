@@ -22,7 +22,7 @@ private:
 	~EffectManager();					// デストラクタ
 	// 定数
 	const int	EffectParticleLimit = 20000;				// 画面に表示できる最大パーティクル数
-	const float EffectSize = 1.0f;					// エフェクトのサイズ
+	const float EffectSize = 100.0f;					// エフェクトのサイズ
 	const int	EffectPlayInterval = 300;					// エフェクトを再生する周期
 	const float	EffectMoveSpeed = 0.2f;					// エフェクトが移動する速度
 
