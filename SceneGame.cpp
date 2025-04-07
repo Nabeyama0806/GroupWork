@@ -16,6 +16,7 @@
 #include "DxLib.h"
 
 #include "FireGimmick.h"	
+#include "WaterGimmick.h"
 
 //‰Šú‰»
 void SceneGame::Initialize()
@@ -85,7 +86,8 @@ void SceneGame::Initialize()
 		floorSize
 	));
 
-	actorLayer->AddChild(new FireGimmick(Vector3(100, 100, 100)));
+	actorLayer->AddChild(new FireGimmick(Vector3(-100, 100, 100)));
+	actorLayer->AddChild(new WaterGimmick(Vector3(300, 0, 100), Vector3(50, 100, 50)));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");
