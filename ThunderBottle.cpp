@@ -5,7 +5,7 @@
 
 //コンストラクタ
 ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Player* player) :
-	Bottle(position, Bottle::Type::Thunder),
+	Bottle("ThunderBottle", position),
 	m_forward(forward),
 	m_player(player)
 {

@@ -18,7 +18,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	ModelActor("Player"),
 	m_camera(camera),
 	m_uiBottle(uiBottle),
-	m_createBottle(nullptr),
+	m_createBottle(false),
 	m_onGround(false),
 	m_onWall(false),
 	m_holdMove(0,0,0)
@@ -73,29 +73,26 @@ void Player::CreateBottle()
 	switch (m_uiBottle->GetType())
 	{
 	case Bottle::Type::Fire:
-		m_createBottle = new FireBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
-		AddChild(m_createBottle);
+		AddChild(new FireBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this));
 		break;
 
 	case Bottle::Type::Thunder:
-		m_createBottle = new ThunderBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
-		AddChild(m_createBottle);
+		AddChild(new ThunderBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this));
 		break;
 
 	case Bottle::Type::Water:
-		m_createBottle = new WaterBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
-		AddChild(m_createBottle);
+		AddChild(new WaterBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this));
 		break;
 
 	case Bottle::Type::Wind:
-		m_createBottle = new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this);
-		AddChild(m_createBottle);
+		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this));
 		break;
 
 	default:
 		break;
 	}
 
+	m_createBottle = true;
 	SoundManager::GetInstance()->SoundPlay("sound/se_bottle_create.mp3");
 }
 
@@ -155,6 +152,11 @@ void Player::Draw()
 		//本来の更新
 		ModelActor::Draw();
 	}
+}
+
+void Player::DestroyBottle()
+{
+	m_createBottle = false;
 }
 
 //衝突イベント

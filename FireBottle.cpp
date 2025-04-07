@@ -5,7 +5,7 @@
 
 //コンストラクタ
 FireBottle::FireBottle(const Vector3& position, const Vector3& forward, Player* player) :
-	Bottle(position, Bottle::Type::Fire),
+	Bottle("FireBottle", position),
 	m_forward(forward),
 	m_player(player)
 {

@@ -21,18 +21,13 @@ private:
 	static constexpr float AddForce = 2000;	//投げる力
 	static constexpr float Mass = 2;		//質量
 
-	Type m_type;				//自身の属性
-
 protected:
 	static constexpr Vector3 ColliderSize = Vector3(80, 80, 80);
 
 	virtual void ActiveEffect() = 0;		//接触時の発動効果
 	Vector3 Throw(Vector3& position) const;
 
-
 public:
 	//コンストラクタ
-	Bottle(const Vector3& position, Type type);
-
-	Type GetType() { return m_type; }
+	Bottle(const char* bottleName, const Vector3& position);
 };

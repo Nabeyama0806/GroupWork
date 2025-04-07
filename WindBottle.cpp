@@ -6,7 +6,7 @@
 
 //コンストラクタ
 WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* player) :
-	Bottle(position, Bottle::Type::Wind),
+	Bottle("WindBottle", position),
 	m_forward(forward),
 	m_player(player)
 {

@@ -1,9 +1,8 @@
 #include "Bottle.h"
 #include "Time.h"
 
-Bottle::Bottle(const Vector3& position, Type type) :
-	ModelActor("Bottle", nullptr, position),
-	m_type(type)
+Bottle::Bottle(const char* bottleName, const Vector3& position) :
+	ModelActor(bottleName, nullptr, position)
 {
 
 }
