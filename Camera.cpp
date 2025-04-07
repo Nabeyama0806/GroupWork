@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "Math.h"
 #include "Screen.h"
+#include <EffekseerForDXLib.h>
 
 //更新
 void Camera::Update()
@@ -37,6 +38,9 @@ void Camera::Update()
 
 	//算出した座標に注視点の位置を加算したものがカメラの位置
 	m_cameraPos = tempPosition2 + m_targetPos;
+	
+	Effekseer_Sync3DSetting();
+
 }
 
 //描画

@@ -8,7 +8,7 @@ EffectManager::EffectManager()
     , playCount(0)
 {
     // 初期化
-    Initialize();
+//    Initialize();
 }
 
 // デストラクタ
@@ -22,12 +22,11 @@ EffectManager::~EffectManager()
 // 初期化
 void EffectManager::Initialize()
 {
-    // DirectX11を使用するようにする。(DirectX9も可、一部機能不可)
-    // Effekseerを使用するには必ず設定する。
-    SetUseDirect3DVersion(DX_DIRECT3D_11);
-
     // 引数には画面に表示する最大パーティクル数を設定する。
-    if (Effkseer_Init(EffectParticleLimit) == -1) { DxLib_End(); }
+    if (Effekseer_Init(EffectParticleLimit) == -1)
+	{
+		DxLib_End();
+	}
 
     // フルスクリーンウインドウの切り替えでリソースが消えるのを防ぐ。
     // Effekseerを使用する場合は必ず設定する。

@@ -13,7 +13,8 @@ WindGimmick::WindGimmick(Vector3 position) :
 	Vector3 colliderScale = ColliderSize * Scale.x;
 	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
 
-	EffectManager::GetInstance()->Load("Resource/Effect/asset/NextSoft01/effect_wind.efk");
+//	EffectManager::GetInstance()->Load("Resource/Effect/asset/NextSoft01/effect_wind.efk");
+	EffectManager::GetInstance()->Load("Data/wind.efk");
 }
 
 void WindGimmick::Update()
@@ -28,8 +29,6 @@ void WindGimmick::Draw()
 {
 	//–{—ˆ‚ÌXV
 	ModelActor::Draw();
-
-	EffectManager::GetInstance()->Draw();
 }
 
 void WindGimmick::OnCollision(const ModelActor* other)
