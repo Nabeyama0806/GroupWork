@@ -22,6 +22,7 @@
     <ClCompile Include="Bottle.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="FireBottle.cpp" />
+    <ClCompile Include="FireGimmick.cpp" />
     <ClCompile Include="ModelActor.cpp" />
     <ClCompile Include="ModelActorCollision.cpp" />
     <ClCompile Include="ModelAnimation.cpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="FireBottle.h" />
+    <ClInclude Include="FireGimmick.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="HitCollider.h" />
     <ClInclude Include="ModelActor.h" />

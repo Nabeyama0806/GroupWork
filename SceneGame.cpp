@@ -15,6 +15,8 @@
 #include "UiBottle.h"
 #include "DxLib.h"
 
+#include "FireGimmick.h"	
+
 //‰Šú‰»
 void SceneGame::Initialize()
 {
@@ -82,6 +84,8 @@ void SceneGame::Initialize()
 		floorPos,
 		floorSize
 	));
+
+	actorLayer->AddChild(new FireGimmick(Vector3(100, 100, 100)));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");
