@@ -48,7 +48,8 @@ void GameMain::Run()
 		throw - 1;
 	}
 
-	EffectManager::GetInstance()->Initialize(); //エフェクトの初期化
+	//エフェクトの初期化
+	EffectManager::GetInstance()->Initialize(); 
 
 	//シーン起動
 	m_sceneManager = new SceneManager(new SceneTitle());
@@ -88,6 +89,7 @@ void GameMain::Run()
 
 
 		EffectManager::GetInstance()->Draw();
+
 #ifdef _DEBUG
 		//衝突形状の描画
 		ModelActorCollision::GetInstance()->Draw();

@@ -1,24 +1,6 @@
 #include "DxLib.h"
 #include "EffectManager.h"
 
-// コンストラクタ
-EffectManager::EffectManager()
-    : effectResourceHandle(-1)
-    , playingEffectHandle(-1)
-    , playCount(0)
-{
-    // 初期化
-//    Initialize();
-}
-
-// デストラクタ
-EffectManager::~EffectManager()
-{
-    // エフェクトリソースの開放
-    // (Effekseer終了時に破棄されるので削除しなくてもいい)
-    DeleteEffekseerEffect(effectResourceHandle);
-}
-
 // 初期化
 void EffectManager::Initialize()
 {
@@ -45,39 +27,23 @@ void EffectManager::Initialize()
     SetWriteZBuffer3D(TRUE);
 }
 
-// 読み込み
-void EffectManager::Load(const char* effectFilePath)
+//読み込み
+int EffectManager::Load(const char* effectFilePath)
 {
     // エフェクトのリソースを読み込む
-    effectResourceHandle = LoadEffekseerEffect(effectFilePath, EffectSize);
+    return LoadEffekseerEffect(effectFilePath);
 }
 
-/// <summary>
-/// 更新
-/// </summary>
-/// <param name="playPosition">再生座標</param>
-void EffectManager::Update(Vector3 playPosition)
+//更新
+void EffectManager::Update(const Vector3& position)
 {
-    // 定期的にエフェクトを再生する
-    if (!(playCount % EffectPlayInterval))
-    {
-        // エフェクトを再生する。
-        playingEffectHandle = PlayEffekseer3DEffect(effectResourceHandle);
-    }
-
-    // 再生カウントを進める
-    playCount++;
-
-    // 再生中のエフェクトを移動する。
-    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
-
-    // Effekseerにより再生中のエフェクトを更新する。
+    //Effekseerにより再生中のエフェクトを更新する。
     UpdateEffekseer3D();
 }
 
-// 描画
+//描画
 void EffectManager::Draw()
 {
-    // Effekseerにより再生中のエフェクトを描画する。
+    //Effekseerにより再生中のエフェクトを描画する。
     DrawEffekseer3D();
 }

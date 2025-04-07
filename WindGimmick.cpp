@@ -1,6 +1,5 @@
 #include "WindGimmick.h"
 #include "BoxCollider.h"
-#include "EffectManager.h"
 
 WindGimmick::WindGimmick(Vector3 position) :
 	ModelActor("Wind")
@@ -13,25 +12,20 @@ WindGimmick::WindGimmick(Vector3 position) :
 	Vector3 colliderScale = ColliderSize * Scale.x;
 	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
 
-//	EffectManager::GetInstance()->Load("Resource/Effect/asset/NextSoft01/effect_wind.efk");
-	EffectManager::GetInstance()->Load("Data/wind.efk");
+	//エフェクト
+	m_effect = new Effect("Data/wind.efk");
 }
 
 void WindGimmick::Update()
 {
 	//本来の更新
 	ModelActor::Update();
-
-	EffectManager::GetInstance()->Update(m_transform.position);
+	m_effect->Update(m_transform.position);
 }
 
 void WindGimmick::Draw()
 {
 	//本来の更新
 	ModelActor::Draw();
-}
-
-void WindGimmick::OnCollision(const ModelActor* other)
-{
-	
+	m_effect->Draw();
 }
