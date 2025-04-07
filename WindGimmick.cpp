@@ -27,5 +27,4 @@ void WindGimmick::Draw()
 {
 	//–{—ˆ‚ÌXV
 	ModelActor::Draw();
-	m_effect->Draw();
 }

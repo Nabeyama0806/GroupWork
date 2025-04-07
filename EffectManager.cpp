@@ -28,14 +28,14 @@ void EffectManager::Initialize()
 }
 
 //読み込み
-int EffectManager::Load(const char* effectFilePath)
+int EffectManager::Load(const char* effectFilePath, float size)
 {
     // エフェクトのリソースを読み込む
-    return LoadEffekseerEffect(effectFilePath);
+    return LoadEffekseerEffect(effectFilePath, size);
 }
 
 //更新
-void EffectManager::Update(const Vector3& position)
+void EffectManager::Update()
 {
     //Effekseerにより再生中のエフェクトを更新する。
     UpdateEffekseer3D();

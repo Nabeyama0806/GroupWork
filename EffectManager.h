@@ -17,7 +17,7 @@ public:
 	}
 
 	void Initialize();					// 初期化
-	int Load(const char* filePath);		// 読み込み
-	void Update(const Vector3& playPosition);	// 更新
+	int Load(const char* filePath, float size = 1);		// 読み込み
+	void Update();						// 更新
 	void Draw();						// 描画
 };
