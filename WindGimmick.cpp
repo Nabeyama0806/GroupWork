@@ -20,7 +20,9 @@ void WindGimmick::Update()
 {
 	//–{—ˆ‚ÌXV
 	ModelActor::Update();
-	m_effect->Update(m_transform.position);
+	Vector3 effectPos = m_transform.position + Vector3(0, -80, 0);
+
+	m_effect->Update(effectPos);
 }
 
 void WindGimmick::Draw()
