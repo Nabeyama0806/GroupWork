@@ -38,9 +38,6 @@ void Camera::Update()
 
 	//算出した座標に注視点の位置を加算したものがカメラの位置
 	m_cameraPos = tempPosition2 + m_targetPos;
-	
-	Effekseer_Sync3DSetting();
-
 }
 
 //描画
@@ -48,6 +45,7 @@ void Camera::Draw()
 {
 	// カメラ座標の設定
 	SetCameraPositionAndTarget_UpVecY(m_cameraPos, m_targetPos);
+	Effekseer_Sync3DSetting();
 }
 
 void Camera::MouseCamera()

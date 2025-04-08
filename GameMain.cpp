@@ -89,6 +89,7 @@ void GameMain::Run()
 
 
 		EffectManager::GetInstance()->Draw();
+		EffectManager::GetInstance()->Update();
 
 #ifdef _DEBUG
 		//Õ“ËŒ`ó‚Ì•`‰æ

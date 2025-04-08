@@ -34,6 +34,4 @@ void Effect::Update(Vector3& position)
 
     //再生中のエフェクトを移動する。
     SetPosPlayingEffekseer3DEffect(playingEffectHandle, position.x, position.y, position.z);
-
-    EffectManager::GetInstance()->Update();
 }
