@@ -21,6 +21,11 @@
   <ItemGroup>
     <ClCompile Include="Bottle.cpp" />
     <ClCompile Include="Collision.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
+>>>>>>> エフェクトの追加
     <ClCompile Include="FireBottle.cpp" />
     <ClCompile Include="FireGimmick.cpp" />
     <ClCompile Include="ModelActor.cpp" />
@@ -64,6 +69,11 @@
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Collision.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectManager.h" />
+>>>>>>> エフェクトの追加
     <ClInclude Include="FireBottle.h" />
     <ClInclude Include="FireGimmick.h" />
     <ClInclude Include="GameConfig.h" />

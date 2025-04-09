@@ -1,0 +1,9 @@
+diff a/WindBottle.cpp b/WindBottle.cpp	(rejected hunks)
+@@ -39,6 +39,7 @@
+ {
+ 	m_player->DestroyBottle();
+ 	m_player->AddChild(new WindGimmick(m_transform.position));
++	
+ 	//���g��폜
+ 	Destroy();
+ }
