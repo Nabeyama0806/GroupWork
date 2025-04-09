@@ -37,10 +37,7 @@ void WindBottle::Draw()
 //効果発動
 void WindBottle::ActiveEffect()
 {
-	m_player->DestroyBottle();
 	m_player->AddChild(new WindGimmick(m_transform.position));
-	//自身を削除
-	Destroy();
 }
 
 //衝突イベント
@@ -49,5 +46,13 @@ void WindBottle::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Ground")
 	{
 		ActiveEffect();
+	}
+
+	// 当たっているのがプレイヤーなら通らない
+	if (other->GetName() != "Player")
+	{
+		// 自身の削除
+		m_player->DestroyBottle();
+		Destroy();
 	}
 }
