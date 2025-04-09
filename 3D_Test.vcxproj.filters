@@ -162,15 +162,6 @@
     <ClCompile Include="WindGimmick.cpp">
       <Filter>ソース ファイル\Gimmick</Filter>
     </ClCompile>
-<<<<<<< HEAD
-=======
-    <ClCompile Include="EffectManager.cpp">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClCompile>
->>>>>>> エフェクトの追加
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneBase.h">
@@ -311,14 +302,5 @@
     <ClInclude Include="WindGimmick.h">
       <Filter>ヘッダー ファイル\Gimmick</Filter>
     </ClInclude>
-<<<<<<< HEAD
-=======
-    <ClInclude Include="EffectManager.h">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
->>>>>>> エフェクトの追加
   </ItemGroup>
 </Project>

@@ -23,10 +23,6 @@ void ModelActorCollision::Update()
 			//自身はスキップ
 			if (actor1 == actor2) continue;
 
-			// 壁と床の衝突判定はしない
-			if (actor1->GetName() == "Wall" && actor2->GetName() == "Ground" ||
-				actor1->GetName() == "Ground" && actor2->GetName() == "Wall") continue;
-
 			//衝突判定
 			if (actor1->GetCollider()->CheckCollision(
 				actor1->GetTransform(),

@@ -10,8 +10,6 @@
 #include "Input.h"
 #include "Time.h"
 #include "DxLib.h"
-#include "EffectManager.h"
-#include <EffekseerForDXLib.h>
 
 //デストラクタ
 GameMain::~GameMain()
@@ -22,9 +20,6 @@ GameMain::~GameMain()
 	//シーンの破棄
 	delete m_sceneManager;
 	m_sceneManager = nullptr;
-
-	// Effekseerを終了する。
-	Effkseer_End();
 
 	// DxLib 終了
 	DxLib_End();
@@ -38,18 +33,11 @@ void GameMain::Run()
 	ChangeWindowMode(GameConfig::WindowMode); //ウィンドウモードで起動
 	SetGraphMode(Screen::Width, Screen::Heigth, GameConfig::ColorBit); //ウィンドウサイズ
 
-	// DirectX11を使用するようにする。(DirectX9も可、一部機能不可)
-	// Effekseerを使用するには必ず設定する。
-	SetUseDirect3DVersion(DX_DIRECT3D_11);
-
 	//DXライブラリの初期化
 	if (DxLib_Init())
 	{
 		throw - 1;
 	}
-
-	//エフェクトの初期化
-	EffectManager::GetInstance()->Initialize(); 
 
 	//シーン起動
 	m_sceneManager = new SceneManager(new SceneTitle());
@@ -86,10 +74,6 @@ void GameMain::Run()
 
 		//シーンの描画
 		m_sceneManager->Draw();
-
-
-		EffectManager::GetInstance()->Draw();
-		EffectManager::GetInstance()->Update();
 
 #ifdef _DEBUG
 		//衝突形状の描画

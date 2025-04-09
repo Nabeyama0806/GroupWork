@@ -50,10 +50,4 @@ void WindBottle::OnCollision(const ModelActor* other)
 	{
 		ActiveEffect();
 	}
-	else if (other->GetName() != "Player")
-	{
-		m_player->DestroyBottle();
-		//©g‚ğíœ
-		Destroy();
-	}
 }

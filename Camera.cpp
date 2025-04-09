@@ -2,7 +2,6 @@
 #include "Input.h"
 #include "Math.h"
 #include "Screen.h"
-#include <EffekseerForDXLib.h>
 
 //更新
 void Camera::Update()
@@ -45,7 +44,6 @@ void Camera::Draw()
 {
 	// カメラ座標の設定
 	SetCameraPositionAndTarget_UpVecY(m_cameraPos, m_targetPos);
-	Effekseer_Sync3DSetting();
 }
 
 void Camera::MouseCamera()
