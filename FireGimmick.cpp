@@ -1,9 +1,11 @@
 #include "FireGimmick.h"
 #include "BoxCollider.h"
+#include "Effect.h"
 #include "Time.h"
 
-FireGimmick::FireGimmick(Vector3 position) :
-	ModelActor("Fire"),
+//コンストラクタ
+FireGimmick::FireGimmick(const Vector3& position) :
+	GimmickBase("Fire", position),
 	m_destroyWall(false),
 	m_fireTime(FireTime)
 {
@@ -12,19 +14,22 @@ FireGimmick::FireGimmick(Vector3 position) :
 	m_transform.scale = Scale;
 
 	//衝突判定
-	Vector3 colliderScale = ColliderSize * Scale.x;
-	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
+	Vector3 colliderScale = m_colliderSize * Scale.x;
+	m_collider = new BoxCollider(colliderScale, m_transform.scale);
+
+	m_effect = new Effect("Data/fire.efk", 10, 70);
 }
 
 void FireGimmick::Update()
 {
 	//本来の更新
-	ModelActor::Update();
+	GimmickBase::Update();
 
 	if (m_destroyWall)
 	{
 		m_fireTime -= Time::GetInstance()->GetDeltaTime();
 		if (m_fireTime <= 0) Destroy();
+		m_effect->Play();
 	}
 }
 
@@ -41,4 +46,9 @@ void FireGimmick::OnCollision(const ModelActor* other)
 	{
 		m_destroyWall = true;
 	}
+}
+
+void FireGimmick::ActiveEffect()
+{
+
 }

@@ -28,7 +28,7 @@ void EffectManager::Initialize()
 }
 
 //読み込み
-int EffectManager::Load(const char* effectFilePath, float size)
+int EffectManager::Load(const char* effectFilePath, int size)
 {
     // エフェクトのリソースを読み込む
     return LoadEffekseerEffect(effectFilePath, size);

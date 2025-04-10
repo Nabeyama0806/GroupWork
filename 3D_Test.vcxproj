@@ -25,6 +25,7 @@
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FireBottle.cpp" />
     <ClCompile Include="FireGimmick.cpp" />
+    <ClCompile Include="GimmickBase.cpp" />
     <ClCompile Include="ModelActor.cpp" />
     <ClCompile Include="ModelActorCollision.cpp" />
     <ClCompile Include="ModelAnimation.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="FireBottle.h" />
     <ClInclude Include="FireGimmick.h" />
     <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="GimmickBase.h" />
     <ClInclude Include="HitCollider.h" />
     <ClInclude Include="ModelActor.h" />
     <ClInclude Include="ActorBase.h" />

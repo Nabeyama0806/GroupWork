@@ -9,14 +9,16 @@ class Collider;
 class ModelActor : public ActorBase
 {
 protected:
-	Model* m_model;						//3Dモデル		
-	Collider* m_collider;				//衝突判定	
+	Model* m_model;					//3Dモデル		
+	Collider* m_collider;			//衝突判定
+	Vector3 m_colliderSize;			// コライダーのサイズ
 
 	virtual void Load() override;		//リソースの読み込み
 	virtual void Release() override;	//リソースの解放
 	virtual void Draw() override;		//描画
 
 public:
+
 	//コンストラクタ
 	ModelActor(
 		const char* name,

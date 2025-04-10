@@ -3,13 +3,14 @@
 #include "DxLib.h"
 
 //コンストラクタ
-Effect::Effect(const char* fileName) :
+Effect::Effect(const char* fileName, const int effectSize, const int playInterval) :
     effectHandle(-1),
     playingEffectHandle(-1),
+    effectPlayInterval(playInterval),
     playCount(0)
 {
     //エフェクトの登録
-    effectHandle = EffectManager::GetInstance()->Load(fileName, EffectSize);
+    effectHandle = EffectManager::GetInstance()->Load(fileName, effectSize);
 }
 
 //デストラクタ
@@ -22,16 +23,20 @@ Effect::~Effect()
 //更新
 void Effect::Update(Vector3& position)
 {
+    //再生中のエフェクトを移動する。
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, position.x, position.y, position.z);
+}
+
+//エフェクトを再生する
+void Effect::Play(bool loop)
+{
     //定期的にエフェクトを再生する
-    if (!(playCount % EffectPlayInterval))
+    if (!(playCount % effectPlayInterval))
     {
-        //エフェクトを再生する。
         playingEffectHandle = PlayEffekseer3DEffect(effectHandle);
     }
 
     //再生カウントを進める
-    playCount++;
-
-    //再生中のエフェクトを移動する。
-    SetPosPlayingEffekseer3DEffect(playingEffectHandle, position.x, position.y, position.z);
+    if (loop) playCount++;
+    else playCount = effectPlayInterval;
 }

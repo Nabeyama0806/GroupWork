@@ -162,6 +162,21 @@
     <ClCompile Include="WindGimmick.cpp">
       <Filter>ソース ファイル\Gimmick</Filter>
     </ClCompile>
+    <ClCompile Include="WaterGimmick.cpp">
+      <Filter>ソース ファイル\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="FireGimmick.cpp">
+      <Filter>ソース ファイル\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="GimmickBase.cpp">
+      <Filter>ソース ファイル\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneBase.h">
@@ -301,6 +316,21 @@
     </ClInclude>
     <ClInclude Include="WindGimmick.h">
       <Filter>ヘッダー ファイル\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="FireGimmick.h">
+      <Filter>ヘッダー ファイル\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterGimmick.h">
+      <Filter>ヘッダー ファイル\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="GimmickBase.h">
+      <Filter>ヘッダー ファイル\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
