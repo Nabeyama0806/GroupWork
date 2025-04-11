@@ -1,43 +1,26 @@
 #include "WindBottle.h"
-#include "Model.h"
-#include "BoxCollider.h"
-#include "Player.h"
 #include "WindGimmick.h"
+#include "BoxCollider.h"
+#include "Model.h"
+#include "Player.h"
 
 //コンストラクタ
 WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* player) :
-	Bottle("WindBottle", position),
-	m_forward(forward),
-	m_player(player)
+	Bottle("WindBottle", position, forward, player)
 {
+	//モデル
 	m_model = new Model("Resource/bottle_wind.mv1");
+
+	//プレイヤーの取得
+	m_player = player;
+
+	//姿勢情報
 	m_transform.scale *= Scale;
 	m_transform.position = position;
 	m_transform.rotation = Quaternion::LookRotation(-forward);
 
+	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);
-}
-
-//更新
-void WindBottle::Update()
-{
-	//本来の更新
-	ModelActor::Update();
-
-	m_transform.position += Bottle::Throw(m_forward);
-}
-
-//描画
-void WindBottle::Draw()
-{
-	//本来の描画
-	ModelActor::Draw();
-}
-
-//効果発動
-void WindBottle::ActiveEffect()
-{
-	m_player->AddChild(new WindGimmick(m_transform.position));
 }
 
 //衝突イベント
@@ -45,14 +28,13 @@ void WindBottle::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "Ground")
 	{
-		ActiveEffect();
+		m_player->AddChild(new WindGimmick(m_transform.position));
 	}
 
 	// 当たっているのがプレイヤーなら通らない
 	if (other->GetName() != "Player")
 	{
 		// 自身の削除
-		m_player->DestroyBottle();
-		Destroy();
+		ActiveEffect();
 	}
 }

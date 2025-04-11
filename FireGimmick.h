@@ -14,9 +14,8 @@ private:
 	float m_fireTime;	// 燃える時間
 
 protected:
-	virtual void Update() override;	//更新
-	virtual void Draw() override;	// 描画
-	virtual void ActiveEffect() override;
+	//効果の発動
+	virtual void Active() override;
 
 public:
 	//コンストラクタ

@@ -1,44 +1,22 @@
 #include "WaterBottle.h"
-#include "Model.h"
 #include "BoxCollider.h"
+#include "Model.h"
 #include "Player.h"
 
 //コンストラクタ
 WaterBottle::WaterBottle(const Vector3& position, const Vector3& forward, Player* player) :
-	Bottle("WaterBottle", position),
-	m_forward(forward),
-	m_player(player)
+	Bottle("WaterBottle", position, forward, player)
 {
+	//モデル
 	m_model = new Model("Resource/bottle_water.mv1");
+
+	//姿勢情報
 	m_transform.scale *= Scale;
 	m_transform.position = position;
 	m_transform.rotation = Quaternion::LookRotation(-forward);
 
+	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);
-}
-
-//更新
-void WaterBottle::Update()
-{
-	//本来の更新
-	ModelActor::Update();
-
-	m_transform.position += Bottle::Throw(m_forward);
-}
-
-//描画
-void WaterBottle::Draw()
-{
-	//本来の描画
-	ModelActor::Draw();
-}
-
-//効果発動
-void WaterBottle::ActiveEffect()
-{
-	m_player->DestroyBottle();
-	//自身を削除
-	Destroy();
 }
 
 //衝突イベント

@@ -29,7 +29,6 @@ SceneManager::~SceneManager()
 }
 
 //XV
-
 void SceneManager::Updeta()
 {
 	switch (m_phase)

@@ -1,6 +1,8 @@
 #pragma once
 #include "ModelActor.h"
 
+class Player;
+
 class Bottle : public ModelActor
 {
 public:
@@ -21,13 +23,18 @@ private:
 	static constexpr float AddForce = 2000;	//投げる力
 	static constexpr float Mass = 2;		//質量
 
+	Vector3 m_forward;
+
 protected:
 	static constexpr Vector3 ColliderSize = Vector3(80, 80, 80);
 
-	virtual void ActiveEffect() = 0;		//接触時の発動効果
+	Player* m_player;
+
+	virtual void Update() override;		//更新
+	void ActiveEffect();				//効果の発動
 	Vector3 Throw(Vector3& position) const;
 
 public:
 	//コンストラクタ
-	Bottle(const char* bottleName, const Vector3& position);
+	Bottle(const char* bottleName, const Vector3& position, const Vector3& forward, Player* player);
 };

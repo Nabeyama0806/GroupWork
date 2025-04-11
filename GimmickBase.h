@@ -7,8 +7,9 @@ class Effect;
 class GimmickBase : public ModelActor
 {
 protected:
-	Vector3 m_scale;			//自身のサイズ
 	Effect* m_effect;
+	Vector3 m_effectOffset;
+	Vector3 m_scale;			
 
 	virtual void Update() override;	//更新
 
@@ -17,8 +18,5 @@ public:
 	GimmickBase(const char* name, const Vector3& position);
 
 	//効果の発動
-	virtual void ActiveEffect() = 0;
-
-	//衝突イベント
-	virtual void OnCollision(const ModelActor* other) override;
+	virtual void Active() = 0;
 };

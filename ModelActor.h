@@ -18,7 +18,6 @@ protected:
 	virtual void Draw() override;		//描画
 
 public:
-
 	//コンストラクタ
 	ModelActor(
 		const char* name,

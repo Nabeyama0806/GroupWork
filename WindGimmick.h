@@ -10,9 +10,8 @@ private:
 	static constexpr Vector3 SpawnOffset = Vector3(0, 100, 0);	//オフセット
 	
 protected:
-	virtual void Update() override;	//更新
-	virtual void Draw() override;	// 描画
-	virtual void ActiveEffect() override;
+	//効果の発動
+	virtual void Active() override;
 public:
 	//コンストラクタ
 	WindGimmick(const Vector3& position);

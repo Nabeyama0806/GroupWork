@@ -4,10 +4,15 @@
 
 WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const Vector3& offset) :
 	GimmickBase("Water", position),
-	isPlay(false),
-	waterHeight(false)
+	m_isPlay(false),
+	m_isWaterHeight(false)
 {
+	//モデルとエフェクト
 	m_model = new Model("Resource/bottle_water.mv1");
+	m_effect = new Effect("Data/water.efk", 40);
+	m_effectOffset = Vector3(0, 100, 0);
+
+	//姿勢情報
 	m_transform.position = position;
 	m_transform.scale = size;
 
@@ -15,49 +20,37 @@ WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const V
 	Vector3 colliderScale = m_colliderSize * size.x;
 	m_collider = new BoxCollider(colliderScale, offset.Scale(m_transform.scale));
 
-	m_effect = new Effect("Data/water.efk", 40);
 }
 
-void WaterGimmick::Update()
+//効果の発動
+void WaterGimmick::Active()
 {
-	//本来の更新
-	GimmickBase::Update();
-
-	if (waterHeight)	// 水が増している
+	// 水が増している
+	if (m_isWaterHeight)
 	{
-		if (UpWater > m_transform.position.y)
+		if (UpWaterHeight > m_transform.position.y)
 		{
-			if (!isPlay) m_effect->Play(false);
+			if (!m_isPlay) m_effect->Play(false);
 			m_transform.position.y += VariableWater;
-			isPlay = waterHeight;
+			m_isPlay = m_isWaterHeight;
 		}
 	}
 	else
 	{
-		if (DownWater < m_transform.position.y)
+		if (DownWaterHeight < m_transform.position.y)
 		{
-			if (isPlay) m_effect->Play(false);
+			if (m_isPlay) m_effect->Play(false);
 			m_transform.position.y -= VariableWater;
-			isPlay = waterHeight;
+			m_isPlay = m_isWaterHeight;
 		}
 	}
 }
 
-void WaterGimmick::Draw()
-{
-	//本来の更新
-	ModelActor::Draw();
-}
-
+//衝突イベント
 void WaterGimmick::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "WaterBottle")
 	{
-		waterHeight = !waterHeight;
+		m_isWaterHeight = !m_isWaterHeight;
 	}
-}
-
-void WaterGimmick::ActiveEffect()
-{
-
 }

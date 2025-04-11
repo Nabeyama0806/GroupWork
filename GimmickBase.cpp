@@ -5,6 +5,7 @@
 GimmickBase::GimmickBase(const char* name, const Vector3& position) :
 	ModelActor(name),
 	m_scale(Vector3(50, 50, 50)),
+	m_effectOffset(Vector3(0, -50, 0)),
 	m_effect(nullptr)
 {
 	m_transform.position = position;
@@ -16,16 +17,13 @@ void GimmickBase::Update()
 	//本来の描画
 	ModelActor::Update();
 
+	//効果の発動
+	Active();
+
 	//エフェクトの更新
 	if (m_effect)
 	{
-		m_effect->Update(m_transform.position);
+		Vector3 pos = m_transform.position + m_effectOffset;
+		m_effect->Update(pos);
 	}
-}
-
-//衝突イベント
-void GimmickBase::OnCollision(const ModelActor* other)
-{
-	//効果発動
-	ActiveEffect();
 }
