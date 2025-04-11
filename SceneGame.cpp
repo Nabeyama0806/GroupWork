@@ -52,7 +52,7 @@ void SceneGame::Initialize()
 	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
 
 	// ƒ}ƒbƒv
-	new CreateMap(actorLayer);
+	actorLayer->AddChild(new CreateMap());
 
 	//•Ç
 	Vector3 wallPos	 = Vector3(0, 100, 2000);
@@ -63,30 +63,6 @@ void SceneGame::Initialize()
 		Vector3(0, 100, 2000),
 		Vector3(500, 500, 500)
 	));
-	actorLayer->AddChild(new HitCollider(
-		"Wall",
-		Vector3(0, 100, -2000),
-		Vector3(4000, 500, 100)
-	));
-	actorLayer->AddChild(new HitCollider(
-		"Wall",
-		Vector3(2000, 100, 0),
-		Vector3(100, 500, 4000)
-	));
-	actorLayer->AddChild(new HitCollider(
-		"Wall",
-		Vector3(-2000, 100, 0),
-		Vector3(100, 500, 4000)
-	));
-
-	//// °
-	//Vector3 floorPos = Vector3(0, -20, 0);
-	//Vector3 floorSize = Vector3(4000, 40, 4000);
-	//actorLayer->AddChild(new HitCollider(
-	//	"Ground",
-	//	floorPos,
-	//	floorSize
-	//));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");

@@ -6,7 +6,7 @@
 class CreateMap : public Node
 {
 public:
-	enum class TileModel
+	enum class TileType
 	{
 		None,
 		Fire,
@@ -19,7 +19,7 @@ public:
 
 private:
 	static constexpr int MapWidth = 20;		//マップの横幅
-	static constexpr int MapHeight = 1;	//マップの縦幅
+	static constexpr int MapHeight = 1;		//マップの縦幅
 	static constexpr int MapDepth = 20;		//マップの奥行き
 	static constexpr Vector3 TileSize = Vector3(100, 100, 100);	//開始時の座標
 	
@@ -42,17 +42,8 @@ private:
 		"MapData/Map15.csv",*/
 	};
 
-	const char ModelName[static_cast<int>(TileModel::Length)][256] =
-	{
-		"None",
-		"Fire",
-		"Water",
-		"PowerUp",
-		"Resource/bottle_fire.mv1",
-	};
-
-	void Create(Node* layer, std::vector<std::vector<int>> data, int positionY);
+	void Create(std::vector<std::vector<int>> data, int positionY);
 
 public:
-	CreateMap(Node* layer);
+	CreateMap();
 };

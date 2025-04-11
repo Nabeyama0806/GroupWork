@@ -17,7 +17,7 @@ public:
 		Length
 	};
 
-	static constexpr int Scale = 10;		//‘å‚«‚³‚Ì’²®
+	static constexpr Vector3 Scale = Vector3(10, 10, 10);		//‘å‚«‚³‚Ì’²®
 private:
 	static constexpr float Gravity = 0.01f;	//d—Í
 	static constexpr float AddForce = 1700;	//“Š‚°‚é—Í
@@ -26,7 +26,7 @@ private:
 	Vector3 m_forward;
 
 protected:
-	static constexpr Vector3 ColliderSize = Vector3(35, 35, 35);
+	static constexpr Vector3 ColliderSize = Vector3(4, 4, 4);
 
 	Player* m_player;
 

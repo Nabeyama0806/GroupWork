@@ -28,6 +28,7 @@
     <ClCompile Include="FireGimmick.cpp" />
     <ClCompile Include="GimmickBase.cpp" />
     <ClCompile Include="LoadMap.cpp" />
+    <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="ModelActor.cpp" />
     <ClCompile Include="ModelActorCollision.cpp" />
     <ClCompile Include="ModelAnimation.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="SoundLoader.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="ThunderBottle.cpp" />
+    <ClCompile Include="TileCube.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="SpriteActor.cpp" />
     <ClCompile Include="UiBottle.cpp" />
@@ -77,6 +79,7 @@
     <ClInclude Include="GimmickBase.h" />
     <ClInclude Include="HitCollider.h" />
     <ClInclude Include="LoadMap.h" />
+    <ClInclude Include="MapTile.h" />
     <ClInclude Include="ModelActor.h" />
     <ClInclude Include="ActorBase.h" />
     <ClInclude Include="ModelActorCollision.h" />
@@ -106,6 +109,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteAnimation.h" />
     <ClInclude Include="ThunderBottle.h" />
+    <ClInclude Include="TileCube.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="SpriteActor.h" />

@@ -15,7 +15,7 @@ WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* 
 	m_player = player;
 
 	//Žp¨î•ñ
-	m_transform.scale *= Scale;
+	m_transform.scale = Scale;
 	m_transform.position = position;
 	m_transform.rotation = Quaternion::LookRotation(-forward);
 
@@ -26,7 +26,7 @@ WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* 
 //Õ“ËƒCƒxƒ“ƒg
 void WindBottle::OnCollision(const ModelActor* other)
 {
-	if (other->GetName() == "Ground")
+	if (other->GetName() == "Wall")
 	{
 		m_player->AddChild(new WindGimmick(m_transform.position));
 	}

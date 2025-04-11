@@ -11,7 +11,7 @@ ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Pl
 	m_model = new Model("Resource/bottle_thunder.mv1");
 
 	//épê®èÓïÒ
-	m_transform.scale *= Scale;
+	m_transform.scale = Scale;
 	m_transform.position = position;
 	m_transform.rotation = Quaternion::LookRotation(-forward);
 

@@ -136,9 +136,12 @@ void Player::Move()
 	}
 
 	// 重力
-	m_transform.position.y -= GravityScale;
-	m_holdMove.y = 0;
-	m_holdMove.y -= GravityScale;
+	if (!m_onGround)
+	{
+		m_transform.position.y -= GravityScale;
+		m_holdMove.y = 0;
+		m_holdMove.y -= GravityScale;
+	}
 
 	//設定したアニメーションの再生
 	//m_model->PlayAnime(animeIndex);

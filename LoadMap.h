@@ -7,10 +7,6 @@
 
 class LoadMap
 {
-private:
-	//std::string filename = "openfile.csv";  // 読み込むCSVファイル名
-	//auto data = ReadCSV(filename);
-
 public:
 	//シングルトン
 	static LoadMap* GetInstance()

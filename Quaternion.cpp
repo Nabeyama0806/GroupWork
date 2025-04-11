@@ -92,7 +92,7 @@ Quaternion Quaternion::FromToRotation(const Vector3& from, const Vector3& to)
 		if (Vector3::Dot(from, to) < 0)
 		{
 			// YŽ²‚Å^”½‘Î‚ðŒü‚­
-			return AngleAxis(Math::DegToRad(180.0f), Vector3(0, 1, 0));
+			return AngleAxis(static_cast<float>(Math::DegToRad(180.0f)), Vector3(0, 1, 0));
 		}
 		else
 		{

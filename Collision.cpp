@@ -44,10 +44,10 @@ bool Collision::Check(
 {
 	//各円形の中心座標とサイズを算出
 	Vector3 center1 = transform1.position + circle1->m_offset;
-	int size1 = circle1->m_radius;
+	float size1 = circle1->m_radius;
 
 	Vector3 center2 = transform2.position + circle2->m_offset;
-	int size2 = circle2->m_radius;
+	float size2 = circle2->m_radius;
 
 	// 1と2の中心座標の差の二乗
 	float distanceX2 = abs(center1.x - center2.x) * abs(center1.x - center2.x);

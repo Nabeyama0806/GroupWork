@@ -4,7 +4,7 @@
 #include "Time.h"
 
 //コンストラクタ
-FireGimmick::FireGimmick(const Vector3& position) :
+FireGimmick::FireGimmick(const Vector3& position, const Vector3& size) :
 	GimmickBase("Fire", position),
 	m_destroyWall(false),
 	m_fireTime(FireTime)
