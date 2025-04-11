@@ -1,6 +1,10 @@
 #include "CreateMap.h"
 #include "ModelActor.h"
 #include "FireGimmick.h"
+#include "WaterGimmick.h"
+#include "WindGimmick.h"
+#include "HitCollider.h"
+
 
 CreateMap::CreateMap(Node* layer)
 {
@@ -27,7 +31,33 @@ void CreateMap::Create(Node* layer, std::vector<std::vector<int>> data, int posi
 					TileSize.y * positionY,
 					TileSize.z * z
 				);
-				layer->AddChild(new FireGimmick(pos));
+				switch (static_cast<TileModel>(tileType))
+				{
+				case TileModel::Fire:
+					layer->AddChild(new FireGimmick(pos));
+					break;
+
+				case TileModel::Water:
+					layer->AddChild(new WaterGimmick(pos, Vector3(1,1,1)));
+					break;
+
+				case TileModel::PowerUp:
+					layer->AddChild(new FireGimmick(pos));
+					break;
+
+				case TileModel::Wall:
+					/*
+					layer->AddChild(new HitCollider(
+						"Wall",
+						pos,
+						Vector3(TileSize.x, TileSize.y, TileSize.z)
+					));
+					*/
+					break;
+
+				default:
+					break;
+				}
 			}
 		}
 	}

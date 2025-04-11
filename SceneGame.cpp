@@ -16,8 +16,6 @@
 #include "DxLib.h"
 
 #include "CreateMap.h"
-#include "FireGimmick.h"	
-#include "WaterGimmick.h"
 
 //初期化
 void SceneGame::Initialize()
@@ -30,8 +28,8 @@ void SceneGame::Initialize()
 	m_rootNode->AddChild(m_mainCamera);
 
 	//背景
-	m_stage = new ModelActor("Ground", "Environment/BaseStage3.0.mv1");
-	m_rootNode->AddChild(m_stage);
+	//m_stage = new ModelActor("Ground", "Environment/BaseStage3.0.mv1");
+	//m_rootNode->AddChild(m_stage);
 
 	//アクターレイヤー
 	Node* actorLayer = new Node();
@@ -89,9 +87,6 @@ void SceneGame::Initialize()
 		floorPos,
 		floorSize
 	));
-
-	actorLayer->AddChild(new FireGimmick(Vector3(-100, 100, 100)));
-	actorLayer->AddChild(new WaterGimmick(Vector3(300, 0, 100), Vector3(50, 100, 50)));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");

@@ -11,7 +11,6 @@ public:
 		None,
 		Fire,
 		Water,
-		Wind,
 		PowerUp,
 		Wall,
 
@@ -48,7 +47,6 @@ private:
 		"None",
 		"Fire",
 		"Water",
-		"Wind",
 		"PowerUp",
 		"Resource/bottle_fire.mv1",
 	};
