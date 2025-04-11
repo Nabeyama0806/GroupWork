@@ -15,6 +15,7 @@
 #include "UiBottle.h"
 #include "DxLib.h"
 
+#include "CreateMap.h"
 #include "FireGimmick.h"	
 #include "WaterGimmick.h"
 
@@ -51,6 +52,9 @@ void SceneGame::Initialize()
 	m_player = new Player(m_mainCamera, m_uiBottle);
 	actorLayer->AddChild(m_player);
 	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
+
+	// ƒ}ƒbƒv
+	new CreateMap(actorLayer);
 
 	//•Ç
 	Vector3 wallPos	 = Vector3(0, 100, 2000);
