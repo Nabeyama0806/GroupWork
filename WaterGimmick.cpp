@@ -2,6 +2,7 @@
 #include "BoxCollider.h"
 #include "Effect.h"
 
+//コンストラクタ
 WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const Vector3& offset) :
 	GimmickBase("Water", position),
 	m_isPlay(false),
@@ -9,7 +10,7 @@ WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const V
 {
 	//モデルとエフェクト
 	m_model = new Model("Resource/bottle_water.mv1");
-	m_effect = new Effect("Data/water.efk", 40);
+	m_effect = new Effect("Data/water.efk", 40, 120);
 	m_effectOffset = Vector3(0, 100, 0);
 
 	//姿勢情報
