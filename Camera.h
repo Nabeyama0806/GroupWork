@@ -11,9 +11,9 @@ private:
 	static constexpr Vector3 SpawnPos = Vector3(0, 170, -400);
 	static constexpr float CameraAngleSpeed = 0.1f;	//カメラの回転速度
 
-	static constexpr float PlayerLookAtHeight = 240;			//注視点からの高さのオフセット
+	static constexpr float PlayerLookAtHeight = 80;			//注視点からの高さのオフセット
 	static constexpr float StageLookAtHeight = 0;
-	static constexpr float PlayerCameraDistance = 1;			//カメラ座標までの距離
+	static constexpr float PlayerCameraDistance = 300.0f;			//カメラ座標までの距離
 	static constexpr float StageCameraDistance = 2000;
 
 	static constexpr float CameraMaxVAngle = 80.0f;		//カメラの縦回転の最大値

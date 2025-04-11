@@ -13,8 +13,8 @@ void ModelActorCollision::Update()
 		//イテレータから取り出す
 		ModelActor* actor1 = *it1;
 		if (actor1->GetName() != "Player" && actor1->GetName() != "FireBottle" &&
-			actor1->GetName() != "WaterBottle" && actor1->GetName() != "WindBottle")
-			continue;
+			actor1->GetName() != "WaterBottle" && actor1->GetName() != "WindBottle" &&
+			actor1->GetName() != "ThunderBottle")continue;
 
 		for (auto it2 = actorList.begin(); it2 != actorList.end(); ++it2)
 		{

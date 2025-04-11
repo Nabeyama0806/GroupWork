@@ -61,7 +61,7 @@ void SceneGame::Initialize()
 	actorLayer->AddChild(new HitCollider(
 		"Wall",
 		Vector3(0, 100, 2000),
-		Vector3(4000, 500, 100)
+		Vector3(500, 500, 500)
 	));
 	actorLayer->AddChild(new HitCollider(
 		"Wall",
@@ -79,14 +79,14 @@ void SceneGame::Initialize()
 		Vector3(100, 500, 4000)
 	));
 
-	// °
-	Vector3 floorPos = Vector3(0, -20, 0);
-	Vector3 floorSize = Vector3(4000, 40, 4000);
-	actorLayer->AddChild(new HitCollider(
-		"Ground",
-		floorPos,
-		floorSize
-	));
+	//// °
+	//Vector3 floorPos = Vector3(0, -20, 0);
+	//Vector3 floorSize = Vector3(4000, 40, 4000);
+	//actorLayer->AddChild(new HitCollider(
+	//	"Ground",
+	//	floorPos,
+	//	floorSize
+	//));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");

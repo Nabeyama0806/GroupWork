@@ -17,16 +17,16 @@ public:
 		Length
 	};
 
-	static constexpr int Scale = 20;		//‘å‚«‚³‚Ì’²®
+	static constexpr int Scale = 10;		//‘å‚«‚³‚Ì’²®
 private:
 	static constexpr float Gravity = 0.01f;	//d—Í
-	static constexpr float AddForce = 2000;	//“Š‚°‚é—Í
+	static constexpr float AddForce = 1700;	//“Š‚°‚é—Í
 	static constexpr float Mass = 2;		//¿—Ê
 
 	Vector3 m_forward;
 
 protected:
-	static constexpr Vector3 ColliderSize = Vector3(80, 80, 80);
+	static constexpr Vector3 ColliderSize = Vector3(35, 35, 35);
 
 	Player* m_player;
 

@@ -28,7 +28,7 @@ void CreateMap::Create(Node* layer, std::vector<std::vector<int>> data, int posi
 			{
 				Vector3 pos = Vector3(
 					TileSize.x * x,
-					TileSize.y * positionY,
+					TileSize.y * positionY - 100,
 					TileSize.z * z
 				);
 				switch (static_cast<TileModel>(tileType))
@@ -46,13 +46,11 @@ void CreateMap::Create(Node* layer, std::vector<std::vector<int>> data, int posi
 					break;
 
 				case TileModel::Wall:
-					/*
 					layer->AddChild(new HitCollider(
 						"Wall",
 						pos,
 						Vector3(TileSize.x, TileSize.y, TileSize.z)
 					));
-					*/
 					break;
 
 				default:

@@ -24,7 +24,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_holdMove(0,0,0)
 {
 	//アニメーションの登録
-	m_model = new Model("Man/Man.mv1");
+	m_model = new Model("Man/Player.mv1");
 	for (int i = 0; i < AnimeAmount; ++i)
 	{
 		//アニメーションのファイルパスを渡す
@@ -132,17 +132,16 @@ void Player::Move()
 			0.2f);
 
 		//移動アニメーションを設定
-		animeIndex = static_cast<int>(Model::Anime::Run);
+		//animeIndex = static_cast<int>(Model::Anime::Run);
 	}
 
 	// 重力
-	if (!m_onGround)
-	{
-		m_transform.position.y -= GravityScale;
-	}
+	m_transform.position.y -= GravityScale;
+	m_holdMove.y = 0;
+	m_holdMove.y -= GravityScale;
 
 	//設定したアニメーションの再生
-	m_model->PlayAnime(animeIndex);
+	//m_model->PlayAnime(animeIndex);
 }
 
 void Player::Draw()
@@ -170,23 +169,25 @@ void Player::OnCollision(const ModelActor* other)
 		Vector3 colSize = other->GetCollider()->GetSize(other->GetCollider());
 		Vector3 colCenter = other->GetPosition();
 		
-		float xRatio = colSize.z / colSize.x;
+		float yRatio = 0.6f;
+
+		float distanceX = abs(colCenter.x  - (m_transform.position.x + ColliderOffset.Scale(m_transform.scale).x));
+		float distanceY = abs((colCenter.y - (m_transform.position.y + ColliderOffset.Scale(m_transform.scale).y) * yRatio));
+		float distanceZ = abs(colCenter.z  - (m_transform.position.z + ColliderOffset.Scale(m_transform.scale).z));
 
 		// プレイヤーが当たっている壁がどの方向か
-		if (abs(abs(colCenter.x - m_transform.position.x - m_holdMove. x) - ColliderSize.x / 2) * xRatio + ColliderSize.x / 2 >
-			abs(colCenter.z - m_transform.position.z - m_holdMove.z))
+		if (distanceX > distanceY && distanceX > distanceZ)			
 		{
 			m_transform.position.x -= m_holdMove.x;	// 動いた分戻す
 		}
-		else
+		else if (distanceZ > distanceY && distanceZ > distanceX)
 		{
 			m_transform.position.z -= m_holdMove.z;	// 動いた分戻す
 		}
-	}
-
-	if (other->GetName() == "Ground")
-	{
-		m_onGround = true;
+		else
+		{
+			m_transform.position.y -= m_holdMove.y;	// 動いた分戻す
+		}
 	}
 
 	if (other->GetName() == "Wind")

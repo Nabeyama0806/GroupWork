@@ -21,7 +21,7 @@ private:
 	static constexpr int MapWidth = 20;		//マップの横幅
 	static constexpr int MapHeight = 1;	//マップの縦幅
 	static constexpr int MapDepth = 20;		//マップの奥行き
-	static constexpr Vector3 TileSize = Vector3(10, 10, 10);	//開始時の座標
+	static constexpr Vector3 TileSize = Vector3(100, 100, 100);	//開始時の座標
 	
 	const char MapName[MapHeight][256] = 
 	{
