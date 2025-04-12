@@ -9,13 +9,11 @@
 #include "Sprite.h"
 #include "ModelActor.h"
 #include "SpriteActor.h"
-#include "HitCollider.h"
 #include "Camera.h"
 #include "Player.h"
 #include "UiBottle.h"
-#include "DxLib.h"
-
 #include "CreateMap.h"
+#include "DxLib.h"
 
 //‰Šú‰»
 void SceneGame::Initialize()
@@ -53,16 +51,6 @@ void SceneGame::Initialize()
 
 	// ƒ}ƒbƒv
 	actorLayer->AddChild(new CreateMap());
-
-	//•Ç
-	Vector3 wallPos	 = Vector3(0, 100, 2000);
-	Vector3 wallSize = Vector3(4000, 500, 100);
-
-	actorLayer->AddChild(new HitCollider(
-		"Wall",
-		Vector3(0, 100, 2000),
-		Vector3(500, 500, 500)
-	));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");

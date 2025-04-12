@@ -37,7 +37,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 
 	//衝突判定
 	Vector3 colliderScale = ColliderSize * Scale.x;
-	m_collider = new BoxCollider(colliderScale, ColliderOffset.Scale(m_transform.scale));
+	m_collider = new BoxCollider(colliderScale);
 }
 
 //更新
@@ -174,22 +174,22 @@ void Player::OnCollision(const ModelActor* other)
 		
 		float yRatio = 0.6f;
 
-		float distanceX = abs(colCenter.x  - (m_transform.position.x + ColliderOffset.Scale(m_transform.scale).x));
-		float distanceY = abs((colCenter.y - (m_transform.position.y + ColliderOffset.Scale(m_transform.scale).y) * yRatio));
-		float distanceZ = abs(colCenter.z  - (m_transform.position.z + ColliderOffset.Scale(m_transform.scale).z));
+		float distanceX = abs(colCenter.x - (abs(m_transform.position.x)));
+		float distanceY = abs(colCenter.y - (abs(m_transform.position.y)));
+		float distanceZ = abs(colCenter.z - (abs(m_transform.position.z)));
 
 		// プレイヤーが当たっている壁がどの方向か
 		if (distanceX > distanceY && distanceX > distanceZ)			
 		{
 			m_transform.position.x -= m_holdMove.x;	// 動いた分戻す
 		}
+		else if (distanceY > distanceX && distanceY > distanceZ)
+		{
+			m_transform.position.y -= m_holdMove.y;	// 動いた分戻す
+		}
 		else if (distanceZ > distanceY && distanceZ > distanceX)
 		{
 			m_transform.position.z -= m_holdMove.z;	// 動いた分戻す
-		}
-		else
-		{
-			m_transform.position.y -= m_holdMove.y;	// 動いた分戻す
 		}
 	}
 

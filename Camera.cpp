@@ -44,6 +44,7 @@ void Camera::Update()
 void Camera::Draw()
 {
 	// ƒJƒƒ‰À•W‚Ìİ’è
+	SetCameraNearFar(10.0f, 10000);
 	SetCameraPositionAndTarget_UpVecY(m_cameraPos, m_targetPos);
 	Effekseer_Sync3DSetting();
 }

@@ -15,12 +15,11 @@ FireGimmick::FireGimmick(const Vector3& position, const Vector3& size) :
 
 	//p¨î•ñ
 	m_transform.position = position;
-	m_transform.scale = Scale;
+	m_transform.scale = size;
 
 	//Õ“Ë”»’è
-	Vector3 colliderScale = m_colliderSize * Scale.x;
+	Vector3 colliderScale = m_colliderSize * size.x;
 	m_collider = new BoxCollider(colliderScale);
-
 }
 
 //Œø‰Ê‚Ì”­“®

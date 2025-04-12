@@ -12,10 +12,10 @@ class Bottle;
 class Player : public ModelActor
 {
 private:
-	static constexpr Vector3 SpawnPos = Vector3(0, 200, 400);	//開始時の座標
-	static constexpr Vector3 Scale = Vector3(20.0f, 20.0f, 20.0f);	//自身のサイズ
-	static constexpr Vector3 ColliderOffset = Vector3(0, 2, 0);	// コライダーのオフセット
-	static constexpr Vector3 ColliderSize = Vector3(3.0f, 5.0f, 3.0f);	// コライダーのサイズ
+	static constexpr Vector3 SpawnPos = Vector3(100, 0, 100);	//開始時の座標
+	static constexpr Vector3 Scale = Vector3(10.0f, 10.0f, 10.0f);	//自身のサイズ
+	static constexpr Vector3 ColliderOffset = Vector3(0, 0, 0);	// コライダーのオフセット
+	static constexpr Vector3 ColliderSize = Vector3(3.0f, 3.0f, 3.0f);	// コライダーのサイズ
 	static constexpr float Speed = 0.6f * Scale.y;	//自身のサイズに合せた移動速度
 	static constexpr float GravityScale = 13.0f;			// 重力
 	static constexpr float DashSpeed = 1.4f;		//ダッシュ時の速度倍率

@@ -18,14 +18,14 @@ public:
 	};
 
 private:
-	static constexpr int MapWidth = 20;		//マップの横幅
-	static constexpr int MapHeight = 1;		//マップの縦幅
-	static constexpr int MapDepth = 20;		//マップの奥行き
+	static constexpr int MapWidth = 10;		//マップの横幅
+	static constexpr int MapHeight = 15;		//マップの縦幅
+	static constexpr int MapDepth = 10;		//マップの奥行き
 	static constexpr Vector3 TileSize = Vector3(100, 100, 100);	//開始時の座標
 	
 	const char MapName[MapHeight][256] = 
 	{
-		"MapData/Map1.csv"/*,
+		"MapData/Map1.csv",
 		"MapData/Map2.csv",
 		"MapData/Map3.csv",
 		"MapData/Map4.csv",
@@ -39,7 +39,7 @@ private:
 		"MapData/Map12.csv",
 		"MapData/Map13.csv",
 		"MapData/Map14.csv",
-		"MapData/Map15.csv",*/
+		"MapData/Map15.csv",
 	};
 
 	void Create(std::vector<std::vector<int>> data, int positionY);
