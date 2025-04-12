@@ -174,20 +174,20 @@ void Player::OnCollision(const ModelActor* other)
 		
 		float yRatio = 0.6f;
 
-		float distanceX = abs(colCenter.x - (abs(m_transform.position.x)));
-		float distanceY = abs(colCenter.y - (abs(m_transform.position.y)));
-		float distanceZ = abs(colCenter.z - (abs(m_transform.position.z)));
+		float distanceX = abs(colCenter.x - m_transform.position.x);
+		float distanceY = abs(colCenter.y - m_transform.position.y);
+		float distanceZ = abs(colCenter.z - m_transform.position.z);
 
 		// ƒvƒŒƒCƒ„[‚ª“–‚½‚Á‚Ä‚¢‚é•Ç‚ª‚Ç‚Ì•ûŒü‚©
 		if (distanceX > distanceY && distanceX > distanceZ)			
 		{
 			m_transform.position.x -= m_holdMove.x;	// “®‚¢‚½•ª–ß‚·
 		}
-		else if (distanceY > distanceX && distanceY > distanceZ)
+		else if (distanceY > distanceZ)
 		{
 			m_transform.position.y -= m_holdMove.y;	// “®‚¢‚½•ª–ß‚·
 		}
-		else if (distanceZ > distanceY && distanceZ > distanceX)
+		else
 		{
 			m_transform.position.z -= m_holdMove.z;	// “®‚¢‚½•ª–ß‚·
 		}
