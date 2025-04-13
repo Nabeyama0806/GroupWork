@@ -13,7 +13,7 @@ private:
 
 	static constexpr float PlayerLookAtHeight = 30;			//注視点からの高さのオフセット
 	static constexpr float StageLookAtHeight = 0;
-	static constexpr float PlayerCameraDistance = 1.0f;			//カメラ座標までの距離
+	static constexpr float PlayerCameraDistance = 100.0f;			//カメラ座標までの距離
 	static constexpr float StageCameraDistance = 2000;
 
 	static constexpr float CameraMaxVAngle = 80.0f;		//カメラの縦回転の最大値

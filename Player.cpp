@@ -154,6 +154,26 @@ void Player::Draw()
 		//本来の更新
 		ModelActor::Draw();
 	}
+
+#ifdef _DEBUG	
+	// X
+	DrawLine3D(
+		VGet(m_transform.position.x, m_transform.position.y, m_transform.position.z),
+		VGet(m_transform.position.x + 30, m_transform.position.y, m_transform.position.z),
+		GetColor(255, 0, 0));
+
+	// Y
+	DrawLine3D(
+		VGet(m_transform.position.x, m_transform.position.y, m_transform.position.z),
+		VGet(m_transform.position.x, m_transform.position.y + 30, m_transform.position.z),
+		GetColor(255, 255, 0));
+
+	// Z
+	DrawLine3D(
+		VGet(m_transform.position.x, m_transform.position.y, m_transform.position.z),
+		VGet(m_transform.position.x, m_transform.position.y, m_transform.position.z + 30),
+		GetColor(0, 0, 255));
+#endif
 }
 
 void Player::DestroyBottle()
@@ -167,16 +187,18 @@ void Player::OnCollision(const ModelActor* other)
 	//壁
 	if (other->GetName() == "Wall")
 	{
+
 		m_onWall = true;
 		// 壁のサイズ
 		Vector3 colSize = other->GetCollider()->GetSize(other->GetCollider());
 		Vector3 colCenter = other->GetPosition();
 		
 		float yRatio = 0.6f;
+		float xRatio = colSize.z / colSize.x;
 
-		float distanceX = abs(colCenter.x - m_transform.position.x);
-		float distanceY = abs(colCenter.y - m_transform.position.y);
-		float distanceZ = abs(colCenter.z - m_transform.position.z);
+		float distanceX = abs(colCenter.x - (m_transform.position.x - m_holdMove.x));
+		float distanceY = abs(colCenter.y - (m_transform.position.y - m_holdMove.y));
+		float distanceZ = abs(colCenter.z - (m_transform.position.z - m_holdMove.z));
 
 		// プレイヤーが当たっている壁がどの方向か
 		if (distanceX > distanceY && distanceX > distanceZ)			

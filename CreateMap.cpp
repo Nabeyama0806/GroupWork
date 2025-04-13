@@ -34,33 +34,6 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 				);
 
 				AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize));
-				/*
-				switch (static_cast<TileType>(tileType))
-				{
-				case TileType::Fire:
-					AddChild(new FireGimmick(pos));
-					break;
-
-				case TileType::Water:
-					AddChild(new WaterGimmick(pos, Vector3(1,1,1)));
-					break;
-
-				case TileType::PowerUp:
-					AddChild(new FireGimmick(pos));
-					break;
-
-				case TileType::Wall:
-					AddChild(new HitCollider(
-						"Wall",
-						pos,
-						Vector3(TileSize.x, TileSize.y, TileSize.z)
-					));
-					break;
-
-				default:
-					break;
-				}
-				*/
 			}
 		}
 	}
