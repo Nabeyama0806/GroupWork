@@ -8,7 +8,7 @@ WindGimmick::WindGimmick(const Vector3& position) :
 	m_elapsedTime(0)
 {
 	//エフェクト
-	m_effect = new Effect("Data/wind.efk", 25, 130);
+	m_effect = new Effect("Data/wind.efk", 5, 130);
 
 	//姿勢情報
 	m_transform.position = position + SpawnOffset;

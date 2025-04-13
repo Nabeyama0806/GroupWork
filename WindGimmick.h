@@ -6,8 +6,8 @@
 class WindGimmick : public GimmickBase
 {
 private:
-	static constexpr Vector3 Scale = Vector3(50, 50, 50);		//自身のサイズ
-	static constexpr Vector3 SpawnOffset = Vector3(0, 100, 0);	//オフセット
+	static constexpr Vector3 Scale = Vector3(10, 10, 10);		//自身のサイズ
+	static constexpr Vector3 SpawnOffset = Vector3(0, 30, 0);	//オフセット
 	static constexpr float EffectDrawTime = 6.5f;				//エフェクトを表示する時間
 		
 	float m_elapsedTime;	//経過時間
