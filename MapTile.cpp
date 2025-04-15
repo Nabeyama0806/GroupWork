@@ -19,6 +19,10 @@ void MapTile::Create(const Vector3& position)
 	case CreateMap::TileType::None:
 		break;
 
+	case CreateMap::TileType::Wall:
+		AddChild(new TileCube(position, m_size));
+		break;
+
 	case CreateMap::TileType::Fire:
 		AddChild(new FireGimmick(position, Vector3(25, 25, 25)));
 		break;
@@ -27,14 +31,19 @@ void MapTile::Create(const Vector3& position)
 		AddChild(new WaterGimmick(position, Vector3(25, 25, 25)));
 		break;
 
-	case CreateMap::TileType::PowerUp:
-		/*
-		AddChild(new PowerUp(position));
-		*/
+	case CreateMap::TileType::WaterEnd:
 		break;
 
-	case CreateMap::TileType::Wall:
-		AddChild(new TileCube(position, m_size));
+	case CreateMap::TileType::OnOffBlock:
+		break;
+
+	case CreateMap::TileType::OnOffSwitch:
+		break;
+
+	case CreateMap::TileType::Transparent:
+		break;
+
+	case CreateMap::TileType::Goal:
 		break;
 
 	default:

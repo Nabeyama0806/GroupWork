@@ -11,13 +11,15 @@ private:
 	static constexpr Vector3 SpawnPos = Vector3(0, 170, -400);
 	static constexpr float CameraAngleSpeed = 0.1f;	//カメラの回転速度
 
-	static constexpr float PlayerLookAtHeight = 30;			//注視点からの高さのオフセット
+	static constexpr float PlayerLookAtHeight = 10;			//注視点からの高さのオフセット
 	static constexpr float StageLookAtHeight = 0;
-	static constexpr float PlayerCameraDistance = 100.0f;			//カメラ座標までの距離
-	static constexpr float StageCameraDistance = 2000;
+	static constexpr float PlayerCameraDistance = 1.0f;			//カメラ座標までの距離
+	static constexpr float StageCameraDistance = 1500;
 
 	static constexpr float CameraMaxVAngle = 80.0f;		//カメラの縦回転の最大値
 	static constexpr float CameraMinVAngle = -20.0f;	//カメラの縦回転の最小値
+
+	static constexpr Vector3 StageCenter = Vector3(450, 450, 450);
 
 	Transform* m_transform;		//姿勢情報
 	ModelActor* m_lookAt;		//注視するオブジェクト

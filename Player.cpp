@@ -143,6 +143,11 @@ void Player::Move()
 		m_holdMove.y -= GravityScale;
 	}
 
+	if (m_transform.position.y < -500)
+	{
+		m_transform.position = SpawnPos;
+	}
+
 	//設定したアニメーションの再生
 	//m_model->PlayAnime(animeIndex);
 }
@@ -196,9 +201,9 @@ void Player::OnCollision(const ModelActor* other)
 		float yRatio = 0.6f;
 		float xRatio = colSize.z / colSize.x;
 
-		float distanceX = abs(colCenter.x - (m_transform.position.x - m_holdMove.x));
-		float distanceY = abs(colCenter.y - (m_transform.position.y - m_holdMove.y));
-		float distanceZ = abs(colCenter.z - (m_transform.position.z - m_holdMove.z));
+		float distanceX = abs(colCenter.x - abs(m_transform.position.x - m_holdMove.x));
+		float distanceY = abs(colCenter.y - abs(m_transform.position.y - m_holdMove.y));
+		float distanceZ = abs(colCenter.z - abs(m_transform.position.z - m_holdMove.z));
 
 		// プレイヤーが当たっている壁がどの方向か
 		if (distanceX > distanceY && distanceX > distanceZ)			
@@ -215,7 +220,7 @@ void Player::OnCollision(const ModelActor* other)
 		}
 	}
 
-	if (other->GetName() == "Wind")
+	if (other->GetName() == "Wind" || other->GetName() == "Water")
 	{
 		m_onGround = true;
 		m_transform.position.y += GravityScale;

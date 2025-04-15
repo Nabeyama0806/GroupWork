@@ -19,7 +19,7 @@ void Camera::Update()
 	}
 	else
 	{
-		m_targetPos.y = m_lookAtHeight;
+		m_targetPos = StageCenter;
 	}
 
 	//Å‰‚É‚’¼Šp“x‚ğ”½‰f‚µ‚½ˆÊ’u‚ğZo

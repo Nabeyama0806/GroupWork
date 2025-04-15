@@ -12,7 +12,7 @@ class Bottle;
 class Player : public ModelActor
 {
 private:
-	static constexpr Vector3 SpawnPos = Vector3(100, 0, 100);	//開始時の座標
+	static constexpr Vector3 SpawnPos = Vector3(0, 0, 0);	//開始時の座標
 	static constexpr Vector3 Scale = Vector3(10.0f, 10.0f, 10.0f);	//自身のサイズ
 	static constexpr Vector3 ColliderOffset = Vector3(0, 0, 0);	// コライダーのオフセット
 	static constexpr Vector3 ColliderSize = Vector3(3.0f, 3.0f, 3.0f);	// コライダーのサイズ
