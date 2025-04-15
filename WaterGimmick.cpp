@@ -8,6 +8,7 @@ WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const V
 	GimmickBase("Water", position),
 	m_waterHeight(false),
 	m_stopTime(0),
+	m_canUp(true),
 	m_startPos(position)
 {
 	//モデルとエフェクト
@@ -22,22 +23,29 @@ WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const V
 	//衝突判定
 	Vector3 colliderScale = m_colliderSize * size.x;
 	m_collider = new BoxCollider(colliderScale, offset.Scale(m_transform.scale));
-
 }
 
 //効果の発動
 void WaterGimmick::Active()
 {
+	if (m_transform.position.y > m_startPos.y)
+	{
+		m_stopTime += Time::GetInstance()->GetDeltaTime();
+		if (m_stopTime > StopTime)
+		{
+			m_transform.position.y -= VariableWater;
+			m_canUp = true;
+		}
+		else
+		{
+			m_canUp = false;
+		}
+	}
+	
 	if (m_waterHeight)
 	{
 		m_transform.position.y += VariableWater;
 		m_stopTime = 0;
-	}
-
-	if (m_transform.position.y > m_startPos.y)
-	{
-		m_stopTime += Time::GetInstance()->GetDeltaTime();
-		if (m_stopTime > StopTime) m_transform.position.y -= VariableWater;
 	}
 }
 
@@ -46,6 +54,7 @@ void WaterGimmick::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "WaterBottle")
 	{
+		if (!m_canUp) return;
 		m_waterHeight = true;
 	}
 

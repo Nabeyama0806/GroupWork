@@ -11,6 +11,7 @@ private:
 	static constexpr float StopTime = 5.0f;	// …‚ªã‚Å~‚Ü‚éŠÔ
 
 	bool m_waterHeight;	// …•r‚É“–‚½‚Á‚½‚©‚Ç‚¤‚©
+	bool m_canUp;		//ã¸‰Â”\‚©‚Ç‚¤‚©
 	float m_stopTime;	// …‚ªã‚Å~‚Ü‚Á‚Ä‚¢‚éŠÔ
 	Vector3 m_startPos;	// …‚Ì‰ŠúˆÊ’u
 
