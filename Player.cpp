@@ -189,7 +189,7 @@ void Player::DestroyBottle()
 void Player::OnCollision(const ModelActor* other)
 {
 	//•Ç
-	if (other->GetName() == "Wall" || other->GetName() == "Transparent")
+	if (other->GetName() == "Wall" || other->GetName() == "Fire")
 	{
 		m_onWall = true;
 		// •Ç‚ÌƒTƒCƒY
@@ -218,7 +218,7 @@ void Player::OnCollision(const ModelActor* other)
 		}
 	}
 
-	if (other->GetName() == "Wind" || other->GetName() == "Water")
+	if (other->GetName() == "Wind" || other->GetName() == "Water" || other->GetName() == "Transparent")
 	{
 		m_onGround = true;
 		m_transform.position.y += GravityScale;
