@@ -3,11 +3,14 @@
 #include "LoadMap.h"
 #include "Vector3.h"
 
+class Player;
+
 class CreateMap : public Node
 {
 public:
 	enum class TileType
 	{
+		PlayerSpawn = -1,
 		None,
 		Wall,
 		Fire,
@@ -26,6 +29,8 @@ private:
 	static constexpr int MapHeight = 15;		//マップの縦幅
 	static constexpr int MapDepth = 10;		//マップの奥行き
 	static constexpr Vector3 TileSize = Vector3(100, 100, 100);	//開始時の座標
+
+	Player* m_player;	//プレイヤー
 	
 	const char MapName[MapHeight][256] = 
 	{
@@ -49,5 +54,5 @@ private:
 	void Create(std::vector<std::vector<int>> data, int positionY);
 
 public:
-	CreateMap();
+	CreateMap(Player* m_player);
 };

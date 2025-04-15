@@ -7,13 +7,12 @@ class Effect;
 class WaterGimmick : public GimmickBase
 {
 private:
-	static constexpr float DownWaterHeight = 10.0f;
-	static constexpr float UpWaterHeight = 250.0f;
-
 	static constexpr float VariableWater = 2.0f;	// •Ï“®‚·‚é…‚Ì‘¬“x
+	static constexpr float StopTime = 5.0f;	// …‚ªã‚Å~‚Ü‚éŠÔ
 
-	bool m_isWaterHeight;	// …‚ª‚‚­‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	bool m_isPlay;
+	bool m_waterHeight;	// …•r‚É“–‚½‚Á‚½‚©‚Ç‚¤‚©
+	float m_stopTime;	// …‚ªã‚Å~‚Ü‚Á‚Ä‚¢‚éŠÔ
+	Vector3 m_startPos;	// …‚Ì‰ŠúˆÊ’u
 
 protected:
 	//Œø‰Ê‚Ì”­“®

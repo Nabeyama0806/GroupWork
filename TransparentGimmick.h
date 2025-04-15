@@ -1,0 +1,24 @@
+#pragma once
+#include "GimmickBase.h"
+#include "Model.h"
+
+class Effect;
+
+class TransparentGimmick : public GimmickBase
+{
+private:
+	static constexpr float AppearTime = 5.0f;	// 水が上で止まる時間
+
+	bool m_appear;	// 見えるかどうか
+	float m_appearTime;	// 見えている間の時間
+protected:
+	//効果の発動
+	virtual void Active() override;
+
+public:
+	//コンストラクタ
+	TransparentGimmick(const Vector3& spawnPos, const Vector3& scale, const Vector3& offset = Vector3(0, 0, 0));
+
+	//衝突イベント
+	virtual void OnCollision(const ModelActor* other) override;
+};

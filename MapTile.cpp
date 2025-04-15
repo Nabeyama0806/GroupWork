@@ -1,7 +1,9 @@
 #include "MapTile.h"
 #include "FireGimmick.h"
 #include "WaterGimmick.h"
+#include "WaterGimmickEnd.h"
 #include "WindGimmick.h"
+#include "TransparentGimmick.h"
 #include "TileCube.h"
 
 MapTile::MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size) :
@@ -32,6 +34,7 @@ void MapTile::Create(const Vector3& position)
 		break;
 
 	case CreateMap::TileType::WaterEnd:
+		AddChild(new WaterGimmickEnd(position, Vector3(25, 25, 25)));
 		break;
 
 	case CreateMap::TileType::OnOffBlock:
@@ -41,6 +44,7 @@ void MapTile::Create(const Vector3& position)
 		break;
 
 	case CreateMap::TileType::Transparent:
+		AddChild(new TransparentGimmick(position, Vector3(25, 25, 25)));
 		break;
 
 	case CreateMap::TileType::Goal:

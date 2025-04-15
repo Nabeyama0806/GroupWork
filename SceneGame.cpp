@@ -50,7 +50,7 @@ void SceneGame::Initialize()
 	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
 
 	// ƒ}ƒbƒv
-	actorLayer->AddChild(new CreateMap());
+	actorLayer->AddChild(new CreateMap(m_player));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");

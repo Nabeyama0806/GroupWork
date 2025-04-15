@@ -17,6 +17,11 @@ void Bottle::Update()
 
 	//“Š‚°‚é
 	m_transform.position += Throw(m_forward);
+
+	if (m_transform.position.y < -500)
+	{
+		ActiveEffect();
+	}
 }
 
 void Bottle::ActiveEffect()

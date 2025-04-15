@@ -32,7 +32,6 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	}
 
 	//姿勢情報の調整
-	m_transform.position = SpawnPos;
 	m_transform.scale = Scale;
 
 	//衝突判定
@@ -145,7 +144,7 @@ void Player::Move()
 
 	if (m_transform.position.y < -500)
 	{
-		m_transform.position = SpawnPos;
+		m_transform.position = m_spawnPos;
 	}
 
 	//設定したアニメーションの再生
@@ -190,9 +189,8 @@ void Player::DestroyBottle()
 void Player::OnCollision(const ModelActor* other)
 {
 	//壁
-	if (other->GetName() == "Wall")
+	if (other->GetName() == "Wall" || other->GetName() == "Transparent")
 	{
-
 		m_onWall = true;
 		// 壁のサイズ
 		Vector3 colSize = other->GetCollider()->GetSize(other->GetCollider());

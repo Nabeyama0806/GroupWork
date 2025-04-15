@@ -12,7 +12,6 @@ class Bottle;
 class Player : public ModelActor
 {
 private:
-	static constexpr Vector3 SpawnPos = Vector3(0, 0, 0);	//開始時の座標
 	static constexpr Vector3 Scale = Vector3(10.0f, 10.0f, 10.0f);	//自身のサイズ
 	static constexpr Vector3 ColliderOffset = Vector3(0, 0, 0);	// コライダーのオフセット
 	static constexpr Vector3 ColliderSize = Vector3(3.0f, 3.0f, 3.0f);	// コライダーのサイズ
@@ -29,6 +28,7 @@ private:
 	Camera* m_camera;
 	UiBottle* m_uiBottle;
 	Vector3 m_holdMove;
+	Vector3 m_spawnPos;	//スポーン地点
 
 	bool m_createBottle;//ボトルが生きているかどうか
 	bool m_onGround;	// 地面についているかどうか
@@ -44,6 +44,13 @@ protected:
 public:
 	//コンストラクタ
 	Player(Camera* camera, UiBottle* uiBottle);
+
+	// プレイヤーの位置を設定
+	void SetPosition(Vector3 position)
+	{
+		m_spawnPos = position;
+		m_transform.position = m_spawnPos;
+	}
 
 	void DestroyBottle();	//ボトルを破棄する
 
