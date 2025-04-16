@@ -3,6 +3,9 @@
 
 class WindBottle : public Bottle
 {
+protected:
+	virtual void ActiveEffect() override;
+
 public:
 	//コンストラクタ
 	WindBottle(const Vector3& position, const Vector3& forward, Player* player);

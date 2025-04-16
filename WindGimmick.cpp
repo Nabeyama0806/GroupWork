@@ -1,9 +1,10 @@
 #include "WindGimmick.h"
+#include "Player.h"
 #include "BoxCollider.h"
 #include "Time.h"
 
 //コンストラクタ
-WindGimmick::WindGimmick(const Vector3& position) :
+WindGimmick::WindGimmick(const Vector3& position, Player* player) :
 	GimmickBase("Wind", position),
 	m_elapsedTime(0)
 {
@@ -18,6 +19,8 @@ WindGimmick::WindGimmick(const Vector3& position) :
 	//衝突判定
 	Vector3 colliderScale = m_colliderSize * Scale.x;
 	m_collider = new BoxCollider(colliderScale);
+
+	m_player = player;
 }
 
 //更新
@@ -30,6 +33,7 @@ void WindGimmick::Update()
 	m_elapsedTime += Time::GetInstance()->GetDeltaTime();
 	if (EffectDrawTime < m_elapsedTime)
 	{
+		m_player->SetCanWindBottleThrow(true);
 		Destroy();
 	}
 }

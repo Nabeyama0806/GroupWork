@@ -20,5 +20,5 @@ protected:
 	
 public:
 	//コンストラクタ
-	WindGimmick(const Vector3& position);
+	WindGimmick(const Vector3& position, Player* m_player);
 };

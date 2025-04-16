@@ -33,6 +33,7 @@ private:
 	bool m_createBottle;//ボトルが生きているかどうか
 	bool m_onGround;	// 地面についているかどうか
 	bool m_getKey;	// 鍵を持っているかどうか
+	bool m_canWindBottleThrow;	//風ボトルを投げられるか
 
 	void Move();			//移動処理
 	void CreateBottle();	//指定されたボトルの作成
@@ -53,6 +54,7 @@ public:
 	}
 
 	void DestroyBottle();	//ボトルを破棄する
+	void SetCanWindBottleThrow(bool flag);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

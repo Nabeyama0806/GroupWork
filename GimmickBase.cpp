@@ -6,7 +6,8 @@ GimmickBase::GimmickBase(const char* name, const Vector3& position) :
 	ModelActor(name),
 	m_scale(Vector3(50, 50, 50)),
 	m_effectOffset(Vector3(0, -20, 0)),
-	m_effect(nullptr)
+	m_effect(nullptr),
+	m_player(nullptr)
 {
 	m_transform.position = position;
 }

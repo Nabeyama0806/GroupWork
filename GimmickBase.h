@@ -2,6 +2,7 @@
 #include "ModelActor.h"
 #include "Vector3.h"
 
+class Player;
 class Effect;
 
 class GimmickBase : public ModelActor
@@ -9,7 +10,8 @@ class GimmickBase : public ModelActor
 protected:
 	Effect* m_effect;
 	Vector3 m_effectOffset;
-	Vector3 m_scale;			
+	Vector3 m_scale;
+	Player* m_player;
 
 	virtual void Update() override;	//çXêV
 	virtual void Draw() override;	//ï`âÊ

@@ -31,7 +31,7 @@ protected:
 	Player* m_player;
 
 	virtual void Update() override;		//XV
-	void ActiveEffect();				//Œø‰Ê‚Ì”­“®
+	virtual void ActiveEffect();				//Œø‰Ê‚Ì”­“®
 	Vector3 Throw(Vector3& position) const;
 
 public:

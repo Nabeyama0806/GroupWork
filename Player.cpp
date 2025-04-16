@@ -21,7 +21,8 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_createBottle(false),
 	m_onGround(false),
 	m_holdMove(0,0,0),
-	m_getKey(false)
+	m_getKey(false),
+	m_canWindBottleThrow(true)
 {
 	//アニメーションの登録
 	m_model = new Model("Resource/Model/Player.mv1");
@@ -67,6 +68,8 @@ void Player::CreateBottle()
 {
 	if (m_createBottle) return;
 
+	if (m_uiBottle->GetType() == Bottle::Type::Wind && !m_canWindBottleThrow) return;
+
 	switch (m_uiBottle->GetType())
 	{
 	case Bottle::Type::Fire:
@@ -83,6 +86,7 @@ void Player::CreateBottle()
 
 	case Bottle::Type::Wind:
 		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this));
+		m_canWindBottleThrow = false;
 		break;
 
 	default:
@@ -181,6 +185,11 @@ void Player::Draw()
 void Player::DestroyBottle()
 {
 	m_createBottle = false;
+}
+
+void Player::SetCanWindBottleThrow(bool flag)
+{
+	m_canWindBottleThrow = flag;
 }
 
 //衝突イベント

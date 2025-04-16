@@ -23,18 +23,25 @@ WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* 
 	m_collider = new BoxCollider(ColliderSize.Scale(Scale));
 }
 
+void WindBottle::ActiveEffect()
+{
+	Bottle::ActiveEffect();
+	m_player->SetCanWindBottleThrow(true);
+}
+
 //衝突イベント
 void WindBottle::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "Wall")
 	{
-		m_player->AddChild(new WindGimmick(m_transform.position));
+		m_player->AddChild(new WindGimmick(m_transform.position, m_player));
 	}
 
 	// 当たっているのがプレイヤーギミック用当たり判定なら通らない
 	if (other->GetName() != "Player" && other->GetName() != "WaterGimmickEnd" && other->GetName() != "Transparent")
 	{
 		// 自身の削除
-		ActiveEffect();
+		Bottle::ActiveEffect();
+		if (other->GetName() != "Wall") m_player->SetCanWindBottleThrow(true);
 	}
 }
