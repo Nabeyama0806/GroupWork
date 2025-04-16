@@ -11,7 +11,7 @@ private:
 		"Fire",
 		"Water",
 		"PowerUp",
-		"Resource/bottle_fire.mv1",
+		"Resource/Model/bottle_fire.mv1",
 	};
 
 	CreateMap::TileType m_tile;

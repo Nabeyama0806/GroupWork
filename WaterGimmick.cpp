@@ -12,8 +12,8 @@ WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const V
 	m_startPos(position)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/bottle_water.mv1");
-	m_effect = new Effect("Data/water.efk", 15, 120);
+	m_model = new Model("Resource/Model/bottle_water.mv1");
+	m_effect = new Effect("Resource/Effect/water.efk", 15, 120);
 	m_effectOffset = Vector3(0, 100, 0);
 
 	//姿勢情報

@@ -13,10 +13,10 @@ private:
 	//画像のファイルパス
 	const char* FilePath[static_cast<int>(Bottle::Type::Length)] =
 	{
-		"Resource/bottle_fire2.png",
-		"Resource/bottle_thunder2.png",
-		"Resource/bottle_water2.png",
-		"Resource/bottle_wind2.png"
+		"Resource/Texture/bottle_fire2.png",
+		"Resource/Texture/bottle_thunder2.png",
+		"Resource/Texture/bottle_water2.png",
+		"Resource/Texture/bottle_wind2.png"
 	};
 
 	//画像の名前

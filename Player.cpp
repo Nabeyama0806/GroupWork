@@ -24,7 +24,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_holdMove(0,0,0)
 {
 	//アニメーションの登録
-	m_model = new Model("Man/Player.mv1");
+	m_model = new Model("Resource/Model/Player.mv1");
 	for (int i = 0; i < AnimeAmount; ++i)
 	{
 		//アニメーションのファイルパスを渡す
@@ -92,7 +92,7 @@ void Player::CreateBottle()
 	}
 
 	m_createBottle = true;
-	SoundManager::GetInstance()->SoundPlay("sound/se_bottle_create.mp3");
+	SoundManager::GetInstance()->SoundPlay("Resource/sound/se_bottle_create.mp3");
 }
 
 //移動

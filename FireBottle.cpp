@@ -8,7 +8,7 @@ FireBottle::FireBottle(const Vector3& position, const Vector3& forward, Player* 
 	Bottle("FireBottle", position, forward, player)
 {
 	//ÉÇÉfÉã
-	m_model = new Model("Resource/bottle_fire.mv1");
+	m_model = new Model("Resource/Model/bottle_fire.mv1");
 
 	//épê®èÓïÒ
 	m_transform.scale = Scale;

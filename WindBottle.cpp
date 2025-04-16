@@ -9,7 +9,7 @@ WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* 
 	Bottle("WindBottle", position, forward, player)
 {
 	//モデル
-	m_model = new Model("Resource/bottle_wind.mv1");
+	m_model = new Model("Resource/Model/bottle_wind.mv1");
 
 	//プレイヤーの取得
 	m_player = player;

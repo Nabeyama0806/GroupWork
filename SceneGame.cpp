@@ -25,10 +25,6 @@ void SceneGame::Initialize()
 	m_mainCamera = new Camera();
 	m_rootNode->AddChild(m_mainCamera);
 
-	//背景
-	//m_stage = new ModelActor("Ground", "Environment/BaseStage3.0.mv1");
-	//m_rootNode->AddChild(m_stage);
-
 	//アクターレイヤー
 	Node* actorLayer = new Node();
 	m_rootNode->AddChild(actorLayer);
@@ -42,7 +38,7 @@ void SceneGame::Initialize()
 	uiLayer->AddChild(m_uiBottle);
 
 	//照準の表示
-	uiLayer->AddChild(new SpriteActor("reticle", "Resource/reticle.png", Screen::Center));
+	uiLayer->AddChild(new SpriteActor("reticle", "Resource/Texture/reticle.png", Screen::Center));
 
 	//プレイヤー
 	m_player = new Player(m_mainCamera, m_uiBottle);
@@ -53,7 +49,7 @@ void SceneGame::Initialize()
 	actorLayer->AddChild(new CreateMap(m_player));
 
 	//BGM
-	m_bgm = SoundLoader::GetInstance()->Load("Sound/bgm_game.mp3");
+	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");
 	SoundManager::GetInstance()->SoundPlay(m_bgm, DX_PLAYTYPE_LOOP);
 
 	//背景色の変更

@@ -13,10 +13,10 @@ void SceneTitle::Initialize()
 	m_rootNode = new Node();
 
 	//”wŒi
-	m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/title.png", Screen::Center));
+	m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/Texture/title.png", Screen::Center));
 
 	//BGM
-	m_bgm = SoundLoader::GetInstance()->Load("sound/bgm_title.mp3");
+	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");
 	SoundManager::GetInstance()->SoundPlay(m_bgm, DX_PLAYTYPE_LOOP);
 }
 
@@ -35,7 +35,7 @@ SceneBase* SceneTitle::Update()
 	if (Input::GetInstance()->IsAnyKeyDown())
 	{
 		//Œø‰Ê‰¹
-		SoundManager::GetInstance()->SoundPlay("sound/se_start.mp3");
+		SoundManager::GetInstance()->SoundPlay("Resource/sound/se_start.mp3");
 		StopSoundMem(m_bgm);
 
 		return new SceneGame();

@@ -8,7 +8,7 @@ ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Pl
 	Bottle("ThunderBottle", position, forward, player)
 {
 	//ÉÇÉfÉã
-	m_model = new Model("Resource/bottle_thunder.mv1");
+	m_model = new Model("Resource/Model/bottle_thunder.mv1");
 
 	//épê®èÓïÒ
 	m_transform.scale = Scale;

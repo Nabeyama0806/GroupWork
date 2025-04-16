@@ -10,8 +10,8 @@ FireGimmick::FireGimmick(const Vector3& position, const Vector3& size) :
 	m_fireTime(FireTime)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/bottle_fire.mv1");
-	m_effect = new Effect("Data/fire.efk", 10, 70);
+	m_model = new Model("Resource/Model/bottle_fire.mv1");
+	m_effect = new Effect("Resource/Effect/fire.efk", 10, 70);
 
 	//姿勢情報
 	m_transform.position = position;

@@ -25,10 +25,10 @@ private:
 
 	const std::list<const char*> ModelPreload =
 	{
-		"Resource/bottle_fire.mv1",
-		"Resource/bottle_thunder.mv1",
-		"Resource/bottle_water.mv1",
-		"Resource/bottle_wind.mv1",
+		"Resource/Model/bottle_fire.mv1",
+		"Resource/Model/bottle_thunder.mv1",
+		"Resource/Model/bottle_water.mv1",
+		"Resource/Model/bottle_wind.mv1",
 	};
 
 	static constexpr float ResultTransitionTime = 2.0f;	//プレイヤーが死んでからリザルト画面に遷移するまでの時間

@@ -22,7 +22,7 @@ private:
 
 	const char* AnimeFileName[AnimeAmount] =
 	{
-		"Man/Tmp.mv1",		//‘Ò‹@
+		"Resource/Model/Tmp.mv1",		//‘Ò‹@
 	};
 
 	Camera* m_camera;

@@ -8,7 +8,7 @@ WaterBottle::WaterBottle(const Vector3& position, const Vector3& forward, Player
 	Bottle("WaterBottle", position, forward, player)
 {
 	//ÉÇÉfÉã
-	m_model = new Model("Resource/bottle_water.mv1");
+	m_model = new Model("Resource/Model/bottle_water.mv1");
 
 	//épê®èÓïÒ
 	m_transform.scale = Scale;
