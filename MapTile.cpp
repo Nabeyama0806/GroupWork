@@ -4,6 +4,7 @@
 #include "WaterGimmickEnd.h"
 #include "WindGimmick.h"
 #include "TransparentGimmick.h"
+#include "KeyGimmick.h"
 #include "TileCube.h"
 
 MapTile::MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size) :
@@ -19,6 +20,7 @@ void MapTile::Create(const Vector3& position)
 	switch (m_tile)
 	{
 	case CreateMap::TileType::None:
+		// ‰½‚à‚È‚µ
 		break;
 
 	case CreateMap::TileType::Wall:
@@ -37,10 +39,11 @@ void MapTile::Create(const Vector3& position)
 		AddChild(new WaterGimmickEnd(position, Vector3(25, 25, 25)));
 		break;
 
-	case CreateMap::TileType::OnOffBlock:
+	case CreateMap::TileType::KeyBlock:
+		AddChild(new KeyGimmick(position, Vector3(25, 25, 25)));
 		break;
 
-	case CreateMap::TileType::OnOffSwitch:
+	case CreateMap::TileType::KeyItem:
 		break;
 
 	case CreateMap::TileType::Transparent:

@@ -16,8 +16,8 @@ public:
 		Fire,
 		Water,
 		WaterEnd,
-		OnOffBlock,
-		OnOffSwitch,
+		KeyBlock,
+		KeyItem,
 		Transparent,
 		Goal,
 

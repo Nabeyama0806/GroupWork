@@ -20,8 +20,8 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_uiBottle(uiBottle),
 	m_createBottle(false),
 	m_onGround(false),
-	m_onWall(false),
-	m_holdMove(0,0,0)
+	m_holdMove(0,0,0),
+	m_getKey(false)
 {
 	//アニメーションの登録
 	m_model = new Model("Resource/Model/Player.mv1");
@@ -42,7 +42,6 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 //更新
 void Player::Update()
 {
-
 	if (!m_camera->GetIsPlayer())
 	{
 		//本来の更新
@@ -61,7 +60,6 @@ void Player::Update()
 
 	// 地面と壁との当たり判定のリセット
 	m_onGround = false;
-	m_onWall = false;
 }
 
 //指定されたボトルの作成
@@ -189,9 +187,8 @@ void Player::DestroyBottle()
 void Player::OnCollision(const ModelActor* other)
 {
 	//壁
-	if (other->GetName() == "Wall" || other->GetName() == "Fire")
+	if (other->GetName() == "Wall" || other->GetName() == "Fire" || other->GetName() == "KeyBlock")
 	{
-		m_onWall = true;
 		// 壁のサイズ
 		Vector3 colSize = other->GetCollider()->GetSize(other->GetCollider());
 		Vector3 colCenter = other->GetPosition();
@@ -222,5 +219,10 @@ void Player::OnCollision(const ModelActor* other)
 	{
 		m_onGround = true;
 		m_transform.position.y += GravityScale;
+	}
+
+	if (other->GetName() == "Key")
+	{
+		m_getKey = true;
 	}
 }

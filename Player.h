@@ -32,7 +32,7 @@ private:
 
 	bool m_createBottle;//ボトルが生きているかどうか
 	bool m_onGround;	// 地面についているかどうか
-	bool m_onWall;		// 壁に当たっているかどうか
+	bool m_getKey;	// 鍵を持っているかどうか
 
 	void Move();			//移動処理
 	void CreateBottle();	//指定されたボトルの作成
