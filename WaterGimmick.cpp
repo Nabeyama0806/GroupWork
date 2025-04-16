@@ -13,7 +13,7 @@ WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const V
 {
 	//モデルとエフェクト
 	m_model = new Model("Resource/bottle_water.mv1");
-	m_effect = new Effect("Data/water.efk", 40, 120);
+	m_effect = new Effect("Data/water.efk", 15, 120);
 	m_effectOffset = Vector3(0, 100, 0);
 
 	//姿勢情報
@@ -31,15 +31,9 @@ void WaterGimmick::Active()
 	if (m_transform.position.y > m_startPos.y)
 	{
 		m_stopTime += Time::GetInstance()->GetDeltaTime();
-		if (m_stopTime > StopTime)
-		{
-			m_transform.position.y -= VariableWater;
-			m_canUp = true;
-		}
-		else
-		{
-			m_canUp = false;
-		}
+
+		m_canUp = m_stopTime > StopTime;
+		if (m_canUp) m_transform.position.y -= VariableWater;
 	}
 	
 	if (m_waterHeight)
@@ -56,6 +50,7 @@ void WaterGimmick::OnCollision(const ModelActor* other)
 	{
 		if (!m_canUp) return;
 		m_waterHeight = true;
+		m_effect->Play(false);
 	}
 
 	if (other->GetName() == "WaterGimmickEnd")

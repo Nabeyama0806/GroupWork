@@ -80,6 +80,7 @@
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GimmickBase.h" />
     <ClInclude Include="HitCollider.h" />
+    <ClInclude Include="KeyGimmick.h" />
     <ClInclude Include="LoadMap.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="ModelActor.h" />

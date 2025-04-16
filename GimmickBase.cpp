@@ -27,3 +27,10 @@ void GimmickBase::Update()
 		m_effect->Update(pos);
 	}
 }
+
+//•`‰æ
+void GimmickBase::Draw()
+{
+	//–{—ˆ‚Ì•`‰æ
+	ModelActor::Draw();
+}

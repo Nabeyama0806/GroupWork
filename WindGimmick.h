@@ -12,6 +12,8 @@ private:
 		
 	float m_elapsedTime;	//Œo‰ßŠÔ
 
+	Vector3 SnapPosition(const Vector3& playerPos);
+
 protected:
 	virtual void Update() override;		//XV
 	virtual void Active() override;		//Œø‰Ê‚Ì”­“®

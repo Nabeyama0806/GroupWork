@@ -16,7 +16,7 @@ ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Pl
 	m_transform.rotation = Quaternion::LookRotation(-forward);
 
 	//Õ“Ë”»’è
-	m_collider = new BoxCollider(ColliderSize);
+	m_collider = new BoxCollider(ColliderSize.Scale(Scale));
 }
 
 //Õ“ËƒCƒxƒ“ƒg

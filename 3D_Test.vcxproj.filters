@@ -368,5 +368,8 @@
     <ClInclude Include="TransparentGimmick.h">
       <Filter>ヘッダー ファイル\Gimmick</Filter>
     </ClInclude>
+    <ClInclude Include="KeyGimmick.h">
+      <Filter>ヘッダー ファイル\Gimmick</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

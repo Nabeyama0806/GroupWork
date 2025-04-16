@@ -9,9 +9,10 @@ WindGimmick::WindGimmick(const Vector3& position) :
 {
 	//エフェクト
 	m_effect = new Effect("Data/wind.efk", 10, 130);
+	m_effectOffset = Vector3(0, -50, 0);
 
 	//姿勢情報
-	m_transform.position = position + SpawnOffset;
+	m_transform.position =  SnapPosition(position + SpawnOffset);
 	m_transform.scale = Scale;
 
 	//衝突判定
@@ -38,4 +39,23 @@ void WindGimmick::Active()
 {
 	//風エフェクトの表示
 	m_effect->Play();
+}
+
+Vector3 WindGimmick::SnapPosition(const Vector3& playerPos)
+{
+	//一マスのサイズ
+	const int TileSize = 100;
+
+	//小数点を省く
+	Vector3 position;
+	int posX = static_cast<int>(playerPos.x);
+	int posY = static_cast<int>(playerPos.y);
+	int posZ = static_cast<int>(playerPos.z);
+
+	//接触したマス目の座標を算出
+	position.x = static_cast<float>(posX % TileSize > 50 ? posX / TileSize * TileSize + TileSize : posX / TileSize * TileSize);
+	position.y = static_cast<float>(posY / TileSize * TileSize);
+	position.z = static_cast<float>(posZ % TileSize > 50 ? posZ / TileSize * TileSize + TileSize : posZ / TileSize * TileSize);
+	
+	return position;
 }

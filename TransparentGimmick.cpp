@@ -23,7 +23,6 @@ TransparentGimmick::TransparentGimmick(const Vector3& position, const Vector3& s
 	//Õ“Ë”»’è
 	Vector3 colliderScale = m_colliderSize * size.x;
 	m_collider = new BoxCollider(colliderScale, offset.Scale(m_transform.scale));
-
 }
 
 //Œø‰Ê‚Ì”­“®
