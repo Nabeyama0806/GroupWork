@@ -2,18 +2,17 @@
 #include "GimmickBase.h"
 #include "Model.h"
 
-class Player;
 class Effect;
 
-class KeyGimmick : public GimmickBase
+class KeyItem : public GimmickBase
 {
 private:
 	static constexpr Vector3 Scale = Vector3(50, 50, 50);		//自身のサイズ
-	static constexpr float FireTime = 3;	// 燃え続ける時間
+	static constexpr float DestroyTime = 1.5f;	//鍵の破壊時間
 
-	Player* m_player;	//プレイヤー
-	bool m_destroyWall;	// このオブジェクトが消えるかどうか
-	float m_fireTime;	// 燃える時間
+	Model* m_keyModel;	//鍵のモデル
+	float m_destroyTime;//鍵の破壊時間
+	bool m_destroyKey;	// 鍵を取ったかどうか
 
 protected:
 	//効果の発動
@@ -21,7 +20,7 @@ protected:
 
 public:
 	//コンストラクタ
-	KeyGimmick(const Vector3& position, const Vector3& size, Player* player);
+	KeyItem(const Vector3& position, const Vector3& size);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;
