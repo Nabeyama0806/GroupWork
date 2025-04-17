@@ -45,7 +45,7 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 					TileSize.z * z
 				);
 
-				AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize));
+				AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize, m_player));
 			}
 		}
 	}

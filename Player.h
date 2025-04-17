@@ -53,6 +53,11 @@ public:
 		m_transform.position = m_spawnPos;
 	}
 
+	bool IsGetKey() const 
+	{
+		return m_getKey;
+	}
+
 	void DestroyBottle();	//ƒ{ƒgƒ‹‚ð”jŠü‚·‚é
 	void SetCanWindBottleThrow(bool flag);
 
