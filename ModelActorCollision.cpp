@@ -14,11 +14,11 @@ void ModelActorCollision::Update()
 		ModelActor* actor1 = *it1;
 		if (actor1->GetName() != "Player" && actor1->GetName() != "FireBottle" &&
 			actor1->GetName() != "WaterBottle" && actor1->GetName() != "WindBottle" &&
-			actor1->GetName() != "ThunderBottle" && actor1->GetName() != "Water")continue;
+			actor1->GetName() != "ThunderBottle" && actor1->GetName() != "Water" &&
+			actor1->GetName() != "Flush") continue;
 
 		for (auto it2 = actorList.begin(); it2 != actorList.end(); ++it2)
-		{
-			
+		{			
 			ModelActor* actor2 = *it2;
 
 			//衝突判定の形状がなければスキップ

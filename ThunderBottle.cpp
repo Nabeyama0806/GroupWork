@@ -1,11 +1,13 @@
 #include "ThunderBottle.h"
 #include "BoxCollider.h"
+#include "HitCollider.h"
 #include "Model.h"
 #include "Player.h"
 
 //コンストラクタ
 ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Player* player) :
-	Bottle("ThunderBottle", position, forward, player)
+	Bottle("ThunderBottle", position, forward, player),
+	m_flushCollider(nullptr)
 {
 	//モデル
 	m_model = new Model("Resource/Model/bottle_thunder.mv1");
@@ -24,6 +26,10 @@ void ThunderBottle::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() != "Player" && other->GetName() != "Bottle")
 	{
-		ActiveEffect();
+		if (!m_flushCollider)
+		{
+			m_flushCollider = new HitCollider("Flush", m_transform.position, m_colliderSize * FlushSize);
+			AddChild(m_flushCollider);
+		}
 	}
 }
