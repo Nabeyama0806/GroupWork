@@ -5,7 +5,7 @@
 
 //コンストラクタ
 KeyItem::KeyItem(const Vector3& position, const Vector3& size) :
-	GimmickBase("KeyBlock", position),
+	GimmickBase("Key", position),
 	m_destroyKey(false),
 	m_destroyTime(DestroyTime)
 {
@@ -30,7 +30,7 @@ void KeyItem::Active()
 	{
 		m_destroyTime -= Time::GetInstance()->GetDeltaTime();
 		if (m_destroyTime <= 0) Destroy();
-		m_effect->Play();
+		//m_effect->Play();
 	}
 }
 

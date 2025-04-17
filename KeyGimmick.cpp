@@ -9,7 +9,7 @@ KeyGimmick::KeyGimmick(const Vector3& position, const Vector3& size, Player* pla
 	GimmickBase("KeyBlock", position),
 	m_player(player),
 	m_destroyWall(false),
-	m_fireTime(FireTime)
+	m_destroyTime(DestroyTime)
 {
 	//モデルとエフェクト
 	m_model = new Model("Resource/Model/(KeyBlockはまだない).mv1");
@@ -29,9 +29,9 @@ void KeyGimmick::Active()
 {
 	if (m_destroyWall)
 	{
-		m_fireTime -= Time::GetInstance()->GetDeltaTime();
-		if (m_fireTime <= 0) Destroy();
-		m_effect->Play();
+		m_destroyTime -= Time::GetInstance()->GetDeltaTime();
+		//m_effect->Play();
+		if (m_destroyTime <= 0) Destroy();
 	}
 }
 

@@ -34,21 +34,21 @@ private:
 	
 	const char MapName[MapHeight][256] = 
 	{
-		"Resource/MapData/Map1_data/Map1.csv",
-		"Resource/MapData/Map1_data/Map2.csv",
-		"Resource/MapData/Map1_data/Map3.csv",
-		"Resource/MapData/Map1_data/Map4.csv",
-		"Resource/MapData/Map1_data/Map5.csv",
-		"Resource/MapData/Map1_data/Map6.csv",
-		"Resource/MapData/Map1_data/Map7.csv",
-		"Resource/MapData/Map1_data/Map8.csv",
-		"Resource/MapData/Map1_data/Map9.csv",
-		"Resource/MapData/Map1_data/Map10.csv",
-		"Resource/MapData/Map1_data/Map11.csv",
-		"Resource/MapData/Map1_data/Map12.csv",
-		"Resource/MapData/Map1_data/Map13.csv",
-		"Resource/MapData/Map1_data/Map14.csv",
-		"Resource/MapData/Map1_data/Map15.csv",
+		"Resource/MapData/Map2_data/Map1.csv",
+		"Resource/MapData/Map2_data/Map2.csv",
+		"Resource/MapData/Map2_data/Map3.csv",
+		"Resource/MapData/Map2_data/Map4.csv",
+		"Resource/MapData/Map2_data/Map5.csv",
+		"Resource/MapData/Map2_data/Map6.csv",
+		"Resource/MapData/Map2_data/Map7.csv",
+		"Resource/MapData/Map2_data/Map8.csv",
+		"Resource/MapData/Map2_data/Map9.csv",
+		"Resource/MapData/Map2_data/Map10.csv",
+		"Resource/MapData/Map2_data/Map11.csv",
+		"Resource/MapData/Map2_data/Map12.csv",
+		"Resource/MapData/Map2_data/Map13.csv",
+		"Resource/MapData/Map2_data/Map14.csv",
+		"Resource/MapData/Map2_data/Map15.csv",
 	};
 
 	void Create(std::vector<std::vector<int>> data, int positionY);
