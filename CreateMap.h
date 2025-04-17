@@ -25,33 +25,28 @@ public:
 	};
 
 private:
+	enum class MapType
+	{
+		Map1,
+		Map2,
+		Map3,
+
+		Length,
+	};
+
 	static constexpr int MapWidth = 10;		//マップの横幅
-	static constexpr int MapHeight = 15;		//マップの縦幅
+	static constexpr int MapHeight = 15;	//マップの縦幅
 	static constexpr int MapDepth = 10;		//マップの奥行き
 	static constexpr Vector3 TileSize = Vector3(100, 100, 100);	//開始時の座標
 
 	Player* m_player;	//プレイヤー
-	
-	const char MapName[MapHeight][256] = 
-	{
-		"Resource/MapData/Map2_data/Map1.csv",
-		"Resource/MapData/Map2_data/Map2.csv",
-		"Resource/MapData/Map2_data/Map3.csv",
-		"Resource/MapData/Map2_data/Map4.csv",
-		"Resource/MapData/Map2_data/Map5.csv",
-		"Resource/MapData/Map2_data/Map6.csv",
-		"Resource/MapData/Map2_data/Map7.csv",
-		"Resource/MapData/Map2_data/Map8.csv",
-		"Resource/MapData/Map2_data/Map9.csv",
-		"Resource/MapData/Map2_data/Map10.csv",
-		"Resource/MapData/Map2_data/Map11.csv",
-		"Resource/MapData/Map2_data/Map12.csv",
-		"Resource/MapData/Map2_data/Map13.csv",
-		"Resource/MapData/Map2_data/Map14.csv",
-		"Resource/MapData/Map2_data/Map15.csv",
-	};
 
 	void Create(std::vector<std::vector<int>> data, int positionY);
+
+	std::string GetMapName(int typeNum, int posY)
+	{
+		return "Resource/MapData/Map" + std::to_string(typeNum+1) + "_data/Map" + std::to_string(posY+1) + ".csv";
+	};
 
 public:
 	CreateMap(Player* m_player);

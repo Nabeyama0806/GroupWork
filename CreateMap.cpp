@@ -10,7 +10,7 @@ CreateMap::CreateMap(Player* player) :
 	for (int i = 0; i < MapHeight; i++)
 	{
 		//ƒ}ƒbƒv‚Ì“Ç‚Ýž‚Ý
-		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(MapName[i]);
+		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(GetMapName(0, i));
 		Create(data, i);
 	}
 }
