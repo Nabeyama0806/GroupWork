@@ -16,8 +16,8 @@ KeyGimmick::KeyGimmick(const Vector3& position, const Vector3& size, Player* pla
 	//m_effect = new Effect("Resource/Effect/fire.efk", 10, 70);
 
 	//épê®èÓïÒ
-	m_transform.position = position - Vector3(0,20,0);
-	m_transform.scale = size;
+	m_transform.position = position;
+	m_transform.scale = size * 1.25;
 
 	//è’ìÀîªíË
 	Vector3 colliderScale = m_colliderSize * size.x;
