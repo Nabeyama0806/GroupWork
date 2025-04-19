@@ -10,8 +10,7 @@ KeyItem::KeyItem(const Vector3& position, const Vector3& size) :
 	m_destroyTime(DestroyTime)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/Model/(KeyBlockはまだない).mv1");
-	m_keyModel = new Model("Resource/Model/key.mv1");
+	m_model = new Model("Resource/Model/key.mv1");
 	//m_effect = new Effect("Resource/Effect/keyget.efk", 10, 70);
 
 	//姿勢情報

@@ -10,7 +10,7 @@ TransparentGimmick::TransparentGimmick(const Vector3& position, const Vector3& s
 	m_appearTime(0)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/Model/bottle_thunder.mv1");
+	m_model = new Model("Resource/Model/Transparent.mv1");
 
 	m_effect = new Effect("Resource/Effect/water.efk", 40, 120);
 	m_effectOffset = Vector3(0, 100, 0);
@@ -21,7 +21,7 @@ TransparentGimmick::TransparentGimmick(const Vector3& position, const Vector3& s
 
 	//衝突判定
 	Vector3 colliderScale = m_colliderSize * size.x;
-	m_collider = new BoxCollider(colliderScale, offset.Scale(m_transform.scale));
+	m_collider = new BoxCollider(colliderScale);
 }
 
 //効果の発動

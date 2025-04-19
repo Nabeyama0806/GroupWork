@@ -12,11 +12,11 @@ KeyGimmick::KeyGimmick(const Vector3& position, const Vector3& size, Player* pla
 	m_destroyTime(DestroyTime)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/Model/(KeyBlockはまだない).mv1");
+	m_model = new Model("Resource/Model/key_block.mv1");
 	//m_effect = new Effect("Resource/Effect/fire.efk", 10, 70);
 
 	//姿勢情報
-	m_transform.position = position;
+	m_transform.position = position - Vector3(0,20,0);
 	m_transform.scale = size;
 
 	//衝突判定
