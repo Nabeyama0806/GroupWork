@@ -24,12 +24,17 @@ ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Pl
 //Õ“ËƒCƒxƒ“ƒg
 void ThunderBottle::OnCollision(const ModelActor* other)
 {
-	if (other->GetName() != "Player" && other->GetName() != "Bottle")
+	std::string hit = other->GetName();
+	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd")
 	{
 		if (!m_flushCollider)
 		{
 			m_flushCollider = new HitCollider("Flush", m_transform.position, m_colliderSize * FlushSize);
 			AddChild(m_flushCollider);
+		}
+		else
+		{
+			Bottle::ActiveEffect();
 		}
 	}
 }
