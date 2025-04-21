@@ -7,13 +7,15 @@
 #include "KeyGimmick.h"
 #include "KeyItem.h"
 #include "TileCube.h"
+#include "Goal.h"
 #include "Player.h"
 
-MapTile::MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size, Player* player) :
+MapTile::MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size, Player* player, CreateMap* map) :
 	ModelActor("Tile"),
 	m_tile(tile),
 	m_size(size),
-	m_player(player)
+	m_player(player),
+	m_map(map)
 {
 	Create(pos);
 }
@@ -55,6 +57,7 @@ void MapTile::Create(const Vector3& position)
 		break;
 
 	case CreateMap::TileType::Goal:
+		AddChild(new Goal(position, m_map));
 		break;
 
 	default:

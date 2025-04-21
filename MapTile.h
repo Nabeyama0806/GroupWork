@@ -19,9 +19,10 @@ private:
 	CreateMap::TileType m_tile;
 	Vector3 m_size;
 	Player* m_player;
+	CreateMap* m_map;
 
 	void Create(const Vector3& position);
 
 public:
-	MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size, Player* player);
+	MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size, Player* player, CreateMap* map);
 };

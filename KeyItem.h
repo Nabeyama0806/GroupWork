@@ -10,7 +10,6 @@ private:
 	static constexpr Vector3 Scale = Vector3(50, 50, 50);		//自身のサイズ
 	static constexpr float DestroyTime = 1.5f;	//鍵の破壊時間
 
-	Model* m_keyModel;	//鍵のモデル
 	float m_destroyTime;//鍵の破壊時間
 	bool m_destroyKey;	// 鍵を取ったかどうか
 

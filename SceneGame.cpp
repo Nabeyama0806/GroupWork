@@ -92,18 +92,6 @@ SceneBase* SceneGame::Update()
 		m_isLookPlayer = !m_isLookPlayer;
 		m_mainCamera->SetLookAt(m_isLookPlayer ? m_player : m_stage, m_isLookPlayer);
 	}
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_1))
-	{
-		m_map->LoadMap(CreateMap::MapType::Map1);
-	}
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_2))
-	{
-		m_map->LoadMap(CreateMap::MapType::Map2);
-	}
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_3))
-	{
-		m_map->LoadMap(CreateMap::MapType::Map3);
-	}
 
 	return this;
 }

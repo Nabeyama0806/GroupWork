@@ -22,8 +22,8 @@ WaterBottle::WaterBottle(const Vector3& position, const Vector3& forward, Player
 //Õ“ËƒCƒxƒ“ƒg
 void WaterBottle::OnCollision(const ModelActor* other)
 {
-	if (other->GetName() != "Player" && other->GetName() != "Bottle" && 
-		other->GetName() != "WaterGimmickEnd")
+	std::string hit = other->GetName();
+	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd" && hit != "Transparent")
 	{
 		ActiveEffect();
 	}

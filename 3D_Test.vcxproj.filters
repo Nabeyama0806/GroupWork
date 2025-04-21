@@ -195,6 +195,15 @@
     <ClCompile Include="TransparentGimmick.cpp">
       <Filter>ソース ファイル\Gimmick</Filter>
     </ClCompile>
+    <ClCompile Include="KeyItem.cpp">
+      <Filter>ソース ファイル\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyGimmick.cpp">
+      <Filter>ソース ファイル\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Goal.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneBase.h">
@@ -370,6 +379,12 @@
     </ClInclude>
     <ClInclude Include="KeyGimmick.h">
       <Filter>ヘッダー ファイル\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyItem.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Goal.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

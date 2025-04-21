@@ -33,7 +33,7 @@ public:
 		Length,
 	};
 
-	void LoadMap(MapType type);
+	void LoadMap();
 
 private:
 	static constexpr int MapWidth = 10;		//マップの横幅
@@ -43,6 +43,7 @@ private:
 
 	Player* m_player;	//プレイヤー
 	Node* m_mapNode;
+	int m_mapIndex;	//マップのインデックス
 
 	void Create(std::vector<std::vector<int>> data, int positionY);
 

@@ -37,8 +37,8 @@ void WindBottle::OnCollision(const ModelActor* other)
 		m_player->AddChild(new WindGimmick(m_transform.position, m_player));
 	}
 
-	// 当たっているのがプレイヤーギミック用当たり判定なら通らない
-	if (other->GetName() != "Player" && other->GetName() != "WaterGimmickEnd" && other->GetName() != "Transparent")
+	std::string hit = other->GetName();
+	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd" && hit != "Transparent")
 	{
 		// 自身の削除
 		Bottle::ActiveEffect();

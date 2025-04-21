@@ -13,12 +13,13 @@
 
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
-	m_mapNode(nullptr)
+	m_mapNode(nullptr),
+	m_mapIndex(0)
 {
-	LoadMap(MapType::Map1);
+	LoadMap();
 }
 
-void CreateMap::LoadMap(MapType type)
+void CreateMap::LoadMap()
 {
 	if (m_mapNode) m_mapNode->Destroy();
 	m_mapNode = new Node();
@@ -27,9 +28,10 @@ void CreateMap::LoadMap(MapType type)
 	for (int i = 0; i < MapHeight; i++)
 	{
 		//ƒ}ƒbƒv‚Ì“Ç‚Ýž‚Ý
-		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(GetMapName(static_cast<int>(type), i));
+		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(GetMapName(m_mapIndex, i));
 		Create(data, i);
 	}
+	m_mapIndex++;
 }
 
 void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
@@ -55,7 +57,7 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 				continue;
 			}
 
-			m_mapNode->AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize, m_player));
+			m_mapNode->AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize, m_player, this));
 		}
 	}
 }
