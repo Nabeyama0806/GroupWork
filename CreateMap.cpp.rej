@@ -1,0 +1,75 @@
+diff a/CreateMap.cpp b/CreateMap.cpp	(rejected hunks)
+@@ -40,29 +40,60 @@
+ 		for (int z = 0; z < MapDepth; z++)
+ 		{
+ 			int tileType = data[x][z];
++			Vector3 pos = Vector3(
++				TileSize.x * x,
++				TileSize.y * positionY - 100,
++				TileSize.z * z
++			);
++
+ 
+ 			//�v���C���[�̃X�|�[���n�_
+ 			if (tileType == static_cast<int>(TileType::PlayerSpawn))
+ 			{
+-				Vector3 pos = Vector3(
+-					TileSize.x * x,
+-					TileSize.y * positionY - 100,
+-					TileSize.z * z
+-				);
++				
+ 				m_player->SetPosition(pos);
+ 				continue;
+ 			}
+ 
+-			// �^�C���̐���
+-			if (tileType != static_cast<int>(TileType::None))
++			switch (tileType)
+ 			{
+-				Vector3 pos = Vector3(
+-					TileSize.x * x,
+-					TileSize.y * positionY - 100,
+-					TileSize.z * z
+-				);
++			case static_cast<int>(TileType::None):
++				// ����Ȃ�
++				break;
++
++			case static_cast<int>(TileType::Wall):
++				m_mapNode->AddChild(new TileCube(pos, TileSize));
++				break;
++
++			case static_cast<int>(TileType::Fire):
++				m_mapNode->AddChild(new FireGimmick(pos, Vector3(25, 25, 25)));
++				break;
++
++			case static_cast<int>(TileType::Water):
++				m_mapNode->AddChild(new WaterGimmick(pos, Vector3(25, 25, 25)));
++				break;
++
++			case static_cast<int>(TileType::WaterEnd):
++				m_mapNode->AddChild(new WaterGimmickEnd(pos, Vector3(25, 25, 25)));
++				break;
++
++			case static_cast<int>(TileType::KeyBlock):
++				m_mapNode->AddChild(new KeyGimmick(pos, Vector3(25, 25, 25), m_player));
++				break;
++
++			case static_cast<int>(TileType::KeyItem):
++				m_mapNode->AddChild(new KeyItem(pos, Vector3(25, 25, 25)));
++				break;
++
++			case static_cast<int>(TileType::Transparent):
++				m_mapNode->AddChild(new TransparentGimmick(pos, Vector3(25, 25, 25)));
++				break;
++
++			case static_cast<int>(TileType::Goal):
++				break;
+ 
+-				AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize, m_player));
++			default:
++				break;
+ 			}
+ 		}
+ 	}

@@ -46,7 +46,8 @@ void SceneGame::Initialize()
 	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
 
 	// マップ
-	actorLayer->AddChild(new CreateMap(m_player));
+	m_map = new CreateMap(m_player);
+	m_rootNode->AddChild(m_map);
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");
@@ -86,10 +87,22 @@ SceneBase* SceneGame::Update()
 	//ノードの更新
 	m_rootNode->TreeUpdate();
 
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_1))
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_0))
 	{
 		m_isLookPlayer = !m_isLookPlayer;
 		m_mainCamera->SetLookAt(m_isLookPlayer ? m_player : m_stage, m_isLookPlayer);
+	}
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_1))
+	{
+		m_map->LoadMap(CreateMap::MapType::Map1);
+	}
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_2))
+	{
+		m_map->LoadMap(CreateMap::MapType::Map2);
+	}
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_3))
+	{
+		m_map->LoadMap(CreateMap::MapType::Map3);
 	}
 
 	return this;

@@ -60,7 +60,6 @@ void ModelActor::Draw()
 	{
 		m_model->Draw(m_transform);
 	}
-
 }
 
 //子ノードを含む更新

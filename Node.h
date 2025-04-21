@@ -10,6 +10,7 @@ private:
 
 	bool m_isLoaded;					//Load関数を実行したかどうか
 	bool m_isDestroyed;					//Destroy関数を実行したかどうか
+	
 
 protected:
 	virtual void Load() {}		//リソースの読み込み
@@ -17,7 +18,6 @@ protected:
 	virtual void Update() {}	//更新
 	virtual void Draw() {}		//描画
 
-	void Destroy();		//自身の削除
 
 	//親を設定
 	void SetParent(Node* node)
@@ -48,4 +48,5 @@ public:
 
 	void AddChild(Node* node);		//子ノードの追加
 	void RemoveChild(Node* node);			//子ノードの削除
+	void Destroy();		//自身の削除
 };

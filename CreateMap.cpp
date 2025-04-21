@@ -2,15 +2,32 @@
 #include "ModelActor.h"
 #include "MapTile.h"
 #include "Player.h"
-
+#include "FireGimmick.h"
+#include "WaterGimmick.h"
+#include "WaterGimmickEnd.h"
+#include "WindGimmick.h"
+#include "TransparentGimmick.h"
+#include "KeyGimmick.h"
+#include "KeyItem.h"
+#include "TileCube.h"
 
 CreateMap::CreateMap(Player* player) :
-	m_player(player)
+	m_player(player),
+	m_mapNode(nullptr)
 {
+	LoadMap(MapType::Map1);
+}
+
+void CreateMap::LoadMap(MapType type)
+{
+	if (m_mapNode) m_mapNode->Destroy();
+	m_mapNode = new Node();
+	AddChild(m_mapNode);
+
 	for (int i = 0; i < MapHeight; i++)
 	{
 		//マップの読み込み
-		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(GetMapName(1, i));
+		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(GetMapName(static_cast<int>(type), i));
 		Create(data, i);
 	}
 }
@@ -23,30 +40,22 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 		for (int z = 0; z < MapDepth; z++)
 		{
 			int tileType = data[x][z];
+			Vector3 pos = Vector3(
+				TileSize.x * x,
+				TileSize.y * positionY - 100,
+				TileSize.z * z
+			);
+
 
 			//プレイヤーのスポーン地点
 			if (tileType == static_cast<int>(TileType::PlayerSpawn))
 			{
-				Vector3 pos = Vector3(
-					TileSize.x * x,
-					TileSize.y * positionY - 100,
-					TileSize.z * z
-				);
+
 				m_player->SetPosition(pos);
 				continue;
 			}
 
-			// タイルの生成
-			if (tileType != static_cast<int>(TileType::None))
-			{
-				Vector3 pos = Vector3(
-					TileSize.x * x,
-					TileSize.y * positionY - 100,
-					TileSize.z * z
-				);
-
-				AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize, m_player));
-			}
+			m_mapNode->AddChild(new MapTile(static_cast<TileType>(tileType), pos, TileSize, m_player));
 		}
 	}
 }

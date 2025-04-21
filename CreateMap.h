@@ -24,7 +24,6 @@ public:
 		Length,
 	};
 
-private:
 	enum class MapType
 	{
 		Map1,
@@ -34,12 +33,16 @@ private:
 		Length,
 	};
 
+	void LoadMap(MapType type);
+
+private:
 	static constexpr int MapWidth = 10;		//マップの横幅
 	static constexpr int MapHeight = 15;	//マップの縦幅
 	static constexpr int MapDepth = 10;		//マップの奥行き
 	static constexpr Vector3 TileSize = Vector3(100, 100, 100);	//開始時の座標
 
 	Player* m_player;	//プレイヤー
+	Node* m_mapNode;
 
 	void Create(std::vector<std::vector<int>> data, int positionY);
 
