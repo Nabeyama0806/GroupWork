@@ -37,7 +37,7 @@ void SceneGame::Initialize()
 	m_uiBottle = new UiBottle();
 	uiLayer->AddChild(m_uiBottle);
 
-	//照準の表示
+	//照準の表示7
 	uiLayer->AddChild(new SpriteActor("reticle", "Resource/Texture/reticle.png", Screen::Center));
 
 	//プレイヤー
@@ -47,7 +47,7 @@ void SceneGame::Initialize()
 
 	// マップ
 	m_map = new CreateMap(m_player);
-	m_rootNode->AddChild(m_map);
+	actorLayer->AddChild(m_map);
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");

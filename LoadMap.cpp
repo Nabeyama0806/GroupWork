@@ -12,20 +12,29 @@ std::vector<std::vector<int>> LoadMap::ReadCSV(const std::string& filename)
 	}
 
 	std::string line;
-	while (std::getline(file, line)) {
+	while (std::getline(file, line))
+	{
 		std::vector<int> row;
 		std::stringstream ss(line);
 		std::string cell;
 
-		while (std::getline(ss, cell, ',')) {
-			try {
-				row.push_back(std::stod(cell));  // 文字列を数値に変換
+		while (std::getline(ss, cell, ','))
+		{
+			// 前後の空白削除
+			cell.erase(0, cell.find_first_not_of(" \t"));
+			cell.erase(cell.find_last_not_of(" \t") + 1);
+
+			try
+			{
+				row.push_back(std::stoi(cell));
 			}
-			catch (...) {
-				row.push_back(0.0);  // エラー時は0.0を格納
+			catch (const std::invalid_argument&)
+			{
+				std::cerr << "数値に変換できません : " << cell << std::endl;
+				row.push_back(0);  // 0で埋める
 			}
+			data.push_back(row);
 		}
-		data.push_back(row);
 	}
 	return data;
 }
