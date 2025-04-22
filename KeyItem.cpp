@@ -11,8 +11,9 @@ KeyItem::KeyItem(const Vector3& position) :
 {
 	//モデルとエフェクト
 	m_model = new Model("Resource/Model/key.mv1");
-	m_effect = new Effect("Resource/Effect/key.efk", 10, 70);
-
+	m_effect = new Effect("Resource/Effect/key.efk", 35, 700);
+	m_effectOffset = Vector3(0, -100, 0);
+	
 	//姿勢情報
 	m_transform.position = position;
 	m_transform.scale = Scale;
@@ -30,7 +31,7 @@ void KeyItem::Active()
 	if (m_destroyKey)
 	{
 		//効果音
-		SoundManager::Play("Resource/sound/se_gimmick_keyitem.mp3");
+		SoundManager::Play("Resource/sound/se_keyget.mp3");
 
 		//自身の削除
 		Destroy();

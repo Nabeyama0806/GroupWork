@@ -1,5 +1,6 @@
 #include "KeyGimmick.h"
 #include "BoxCollider.h"
+#include "SoundManager.h"
 #include "Effect.h"
 #include "Player.h"
 #include "Time.h"
@@ -30,6 +31,7 @@ void KeyGimmick::Active()
 	{
 		m_destroyTime -= Time::GetInstance()->GetDeltaTime();
 		m_effect->Play();
+
 		if (m_destroyTime <= 0) Destroy();
 	}
 }
@@ -39,6 +41,9 @@ void KeyGimmick::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "Player")
 	{
+		//Œø‰Ê‰¹
+		SoundManager::Play("Resource/sound/se_open.mp3");
+
 		if (m_player->IsGetKey()) m_destroyWall = true;
 	}
 }

@@ -51,6 +51,7 @@ void SceneGame::Initialize()
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");
+	SoundManager::ChangeVolume(m_bgm, 180);
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
 
 	//”wŒiF‚Ì•ÏX

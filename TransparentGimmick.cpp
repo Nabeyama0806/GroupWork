@@ -1,5 +1,6 @@
 #include "TransparentGimmick.h"
 #include "BoxCollider.h"
+#include "SoundManager.h"
 #include "Time.h"
 #include "Effect.h"
 
@@ -59,5 +60,8 @@ void TransparentGimmick::OnCollision(const ModelActor* other)
 		//Œõ‚ç‚¹‚éƒtƒ‰ƒO‚ð—§‚Ä‚é
 		m_appear = true;
 		m_appearTime = 0;
+
+		//Œø‰Ê‰¹
+		SoundManager::Play("Resource/sound/se_gimmick_flush.mp3");
 	}
 }

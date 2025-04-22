@@ -29,9 +29,6 @@ void FireGimmick::Active()
 		m_fireTime -= Time::GetInstance()->GetDeltaTime();
 		if (m_fireTime <= 0) Destroy();
 		m_effect->Play();
-
-		//Œø‰Ê‰¹
-		SoundManager::Play("Resource/sound/se_gimmick_fire.mp3");
 	}
 }
 
@@ -41,5 +38,8 @@ void FireGimmick::OnCollision(const ModelActor* other)
 	if (other->GetName() == "FireBottle")
 	{
 		m_destroyWall = true;
+
+		//Œø‰Ê‰¹
+		SoundManager::Play("Resource/sound/se_gimmick_fire.mp3");
 	}
 }
