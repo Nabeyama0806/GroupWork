@@ -2,6 +2,8 @@
 #include "Bottle.h"
 
 class HitCollider;
+class Effect;
+class Player;
 
 class ThunderBottle : public Bottle
 {
@@ -9,6 +11,7 @@ private:
 	static constexpr float FlushSize = 80;	//光が届く範囲
 
 	HitCollider* m_flushCollider;	//光の当たり判定
+	Effect* m_effect;	//エフェクト
 
 public:
 	//コンストラクタ

@@ -22,7 +22,8 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_onGround(false),
 	m_holdMove(0,0,0),
 	m_getKey(false),
-	m_canWindBottleThrow(true)
+	m_canWindBottleThrow(true),
+	m_playerFoot(nullptr)
 {
 	//アニメーションの登録
 	m_model = new Model("Resource/Model/Player.mv1");
@@ -197,12 +198,10 @@ void Player::OnCollision(const ModelActor* other)
 	//壁
 	if (other->GetName() == "Wall" || other->GetName() == "Fire" || other->GetName() == "KeyBlock")
 	{
+		m_onGround = true;
+
 		// 壁のサイズ
-		Vector3 colSize = other->GetCollider()->GetSize(other->GetCollider());
 		Vector3 colCenter = other->GetPosition();
-		
-		float yRatio = 0.6f;
-		float xRatio = colSize.z / colSize.x;
 
 		float distanceX = abs(colCenter.x - abs(m_transform.position.x - m_holdMove.x));
 		float distanceY = abs(colCenter.y - abs(m_transform.position.y - m_holdMove.y));
@@ -213,7 +212,7 @@ void Player::OnCollision(const ModelActor* other)
 		{
 			m_transform.position.x -= m_holdMove.x;	// 動いた分戻す
 		}
-		else if (distanceY > distanceZ)
+		else if (distanceY > distanceZ && distanceY > distanceX)
 		{
 			m_transform.position.y -= m_holdMove.y;	// 動いた分戻す
 		}

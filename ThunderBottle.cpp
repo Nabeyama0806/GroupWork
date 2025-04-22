@@ -3,6 +3,7 @@
 #include "HitCollider.h"
 #include "Model.h"
 #include "Player.h"
+#include "Effect.h"
 
 //コンストラクタ
 ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Player* player) :
@@ -11,6 +12,7 @@ ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Pl
 {
 	//モデル
 	m_model = new Model("Resource/Model/bottle_thunder.mv1");
+	m_effect = new Effect("Resource/Effect/draw.efk", 40, 120);
 
 	//姿勢情報
 	m_transform.scale = Scale;
@@ -29,6 +31,8 @@ void ThunderBottle::OnCollision(const ModelActor* other)
 	{
 		if (!m_flushCollider)
 		{
+			m_effect->Play();
+			m_effect->Update(m_transform.position);
 			m_flushCollider = new HitCollider("Flush", m_transform.position, ColliderSize * FlushSize);
 			AddChild(m_flushCollider);
 		}

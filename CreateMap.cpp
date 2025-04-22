@@ -14,7 +14,7 @@
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
-	m_mapIndex(0)
+	m_mapIndex(1)
 {
 	LoadMap();
 }
@@ -44,7 +44,7 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 			int tileType = data[x][z];
 			Vector3 pos = Vector3(
 				TileSize.x * x,
-				TileSize.y * positionY - 100,
+				TileSize.y * positionY,
 				TileSize.z * z
 			);
 
