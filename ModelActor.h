@@ -9,9 +9,10 @@ class Collider;
 class ModelActor : public ActorBase
 {
 protected:
+	static constexpr Vector3 ColliderSize = Vector3(100, 100, 100);			// コライダーのサイズ
+	static constexpr Vector3 Scale = Vector3(25, 25, 25);
 	Model* m_model;					//3Dモデル		
 	Collider* m_collider;			//衝突判定
-	Vector3 m_colliderSize;			// コライダーのサイズ
 
 	virtual void Load() override;		//リソースの読み込み
 	virtual void Release() override;	//リソースの解放

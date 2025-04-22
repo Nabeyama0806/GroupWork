@@ -36,8 +36,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_transform.scale = Scale;
 
 	//Õ“Ë”»’è
-	Vector3 colliderScale = ColliderSize * Scale.x;
-	m_collider = new BoxCollider(colliderScale);
+	m_collider = new BoxCollider(ColliderSize);
 }
 
 //XV

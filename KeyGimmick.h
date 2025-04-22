@@ -21,7 +21,7 @@ protected:
 
 public:
 	//コンストラクタ
-	KeyGimmick(const Vector3& position, const Vector3& size, Player* player);
+	KeyGimmick(const Vector3& position, Player* player);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

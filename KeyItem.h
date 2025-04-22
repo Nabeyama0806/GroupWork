@@ -19,7 +19,7 @@ protected:
 
 public:
 	//コンストラクタ
-	KeyItem(const Vector3& position, const Vector3& size);
+	KeyItem(const Vector3& position);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

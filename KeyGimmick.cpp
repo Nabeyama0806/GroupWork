@@ -5,7 +5,7 @@
 #include "Time.h"
 
 //コンストラクタ
-KeyGimmick::KeyGimmick(const Vector3& position, const Vector3& size, Player* player) :
+KeyGimmick::KeyGimmick(const Vector3& position, Player* player) :
 	GimmickBase("KeyBlock", position),
 	m_player(player),
 	m_destroyWall(false),
@@ -17,11 +17,10 @@ KeyGimmick::KeyGimmick(const Vector3& position, const Vector3& size, Player* pla
 
 	//姿勢情報
 	m_transform.position = position;
-	m_transform.scale = size * 1.25;
+	m_transform.scale = Scale * 1.25;
 
 	//衝突判定
-	Vector3 colliderScale = m_colliderSize * size.x;
-	m_collider = new BoxCollider(colliderScale);
+	m_collider = new BoxCollider(ColliderSize);
 }
 
 //効果の発動

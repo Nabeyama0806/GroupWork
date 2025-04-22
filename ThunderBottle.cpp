@@ -29,7 +29,7 @@ void ThunderBottle::OnCollision(const ModelActor* other)
 	{
 		if (!m_flushCollider)
 		{
-			m_flushCollider = new HitCollider("Flush", m_transform.position, m_colliderSize * FlushSize);
+			m_flushCollider = new HitCollider("Flush", m_transform.position, ColliderSize * FlushSize);
 			AddChild(m_flushCollider);
 		}
 		else

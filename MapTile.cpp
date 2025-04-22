@@ -33,27 +33,27 @@ void MapTile::Create(const Vector3& position)
 		break;
 
 	case CreateMap::TileType::Fire:
-		AddChild(new FireGimmick(position, Vector3(25, 25, 25)));
+		AddChild(new FireGimmick(position));
 		break;
 
 	case CreateMap::TileType::Water:
-		AddChild(new WaterGimmick(position, Vector3(25, 25, 25)));
+		AddChild(new WaterGimmick(position));
 		break;
 
 	case CreateMap::TileType::WaterEnd:
-		AddChild(new WaterGimmickEnd(position, Vector3(25, 25, 25)));
+		AddChild(new WaterGimmickEnd(position));
 		break;
 
 	case CreateMap::TileType::KeyBlock:
-		AddChild(new KeyGimmick(position, Vector3(25, 25, 25), m_player));
+		AddChild(new KeyGimmick(position, m_player));
 		break;
 
 	case CreateMap::TileType::KeyItem:
-		AddChild(new KeyItem(position, Vector3(25, 25, 25)));
+		AddChild(new KeyItem(position));
 		break;
 
 	case CreateMap::TileType::Transparent:
-		AddChild(new TransparentGimmick(position, Vector3(25, 25, 25)));
+		AddChild(new TransparentGimmick(position));
 		break;
 
 	case CreateMap::TileType::Goal:

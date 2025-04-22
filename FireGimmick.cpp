@@ -4,7 +4,7 @@
 #include "Time.h"
 
 //コンストラクタ
-FireGimmick::FireGimmick(const Vector3& position, const Vector3& size) :
+FireGimmick::FireGimmick(const Vector3& position) :
 	GimmickBase("Fire", position),
 	m_destroyWall(false),
 	m_fireTime(FireTime)
@@ -15,10 +15,9 @@ FireGimmick::FireGimmick(const Vector3& position, const Vector3& size) :
 
 	//姿勢情報
 	m_transform.position = position;
-	m_transform.scale = Vector3(0.9f, 0.9f, 0.9f);
 
 	//衝突判定
-	Vector3 colliderScale = m_colliderSize * size.x;
+	Vector3 colliderScale = ColliderSize;
 	m_collider = new BoxCollider(colliderScale);
 }
 

@@ -21,7 +21,7 @@ protected:
 
 public:
 	//コンストラクタ
-	WaterGimmick(const Vector3& spawnPos, const Vector3& scale, const Vector3& offset = Vector3(0, 0, 0));
+	WaterGimmick(const Vector3& spawnPos);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

@@ -4,7 +4,7 @@
 #include "Effect.h"
 
 //コンストラクタ
-TransparentGimmick::TransparentGimmick(const Vector3& position, const Vector3& size, const Vector3& offset) :
+TransparentGimmick::TransparentGimmick(const Vector3& position) :
 	GimmickBase("Transparent", position),
 	m_appear(false),
 	m_appearTime(0)
@@ -16,11 +16,10 @@ TransparentGimmick::TransparentGimmick(const Vector3& position, const Vector3& s
 
 	//姿勢情報
 	m_transform.position = position;
-	m_transform.scale = size;
+	m_transform.scale = Scale;
 
 	//衝突判定
-	Vector3 colliderScale = m_colliderSize * size.x;
-	m_collider = new BoxCollider(colliderScale);
+	m_collider = new BoxCollider(ColliderSize);
 }
 
 //効果の発動

@@ -13,12 +13,11 @@ WindGimmick::WindGimmick(const Vector3& position, Player* player) :
 	m_effectOffset = Vector3(0, -50, 0);
 
 	//épê®èÓïÒ
-	m_transform.position =  SnapPosition(position + SpawnOffset);
+	m_transform.position = SnapPosition(position + SpawnOffset);
 	m_transform.scale = Scale;
 
 	//è’ìÀîªíË
-	Vector3 colliderScale = m_colliderSize * Scale.x;
-	m_collider = new BoxCollider(colliderScale);
+	m_collider = new BoxCollider(ColliderSize);
 
 	m_player = player;
 }

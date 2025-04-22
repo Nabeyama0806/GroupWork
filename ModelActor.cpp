@@ -1,14 +1,14 @@
 #include "ModelActor.h"
 #include "ModelAnimation.h"
 #include "ModelActorCollision.h"
+#include "Collider.h"
 #include "Model.h"
 
 //コンストラクタ
 ModelActor::ModelActor(const char* name, const char* modelFileName, const Vector3& position) :
 	ActorBase(name, modelFileName, position), 
 	m_model(nullptr),
-	m_collider(nullptr),
-	m_colliderSize(Vector3(4, 4, 4))
+	m_collider(nullptr)
 {
 	//ファイルパスが指定されていればロードする
 	if (modelFileName)

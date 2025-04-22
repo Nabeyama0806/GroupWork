@@ -4,7 +4,7 @@
 #include "Time.h"
 
 //コンストラクタ
-KeyItem::KeyItem(const Vector3& position, const Vector3& size) :
+KeyItem::KeyItem(const Vector3& position) :
 	GimmickBase("Key", position),
 	m_destroyKey(false),
 	m_destroyTime(DestroyTime)
@@ -15,10 +15,10 @@ KeyItem::KeyItem(const Vector3& position, const Vector3& size) :
 
 	//姿勢情報
 	m_transform.position = position;
-	m_transform.scale = size;
+	m_transform.scale = Scale;
 
 	//衝突判定
-	Vector3 colliderScale = m_colliderSize * size.x;
+	Vector3 colliderScale = ColliderSize;
 	m_collider = new BoxCollider(colliderScale);
 }
 

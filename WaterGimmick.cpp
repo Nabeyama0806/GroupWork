@@ -4,7 +4,7 @@
 #include "Effect.h"
 
 //コンストラクタ
-WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const Vector3& offset) :
+WaterGimmick::WaterGimmick(const Vector3& position) :
 	GimmickBase("Water", position),
 	m_waterHeight(false),
 	m_stopTime(0),
@@ -18,11 +18,10 @@ WaterGimmick::WaterGimmick(const Vector3& position, const Vector3& size, const V
 
 	//姿勢情報
 	m_transform.position = m_startPos;
-	m_transform.scale = size;
+	m_transform.scale = Scale;
 
 	//衝突判定
-	Vector3 colliderScale = m_colliderSize * size.x;
-	m_collider = new BoxCollider(colliderScale, offset.Scale(m_transform.scale));
+	m_collider = new BoxCollider(ColliderSize);
 }
 
 //効果の発動
