@@ -49,6 +49,11 @@ void SceneGame::Initialize()
 	m_map = new CreateMap(m_player);
 	actorLayer->AddChild(m_map);
 
+	//スカイボックス
+	ModelActor* skyBox = new ModelActor("SkyBox", "Resource/Model/Skybox.mv1");
+	skyBox->ChangeScale(1700);
+	actorLayer->AddChild(skyBox);
+
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");
 	SoundManager::ChangeVolume(m_bgm, 180);
