@@ -7,11 +7,11 @@
 #include "UiBottle.h"
 #include "Input.h"
 #include "Time.h"
-#include "Quaternion.h"
 #include "SoundManager.h"
 #include "BoxCollider.h"
 #include "ModelLoader.h"
 #include "ModelAnimation.h"
+#include "Camera.h"
 
 //コンストラクタ
 Player::Player(Camera* camera, UiBottle* uiBottle) :

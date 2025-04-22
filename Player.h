@@ -1,8 +1,6 @@
 #pragma once
 #include "ModelActor.h"
 #include "Model.h"
-#include "Vector3.h"
-#include "Camera.h"
 #include <vector>
 
 class Camera;
