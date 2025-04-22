@@ -1,5 +1,6 @@
 #include "WaterGimmick.h"
 #include "BoxCollider.h"
+#include "SoundManager.h"
 #include "Time.h"
 #include "Effect.h"
 
@@ -14,7 +15,7 @@ WaterGimmick::WaterGimmick(const Vector3& position) :
 	//モデルとエフェクト
 	m_model = new Model("Resource/Model/water_block.mv1");
 	m_effect = new Effect("Resource/Effect/water.efk", 15, 120);
-	m_effectOffset = Vector3(0, 100, 0);
+	m_effectOffset = Vector3(0, 50, 0);
 
 	//姿勢情報
 	m_transform.position = m_startPos;
@@ -45,11 +46,13 @@ void WaterGimmick::Active()
 //衝突イベント
 void WaterGimmick::OnCollision(const ModelActor* other)
 {
-	if (other->GetName() == "WaterBottle")
+	if (other->GetName() == "WaterBottle" && !m_waterHeight)
 	{
 		if (!m_canUp) return;
 		m_waterHeight = true;
 		m_effect->Play(false);
+
+		SoundManager::Play("Resource/sound/se_gimmick_water.mp3");
 	}
 
 	if (other->GetName() == "WaterGimmickEnd")

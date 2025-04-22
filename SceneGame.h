@@ -1,7 +1,6 @@
 #pragma once
 #include"SceneBase.h"
 #include "ModelLoader.h"
-#include "SpriteLoader.h"
 #include "SoundLoader.h"
 #include "Vector3.h"
 #include <list>
@@ -19,11 +18,6 @@ class Player;
 class SceneGame : public SceneBase
 {
 private:
-	const std::list<const char*> SpritePreload =
-	{
-		//特になし
-	};
-
 	const std::list<const char*> ModelPreload =
 	{
 		"Resource/Model/bottle_fire.mv1",
@@ -33,13 +27,12 @@ private:
 	};
 
 	static constexpr float ResultTransitionTime = 2.0f;	//プレイヤーが死んでからリザルト画面に遷移するまでの時間
-	Node* m_rootNode;	//ツリーノード
+	Node* m_rootNode;		//ツリーノード
 	ModelActor* m_stage;	// 背景ステージ
-	SpriteActor* m_tmpUi;	// 仮置きのUI
 	CreateMap* m_map;
 	UiBottle* m_uiBottle;	
 	Camera* m_mainCamera;	//プレイヤー
-	Player* m_player;	//プレイヤー
+	Player* m_player;		//プレイヤー
 
 	Vector3 cameraPos = Vector3(0, 0, -700);
 
@@ -47,6 +40,7 @@ private:
 
 	float m_resultTransitionTime;
 	int m_bgm;
+
 public:
 	//コンストラクタ
 	SceneGame() :
@@ -55,18 +49,11 @@ public:
 		m_map(nullptr),
 		m_player(nullptr),
 		m_mainCamera(nullptr),
-		m_tmpUi(nullptr),
 		m_uiBottle(nullptr),
 		m_isLookPlayer(true),
 		m_resultTransitionTime(ResultTransitionTime),
 		m_bgm(0)
 	{
-		//画像の事前読み込み
-		for (auto sprite : SpritePreload)
-		{
-			SpriteLoader::GetInstance()->Load(sprite);
-		}
-
 		//モデルの事前読み込み
 		for (auto model : ModelPreload)
 		{

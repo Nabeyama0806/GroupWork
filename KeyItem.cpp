@@ -1,7 +1,7 @@
 #include "KeyItem.h"
 #include "BoxCollider.h"
+#include "SoundManager.h"
 #include "Effect.h"
-#include "Time.h"
 
 //コンストラクタ
 KeyItem::KeyItem(const Vector3& position) :
@@ -11,25 +11,29 @@ KeyItem::KeyItem(const Vector3& position) :
 {
 	//モデルとエフェクト
 	m_model = new Model("Resource/Model/key.mv1");
-	//m_effect = new Effect("Resource/Effect/keyget.efk", 10, 70);
+	m_effect = new Effect("Resource/Effect/key.efk", 10, 70);
 
 	//姿勢情報
 	m_transform.position = position;
 	m_transform.scale = Scale;
 
 	//衝突判定
-	Vector3 colliderScale = ColliderSize;
-	m_collider = new BoxCollider(colliderScale);
+	m_collider = new BoxCollider(ColliderSize);
 }
 
 //効果の発動
 void KeyItem::Active()
 {
+	//エフェクトの再生
+	m_effect->Play();
+
 	if (m_destroyKey)
 	{
-		m_destroyTime -= Time::GetInstance()->GetDeltaTime();
-		if (m_destroyTime <= 0) Destroy();
-		//m_effect->Play();
+		//効果音
+		SoundManager::Play("Resource/sound/se_gimmick_keyitem.mp3");
+
+		//自身の削除
+		Destroy();
 	}
 }
 

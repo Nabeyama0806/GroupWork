@@ -1,7 +1,8 @@
 #pragma once
+#include "Node.h"
 #include "Vector3.h"
 
-class Effect
+class Effect : Node
 {
 private:
 	static constexpr float EffectMoveSpeed = 0.2f;				//エフェクトが移動する速度

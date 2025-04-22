@@ -51,7 +51,7 @@ void UiBottle::Update()
 				m_select = static_cast<int>(Bottle::Type::Length) - 1 :
 				m_select--;
 		}
-		SoundManager::GetInstance()->SoundPlay("Resource/sound/se_bottle_select.mp3");
+		SoundManager::Play("Resource/sound/se_bottle_select.mp3");
 	}
 
 	m_type = static_cast<Bottle::Type>(m_select);

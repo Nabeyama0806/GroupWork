@@ -45,13 +45,13 @@ void SceneGame::Initialize()
 	actorLayer->AddChild(m_player);
 	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
 
-	// マップ
+	//マップ
 	m_map = new CreateMap(m_player);
 	actorLayer->AddChild(m_map);
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");
-	SoundManager::GetInstance()->SoundPlay(m_bgm, DX_PLAYTYPE_LOOP);
+	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
 
 	//背景色の変更
 	SetBackgroundColor(230, 230, 230);
@@ -60,12 +60,6 @@ void SceneGame::Initialize()
 //終了
 void SceneGame::Finalize()
 {
-	//画像の事前読み込み
-	for (auto sprite : SpritePreload)
-	{
-		SpriteLoader::GetInstance()->Delete(sprite);
-	}
-
 	//モデルの事前読み込み
 	for (auto model : ModelPreload)
 	{

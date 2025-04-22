@@ -1,4 +1,5 @@
 #include "WindGimmick.h"
+#include "SoundManager.h"
 #include "Player.h"
 #include "BoxCollider.h"
 #include "Time.h"
@@ -19,7 +20,11 @@ WindGimmick::WindGimmick(const Vector3& position, Player* player) :
 	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);
 
+	//プレイヤーの取得
 	m_player = player;
+
+	//効果音
+	SoundManager::Play("Resource/sound/se_gimmick_wind.mp3");
 }
 
 //更新

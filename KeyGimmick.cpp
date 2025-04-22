@@ -13,7 +13,7 @@ KeyGimmick::KeyGimmick(const Vector3& position, Player* player) :
 {
 	//モデルとエフェクト
 	m_model = new Model("Resource/Model/key_block.mv1");
-	//m_effect = new Effect("Resource/Effect/fire.efk", 10, 70);
+	m_effect = new Effect("Resource/Effect/open.efk", 10, 70);
 
 	//姿勢情報
 	m_transform.position = position;
@@ -29,7 +29,7 @@ void KeyGimmick::Active()
 	if (m_destroyWall)
 	{
 		m_destroyTime -= Time::GetInstance()->GetDeltaTime();
-		//m_effect->Play();
+		m_effect->Play();
 		if (m_destroyTime <= 0) Destroy();
 	}
 }

@@ -17,7 +17,7 @@ void SceneTitle::Initialize()
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");
-	SoundManager::GetInstance()->SoundPlay(m_bgm, DX_PLAYTYPE_LOOP);
+	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
 }
 
 //I—¹
@@ -35,7 +35,7 @@ SceneBase* SceneTitle::Update()
 	if (Input::GetInstance()->IsAnyKeyDown())
 	{
 		//Œø‰Ê‰¹
-		SoundManager::GetInstance()->SoundPlay("Resource/sound/se_start.mp3");
+		SoundManager::Play("Resource/sound/se_start.mp3");
 		StopSoundMem(m_bgm);
 
 		return new SceneGame();

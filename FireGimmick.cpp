@@ -1,6 +1,7 @@
 #include "FireGimmick.h"
 #include "BoxCollider.h"
 #include "Effect.h"
+#include "SoundManager.h"
 #include "Time.h"
 
 //コンストラクタ
@@ -17,8 +18,7 @@ FireGimmick::FireGimmick(const Vector3& position) :
 	m_transform.position = position;
 
 	//衝突判定
-	Vector3 colliderScale = ColliderSize;
-	m_collider = new BoxCollider(colliderScale);
+	m_collider = new BoxCollider(ColliderSize);
 }
 
 //効果の発動
@@ -29,6 +29,9 @@ void FireGimmick::Active()
 		m_fireTime -= Time::GetInstance()->GetDeltaTime();
 		if (m_fireTime <= 0) Destroy();
 		m_effect->Play();
+
+		//効果音
+		SoundManager::Play("Resource/sound/se_gimmick_fire.mp3");
 	}
 }
 

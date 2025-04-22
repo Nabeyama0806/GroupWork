@@ -93,7 +93,7 @@ void Player::CreateBottle()
 	}
 
 	m_createBottle = true;
-	SoundManager::GetInstance()->SoundPlay("Resource/sound/se_bottle_create.mp3");
+	SoundManager::Play("Resource/sound/se_bottle_create.mp3");
 }
 
 //ˆÚ“®

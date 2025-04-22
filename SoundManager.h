@@ -1,16 +1,31 @@
 #pragma once
 #include "DxLib.h"
+#include "SoundLoader.h"
 
-class SoundManager
+struct SoundManager
 {
 public:
-	//ÉVÉìÉOÉãÉgÉì
-	static SoundManager* GetInstance()
+	//å¯â âπÇÃçƒê∂
+	static void Play(int se, int type = DX_PLAYTYPE_BACK)
 	{
-		static SoundManager instance;
-		return &instance;
+		PlaySoundMem(se, type);
+	}
+	static int Play(const char* path, int type = DX_PLAYTYPE_BACK)
+	{
+		int se = SoundLoader::GetInstance()->Load(path);
+		Play(se, type);
+		return se;
 	}
 
-	void SoundPlay(int id, int type = DX_PLAYTYPE_BACK, int topPositionFlag = 1);
-	void SoundPlay(const char* path, int type = DX_PLAYTYPE_BACK, int topPositionFlag = 1);
+	//âπó ÇÃí≤êÆ
+	static void ChangeVolume(int id, int volume)
+	{
+		ChangeVolumeSoundMem(volume, id);
+	}
+
+	//âπÇÃí‚é~
+	static void SoundStop(int id)
+	{
+		StopSoundMem(id);
+	}
 };
