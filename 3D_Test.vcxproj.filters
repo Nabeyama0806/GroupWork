@@ -386,5 +386,8 @@
     <ClInclude Include="Goal.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerFoot.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

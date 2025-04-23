@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "PlayerFoot.h"
 #include "Bottle.h"
 #include "FireBottle.h"
 #include "ThunderBottle.h"
@@ -38,6 +39,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 
 	//Õ“Ë”»’è
 	m_collider = new BoxCollider(ColliderSize);
+	AddChild(new PlayerFoot(this, m_transform.position));
 }
 
 //XV
