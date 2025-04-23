@@ -27,6 +27,7 @@ UiBottle::UiBottle() :
 	m_crossImg = new Sprite();
 	m_crossImg->Register("Cross", SpriteAnimation("Resource/Texture/cross.png"));
 	m_crossImg->Play("Cross");
+	m_crossImg->Load();
 
 	//ÉTÉCÉYí≤êÆ
 	m_transform.scale = SizeOffset;
@@ -65,6 +66,7 @@ void UiBottle::Update()
 
 	// Å~Çï`âÊÇ∑ÇÈÇ©Ç«Ç§Ç©
 	m_crossDrawFlag = m_getBottleFlag & (1 << m_select);
+	m_crossImg->Update();
 }
 
 //ï`âÊ
@@ -72,11 +74,9 @@ void UiBottle::Draw()
 {
 	//ñ{óàÇÃï`âÊ
 	SpriteActor::Draw();
-	m_crossImg->Draw(m_transform);
-
 	//è\éöÇÃï`âÊ
 	if (!m_crossDrawFlag)
 	{
-		
+		m_crossImg->Draw(m_transform);
 	}
 }

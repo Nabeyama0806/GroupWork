@@ -28,7 +28,7 @@ private:
 		"WInd"
 	};
 
-	Sprite* m_crossImg;	//スプライト
+	Sprite* m_crossImg;	// 使用不可時の画像
 
 	Bottle::Type m_type;	//自身の属性
 	int m_select;			//選択している属性
