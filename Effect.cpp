@@ -40,3 +40,11 @@ void Effect::Play(bool loop)
     if (loop) m_playCount++;
     else m_playCount = m_effectPlayInterval;
 }
+
+//再生中のエフェクトを停止する
+void Effect::Stop()
+{
+	//再生中のエフェクトを停止する
+	StopEffekseer3DEffect(m_playingEffectHandle);
+	m_playingEffectHandle = -1;
+}

@@ -26,7 +26,7 @@ WindBottle::WindBottle(const Vector3& position, const Vector3& forward, Player* 
 void WindBottle::ActiveEffect()
 {
 	Bottle::ActiveEffect();
-	m_player->SetCanWindBottleThrow(true);
+	m_player->SetCanWindBottleThrow();
 }
 
 //衝突イベント
@@ -42,6 +42,6 @@ void WindBottle::OnCollision(const ModelActor* other)
 	{
 		// 自身の削除
 		Bottle::ActiveEffect();
-		if (other->GetName() != "Wall") m_player->SetCanWindBottleThrow(true);
+		if (other->GetName() != "Wall") m_player->SetCanWindBottleThrow();
 	}
 }

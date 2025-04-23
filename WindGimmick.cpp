@@ -37,7 +37,7 @@ void WindGimmick::Update()
 	m_elapsedTime += Time::GetInstance()->GetDeltaTime();
 	if (EffectDrawTime < m_elapsedTime)
 	{
-		m_player->SetCanWindBottleThrow(true);
+		m_player->SetCanWindBottleThrow();
 		Destroy();
 	}
 }

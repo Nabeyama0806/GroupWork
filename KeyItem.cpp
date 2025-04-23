@@ -20,14 +20,14 @@ KeyItem::KeyItem(const Vector3& position) :
 
 	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);
+	
+	//エフェクトの再生
+	m_effect->Play(false);
 }
 
 //効果の発動
 void KeyItem::Active()
 {
-	//エフェクトの再生
-	m_effect->Play();
-
 	if (m_destroyKey)
 	{
 		//効果音
@@ -43,6 +43,7 @@ void KeyItem::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "Player")
 	{
+		m_effect->Stop();
 		m_destroyKey = true;
 	}
 }

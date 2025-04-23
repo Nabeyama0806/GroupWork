@@ -13,8 +13,6 @@ TransparentGimmick::TransparentGimmick(const Vector3& position) :
 	//モデルとエフェクト
 	m_model = new Model("Resource/Model/Transparent.mv1");
 
-	m_effect = new Effect("Resource/Effect/draw.efk", 15, 120);
-
 	//姿勢情報
 	m_transform.position = position;
 	m_transform.scale = Scale;
@@ -29,8 +27,6 @@ void TransparentGimmick::Active()
 	//光らせるフラグが立っている時
 	if (m_appear)
 	{
-		m_effect->Play(false);
-
 		//指定した時間分光らせる
 		m_appearTime += Time::GetInstance()->GetDeltaTime();
 		if (m_appearTime > AppearTime)

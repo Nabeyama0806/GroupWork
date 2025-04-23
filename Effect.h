@@ -18,4 +18,5 @@ public:
 
 	void Update(Vector3& position);		// 更新
 	void Play(bool loop = true);
+	void Stop();	// 再生中のエフェクトを停止する
 };

@@ -4,11 +4,13 @@
 #include "Model.h"
 #include "Player.h"
 #include "Effect.h"
+#include "Time.h"
 
 //コンストラクタ
 ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Player* player) :
 	Bottle("ThunderBottle", position, forward, player),
-	m_flushCollider(nullptr)
+	m_flushCollider(nullptr),
+	m_time(0)
 {
 	//モデル
 	m_model = new Model("Resource/Model/bottle_thunder.mv1");
@@ -23,6 +25,23 @@ ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Pl
 	m_collider = new BoxCollider(ColliderSize.Scale(Scale));
 }
 
+void ThunderBottle::Update()
+{
+	//本来の更新
+	Bottle::Update();
+	m_effect->Update(m_transform.position);
+
+	if (m_flushCollider)
+	{
+		m_time += Time::GetInstance()->GetDeltaTime();
+		if (m_time > FlushTime)
+		{
+			Bottle::ActiveEffect();
+			m_time = 0;
+		}
+	}
+}
+
 //衝突イベント
 void ThunderBottle::OnCollision(const ModelActor* other)
 {
@@ -32,13 +51,8 @@ void ThunderBottle::OnCollision(const ModelActor* other)
 		if (!m_flushCollider)
 		{
 			m_effect->Play();
-			m_effect->Update(m_transform.position);
 			m_flushCollider = new HitCollider("Flush", m_transform.position, ColliderSize * FlushSize);
 			AddChild(m_flushCollider);
-		}
-		else
-		{
-			Bottle::ActiveEffect();
 		}
 	}
 }

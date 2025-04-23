@@ -1,6 +1,7 @@
 #pragma once
 #include "ModelActor.h"
 #include "Model.h"
+#include "GetBottle.h"
 #include <vector>
 
 class Camera;
@@ -32,7 +33,8 @@ private:
 	bool m_createBottle;//ボトルが生きているかどうか
 	bool m_onGround;	// 地面についているかどうか
 	bool m_getKey;	// 鍵を持っているかどうか
-	bool m_canWindBottleThrow;	//風ボトルを投げられるか
+
+	int m_getBottleFlag;	// ボトルを持っているかどうか
 
 	void Move();			//移動処理
 	void CreateBottle();	//指定されたボトルの作成
@@ -44,6 +46,11 @@ protected:
 public:
 	//コンストラクタ
 	Player(Camera* camera, UiBottle* uiBottle);
+
+	void GetElement(GetBottle::Type type)
+	{
+		m_getBottleFlag |= 1 << static_cast<int>(type);
+	}
 
 	// プレイヤーの位置を設定
 	void SetPosition(Vector3 position)
@@ -57,8 +64,15 @@ public:
 		return m_getKey;
 	}
 
-	void DestroyBottle();	//ボトルを破棄する
-	void SetCanWindBottleThrow(bool flag);
+	void DestroyBottle() //ボトルを破棄する
+	{
+		m_createBottle = false;
+	}	
+
+	void SetCanWindBottleThrow()
+	{
+		m_getBottleFlag |= 1 << static_cast<int>(GetBottle::Type::Wind);
+	}
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

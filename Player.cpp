@@ -21,9 +21,9 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_uiBottle(uiBottle),
 	m_createBottle(false),
 	m_onGround(false),
-	m_holdMove(0,0,0),
+	m_holdMove(0, 0, 0),
 	m_getKey(false),
-	m_canWindBottleThrow(true),
+	m_getBottleFlag(0),
 	m_playerFoot(nullptr)
 {
 	//アニメーションの登録
@@ -70,7 +70,7 @@ void Player::CreateBottle()
 {
 	if (m_createBottle) return;
 
-	if (m_uiBottle->GetType() == Bottle::Type::Wind && !m_canWindBottleThrow) return;
+	if (!(m_getBottleFlag & (1 << static_cast<int>(m_uiBottle->GetType())))) return;
 
 	switch (m_uiBottle->GetType())
 	{
@@ -88,7 +88,7 @@ void Player::CreateBottle()
 
 	case Bottle::Type::Wind:
 		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this));
-		m_canWindBottleThrow = false;
+		m_getBottleFlag &= ~(1 << static_cast<int>(Bottle::Type::Wind));
 		break;
 
 	default:
@@ -184,16 +184,6 @@ void Player::Draw()
 #endif
 }
 
-void Player::DestroyBottle()
-{
-	m_createBottle = false;
-}
-
-void Player::SetCanWindBottleThrow(bool flag)
-{
-	m_canWindBottleThrow = flag;
-}
-
 //衝突イベント
 void Player::OnCollision(const ModelActor* other)
 {
@@ -210,7 +200,7 @@ void Player::OnCollision(const ModelActor* other)
 		float distanceZ = abs(colCenter.z - abs(m_transform.position.z - m_holdMove.z));
 
 		// プレイヤーが当たっている壁がどの方向か
-		if (distanceX > distanceY && distanceX > distanceZ)			
+		if (distanceX > distanceY && distanceX > distanceZ)
 		{
 			m_transform.position.x -= m_holdMove.x;	// 動いた分戻す
 		}

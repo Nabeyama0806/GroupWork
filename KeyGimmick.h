@@ -8,7 +8,7 @@ class Effect;
 class KeyGimmick : public GimmickBase
 {
 private:
-	static constexpr Vector3 Scale = Vector3(50, 50, 50);		//自身のサイズ
+	static constexpr Vector3 Scale = Vector3(25, 25, 25);		//自身のサイズ
 	static constexpr float DestroyTime = 1;	//鍵を開けるのに必要な時間
 
 	Player* m_player;		//プレイヤー

@@ -21,11 +21,17 @@ public:
 		Transparent,
 		Goal,
 
+		FireBottle,
+		ThunderBottle,
+		WaterBottle,
+		WindBottle,
+
 		Length,
 	};
 
 	enum class MapType
 	{
+		Map0,
 		Map1,
 		Map2,
 		Map3,
@@ -49,7 +55,7 @@ private:
 
 	std::string GetMapName(int typeNum, int posY)
 	{
-		return "Resource/MapData/Map" + std::to_string(typeNum+1) + "_data/Map" + std::to_string(posY+1) + ".csv";
+		return "Resource/MapData/Map" + std::to_string(typeNum) + "_data/Map" + std::to_string(posY+1) + ".csv";
 	};
 
 public:

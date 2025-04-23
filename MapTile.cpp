@@ -8,6 +8,7 @@
 #include "KeyItem.h"
 #include "TileCube.h"
 #include "Goal.h"
+#include "GetBottle.h"
 #include "Player.h"
 
 MapTile::MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size, Player* player, CreateMap* map) :
@@ -58,6 +59,22 @@ void MapTile::Create(const Vector3& position)
 
 	case CreateMap::TileType::Goal:
 		AddChild(new Goal(position, m_map));
+		break;
+
+	case CreateMap::TileType::FireBottle:
+		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_fire.mv1", GetBottle::Type::Fire));
+		break;
+
+	case CreateMap::TileType::ThunderBottle:
+		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_thunder.mv1", GetBottle::Type::Thunder));
+		break;
+
+	case CreateMap::TileType::WaterBottle:
+		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_water.mv1", GetBottle::Type::Water));
+		break;
+
+	case CreateMap::TileType::WindBottle:
+		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_wind.mv1", GetBottle::Type::Wind));
 		break;
 
 	default:

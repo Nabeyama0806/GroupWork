@@ -26,6 +26,7 @@
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FireBottle.cpp" />
     <ClCompile Include="FireGimmick.cpp" />
+    <ClCompile Include="GetBottle.cpp" />
     <ClCompile Include="GimmickBase.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="KeyGimmick.cpp" />
@@ -81,6 +82,7 @@
     <ClInclude Include="FireBottle.h" />
     <ClInclude Include="FireGimmick.h" />
     <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="GetBottle.h" />
     <ClInclude Include="GimmickBase.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="HitCollider.h" />
