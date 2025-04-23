@@ -23,7 +23,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_onGround(false),
 	m_holdMove(0, 0, 0),
 	m_getKey(false),
-	m_getBottleFlag(15),
+	m_getBottleFlag(0),
 	m_playerFoot(nullptr)
 {
 	//アニメーションの登録
@@ -61,6 +61,8 @@ void Player::Update()
 	{
 		CreateBottle();
 	}
+
+	m_uiBottle->SetGetBottleFlag(m_getBottleFlag);
 }
 
 //指定されたボトルの作成

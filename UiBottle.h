@@ -28,8 +28,12 @@ private:
 		"WInd"
 	};
 
+	Sprite* m_crossImg;	//スプライト
+
 	Bottle::Type m_type;	//自身の属性
 	int m_select;			//選択している属性
+	int m_getBottleFlag;	//ボトルを持っているかどうか
+	bool m_crossDrawFlag;	//十字の描画フラグ
 
 protected:
 	virtual void Update() override;	//更新
@@ -43,5 +47,10 @@ public:
 	Bottle::Type GetType()
 	{
 		return m_type;
+	}
+
+	void SetGetBottleFlag(int getBottleFlag)
+	{
+		m_getBottleFlag = getBottleFlag;
 	}
 };
