@@ -14,7 +14,7 @@
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
-	m_mapIndex(0)
+	m_mapIndex(3)
 {
 	LoadMap();
 }

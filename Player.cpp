@@ -23,7 +23,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_onGround(false),
 	m_holdMove(0, 0, 0),
 	m_getKey(false),
-	m_getBottleFlag(0),
+	m_getBottleFlag(15),
 	m_playerFoot(nullptr)
 {
 	//アニメーションの登録
@@ -39,7 +39,8 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 
 	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);
-	AddChild(new PlayerFoot(this, m_transform.position));
+	m_playerFoot = new PlayerFoot(this, m_transform.position);
+	AddChild(m_playerFoot);
 }
 
 //更新
@@ -60,9 +61,6 @@ void Player::Update()
 	{
 		CreateBottle();
 	}
-
-	// 地面と壁との当たり判定のリセット
-	m_onGround = false;
 }
 
 //指定されたボトルの作成
@@ -139,11 +137,15 @@ void Player::Move()
 	}
 
 	// 重力
-	if (!m_onGround)
+	if (m_playerFoot->GetIsGronded())
 	{
 		m_transform.position.y -= GravityScale;
 		m_holdMove.y = 0;
 		m_holdMove.y -= GravityScale;
+	}
+	else
+	{
+		m_transform.position.y -= m_holdMove.y;
 	}
 
 	if (m_transform.position.y < -500)
@@ -190,8 +192,6 @@ void Player::OnCollision(const ModelActor* other)
 	//壁
 	if (other->GetName() == "Wall" || other->GetName() == "Fire" || other->GetName() == "KeyBlock")
 	{
-		m_onGround = true;
-
 		// 壁のサイズ
 		Vector3 colCenter = other->GetPosition();
 
@@ -204,10 +204,6 @@ void Player::OnCollision(const ModelActor* other)
 		{
 			m_transform.position.x -= m_holdMove.x;	// 動いた分戻す
 		}
-		else if (distanceY > distanceZ && distanceY > distanceX)
-		{
-			m_transform.position.y -= m_holdMove.y;	// 動いた分戻す
-		}
 		else
 		{
 			m_transform.position.z -= m_holdMove.z;	// 動いた分戻す
@@ -216,7 +212,6 @@ void Player::OnCollision(const ModelActor* other)
 
 	if (other->GetName() == "Wind" || other->GetName() == "Water" || other->GetName() == "Transparent")
 	{
-		m_onGround = true;
 		m_transform.position.y += GravityScale;
 	}
 

@@ -5,6 +5,7 @@
 #include <vector>
 
 class Camera;
+class PlayerFoot;
 class UiBottle;
 class Bottle;
 
@@ -27,8 +28,8 @@ private:
 	Camera* m_camera;
 	UiBottle* m_uiBottle;
 	Vector3 m_holdMove;
-	Vector3 m_spawnPos;	//スポーン地点
-	ModelActor* m_playerFoot;	//プレイヤーの足
+	Vector3 m_spawnPos;			//スポーン地点
+	PlayerFoot* m_playerFoot;	//プレイヤーの足
 
 	bool m_createBottle;//ボトルが生きているかどうか
 	bool m_onGround;	// 地面についているかどうか
