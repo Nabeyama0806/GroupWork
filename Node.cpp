@@ -97,7 +97,7 @@ void Node::TreeDraw()
 }
 
 //子ノードの追加
-void Node::AddChild(Node* node)
+void Node::AddChild(Node* node, bool isLoad)
 {
 	//子に対して親を設定
 	node->SetParent(this);
@@ -106,7 +106,7 @@ void Node::AddChild(Node* node)
 	m_children.push_back(node);
 
 	//子のリソース読み込み
-	node->TreeLoad();
+	if(isLoad) node->TreeLoad();
 }
 
 //子ノードの削除

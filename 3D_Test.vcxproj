@@ -39,6 +39,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="PlayerFoot.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteLoader.cpp" />
@@ -66,7 +67,6 @@
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="WaterBottle.cpp" />
     <ClCompile Include="WaterGimmick.cpp" />
-    <ClCompile Include="WaterGimmickEnd.cpp" />
     <ClCompile Include="WindBottle.cpp" />
     <ClCompile Include="WindGimmick.cpp" />
   </ItemGroup>
@@ -130,7 +130,6 @@
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="WaterBottle.h" />
     <ClInclude Include="WaterGimmick.h" />
-    <ClInclude Include="WaterGimmickEnd.h" />
     <ClInclude Include="WindBottle.h" />
     <ClInclude Include="WindGimmick.h" />
   </ItemGroup>

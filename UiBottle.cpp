@@ -14,7 +14,8 @@ UiBottle::UiBottle() :
 	m_type(Bottle::Type::Fire),
 	m_select(0),
 	m_crossDrawFlag(false),
-	m_getBottleFlag(0)
+	m_getBottleFlag(0),
+	m_canWind(true)
 {	
 	//‰æ‘œ‚Ì“o˜^	
 	m_sprite = new Sprite();
@@ -74,8 +75,9 @@ void UiBottle::Draw()
 {
 	//–{—ˆ‚Ì•`‰æ
 	SpriteActor::Draw();
+
 	//\Žš‚Ì•`‰æ
-	if (!m_crossDrawFlag)
+	if (!m_crossDrawFlag || !m_canWind)
 	{
 		m_crossImg->Draw(m_transform);
 	}

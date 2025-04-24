@@ -14,16 +14,11 @@ class Player : public ModelActor
 private:
 	static constexpr Vector3 Scale = Vector3(10.0f, 10.0f, 10.0f);	//自身のサイズ
 	static constexpr Vector3 ColliderOffset = Vector3(0, 0, 0);	// コライダーのオフセット
-	static constexpr Vector3 ColliderSize = Vector3(30.0f, 30.0f, 30.0f);	// コライダーのサイズ
+	static constexpr Vector3 ColliderSize = Vector3(30, 30, 30);	// コライダーのサイズ
 	static constexpr float Speed = 0.6f * Scale.y;	//自身のサイズに合せた移動速度
 	static constexpr float GravityScale = 13.0f;			// 重力
 	static constexpr float DashSpeed = 1.4f;		//ダッシュ時の速度倍率
 	static constexpr int AnimeAmount = 1;			//アニメーションの総数
-
-	const char* AnimeFileName[AnimeAmount] =
-	{
-		"Resource/Model/Tmp.mv1",		//待機
-	};
 
 	Camera* m_camera;
 	UiBottle* m_uiBottle;
@@ -32,8 +27,9 @@ private:
 	PlayerFoot* m_playerFoot;	//プレイヤーの足
 
 	bool m_createBottle;//ボトルが生きているかどうか
-	bool m_onGround;	// 地面についているかどうか
+	bool m_onWallHit;	// 地面についているかどうか
 	bool m_getKey;	// 鍵を持っているかどうか
+	bool m_canWindBottleThrow;
 
 	int m_getBottleFlag;	// ボトルを持っているかどうか
 
@@ -53,11 +49,16 @@ public:
 		m_getBottleFlag |= 1 << static_cast<int>(type);
 	}
 
+	void SetSpawnPosition(const Vector3& position)
+	{
+		m_spawnPos = position;
+		m_transform.position = position;
+	}
+
 	// プレイヤーの位置を設定
 	void SetPosition(Vector3 position)
 	{
-		m_spawnPos = position;
-		m_transform.position = m_spawnPos;
+		m_transform.position = position;
 	}
 
 	bool IsGetKey() const 
@@ -72,7 +73,17 @@ public:
 
 	void SetCanWindBottleThrow()
 	{
-		m_getBottleFlag |= 1 << static_cast<int>(GetBottle::Type::Wind);
+		m_canWindBottleThrow = true;
+	}
+
+	Vector3& GetHoldMove()
+	{
+		return m_holdMove;
+	}
+
+	bool GetOnWallHit()
+	{
+		return m_onWallHit;
 	}
 
 	//衝突イベント

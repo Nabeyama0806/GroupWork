@@ -32,7 +32,7 @@ public:
 		return Collision::Check(transform1, this, transform2, collider);
 	}
 
-	virtual Vector3 GetSize(const Collider* collider) const override
+	Vector3 GetSize() const
 	{
 		return m_size;
 	}

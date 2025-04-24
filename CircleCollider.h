@@ -33,9 +33,9 @@ public:
 		return Collision::Check(transform1, collider, transform2, this);
 	}
 
-	virtual Vector3 GetSize(const Collider* collider) const override
+	float GetRadius() const
 	{
-		return Vector3(m_radius, m_radius, m_radius);
+		return m_radius;
 	}
 
 #ifdef _DEBUG

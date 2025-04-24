@@ -21,7 +21,6 @@ public:
 	virtual bool CheckCollision(const Transform& transfrom1, const Transform& transform2, const BoxCollider* collider) const = 0;
 	virtual bool CheckCollision(const Transform& transfrom1, const Transform& transform2, const CircleCollider* collider) const = 0;
 
-	virtual Vector3 GetSize(const Collider* collider) const = 0;
 #ifdef _DEBUG
 	// •`‰æ
 	virtual void Draw(const Transform& transform) const = 0;

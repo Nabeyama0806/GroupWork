@@ -1,7 +1,6 @@
 #include "MapTile.h"
 #include "FireGimmick.h"
 #include "WaterGimmick.h"
-#include "WaterGimmickEnd.h"
 #include "WindGimmick.h"
 #include "TransparentGimmick.h"
 #include "KeyGimmick.h"
@@ -9,6 +8,7 @@
 #include "TileCube.h"
 #include "Goal.h"
 #include "GetBottle.h"
+#include "HitCollider.h"
 #include "Player.h"
 
 MapTile::MapTile(CreateMap::TileType tile, const Vector3& pos, const Vector3& size, Player* player, CreateMap* map) :
@@ -42,7 +42,7 @@ void MapTile::Create(const Vector3& position)
 		break;
 
 	case CreateMap::TileType::WaterEnd:
-		AddChild(new WaterGimmickEnd(position));
+		AddChild(new HitCollider("WaterGimmickEnd", position, m_size));
 		break;
 
 	case CreateMap::TileType::KeyBlock:

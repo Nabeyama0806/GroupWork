@@ -20,27 +20,20 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_camera(camera),
 	m_uiBottle(uiBottle),
 	m_createBottle(false),
-	m_onGround(false),
 	m_holdMove(0, 0, 0),
 	m_getKey(false),
-	m_getBottleFlag(0),
+	m_canWindBottleThrow(true),
+	m_onWallHit(false),
+	m_getBottleFlag(8),
 	m_playerFoot(nullptr)
 {
-	//アニメーションの登録
-	m_model = new Model("Resource/Model/Player.mv1");
-	for (int i = 0; i < AnimeAmount; ++i)
-	{
-		//アニメーションのファイルパスを渡す
-		m_model->Register(AnimeFileName[i]);
-	}
-
 	//姿勢情報の調整
 	m_transform.scale = Scale;
 
 	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);
 	m_playerFoot = new PlayerFoot(this, m_transform.position);
-	AddChild(m_playerFoot);
+	AddChild(m_playerFoot, false);
 }
 
 //更新
@@ -62,7 +55,7 @@ void Player::Update()
 		CreateBottle();
 	}
 
-	m_uiBottle->SetGetBottleFlag(m_getBottleFlag);
+	m_uiBottle->SetGetBottleFlag(m_getBottleFlag, m_canWindBottleThrow);
 }
 
 //指定されたボトルの作成
@@ -70,6 +63,7 @@ void Player::CreateBottle()
 {
 	if (m_createBottle) return;
 
+	if (m_uiBottle->GetType() == Bottle::Type::Wind && !m_canWindBottleThrow) return;
 	if (!(m_getBottleFlag & (1 << static_cast<int>(m_uiBottle->GetType())))) return;
 
 	switch (m_uiBottle->GetType())
@@ -88,7 +82,7 @@ void Player::CreateBottle()
 
 	case Bottle::Type::Wind:
 		AddChild(new WindBottle(m_camera->GetCameraPos(), m_camera->GetForward(), this));
-		m_getBottleFlag &= ~(1 << static_cast<int>(Bottle::Type::Wind));
+		m_canWindBottleThrow = false;
 		break;
 
 	default:
@@ -117,9 +111,6 @@ void Player::Move()
 	//カメラの向きを考慮した移動量
 	move = cameraForward * move.z + m_camera->GetRight() * move.x;
 
-	//待機アニメーションを設定
-	int animeIndex = static_cast<int>(Model::Anime::Idle);
-
 	//動いている時
 	if (!move.IsZero())
 	{
@@ -132,31 +123,25 @@ void Player::Move()
 		m_transform.rotation = Quaternion::Slerp(
 			m_transform.rotation,
 			Quaternion::LookRotation(move),
-			0.2f);
-
-		//移動アニメーションを設定
-		//animeIndex = static_cast<int>(Model::Anime::Run);
+			0.2f
+		);
 	}
 
 	// 重力
-	if (m_playerFoot->GetIsGronded())
+	if (!m_playerFoot->GetIsGronded())
 	{
-		m_transform.position.y -= GravityScale;
-		m_holdMove.y = 0;
-		m_holdMove.y -= GravityScale;
-	}
-	else
-	{
+		m_holdMove.y = GravityScale;
 		m_transform.position.y -= m_holdMove.y;
 	}
-
+	
+	//落下処理
 	if (m_transform.position.y < -500)
 	{
+		m_playerFoot->SetPosition(m_spawnPos);
 		m_transform.position = m_spawnPos;
 	}
 
-	//設定したアニメーションの再生
-	//m_model->PlayAnime(animeIndex);
+	m_onWallHit = false;
 }
 
 void Player::Draw()
@@ -192,30 +177,23 @@ void Player::Draw()
 void Player::OnCollision(const ModelActor* other)
 {
 	//壁
-	if (other->GetName() == "Wall" || other->GetName() == "Fire" || other->GetName() == "KeyBlock")
+	if (other->GetName() == "Wall" || other->GetName() == "Fire" || 
+		other->GetName() == "KeyBlock" || other->GetName() == "Transparent")
 	{
 		// 壁のサイズ
 		Vector3 colCenter = other->GetPosition();
 
-		float distanceX = abs(colCenter.x - abs(m_transform.position.x - m_holdMove.x));
-		float distanceY = abs(colCenter.y - abs(m_transform.position.y - m_holdMove.y));
-		float distanceZ = abs(colCenter.z - abs(m_transform.position.z - m_holdMove.z));
-
 		// プレイヤーが当たっている壁がどの方向か
-		if (distanceX > distanceY && distanceX > distanceZ)
-		{
-			m_transform.position.x -= m_holdMove.x;	// 動いた分戻す
-		}
-		else
-		{
-			m_transform.position.z -= m_holdMove.z;	// 動いた分戻す
-		}
+		float distanceX = abs(colCenter.x - abs(m_transform.position.x - m_holdMove.x));
+		float distanceZ = abs(colCenter.z - abs(m_transform.position.z - m_holdMove.z));
+		distanceX > distanceZ ? 
+			m_transform.position.x -= m_holdMove.x:
+			m_transform.position.z -= m_holdMove.z;
+
+		m_onWallHit = true;
+		m_playerFoot->FollowPlayer();
 	}
 
-	if (other->GetName() == "Wind" || other->GetName() == "Water" || other->GetName() == "Transparent")
-	{
-		m_transform.position.y += GravityScale;
-	}
 
 	if (other->GetName() == "Key")
 	{

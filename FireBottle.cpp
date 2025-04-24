@@ -23,7 +23,8 @@ FireBottle::FireBottle(const Vector3& position, const Vector3& forward, Player* 
 void FireBottle::OnCollision(const ModelActor* other)
 {
 	std::string hit = other->GetName();
-	if (hit != "Player" && hit != "PlayerFoot" && hit != "Bottle" && hit != "WaterGimmickEnd" && hit != "Transparent")
+	if (hit != "Player" && hit != "PlayerFoot" && hit != "Bottle" && 
+		hit != "WaterGimmickEnd" && hit != "Transparent")
 	{
 		Bottle::ActiveEffect();
 	}

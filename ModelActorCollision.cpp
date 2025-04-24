@@ -15,7 +15,7 @@ void ModelActorCollision::Update()
 		if (actor1->GetName() != "Player" && actor1->GetName() != "FireBottle" &&
 			actor1->GetName() != "WaterBottle" && actor1->GetName() != "WindBottle" &&
 			actor1->GetName() != "ThunderBottle" && actor1->GetName() != "Water" &&
-			actor1->GetName() != "Flush") continue;
+			actor1->GetName() != "Flush" && actor1->GetName() != "PlayerFoot") continue;
 
 		for (auto it2 = actorList.begin(); it2 != actorList.end(); ++it2)
 		{			

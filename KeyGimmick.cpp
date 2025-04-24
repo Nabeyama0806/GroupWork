@@ -18,7 +18,7 @@ KeyGimmick::KeyGimmick(const Vector3& position, Player* player) :
 
 	//Žp¨î•ñ
 	m_transform.position = position;
-	m_transform.scale = Scale * 1.25;
+	m_transform.scale = Scale;
 
 	//Õ“Ë”»’è
 	m_collider = new BoxCollider(ColliderSize);
@@ -39,7 +39,7 @@ void KeyGimmick::Active()
 //Õ“ËƒCƒxƒ“ƒg
 void KeyGimmick::OnCollision(const ModelActor* other)
 {
-	if (other->GetName() == "Player")
+	if (other->GetName() == "Player" || other->GetName() == "PlayerFoot")
 	{
 		//Œø‰Ê‰¹
 		SoundManager::Play("Resource/sound/se_open.mp3");

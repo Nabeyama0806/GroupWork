@@ -38,7 +38,8 @@ void WindBottle::OnCollision(const ModelActor* other)
 	}
 
 	std::string hit = other->GetName();
-	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd" && hit != "Transparent")
+	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd" &&
+		hit != "Transparent" && hit != "PlayerFoot")
 	{
 		// ©g‚Ìíœ
 		Bottle::ActiveEffect();

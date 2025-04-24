@@ -46,7 +46,7 @@ void ThunderBottle::Update()
 void ThunderBottle::OnCollision(const ModelActor* other)
 {
 	std::string hit = other->GetName();
-	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd")
+	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd" && hit != "PlayerFoot")
 	{
 		if (!m_flushCollider)
 		{

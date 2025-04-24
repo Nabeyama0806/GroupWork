@@ -4,7 +4,6 @@
 #include "Player.h"
 #include "FireGimmick.h"
 #include "WaterGimmick.h"
-#include "WaterGimmickEnd.h"
 #include "WindGimmick.h"
 #include "TransparentGimmick.h"
 #include "KeyGimmick.h"
@@ -14,7 +13,7 @@
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
-	m_mapIndex(0)
+	m_mapIndex(3)
 {
 	LoadMap();
 }
@@ -53,7 +52,7 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 			if (tileType == static_cast<int>(TileType::PlayerSpawn))
 			{
 
-				m_player->SetPosition(pos);
+				m_player->SetSpawnPosition(pos);
 				continue;
 			}
 
