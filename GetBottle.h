@@ -16,6 +16,7 @@ public:
 
 private:
 	static constexpr Vector3 Scale = Vector3(10, 10, 10);		//自身のサイズ
+	static constexpr Vector3 ColliderScale = Vector3(100, 50, 30);	//衝突判定のサイズ
 	static constexpr Vector3 SpawnOffset = Vector3(0, -25, 0);	//スポーンオフセット
 
 	Player* m_player;	//プレイヤー

@@ -26,7 +26,7 @@ private:
 	Vector3 m_forward;
 
 protected:
-	static constexpr Vector3 ColliderSize = Vector3(4, 4, 4);
+	static constexpr Vector3 ColliderSize = Vector3(2, 2, 2);
 
 	Player* m_player;
 

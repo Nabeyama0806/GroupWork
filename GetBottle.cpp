@@ -14,7 +14,7 @@ GetBottle::GetBottle(const Vector3& spawnPos,Player* player, const char* fileNam
    m_transform.position = spawnPos + SpawnOffset;  
    m_transform.scale = Scale;  
    // è’ìÀîªíË  
-   m_collider = new BoxCollider(Scale);  
+   m_collider = new BoxCollider(ColliderScale);  
 }
 
 void GetBottle::OnCollision(const ModelActor* other)
