@@ -2,10 +2,10 @@
 #include "ModelActor.h"
 #include "Model.h"
 #include "GetBottle.h"
+#include "PlayerFoot.h"
 #include <vector>
 
 class Camera;
-class PlayerFoot;
 class UiBottle;
 class Bottle;
 
@@ -54,6 +54,7 @@ public:
 	{
 		m_spawnPos = position;
 		m_transform.position = position;
+		m_playerFoot->SetPosition(position);
 	}
 
 	// プレイヤーの位置を設定
@@ -62,7 +63,12 @@ public:
 		m_transform.position = position;
 	}
 
-	bool IsGetKey() const 
+	void UseKey()
+	{
+		m_getKey = false;
+	}
+
+	bool GetIsKey() const 
 	{
 		return m_getKey;
 	}
@@ -82,12 +88,12 @@ public:
 		return m_holdMove;
 	}
 
-	bool GetOnWallHit()
+	bool GetOnWallHit() const
 	{
 		return m_onWallHit;
 	}
 
-	bool GetIsGoal()
+	bool GetIsGoal() const
 	{
 		return m_isGoal;
 	}
