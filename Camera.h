@@ -17,7 +17,7 @@ private:
 	static constexpr float StageCameraDistance = 1500;
 
 	static constexpr float CameraMaxVAngle = 80.0f;		//ƒJƒƒ‰‚Ìc‰ñ“]‚ÌÅ‘å’l
-	static constexpr float CameraMinVAngle = -20.0f;	//ƒJƒƒ‰‚Ìc‰ñ“]‚ÌÅ¬’l
+	static constexpr float CameraMinVAngle = -40.0f;	//ƒJƒƒ‰‚Ìc‰ñ“]‚ÌÅ¬’l
 
 	static constexpr Vector3 StageCenter = Vector3(450, 450, 450);
 

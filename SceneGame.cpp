@@ -92,6 +92,9 @@ SceneBase* SceneGame::Update()
 		{
 			m_phase = Phase::FadeOut;
 			Fade::GetInstance()->StartFadeOut(0.8f, Fade::Color::White);
+
+			//Œø‰Ê‰¹
+			SoundManager::Play("Resource/sound/se_goal.mp3");
 		}
 		break;
 

@@ -1,5 +1,6 @@
 #include "GetBottle.h"  
 #include "BoxCollider.h"  
+#include "SoundManager.h"
 #include "Model.h"
 #include "Player.h"
 
@@ -25,5 +26,8 @@ void GetBottle::OnCollision(const ModelActor* other)
 		// プレイヤーにボトルを渡す
 		m_player->GetElement(m_type);
 		Destroy();
+
+		//効果音
+		SoundManager::Play("Resource/sound/se_bottle_get.mp3");
 	}
 }

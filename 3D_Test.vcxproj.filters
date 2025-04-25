@@ -198,14 +198,14 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="GetBottle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerFoot.cpp">
       <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
     <ClCompile Include="TileCube.cpp">
       <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="GetBottle.cpp">
+      <Filter>ソース ファイル\Bottle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -380,9 +380,6 @@
     <ClInclude Include="KeyGimmick.h">
       <Filter>ヘッダー ファイル\Gimmick</Filter>
     </ClInclude>
-    <ClInclude Include="KeyItem.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Goal.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
@@ -390,7 +387,10 @@
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
     <ClInclude Include="GetBottle.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Bottle</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyItem.h">
+      <Filter>ヘッダー ファイル\Gimmick</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
