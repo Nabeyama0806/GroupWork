@@ -59,6 +59,7 @@ public:
 		m_stage(nullptr),
 		m_map(nullptr),
 		m_player(nullptr),
+		m_phase(Phase::Run),
 		m_mainCamera(nullptr),
 		m_uiBottle(nullptr),
 		m_isLookPlayer(true),

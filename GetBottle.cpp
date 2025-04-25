@@ -24,7 +24,7 @@ void GetBottle::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Player")
 	{
 		// プレイヤーにボトルを渡す
-		m_player->GetElement(m_type);
+		m_player->SetElement(m_type);
 		Destroy();
 
 		//効果音

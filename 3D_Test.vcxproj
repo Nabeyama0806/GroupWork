@@ -41,7 +41,6 @@
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="PlayerFoot.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteLoader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Lerp.cpp" />

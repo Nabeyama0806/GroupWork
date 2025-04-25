@@ -12,6 +12,7 @@
 #include "BoxCollider.h"
 #include "ModelLoader.h"
 #include "ModelAnimation.h"
+#include "CreateMap.h"
 #include "Camera.h"
 
 //コンストラクタ
@@ -25,7 +26,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_canWindBottleThrow(true),
 	m_onWallHit(false),
 	m_isGoal(false),
-	m_getBottleFlag(8),
+	m_getBottleFlag(0),
 	m_playerFoot(nullptr)
 {
 	//姿勢情報の調整
@@ -138,8 +139,11 @@ void Player::Move()
 	//落下処理
 	if (m_transform.position.y < -500)
 	{
+		m_map->LoadMap(false);
+		/*
 		m_playerFoot->SetPosition(m_spawnPos);
 		m_transform.position = m_spawnPos;
+		*/
 	}
 
 	m_onWallHit = false;

@@ -15,11 +15,13 @@ CreateMap::CreateMap(Player* player) :
 	m_mapNode(nullptr),
 	m_mapIndex(0)
 {
-	LoadMap();
+	m_player->SetMap(this);
+	LoadMap(false);
 }
 
-void CreateMap::LoadMap()
+void CreateMap::LoadMap(bool nextMap)
 {
+	if (nextMap) m_mapIndex++;
 	if (m_mapNode) m_mapNode->Destroy();
 	m_mapNode = new Node();
 	AddChild(m_mapNode);
@@ -30,7 +32,6 @@ void CreateMap::LoadMap()
 		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(GetMapName(m_mapIndex, i));
 		Create(data, i);
 	}
-	m_mapIndex++;
 }
 
 void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)

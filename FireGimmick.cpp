@@ -32,6 +32,11 @@ void FireGimmick::Active()
 	}
 }
 
+void FireGimmick::OnDestroy()
+{
+	m_effect->Stop();
+}
+
 //Õ“ËƒCƒxƒ“ƒg
 void FireGimmick::OnCollision(const ModelActor* other)
 {

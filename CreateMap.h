@@ -39,7 +39,7 @@ public:
 		Length,
 	};
 
-	void LoadMap();
+	void LoadMap(bool nextMap = true);
 
 private:
 	static constexpr int MapWidth = 10;		//ƒ}ƒbƒv‚Ì‰¡•
@@ -60,4 +60,9 @@ private:
 
 public:
 	CreateMap(Player* m_player);
+	
+	int GetMapIndex() const
+	{
+		return m_mapIndex;
+	};
 };

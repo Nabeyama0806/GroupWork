@@ -102,6 +102,10 @@ SceneBase* SceneGame::Update()
 		if (!Fade::GetInstance()->IsFade())
 		{
 			m_player->SetIsGoal();
+			if (m_map->GetMapIndex() == static_cast<int>(CreateMap::MapType::Length) - 1)
+			{
+				return new SceneResult(0);
+			}
 			m_map->LoadMap();
 			m_phase = Phase::Transition;
 		}

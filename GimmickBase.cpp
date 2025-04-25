@@ -35,3 +35,15 @@ void GimmickBase::Draw()
 	//本来の描画
 	ModelActor::Draw();
 }
+
+//破棄処理
+void GimmickBase::OnDestroy()
+{
+	//エフェクトの削除
+	if (m_effect)
+	{
+		m_effect->Stop();
+		delete m_effect;
+		m_effect = nullptr;
+	}
+}

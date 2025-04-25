@@ -50,6 +50,9 @@ void ModelActor::Release()
 		delete m_collider;
 		m_collider = nullptr;
 	}
+
+	//破棄処理
+	OnDestroy();
 }
 
 //描画
@@ -60,6 +63,12 @@ void ModelActor::Draw()
 	{
 		m_model->Draw(m_transform);
 	}
+}
+
+//破棄処理
+void ModelActor::OnDestroy()
+{
+	//何もしない
 }
 
 //子ノードを含む更新

@@ -8,6 +8,7 @@
 class Camera;
 class UiBottle;
 class Bottle;
+class CreateMap;
 
 class Player : public ModelActor
 {
@@ -25,6 +26,7 @@ private:
 	Vector3 m_holdMove;
 	Vector3 m_spawnPos;			//スポーン地点
 	PlayerFoot* m_playerFoot;	//プレイヤーの足
+	CreateMap* m_map;			//マップ
 
 	bool m_createBottle;//ボトルが生きているかどうか
 	bool m_onWallHit;	// 地面についているかどうか
@@ -45,9 +47,14 @@ public:
 	//コンストラクタ
 	Player(Camera* camera, UiBottle* uiBottle);
 
-	void GetElement(GetBottle::Type type)
+	void SetElement(GetBottle::Type type)
 	{
 		m_getBottleFlag |= 1 << static_cast<int>(type);
+	}
+
+	int GetElement() const
+	{
+		return m_getBottleFlag;
 	}
 
 	void SetSpawnPosition(const Vector3& position)
@@ -61,6 +68,11 @@ public:
 	void SetPosition(Vector3 position)
 	{
 		m_transform.position = position;
+	}
+
+	void SetMap(CreateMap* map)
+	{
+		m_map = map;
 	}
 
 	void UseKey()

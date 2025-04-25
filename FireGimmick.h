@@ -16,6 +16,7 @@ private:
 protected:
 	//効果の発動
 	virtual void Active() override;
+	virtual void OnDestroy() override;	//破棄
 
 public:
 	//コンストラクタ
