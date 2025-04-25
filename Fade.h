@@ -40,10 +40,10 @@ public:
 	void Update(int screen);
 
 	//フェードイン
-	void StartFadeIn(float duration = 0.3f, Color color = Color::Black);
+	void StartFadeIn(float duration = 0.4f, Color color = Color::Black);
 
 	//フェードアウト
-	void StartFadeOut(float duration = 0.8f, Color color = Color::Black);
+	void StartFadeOut(float duration = 1.2f, Color color = Color::White);
 
 	//フェード中かどうか
 	bool IsFade()

@@ -18,6 +18,8 @@ void SceneTitle::Initialize()
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
+
+	SetBackgroundColor(255, 255, 255); //”wŒiF‚Ì•ÏX
 }
 
 //I—¹

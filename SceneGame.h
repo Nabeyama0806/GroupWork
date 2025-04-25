@@ -18,6 +18,17 @@ class Player;
 class SceneGame : public SceneBase
 {
 private:
+
+	//フェーズ
+	enum class Phase
+	{
+		Run,		//実行中
+		FadeOut,	//フェードアウト
+		Transition,	//遷移
+	};
+
+
+	//モデルの事前読み込み
 	const std::list<const char*> ModelPreload =
 	{
 		"Resource/Model/bottle_fire.mv1",
@@ -33,7 +44,7 @@ private:
 	UiBottle* m_uiBottle;	
 	Camera* m_mainCamera;	//プレイヤー
 	Player* m_player;		//プレイヤー
-
+	Phase m_phase;
 	Vector3 cameraPos = Vector3(0, 0, -700);
 
 	bool m_isLookPlayer;

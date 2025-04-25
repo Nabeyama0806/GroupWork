@@ -13,7 +13,7 @@
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
-	m_mapIndex(3)
+	m_mapIndex(0)
 {
 	LoadMap();
 }
@@ -51,7 +51,6 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 			//プレイヤーのスポーン地点
 			if (tileType == static_cast<int>(TileType::PlayerSpawn))
 			{
-
 				m_player->SetSpawnPosition(pos);
 				continue;
 			}

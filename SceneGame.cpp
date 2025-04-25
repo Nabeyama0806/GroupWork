@@ -58,9 +58,6 @@ void SceneGame::Initialize()
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");
 	SoundManager::ChangeVolume(m_bgm, 180);
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
-
-	//背景色の変更
-	SetBackgroundColor(230, 230, 230);
 }
 
 //終了
@@ -87,6 +84,33 @@ SceneBase* SceneGame::Update()
 	//ノードの更新
 	m_rootNode->TreeUpdate();
 
+	//プレイヤーがゴールすれば次のステージに遷移
+	switch (m_phase)
+	{
+	case Phase::Run: //フェードアウト開始
+		if (m_player->GetIsGoal())
+		{
+			m_phase = Phase::FadeOut;
+			Fade::GetInstance()->StartFadeOut(0.8f, Fade::Color::White);
+		}
+		break;
+
+	case Phase::FadeOut:
+		if (!Fade::GetInstance()->IsFade())
+		{
+			m_player->SetIsGoal();
+			m_map->LoadMap();
+			m_phase = Phase::Transition;
+		}
+		break;
+
+	case Phase::Transition:
+		Fade::GetInstance()->StartFadeIn(1.2f, Fade::Color::White);
+		m_phase = Phase::Run;
+		break;
+	}
+
+	//0キーが押されたら視点を切り替える
 	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_0))
 	{
 		m_isLookPlayer = !m_isLookPlayer;

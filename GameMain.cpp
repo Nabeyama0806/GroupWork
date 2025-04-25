@@ -37,7 +37,6 @@ void GameMain::Run()
 	SetAlwaysRunFlag(GameConfig::AlwayRunFlag); //非アクティブ時に動作する
 	ChangeWindowMode(GameConfig::WindowMode); //ウィンドウモードで起動
 	SetGraphMode(Screen::Width, Screen::Heigth, GameConfig::ColorBit); //ウィンドウサイズ
-
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 
 	//DXライブラリの初期化

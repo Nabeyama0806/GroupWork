@@ -28,8 +28,9 @@ private:
 
 	bool m_createBottle;//ボトルが生きているかどうか
 	bool m_onWallHit;	// 地面についているかどうか
-	bool m_getKey;	// 鍵を持っているかどうか
+	bool m_getKey;		// 鍵を持っているかどうか
 	bool m_canWindBottleThrow;
+	bool m_isGoal;
 
 	int m_getBottleFlag;	// ボトルを持っているかどうか
 
@@ -84,6 +85,16 @@ public:
 	bool GetOnWallHit()
 	{
 		return m_onWallHit;
+	}
+
+	bool GetIsGoal()
+	{
+		return m_isGoal;
+	}
+
+	void SetIsGoal()
+	{
+		m_isGoal = false;
 	}
 
 	//衝突イベント

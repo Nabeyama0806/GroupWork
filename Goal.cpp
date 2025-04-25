@@ -14,11 +14,3 @@ Goal::Goal(const Vector3& position, CreateMap* map) :
 
 	m_collider = new BoxCollider(Vector3(100, 100, 100));
 }
-
-void Goal::OnCollision(const ModelActor* other)
-{
-	if (other->GetName() == "Player")
-	{
-		m_map->LoadMap();
-	}
-}

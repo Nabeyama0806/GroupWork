@@ -11,6 +11,4 @@ private:
 public:
 	//コンストラクタ
 	Goal(const Vector3& position, CreateMap* map);
-	//衝突イベント
-	virtual void OnCollision(const ModelActor* other) override;
 };

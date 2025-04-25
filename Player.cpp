@@ -24,6 +24,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_getKey(false),
 	m_canWindBottleThrow(true),
 	m_onWallHit(false),
+	m_isGoal(false),
 	m_getBottleFlag(8),
 	m_playerFoot(nullptr)
 {
@@ -198,5 +199,10 @@ void Player::OnCollision(const ModelActor* other)
 	if (other->GetName() == "Key")
 	{
 		m_getKey = true;
+	}
+
+	if (other->GetName() == "Goal")
+	{
+		m_isGoal = true;
 	}
 }
