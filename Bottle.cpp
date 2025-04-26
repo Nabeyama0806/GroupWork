@@ -2,13 +2,6 @@
 #include "Player.h"
 #include "Time.h"
 
-Bottle::Bottle(const char* bottleName, const Vector3& position, const Vector3& forward, Player* player) :
-	ModelActor(bottleName, nullptr, position),
-	m_player(player),
-	m_forward(forward)
-{
-
-}
 
 void Bottle::Update()
 {
@@ -20,11 +13,11 @@ void Bottle::Update()
 
 	if (m_transform.position.y < -300)
 	{
-		ActiveEffect();
+		DestroyBottle();
 	}
 }
 
-void Bottle::ActiveEffect()
+void Bottle::DestroyBottle()
 {
 	//Ž©g‚ðíœ
 	m_player->DestroyBottle();

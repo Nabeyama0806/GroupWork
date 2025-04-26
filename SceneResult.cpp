@@ -2,12 +2,18 @@
 #include "Input.h"
 #include "Screen.h"
 #include "SceneTitle.h"
+#include "SpriteActor.h"
 #include "Time.h"
 
 //‰Šú‰»
 void SceneResult::Initialize()
 {
+	m_rootNode = new Node();
 
+	//”wŒi
+	m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/Texture/title.png", Screen::Center));
+
+	SetBackgroundColor(255, 255, 255); //”wŒiF‚Ì•ÏX
 }
 
 //I—¹ˆ—

@@ -26,6 +26,6 @@ void WaterBottle::OnCollision(const ModelActor* other)
 	if (hit != "Player" && hit != "Bottle" && hit != "WaterGimmickEnd" 
 		&& hit != "Transparent" && hit != "PlayerFoot")
 	{
-		ActiveEffect();
+		DestroyBottle();
 	}
 }

@@ -26,8 +26,9 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_canWindBottleThrow(true),
 	m_onWallHit(false),
 	m_isGoal(false),
-	m_getBottleFlag(0),
-	m_playerFoot(nullptr)
+	m_getBottleFlag(15),
+	m_playerFoot(nullptr),
+	m_map(nullptr)
 {
 	//épê®èÓïÒÇÃí≤êÆ
 	m_transform.scale = Scale;

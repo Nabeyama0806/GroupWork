@@ -31,10 +31,13 @@ protected:
 	Player* m_player;
 
 	virtual void Update() override;		//更新
-	virtual void ActiveEffect();				//効果の発動
+	virtual void DestroyBottle();				//効果の発動
 	Vector3 Throw(Vector3& position) const;
 
 public:
 	//コンストラクタ
-	Bottle(const char* bottleName, const Vector3& position, const Vector3& forward, Player* player);
+	Bottle(const char* bottleName, const Vector3& position, const Vector3& forward, Player* player) :
+		ModelActor(bottleName, nullptr, position),
+		m_player(player),
+		m_forward(forward) {}
 };

@@ -26,6 +26,6 @@ void FireBottle::OnCollision(const ModelActor* other)
 	if (hit != "Player" && hit != "PlayerFoot" && hit != "Bottle" && 
 		hit != "WaterGimmickEnd" && hit != "Transparent")
 	{
-		Bottle::ActiveEffect();
+		Bottle::DestroyBottle();
 	}
 }

@@ -90,11 +90,16 @@ SceneBase* SceneGame::Update()
 	case Phase::Run: //フェードアウト開始
 		if (m_player->GetIsGoal())
 		{
-			m_phase = Phase::FadeOut;
-			Fade::GetInstance()->StartFadeOut(0.8f, Fade::Color::White);
-
 			//効果音
 			SoundManager::Play("Resource/sound/se_goal.mp3");
+			
+			if (m_map->GetMapIndex() == static_cast<int>(CreateMap::MapType::Length) - 1)
+			{
+				return new SceneResult(0);
+				break;
+			}
+			m_phase = Phase::FadeOut;
+			Fade::GetInstance()->StartFadeOut(0.8f, Fade::Color::White);
 		}
 		break;
 
@@ -102,10 +107,6 @@ SceneBase* SceneGame::Update()
 		if (!Fade::GetInstance()->IsFade())
 		{
 			m_player->SetIsGoal();
-			if (m_map->GetMapIndex() == static_cast<int>(CreateMap::MapType::Length) - 1)
-			{
-				return new SceneResult(0);
-			}
 			m_map->LoadMap();
 			m_phase = Phase::Transition;
 		}

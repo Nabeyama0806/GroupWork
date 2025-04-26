@@ -36,7 +36,7 @@ void ThunderBottle::Update()
 		m_time += Time::GetInstance()->GetDeltaTime();
 		if (m_time > FlushTime)
 		{
-			Bottle::ActiveEffect();
+			Bottle::DestroyBottle();
 			m_time = 0;
 		}
 	}
