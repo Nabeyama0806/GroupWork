@@ -34,7 +34,8 @@ private:
 	int m_select;			//選択している属性
 	int m_getBottleFlag;	//ボトルを持っているかどうか
 	bool m_crossDrawFlag;	//十字の描画フラグ
-	bool m_canWind;
+	bool m_canWind;			// 風瓶を投げれるかどうか
+	bool m_createBottle;	// ボトルを投げれるかどうか
 
 protected:
 	virtual void Update() override;	//更新
@@ -54,5 +55,10 @@ public:
 	{
 		m_getBottleFlag = getBottleFlag;
 		m_canWind = canWind;
+	}
+
+	void SetCreateBottle(bool isBottle)
+	{
+		m_createBottle = isBottle;
 	}
 };

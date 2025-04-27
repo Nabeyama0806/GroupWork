@@ -50,6 +50,7 @@ void MapTile::Create(const Vector3& position)
 		break;
 
 	case CreateMap::TileType::KeyItem:
+		if (m_player->GetIsKey()) break;
 		AddChild(new KeyItem(position));
 		break;
 
@@ -62,22 +63,22 @@ void MapTile::Create(const Vector3& position)
 		break;
 
 	case CreateMap::TileType::FireBottle:
-		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Fire))) return;
+		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Fire))) break;
 		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_fire.mv1", GetBottle::Type::Fire));
 		break;
 
 	case CreateMap::TileType::ThunderBottle:
-		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Thunder))) return;
+		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Thunder))) break;
 		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_thunder.mv1", GetBottle::Type::Thunder));
 		break;
 
 	case CreateMap::TileType::WaterBottle:
-		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Water))) return;
+		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Water))) break;
 		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_water.mv1", GetBottle::Type::Water));
 		break;
 
 	case CreateMap::TileType::WindBottle:
-		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Wind))) return;
+		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Wind))) break;
 		AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_wind.mv1", GetBottle::Type::Wind));
 		break;
 

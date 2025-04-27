@@ -26,7 +26,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_canWindBottleThrow(true),
 	m_onWallHit(false),
 	m_isGoal(false),
-	m_getBottleFlag(15),
+	m_getBottleFlag(0),
 	m_playerFoot(nullptr),
 	m_map(nullptr)
 {
@@ -42,6 +42,9 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 //更新
 void Player::Update()
 {
+	// ゴールしたら動きを封じる
+	if (m_isGoal) return;
+
 	if (!m_camera->GetIsPlayer())
 	{
 		//本来の更新
@@ -59,6 +62,7 @@ void Player::Update()
 	}
 
 	m_uiBottle->SetGetBottleFlag(m_getBottleFlag, m_canWindBottleThrow);
+	m_uiBottle->SetCreateBottle(m_createBottle);
 }
 
 //指定されたボトルの作成
@@ -141,10 +145,6 @@ void Player::Move()
 	if (m_transform.position.y < -500)
 	{
 		m_map->LoadMap(false);
-		/*
-		m_playerFoot->SetPosition(m_spawnPos);
-		m_transform.position = m_spawnPos;
-		*/
 	}
 
 	m_onWallHit = false;

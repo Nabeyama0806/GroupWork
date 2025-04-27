@@ -77,7 +77,8 @@ void UiBottle::Draw()
 	SpriteActor::Draw();
 
 	//è\éöÇÃï`âÊ
-	if (!m_crossDrawFlag || m_select == static_cast<int>(Bottle::Type::Wind) && !m_canWind)
+	if (!m_crossDrawFlag || m_select == static_cast<int>(Bottle::Type::Wind) && !m_canWind ||
+		m_createBottle)
 	{
 		m_crossImg->Draw(m_transform);
 	}
