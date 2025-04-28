@@ -119,7 +119,7 @@ SceneBase* SceneGame::Update()
 	}
 
 	//0ƒL[‚ª‰Ÿ‚³‚ê‚½‚çŽ‹“_‚ðØ‚è‘Ö‚¦‚é
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_0))
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE))
 	{
 		m_isLookPlayer = !m_isLookPlayer;
 		m_mainCamera->SetLookAt(m_isLookPlayer ? m_player : m_stage, m_isLookPlayer);

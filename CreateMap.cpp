@@ -13,7 +13,7 @@
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
-	m_mapIndex(static_cast<int>(MapType::Map5))
+	m_mapIndex(static_cast<int>(MapType::Map0))
 {
 	m_player->SetMap(this);
 	LoadMap(false);
