@@ -41,13 +41,15 @@ void KeyGimmick::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "Player" || other->GetName() == "PlayerFoot")
 	{
-		//Œø‰Ê‰¹
-		SoundManager::Play("Resource/sound/se_open.mp3");
+		
 
 		if (m_player->GetIsKey())
 		{
 			m_destroyWall = true;
 			m_player->UseKey();
+
+			//Œø‰Ê‰¹
+			SoundManager::Play("Resource/sound/se_open.mp3");
 		}
 	}
 }
