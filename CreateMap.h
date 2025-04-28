@@ -36,6 +36,7 @@ public:
 		Map2,
 		Map3,
 		Map4,
+		Map5,
 
 		Length,
 	};
