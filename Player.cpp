@@ -26,7 +26,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_canWindBottleThrow(true),
 	m_onWallHit(false),
 	m_isGoal(false),
-	m_getBottleFlag(0),
+	m_getBottleFlag(15),
 	m_playerFoot(nullptr),
 	m_map(nullptr)
 {
@@ -144,6 +144,7 @@ void Player::Move()
 	//óéâ∫èàóù
 	if (m_transform.position.y < -500)
 	{
+		m_getKey = false;
 		m_map->LoadMap(false);
 	}
 
