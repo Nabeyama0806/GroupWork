@@ -46,5 +46,6 @@ void Effect::Stop()
 {
 	//再生中のエフェクトを停止する
 	StopEffekseer3DEffect(m_playingEffectHandle);
+    m_effectHandle = -1;
 	m_playingEffectHandle = -1;
 }
