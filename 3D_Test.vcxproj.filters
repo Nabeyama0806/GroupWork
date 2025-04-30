@@ -177,9 +177,6 @@
     <ClCompile Include="CreateMap.cpp">
       <Filter>ソース ファイル\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="MapTile.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="TransparentGimmick.cpp">
       <Filter>ソース ファイル\Gimmick</Filter>
     </ClCompile>
@@ -364,9 +361,6 @@
     </ClInclude>
     <ClInclude Include="CreateMap.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="MapTile.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
     <ClInclude Include="TileCube.h">
       <Filter>ヘッダー ファイル\Actor</Filter>

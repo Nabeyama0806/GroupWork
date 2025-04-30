@@ -58,8 +58,10 @@ private:
 
 	std::string GetMapName(int typeNum, int posY)
 	{
-		return "Resource/MapData/Map" + std::to_string(typeNum) + "_data/Map" + std::to_string(posY+1) + ".csv";
+		return "Resource/MapData/Map" + std::to_string(typeNum) + "_data/Map" + std::to_string(posY + 1) + ".csv";
 	};
+
+	void SelectBlock(CreateMap::TileType tile, const Vector3& position, const Vector3& size);
 
 public:
 	CreateMap(Player* m_player);

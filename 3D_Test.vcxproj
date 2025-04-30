@@ -32,7 +32,6 @@
     <ClCompile Include="KeyGimmick.cpp" />
     <ClCompile Include="KeyItem.cpp" />
     <ClCompile Include="LoadMap.cpp" />
-    <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="ModelActor.cpp" />
     <ClCompile Include="ModelActorCollision.cpp" />
     <ClCompile Include="ModelAnimation.cpp" />
@@ -88,7 +87,6 @@
     <ClInclude Include="KeyGimmick.h" />
     <ClInclude Include="KeyItem.h" />
     <ClInclude Include="LoadMap.h" />
-    <ClInclude Include="MapTile.h" />
     <ClInclude Include="ModelActor.h" />
     <ClInclude Include="ActorBase.h" />
     <ClInclude Include="ModelActorCollision.h" />
