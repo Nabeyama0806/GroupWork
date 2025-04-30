@@ -38,7 +38,7 @@ SceneBase* SceneTitle::Update()
 	{
 		//Œø‰Ê‰¹
 		SoundManager::Play("Resource/sound/se_start.mp3");
-		StopSoundMem(m_bgm);
+		SoundManager::SoundStop(m_bgm);
 
 		return new SceneGame();
 	}

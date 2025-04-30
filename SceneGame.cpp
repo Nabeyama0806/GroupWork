@@ -37,7 +37,7 @@ void SceneGame::Initialize()
 	m_uiBottle = new UiBottle();
 	uiLayer->AddChild(m_uiBottle);
 
-	//照準の表示7
+	//照準の表示
 	uiLayer->AddChild(new SpriteActor("reticle", "Resource/Texture/reticle.png", Screen::Center));
 
 	//プレイヤー
@@ -75,7 +75,7 @@ void SceneGame::Finalize()
 	m_rootNode = nullptr;
 
 	//BGM
-	DeleteSoundMem(m_bgm);
+	SoundManager::SoundStop(m_bgm);
 }
 
 //更新
