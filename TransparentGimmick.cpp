@@ -11,11 +11,11 @@ TransparentGimmick::TransparentGimmick(const Vector3& position) :
 	m_appearTime(0)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/Model/Transparent1.mv1");
+	m_model = new Model("Resource/Model/Brock1.mv1");
 
 	//姿勢情報
 	m_transform.position = position;
-	m_transform.scale = Scale;
+	//m_transform.scale = Scale;
 
 	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);

@@ -4,10 +4,14 @@
 
 struct SoundManager
 {
+private:
+	static constexpr int Volume = 50;
+
 public:
 	//Œø‰Ê‰¹‚ÌÄ¶
 	static void Play(int se, int type = DX_PLAYTYPE_BACK)
 	{
+		SetVolume(se);
 		PlaySoundMem(se, type);
 	}
 	static int Play(const char* path, int type = DX_PLAYTYPE_BACK)
@@ -18,9 +22,9 @@ public:
 	}
 
 	//‰¹—Ê‚Ì’²®
-	static void ChangeVolume(int id, int volume)
+	static void SetVolume(int id)
 	{
-		ChangeVolumeSoundMem(volume, id);
+		ChangeVolumeSoundMem(Volume, id);
 	}
 
 	//‰¹‚Ì’â~
