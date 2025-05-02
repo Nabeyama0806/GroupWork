@@ -39,6 +39,8 @@ public:
 		Map5,
 		Map6,
 		Map7,
+		Map8,
+		Map9,
 
 		Length,
 	};
@@ -59,7 +61,7 @@ private:
 
 	void Create(std::vector<std::vector<int>> data, int positionY);
 
-	std::string GetMapName(int typeNum, int posY)
+	std::string GetMapName(int typeNum, int posY) const
 	{
 		return "Resource/MapData/Map" + std::to_string(typeNum) + "_data/Map" + std::to_string(posY + 1) + ".csv";
 	};
