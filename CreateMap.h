@@ -38,6 +38,7 @@ public:
 		Map4,
 		Map5,
 		Map6,
+		Map7,
 
 		Length,
 	};
@@ -53,6 +54,8 @@ private:
 	Player* m_player;	//プレイヤー
 	Node* m_mapNode;
 	int m_mapIndex;	//マップのインデックス
+
+	std::vector<Vector3> m_spawnPos;
 
 	void Create(std::vector<std::vector<int>> data, int positionY);
 

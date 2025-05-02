@@ -15,7 +15,7 @@
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
-	m_mapIndex(static_cast<int>(MapType::Map4))
+	m_mapIndex(static_cast<int>(MapType::Map7))
 {
 	m_player->SetMap(this);
 	LoadMap(false);
@@ -27,6 +27,7 @@ void CreateMap::LoadMap(bool nextMap)
 	if (m_mapNode) m_mapNode->Destroy();
 	m_mapNode = new Node();
 	AddChild(m_mapNode);
+	m_spawnPos.clear();
 
 	for (int i = 0; i < MapHeight; i++)
 	{
@@ -34,6 +35,9 @@ void CreateMap::LoadMap(bool nextMap)
 		std::vector<std::vector<int>> data = LoadMap::GetInstance()->ReadCSV(GetMapName(m_mapIndex, i));
 		Create(data, i);
 	}
+
+	int spawnPosIndex = GetRand(m_spawnPos.size() - 1);
+	m_player->SetSpawnPosition(m_spawnPos[spawnPosIndex]);
 }
 
 void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
@@ -53,7 +57,7 @@ void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
 			//プレイヤーのスポーン地点
 			if (tileType == static_cast<int>(TileType::PlayerSpawn))
 			{
-				m_player->SetSpawnPosition(pos);
+				m_spawnPos.push_back(pos);
 				continue;
 			}
 
