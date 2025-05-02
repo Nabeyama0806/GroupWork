@@ -201,7 +201,6 @@ void Player::OnCollision(const ModelActor* other)
 		m_playerFoot->FollowPlayer();
 	}
 
-
 	if (other->GetName() == "Key")
 	{
 		m_getKey = true;

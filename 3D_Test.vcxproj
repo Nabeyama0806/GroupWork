@@ -123,6 +123,7 @@
     <ClInclude Include="SpriteActor.h" />
     <ClInclude Include="TransparentGimmick.h" />
     <ClInclude Include="UiBottle.h" />
+    <ClInclude Include="UiKeyItem.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="WaterBottle.h" />

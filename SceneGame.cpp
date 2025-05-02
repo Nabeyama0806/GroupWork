@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "UiBottle.h"
 #include "CreateMap.h"
+#include "UiKeyItem.h"
 #include "DxLib.h"
 
 //‰Šú‰»
@@ -53,6 +54,9 @@ void SceneGame::Initialize()
 	ModelActor* skyBox = new ModelActor("SkyBox", "Resource/Model/Skybox.mv1");
 	skyBox->ChangeScale(1700);
 	actorLayer->AddChild(skyBox);
+
+	//Œ®‚ÌŽæ“¾ƒ}[ƒN
+	uiLayer->AddChild(new UiKeyItem(m_player));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");

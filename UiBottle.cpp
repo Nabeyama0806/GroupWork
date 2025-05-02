@@ -15,7 +15,8 @@ UiBottle::UiBottle() :
 	m_select(0),
 	m_crossDrawFlag(false),
 	m_getBottleFlag(0),
-	m_canWind(true)
+	m_canWind(true),
+	m_createBottle(true)
 {	
 	//‰æ‘œ‚Ì“o˜^	
 	m_sprite = new Sprite();
