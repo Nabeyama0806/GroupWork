@@ -7,6 +7,7 @@
 #include "TransparentGimmick.h"
 #include "KeyGimmick.h"
 #include "KeyItem.h"
+#include "UiKeyItem.h"
 #include "TileCube.h"
 #include "Goal.h"
 #include "GetBottle.h"
@@ -15,7 +16,8 @@
 CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
-	m_mapIndex(static_cast<int>(MapType::Map9))
+	m_isExistenceKey(false),
+	m_mapIndex(static_cast<int>(MapType::Map0))
 {
 	m_player->SetMap(this);
 	LoadMap(false);
@@ -28,6 +30,7 @@ void CreateMap::LoadMap(bool nextMap)
 	m_mapNode = new Node();
 	AddChild(m_mapNode);
 	m_spawnPos.clear();
+	m_isExistenceKey = false;
 
 	for (int i = 0; i < MapHeight; i++)
 	{
@@ -38,6 +41,7 @@ void CreateMap::LoadMap(bool nextMap)
 
 	int spawnPosIndex = GetRand(m_spawnPos.size() - 1);
 	m_player->SetSpawnPosition(m_spawnPos[spawnPosIndex]);
+	m_player->SetIsExistenceKey(m_isExistenceKey);
 }
 
 void CreateMap::Create(std::vector<std::vector<int>> data, int positionY)
@@ -93,6 +97,7 @@ void CreateMap::SelectBlock(CreateMap::TileType tile, const Vector3& position, c
 	case CreateMap::TileType::KeyItem:
 		if (m_player->GetIsKey()) break;
 		m_mapNode->AddChild(new KeyItem(position));
+		m_isExistenceKey = true;
 		break;
 
 	case CreateMap::TileType::Transparent:
@@ -126,4 +131,5 @@ void CreateMap::SelectBlock(CreateMap::TileType tile, const Vector3& position, c
 	default:
 		break;
 	}
+
 }

@@ -22,6 +22,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_uiBottle(uiBottle),
 	m_createBottle(false),
 	m_holdMove(0, 0, 0),
+	m_isExistenceKey(false),
 	m_getKey(false),
 	m_canWindBottleThrow(true),
 	m_onWallHit(false),

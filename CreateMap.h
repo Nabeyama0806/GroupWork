@@ -56,6 +56,7 @@ private:
 	Player* m_player;	//プレイヤー
 	Node* m_mapNode;
 	int m_mapIndex;	//マップのインデックス
+	bool m_isExistenceKey;
 
 	std::vector<Vector3> m_spawnPos;
 

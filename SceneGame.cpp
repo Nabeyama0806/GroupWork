@@ -50,13 +50,13 @@ void SceneGame::Initialize()
 	m_map = new CreateMap(m_player);
 	actorLayer->AddChild(m_map);
 
-	//スカイボックス
-	ModelActor* skyBox = new ModelActor("SkyBox", "Resource/Model/Skybox.mv1");
-	skyBox->ChangeScale(1700);
-	actorLayer->AddChild(skyBox);
-
-	//鍵の取得マーク
+	//鍵のUIの表示
 	uiLayer->AddChild(new UiKeyItem(m_player));
+
+	//スカイボックス
+	ModelActor* skybox = new ModelActor("Skybox", "Resource/Model/Skybox.mv1");
+	skybox->ChangeScale(1700);
+	actorLayer->AddChild(skybox);
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");

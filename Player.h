@@ -28,11 +28,12 @@ private:
 	PlayerFoot* m_playerFoot;	//プレイヤーの足
 	CreateMap* m_map;			//マップ
 
-	bool m_createBottle;//ボトルが生きているかどうか
-	bool m_onWallHit;	// 地面についているかどうか
-	bool m_getKey;		// 鍵を持っているかどうか
-	bool m_canWindBottleThrow;
-	bool m_isGoal;
+	bool m_createBottle;		// ボトルが生きているかどうか
+	bool m_onWallHit;			// 地面についているかどうか
+	bool m_isExistenceKey;		// ステージに鍵が存在しているかどうか
+	bool m_getKey;				// 鍵を持っているかどうか
+	bool m_canWindBottleThrow;	// 風ボトルを投げられるかどうか
+	bool m_isGoal;				// 現在のステージをクリアしたかどうか
 
 	int m_getBottleFlag;	// ボトルを持っているかどうか
 
@@ -79,7 +80,6 @@ public:
 	{
 		m_getKey = false;
 	}
-
 	bool GetIsKey() const 
 	{
 		return m_getKey;
@@ -109,10 +109,18 @@ public:
 	{
 		return m_isGoal;
 	}
-
 	void SetIsGoal()
 	{
 		m_isGoal = false;
+	}
+
+	bool GetIsExistenceKey()
+	{
+		return m_isExistenceKey;
+	}
+	void SetIsExistenceKey(bool flag)
+	{
+		m_isExistenceKey = flag;
 	}
 
 	//衝突イベント
