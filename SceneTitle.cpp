@@ -1,6 +1,7 @@
 #include "SceneTitle.h"
 #include "SceneGame.h"
 #include "SpriteActor.h"
+#include "Sprite.h"
 #include "Input.h"
 #include "SoundManager.h"
 #include "SoundLoader.h"
@@ -11,9 +12,16 @@
 void SceneTitle::Initialize()
 {
 	m_rootNode = new Node();
+	m_transform.position = Screen::Center;
+
+	m_sprite = new Sprite();
+	m_sprite->Register("Book", SpriteAnimation("Resource/Book/open.png",30,10,false));
+	m_sprite->gridSize = Screen::Size;
+	m_sprite->Load();
+	m_sprite->Play("Book");
 
 	//背景
-	m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/Texture/title.png", Screen::Center));
+	//m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/Texture/title.png", Screen::Center));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");
@@ -33,14 +41,23 @@ void SceneTitle::Finalize()
 //更新
 SceneBase* SceneTitle::Update()
 {
-	//いずれかのキーが押されたらゲームシーンへ移動
-	if (Input::GetInstance()->IsAnyKeyDown())
+	switch (m_phase)
 	{
-		//効果音
-		SoundManager::Play("Resource/sound/se_start.mp3");
-		SoundManager::SoundStop(m_bgm);
+	case Phase::Run:
+		//いずれかのキーが押されたらゲームシーンへ移動
+		if (Input::GetInstance()->IsAnyKeyDown())
+		{
+			//効果音
+			SoundManager::Play("Resource/sound/se_start.mp3");
+			SoundManager::SoundStop(m_bgm);
+			m_phase = Phase::OpenBook;
+		}
+		break;
 
+	case Phase::OpenBook:
 		return new SceneGame();
+		
+		break;
 	}
 
 	//ノードの更新
@@ -54,5 +71,5 @@ void SceneTitle::Draw()
 {
 	//ノードの描画
 	m_rootNode->TreeDraw();
-
+	m_sprite->Draw(m_transform);
 }
