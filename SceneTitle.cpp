@@ -1,41 +1,31 @@
 #include "SceneTitle.h"
 #include "SceneGame.h"
-#include "SpriteActor.h"
-#include "Sprite.h"
-#include "Input.h"
 #include "SoundManager.h"
 #include "SoundLoader.h"
+#include "Input.h"
 #include "Screen.h"
 #include "DxLib.h"
 
 //初期化
 void SceneTitle::Initialize()
 {
-	m_rootNode = new Node();
 	m_transform.position = Screen::Center;
 
+	//アニメーションの登録
 	m_sprite = new Sprite();
-	m_sprite->Register("Book", SpriteAnimation("Resource/Book/open.png",30,10,false));
 	m_sprite->gridSize = Screen::Size;
+	for (int i = 0; i < static_cast<int>(Anime::Length); ++i)
+	{
+		m_sprite->Register(AnimeName[i], AnimeDate[i]);
+	}
 	m_sprite->Load();
-	m_sprite->Play("Book");
-
-	//背景
-	//m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/Texture/title.png", Screen::Center));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
 
-	SetBackgroundColor(255, 255, 255); //背景色の変更
-}
-
-//終了
-void SceneTitle::Finalize()
-{
-	m_rootNode->TreeRelease();
-	delete m_rootNode;
-	m_rootNode = nullptr;
+	//背景色の変更
+	SetBackgroundColor(255, 255, 255); 
 }
 
 //更新
@@ -55,13 +45,18 @@ SceneBase* SceneTitle::Update()
 		break;
 
 	case Phase::OpenBook:
-		return new SceneGame();
+		//アニメーションの更新
+		m_sprite->Update();
+		m_sprite->Play(AnimeName[static_cast<int>(m_anime)]);
 		
+		//アニメーションが終わるとシーン遷移
+		if (m_sprite->IsFinishAnime())
+		{
+			if (m_anime == Anime::Initial) m_anime = Anime::Final;
+			else return new SceneGame();
+		}
 		break;
 	}
-
-	//ノードの更新
-	m_rootNode->TreeUpdate();
 
 	return this;
 }
@@ -69,7 +64,5 @@ SceneBase* SceneTitle::Update()
 //描画
 void SceneTitle::Draw()
 {
-	//ノードの描画
-	m_rootNode->TreeDraw();
 	m_sprite->Draw(m_transform);
 }
