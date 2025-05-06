@@ -27,12 +27,14 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_canWindBottleThrow(true),
 	m_onWallHit(false),
 	m_isGoal(false),
-	m_getBottleFlag(15),
+	m_getBottleFlag(0),
 	m_playerFoot(nullptr),
 	m_map(nullptr)
 {
 	//p¨î•ñ‚Ì’²®
 	m_transform.scale = Scale;
+
+	m_model = new Model("Resource/Model/Player.mv1");
 
 	//Õ“Ë”»’è
 	m_collider = new BoxCollider(ColliderSize);

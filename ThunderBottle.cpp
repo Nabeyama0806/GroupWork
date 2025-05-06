@@ -1,5 +1,4 @@
 #include "ThunderBottle.h"
-#include "BoxCollider.h"
 #include "HitCollider.h"
 #include "Model.h"
 #include "Player.h"

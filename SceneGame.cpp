@@ -7,8 +7,6 @@
 #include "Input.h"
 #include "Node.h"
 #include "Sprite.h"
-#include "ModelActor.h"
-#include "SpriteActor.h"
 #include "Camera.h"
 #include "Player.h"
 #include "UiBottle.h"
