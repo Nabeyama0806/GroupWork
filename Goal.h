@@ -1,7 +1,8 @@
 #pragma once
 #include "ModelActor.h"
-
-class CreateMap;
+#include "Model.h"
+#include "CreateMap.h"
+#include "BoxCollider.h"
 
 class Goal : public ModelActor
 {
@@ -10,5 +11,15 @@ private:
 
 public:
 	//コンストラクタ
-	Goal(const Vector3& position, CreateMap* map);
+	Goal(const Vector3& position, CreateMap* map) :
+		ModelActor("Goal"),
+		m_map(map)
+	{
+		m_model = new Model("Resource/Model/goal.mv1");
+
+		//姿勢情報の調整
+		m_transform.position = position;
+
+		m_collider = new BoxCollider(Vector3(100, 100, 100));
+	}
 };

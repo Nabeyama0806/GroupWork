@@ -15,8 +15,10 @@ PlayerFoot::PlayerFoot(Player* player, Vector3& position) :
 //更新
 void PlayerFoot:: Update()
 {
+	//本来の更新
 	ModelActor::Update();
 
+	//プレイヤーの足元座標に移動
 	FollowPlayer();
 
 	m_isGrounded = false;

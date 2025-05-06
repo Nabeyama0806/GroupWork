@@ -2,7 +2,6 @@
 #include "Player.h"
 #include "Time.h"
 
-
 void Bottle::Update()
 {
 	//–{—ˆ‚ÌXV

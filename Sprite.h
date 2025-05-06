@@ -26,8 +26,10 @@ public:
 
 	//デストラクタ
 	virtual ~Sprite();
+
 	//画像の読み込み
 	void Load();
+
 	//画像の開放
 	void Release();
 

@@ -186,9 +186,6 @@
     <ClCompile Include="KeyGimmick.cpp">
       <Filter>ソース ファイル\Gimmick</Filter>
     </ClCompile>
-    <ClCompile Include="Goal.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>

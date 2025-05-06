@@ -15,7 +15,7 @@ void Camera::Update()
 	if (m_lookAt != nullptr)
 	{
 		m_targetPos = m_lookAt->GetPosition();		//注視点を設定
-		m_targetPos.y += m_lookAtHeight;				//注視点のオフセット
+		m_targetPos.y += m_lookAtHeight;			//注視点のオフセット
 	}
 	else
 	{

@@ -18,6 +18,7 @@ class Player;
 class SceneGame : public SceneBase
 {
 private:
+	static constexpr float ResultTransitionTime = 2.0f;	//プレイヤーが死んでからリザルト画面に遷移するまでの時間
 
 	//フェーズ
 	enum class Phase
@@ -37,7 +38,6 @@ private:
 		"Resource/Model/bottle_wind.mv1",
 	};
 
-	static constexpr float ResultTransitionTime = 2.0f;	//プレイヤーが死んでからリザルト画面に遷移するまでの時間
 	Node* m_rootNode;		//ツリーノード
 	ModelActor* m_stage;	// 背景ステージ
 	CreateMap* m_map;
