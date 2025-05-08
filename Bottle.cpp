@@ -12,15 +12,8 @@ void Bottle::Update()
 
 	if (m_transform.position.y < -300)
 	{
-		DestroyBottle();
+		Destroy();
 	}
-}
-
-void Bottle::DestroyBottle()
-{
-	//Ž©g‚ðíœ
-	m_player->DestroyBottle();
-	Destroy();
 }
 
 Vector3 Bottle::Throw(Vector3& position) const

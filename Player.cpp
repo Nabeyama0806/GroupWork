@@ -20,7 +20,6 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	ModelActor("Player"),
 	m_camera(camera),
 	m_uiBottle(uiBottle),
-	m_createBottle(false),
 	m_holdMove(0, 0, 0),
 	m_isExistenceKey(false),
 	m_getKey(false),
@@ -72,14 +71,11 @@ void Player::Update()
 	}
 
 	m_uiBottle->SetGetBottleFlag(m_getBottleFlag, m_canWindBottleThrow);
-	m_uiBottle->SetCreateBottle(m_createBottle);
 }
 
 //Žw’è‚³‚ê‚½ƒ{ƒgƒ‹‚Ìì¬
 void Player::CreateBottle()
 {
-	if (m_createBottle) return;
-
 	if (m_uiBottle->GetType() == Bottle::Type::Wind && !m_canWindBottleThrow) return;
 	if (!(m_getBottleFlag & (1 << static_cast<int>(m_uiBottle->GetType())))) return;
 
@@ -106,7 +102,6 @@ void Player::CreateBottle()
 		break;
 	}
 
-	m_createBottle = true;
 	SoundManager::Play("Resource/sound/se_bottle_create.mp3");
 }
 
@@ -211,8 +206,6 @@ void Player::OnCollision(const ModelActor* other)
 		m_onWallHit = true;
 		m_playerFoot->FollowPlayer();
 	}
-
-	
 
 	if (other->GetName() == "Key")
 	{

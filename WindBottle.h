@@ -9,7 +9,6 @@ private:
 
 protected:
 	virtual void Update() override;
-	virtual void DestroyBottle() override;
 
 public:
 	//コンストラクタ

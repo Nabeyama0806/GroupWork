@@ -28,8 +28,7 @@ private:
 	PlayerFoot* m_playerFoot;	//プレイヤーの足
 	CreateMap* m_map;			//マップ
 
-	bool m_createBottle;		// ボトルが生きているかどうか
-	bool m_onWallHit;			// 地面についているかどうか
+	bool m_onWallHit;			// 壁と接触しているか
 	bool m_isExistenceKey;		// ステージに鍵が存在しているかどうか
 	bool m_getKey;				// 鍵を持っているかどうか
 	bool m_canWindBottleThrow;	// 風ボトルを投げられるかどうか
@@ -85,11 +84,6 @@ public:
 	{
 		return m_getKey;
 	}
-
-	void DestroyBottle() //ボトルを破棄する
-	{
-		m_createBottle = false;
-	}	
 
 	void SetCanWindBottleThrow()
 	{

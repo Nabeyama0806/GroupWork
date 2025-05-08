@@ -36,14 +36,9 @@ void WindBottle::Update()
 
 	if (m_transform.position.y < -300)
 	{
-		DestroyBottle();
+		Destroy();
+		m_player->SetCanWindBottleThrow();
 	}
-}
-
-void WindBottle::DestroyBottle()
-{
-	Bottle::DestroyBottle();
-	m_player->SetCanWindBottleThrow();
 }
 
 //衝突イベント
@@ -59,7 +54,7 @@ void WindBottle::OnCollision(const ModelActor* other)
 		hit != "Transparent" && hit != "PlayerFoot")
 	{
 		// 自身の削除
-		Bottle::DestroyBottle();
+		Destroy();
 		if (other->GetName() != "Wall") m_player->SetCanWindBottleThrow();
 	}
 }

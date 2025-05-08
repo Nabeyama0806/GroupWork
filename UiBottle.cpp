@@ -15,8 +15,7 @@ UiBottle::UiBottle() :
 	m_select(0),
 	m_crossDrawFlag(false),
 	m_getBottleFlag(0),
-	m_canWind(true),
-	m_createBottle(true)
+	m_canWind(true)
 {	
 	//‰æ‘œ‚Ì“o˜^	
 	m_sprite = new Sprite();
@@ -78,8 +77,7 @@ void UiBottle::Draw()
 	SpriteActor::Draw();
 
 	//\š‚Ì•`‰æ
-	if (!m_crossDrawFlag || m_select == static_cast<int>(Bottle::Type::Wind) && !m_canWind ||
-		m_createBottle)
+	if (!m_crossDrawFlag || m_select == static_cast<int>(Bottle::Type::Wind) && !m_canWind)
 	{
 		m_crossImg->Draw(m_transform);
 	}

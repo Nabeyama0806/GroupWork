@@ -31,7 +31,6 @@ protected:
 	Player* m_player;
 
 	virtual void Update() override;		//XV
-	virtual void DestroyBottle();				//Œø‰Ê‚Ì”­“®
 	Vector3 Throw(Vector3& position) const;
 
 public:
