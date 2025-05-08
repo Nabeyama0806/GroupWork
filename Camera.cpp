@@ -10,6 +10,13 @@ void Camera::Update()
 	// カメラの視点移動
 	if (!Input::GetInstance()->IsKeyPress(KEY_INPUT_RSHIFT)) MouseCamera();
 
+	if (!m_isPlayer)
+	{
+		// マウスホイール回転量を距離に加える
+		m_cameraDistance -= Input::GetInstance()->GetInstance()->GetMouseHweelRot() * 60;
+		m_cameraDistance > MaxStageCameraDistance ? m_cameraDistance = MaxStageCameraDistance : m_cameraDistance < MinStageCameraDistance ? m_cameraDistance = MinStageCameraDistance : m_cameraDistance;
+	}
+
 	Vector3 tempPosition1;
 	Vector3 tempPosition2;
 	if (m_lookAt != nullptr)

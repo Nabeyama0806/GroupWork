@@ -2,7 +2,7 @@
 #include "SpriteActor.h"
 #include "Bottle.h"
 
-class Player;
+class Camera;
 
 class UiBottle : public SpriteActor
 {
@@ -29,7 +29,7 @@ private:
 	};
 
 	Sprite* m_crossImg;	// 使用不可時の画像
-
+	Camera* m_camera;
 	Bottle::Type m_type;	//自身の属性
 	int m_select;			//選択している属性
 	int m_getBottleFlag;	//ボトルを持っているかどうか
@@ -42,7 +42,7 @@ protected:
 
 public:
 	//コンストラクタ
-	UiBottle();
+	UiBottle(Camera* camera);
 
 	//選択されているボトルの取得
 	Bottle::Type GetType()

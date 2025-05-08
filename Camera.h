@@ -14,12 +14,13 @@ private:
 	static constexpr float PlayerLookAtHeight = 50;			//注視点からの高さのオフセット
 	static constexpr float StageLookAtHeight = 0;
 	static constexpr float PlayerCameraDistance = 1.0f;		//カメラ座標までの距離
-	static constexpr float StageCameraDistance = 1500;
+	static constexpr float MaxStageCameraDistance = 2000;
+	static constexpr float MinStageCameraDistance = 1000;
 
 	static constexpr float CameraMaxVAngle = 80.0f;		//カメラの縦回転の最大値
 	static constexpr float CameraMinVAngle = -40.0f;	//カメラの縦回転の最小値
 
-	static constexpr Vector3 StageCenter = Vector3(450, 450, 450);
+	static constexpr Vector3 StageCenter = Vector3(450, 750, 450);
 
 	Transform* m_transform;		//姿勢情報
 	ModelActor* m_lookAt;		//注視するオブジェクト
@@ -29,7 +30,7 @@ private:
 
 	float m_lookAtHeight;
 	float m_cameraDistance;
-	
+	float m_stageCameraDistance;
 	float m_cameraHAngle;		//横回転
 	float m_cameraVAngle;		//縦回転
 
@@ -48,7 +49,8 @@ public:
 		m_transform(nullptr),
 		m_lookAt(nullptr),
 		m_lookAtHeight(0),
-		m_cameraDistance(0),
+		m_cameraDistance(1500),
+		m_stageCameraDistance(1500),
 		m_cameraHAngle(0),
 		m_cameraVAngle(0),
 		m_isDisplayMouse(false),
@@ -62,7 +64,7 @@ public:
 	{
 		m_lookAt = actor;
 		m_lookAtHeight = isPlayer ? PlayerLookAtHeight : StageLookAtHeight;
-		m_cameraDistance = isPlayer ? PlayerCameraDistance : StageCameraDistance;
+		m_cameraDistance = isPlayer ? PlayerCameraDistance : m_stageCameraDistance;
 		m_isPlayer = isPlayer;
 	}
 

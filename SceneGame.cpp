@@ -41,7 +41,7 @@ void SceneGame::Initialize()
 	m_rootNode->AddChild(uiLayer);
 
 	//ボトルUIの表示
-	m_uiBottle = new UiBottle();
+	m_uiBottle = new UiBottle(m_mainCamera);
 	uiLayer->AddChild(m_uiBottle);
 
 	//照準の表示

@@ -6,11 +6,13 @@
 #include "SoundManager.h"
 #include "Sprite.h"
 #include "Player.h"
+#include "Camera.h"
 #include "Input.h"
 
 //コンストラクタ
-UiBottle::UiBottle() :
+UiBottle::UiBottle(Camera* camera) :
 	SpriteActor("UiBottle"),
+	m_camera(camera),
 	m_type(Bottle::Type::Fire),
 	m_select(0),
 	m_crossDrawFlag(false),
@@ -44,6 +46,7 @@ void UiBottle::Update()
 	SpriteActor::Update();
 
 	//属性ビンの切り替え
+	if (!m_camera->GetIsPlayer()) return;
 	int mouseHweel = Input::GetInstance()->GetMouseHweelRot();
 	if (mouseHweel != 0)
 	{
