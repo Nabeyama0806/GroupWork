@@ -46,8 +46,8 @@ UiBottle::UiBottle(Camera* camera) :
 
 	//表示する座標の調整
 	m_transform.position = Screen::BottomRight + ScreenOffset;
-	m_nextTransform.position = m_transform.position + SubBottleOffset;
-	m_prevTransform.position = m_transform.position - SubBottleOffset;
+	m_nextTransform.position = m_transform.position - SubBottleOffset;
+	m_prevTransform.position = m_transform.position + SubBottleOffset;
 }
 
 //更新
