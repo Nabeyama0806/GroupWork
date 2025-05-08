@@ -34,8 +34,8 @@ private:
 	//アニメのファイルパス
 	const SpriteAnimation AnimeDate[static_cast<int>(Anime::Length)] =
 	{
-		SpriteAnimation("Resource/Book/open1.png", 15, 15, false),
-		SpriteAnimation("Resource/Book/open2.png", 15, 13, false),
+		SpriteAnimation("Resource/Book/open1.png", 10, 15, false),
+		SpriteAnimation("Resource/Book/open2.png", 10, 13, false),
 	};
 
 	Phase m_phase;
