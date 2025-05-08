@@ -188,8 +188,9 @@ void Player::OnCollision(const ModelActor* other)
 {
 	//•Ç
 	if (other->GetName() == "Wall" || other->GetName() == "Fire" || 
-		other->GetName() == "KeyBlock" || other->GetName() == "Transparent")
+		other->GetName() == "KeyBlock")
 	{
+
 		// •Ç‚ÌƒTƒCƒY
 		Vector3 colCenter = other->GetPosition();
 
@@ -203,6 +204,8 @@ void Player::OnCollision(const ModelActor* other)
 		m_onWallHit = true;
 		m_playerFoot->FollowPlayer();
 	}
+
+	
 
 	if (other->GetName() == "Key")
 	{

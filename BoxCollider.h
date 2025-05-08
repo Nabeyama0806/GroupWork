@@ -45,8 +45,6 @@ public:
 	}
 #endif
 
-private:
-
 	void DrawBoxLine(const Transform& transform) const
 	{
 		for (int i = -1; i <= 1; ++i)
@@ -59,19 +57,19 @@ private:
 				DrawLine3D(
 					VGet(transform.position.x - m_size.x / 2 + m_offset.x, transform.position.y + m_size.y / 2 * i + m_offset.y, transform.position.z + m_size.z / 2 * j + m_offset.z),
 					VGet(transform.position.x + m_size.x / 2 + m_offset.x, transform.position.y + m_size.y / 2 * i + m_offset.y, transform.position.z + m_size.z / 2 * j + m_offset.z),
-					GetColor(255, 255, 0));
+					GetColor(255, 255, 255));
 
 				// Y
 				DrawLine3D(
 					VGet(transform.position.x + m_size.x / 2 * j + m_offset.x, transform.position.y + m_size.y / 2 + m_offset.y, transform.position.z + m_size.z / 2 * i + m_offset.z),
 					VGet(transform.position.x + m_size.x / 2 * j + m_offset.x, transform.position.y - m_size.y / 2 + m_offset.y, transform.position.z + m_size.z / 2 * i + m_offset.z),
-					GetColor(255, 255, 0));
+					GetColor(255, 255, 255));
 
 				// Z
 				DrawLine3D(
 					VGet(transform.position.x + m_size.x / 2 * i + m_offset.x, transform.position.y + m_size.y / 2 * j + m_offset.y, transform.position.z + m_size.z / 2 + m_offset.z),
 					VGet(transform.position.x + m_size.x / 2 * i + m_offset.x, transform.position.y + m_size.y / 2 * j + m_offset.y, transform.position.z - m_size.z / 2 + m_offset.z),
-					GetColor(255, 255, 0));
+					GetColor(255, 255, 255));
 			}
 		}
 	}

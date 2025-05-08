@@ -15,7 +15,6 @@ TransparentGimmick::TransparentGimmick(const Vector3& position) :
 
 	//p¨î•ñ
 	m_transform.position = position;
-	//m_transform.scale = Scale;
 
 	//Õ“Ë”»’è
 	m_collider = new BoxCollider(ColliderSize);
@@ -41,11 +40,14 @@ void TransparentGimmick::Active()
 //•`‰æ
 void TransparentGimmick::Draw()
 {
-	//Œõ‚ç‚¹‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚È‚¯‚ê‚Î•`‰æ‚µ‚È‚¢
-	if (!m_appear) return;
+	//Œõ‚Á‚Ä‚¢‚È‚¢‚Æ‚«‚Í˜gü‚ğ•\¦
+	m_appear ? GimmickBase::Draw() : DrawFrameLine();
+}
 
-	//–{—ˆ‚Ì•`‰æ
-	GimmickBase::Draw();
+//˜gü‚Ì•\¦
+void TransparentGimmick::DrawFrameLine()
+{
+	dynamic_cast<BoxCollider*>(m_collider)->DrawBoxLine(m_transform);
 }
 
 //Õ“ËƒCƒxƒ“ƒg

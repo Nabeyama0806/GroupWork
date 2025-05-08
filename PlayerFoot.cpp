@@ -1,5 +1,6 @@
 #include "PlayerFoot.h"
 #include "Player.h"
+#include "TransparentGimmick.h"
 
 //コンストラクタ
 PlayerFoot::PlayerFoot(Player* player, Vector3& position) :
@@ -30,6 +31,12 @@ void PlayerFoot:: Update()
 	if (other->GetName() == "Wall" || other->GetName() == "Fire"  || other->GetName() == "KeyBlock"
 	||	other->GetName() == "Wind" || other->GetName() == "Water" || other->GetName() == "Transparent")
 	{
+		if (other->GetName() == "Transparent")
+		{
+			//透明床が光っていなければ当たり判定を無視する
+			if (!dynamic_cast<TransparentGimmick*>(const_cast<ModelActor*>(other))->GetAppear()) return;
+		}
+
 		m_isGrounded = true;
 		
 		m_transform.position.y = other->GetPosition().y + dynamic_cast<const BoxCollider*>(other->GetCollider())->GetSize().y / 2 + ColliderSize.y / 2;

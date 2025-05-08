@@ -11,6 +11,9 @@ private:
 
 	bool m_appear;		// Œ©‚¦‚é‚©‚Ç‚¤‚©
 	float m_appearTime;	// Œ©‚¦‚Ä‚¢‚éŠÔ‚ÌŠÔ
+
+	void DrawFrameLine();
+
 protected:
 	//Œø‰Ê‚Ì”­“®
 	virtual void Active() override;
@@ -22,4 +25,9 @@ public:
 
 	//Õ“ËƒCƒxƒ“ƒg
 	virtual void OnCollision(const ModelActor* other) override;
+
+	bool GetAppear()
+	{
+		return m_appear;
+	}
 };
