@@ -1,7 +1,6 @@
 #pragma once
 #include "ModelActor.h"
 #include "BoxCollider.h"
-#include "CircleCollider.h"
 
 class HitCollider : public ModelActor
 {
@@ -11,12 +10,5 @@ public:
 		ModelActor(name, nullptr, position)
 	{
 		m_collider = new BoxCollider(size);
-	}
-
-	//‰~Œ`‚Ì“–‚½‚è”»’è
-	HitCollider(const char* name, const Vector3& position, const float size) :
-		ModelActor(name, nullptr, position)
-	{
-		m_collider = new CircleCollider(size);
 	}
 };

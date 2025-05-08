@@ -123,9 +123,6 @@
     <ClCompile Include="Node.cpp">
       <Filter>ソース ファイル\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>ソース ファイル\Collider</Filter>
-    </ClCompile>
     <ClCompile Include="ModelActorCollision.cpp">
       <Filter>ソース ファイル\Collider</Filter>
     </ClCompile>
@@ -290,16 +287,7 @@
     <ClInclude Include="Player.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>ヘッダー ファイル\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>ヘッダー ファイル\Collider</Filter>
-    </ClInclude>
     <ClInclude Include="BoxCollider.h">
-      <Filter>ヘッダー ファイル\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleCollider.h">
       <Filter>ヘッダー ファイル\Collider</Filter>
     </ClInclude>
     <ClInclude Include="ModelActorCollision.h">

@@ -1,6 +1,5 @@
 #include "ModelActorCollision.h"
 #include "ModelActor.h"
-#include "Collider.h"
 
 //更新
 void ModelActorCollision::Update()
@@ -28,11 +27,11 @@ void ModelActorCollision::Update()
 			//自身はスキップ
 			if (actor1 == actor2) continue;
 
-			//衝突判定
-			if (actor1->GetCollider()->CheckCollision(
-				actor1->GetTransform(),
+			if (actor1->GetCollider()->Check(
+				actor1->GetTransform(), actor1->GetCollider(),
 				actor2->GetTransform(), actor2->GetCollider()))
 			{
+				//衝突判定
 				actor1->OnCollision(actor2);
 				actor2->OnCollision(actor1);
 			}

@@ -47,7 +47,7 @@ void TransparentGimmick::Draw()
 //枠線の表示
 void TransparentGimmick::DrawFrameLine()
 {
-	dynamic_cast<BoxCollider*>(m_collider)->DrawBoxLine(m_transform);
+	m_collider->DrawBoxLine(m_transform);
 }
 
 //衝突イベント

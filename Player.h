@@ -35,7 +35,6 @@ private:
 	bool m_isGoal;				// 現在のステージをクリアしたかどうか
 
 	int m_getBottleFlag;	// ボトルを持っているかどうか
-	int ModelHandle, LightHandle;//ライトハンドル
 
 	void Move();			//移動処理
 	void CreateBottle();	//指定されたボトルの作成

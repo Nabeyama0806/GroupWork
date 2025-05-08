@@ -39,7 +39,7 @@ void PlayerFoot:: Update()
 
 		m_isGrounded = true;
 		
-		m_transform.position.y = other->GetPosition().y + dynamic_cast<const BoxCollider*>(other->GetCollider())->GetSize().y / 2 + ColliderSize.y / 2;
+		m_transform.position.y = other->GetPosition().y + other->GetCollider()->GetSize().y / 2 + ColliderSize.y / 2;
 
 		Vector3 playerPos = m_player->GetPosition();
 		playerPos.y = m_transform.position.y - ColliderOffset.y;

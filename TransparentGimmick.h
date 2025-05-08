@@ -26,7 +26,7 @@ public:
 	//Õ“ËƒCƒxƒ“ƒg
 	virtual void OnCollision(const ModelActor* other) override;
 
-	bool GetAppear()
+	bool GetAppear() const
 	{
 		return m_appear;
 	}

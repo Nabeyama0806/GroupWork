@@ -1,35 +1,38 @@
 #pragma once
-#include "Collider.h"
-#include "Collision.h"
 #include "DxLib.h"
 
-class BoxCollider : public Collider
+class BoxCollider
 {
 public:
 	Vector3 m_size;
+	Vector3 m_offset;
 
 	//コンストラクタ
 	BoxCollider(const Vector3& size, const Vector3& offset = Vector3()) : 
-		Collider(offset),
-		m_size(size) { }
+		m_size(size),
+		m_offset(offset){ }
 
-	//衝突判定
-	virtual bool CheckCollision(const Transform& transform1, const Transform& transform2, const Collider* collider) const override
-	{
-		//ダブルディスパッチによる形状識別
-		return collider->CheckCollision(transform1, transform2, this);
-	}
-	
-	//矩形と矩形の当たり判定
-	virtual bool CheckCollision(const Transform& transform1, const Transform& transform2, const BoxCollider* collider) const override
-	{
-		return Collision::Check(transform1, collider, transform2, this);
-	}
 
-	//矩形と円形の当たり判定
-	virtual bool CheckCollision(const Transform& transform1, const Transform& transform2, const CircleCollider* collider) const override
+	bool Check(
+		const Transform& transform1, const BoxCollider* box1,
+		const Transform& transform2, const BoxCollider* box2
+	)
 	{
-		return Collision::Check(transform1, this, transform2, collider);
+		//
+		Vector3 center1 = transform1.position + box1->m_offset;
+		Vector3 size1 = box1->m_size;
+
+		Vector3 center2 = transform2.position + box2->m_offset;
+		Vector3 size2 = box2->m_size;
+
+		//
+		if (abs(center1.x - center2.x) <= (size1.x + size2.x) / 2
+			&& abs(center1.y - center2.y) <= (size1.y + size2.y) / 2
+			&& abs(center1.z - center2.z) <= (size1.z + size2.z) / 2)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	Vector3 GetSize() const
@@ -37,9 +40,10 @@ public:
 		return m_size;
 	}
 
+
 #ifdef _DEBUG
 	// 描画
-	virtual void Draw(const Transform& transform) const override
+	void Draw(const Transform& transform) const
 	{
 		DrawBoxLine(transform);
 	}

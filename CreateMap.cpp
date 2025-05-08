@@ -39,7 +39,7 @@ void CreateMap::LoadMap(bool nextMap)
 		Create(data, i);
 	}
 
-	int spawnPosIndex = GetRand(m_spawnPos.size() - 1);
+	int spawnPosIndex = GetRand(static_cast<int>(m_spawnPos.size()) - 1);
 	m_player->SetSpawnPosition(m_spawnPos[spawnPosIndex]);
 	m_player->SetIsExistenceKey(m_isExistenceKey);
 }

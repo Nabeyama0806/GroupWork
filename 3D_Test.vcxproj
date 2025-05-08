@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bottle.cpp" />
-    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CreateMap.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
@@ -71,9 +70,6 @@
   <ItemGroup>
     <ClInclude Include="Bottle.h" />
     <ClInclude Include="BoxCollider.h" />
-    <ClInclude Include="CircleCollider.h" />
-    <ClInclude Include="Collider.h" />
-    <ClInclude Include="Collision.h" />
     <ClInclude Include="CreateMap.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />

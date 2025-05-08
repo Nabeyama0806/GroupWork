@@ -35,13 +35,6 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 
 	m_model = new Model("Resource/Model/Player.mv1");
 
-	// モデルの上側にポイントタイプのライトを作成
-	LightHandle = CreatePointLightHandle(
-		VGet(320.0f, 1000.0f, 600.0f),
-		2000.0f,
-		0.0f,
-		0.002f,
-		0.0f);
 	//衝突判定
 	m_collider = new BoxCollider(ColliderSize);
 	m_playerFoot = new PlayerFoot(this, m_transform.position);

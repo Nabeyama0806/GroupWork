@@ -1,10 +1,10 @@
 #pragma once
 #include "ActorBase.h"
 #include "Transform.h"
+#include "BoxCollider.h"
 #include <string>
 
 class Model;
-class Collider;
 
 class ModelActor : public ActorBase
 {
@@ -12,7 +12,7 @@ protected:
 	static constexpr Vector3 ColliderSize = Vector3(100, 100, 100);			// コライダーのサイズ
 	static constexpr Vector3 Scale = Vector3(25, 25, 25);
 	Model* m_model;					//3Dモデル		
-	Collider* m_collider;			//衝突判定
+	BoxCollider* m_collider;			//衝突判定
 
 	virtual void Load() override;		//リソースの読み込み
 	virtual void Release() override;	//リソースの解放
@@ -30,12 +30,11 @@ public:
 	//子ノードを含む更新
 	virtual void TreeUpdate() override;
 
-	//衝突判定の形状取得
-	const Collider* GetCollider() const
+	//衝突イベント
+	virtual void OnCollision(const ModelActor* other) {}
+
+	BoxCollider* GetCollider() const
 	{
 		return m_collider;
 	}
-
-	//衝突イベント
-	virtual void OnCollision(const ModelActor* other) {}
 };

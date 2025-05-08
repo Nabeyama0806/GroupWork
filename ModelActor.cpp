@@ -1,7 +1,6 @@
 #include "ModelActor.h"
 #include "ModelAnimation.h"
 #include "ModelActorCollision.h"
-#include "Collider.h"
 #include "Model.h"
 
 //コンストラクタ
