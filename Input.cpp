@@ -13,12 +13,6 @@ void Input::Update()
 	//現フレームのキー入力状態を取得
 	GetHitKeyStateAll(m_keyState);
 
-	//WASDが押されたらカーソルキーが入力されたことにする（プレイヤー騙し）
-	/*if (m_keyState[KEY_INPUT_W]) m_keyState[KEY_INPUT_UP] = 1;
-	if (m_keyState[KEY_INPUT_A]) m_keyState[KEY_INPUT_LEFT] = 1;
-	if (m_keyState[KEY_INPUT_S]) m_keyState[KEY_INPUT_DOWN] = 1;
-	if (m_keyState[KEY_INPUT_D]) m_keyState[KEY_INPUT_RIGHT] = 1;*/
-
 	//マウス
 
 	//前フレームのマウスボタン入力状態を保存
@@ -38,6 +32,36 @@ void Input::Update()
 
 	//マウスの左ボタンが押されたら、Zキーが入力されたことにする
 	if (m_mouseButton & MOUSE_INPUT_LEFT) m_keyState[KEY_INPUT_Z] = 1;
+
+	// パッド
+	m_padButtonPost = m_padButton;
+	m_padButton = GetJoypadInputState(DX_INPUT_PAD1);
+
+	//パッドの方向ボタンを押したらWASDが押されたことにする（プレイヤー騙し）
+	if (IsPadPress(PAD_INPUT_UP)) m_keyState[KEY_INPUT_W] = 1;
+	if (IsPadPress(PAD_INPUT_LEFT)) m_keyState[KEY_INPUT_A] = 1;
+	if (IsPadPress(PAD_INPUT_DOWN)) m_keyState[KEY_INPUT_S] = 1;
+	if (IsPadPress(PAD_INPUT_RIGHT)) m_keyState[KEY_INPUT_D] = 1;
+	// パッドの4ボタン(△)をSpaceキーにする
+	if (IsPadDown(PAD_INPUT_4)) m_keyState[KEY_INPUT_SPACE] = 1;
+	// パッドの1ボタン(×)を左クリックにする
+	if (IsPadDown(PAD_INPUT_1)) m_mouseButton |= MOUSE_INPUT_LEFT;
+	// パッドのLRボタンをマウスホイールにする
+	if (IsPadDown(PAD_INPUT_5)) m_mouseWheel = 1;
+	if (IsPadDown(PAD_INPUT_6)) m_mouseWheel = -1;
+
+	// パッドの右スティックでマウスカーソルを動かす
+	int padPointX = 0;
+	int padPointY = 0;
+	DxLib::GetJoypadAnalogInputRight(&padPointX, &padPointY, DX_INPUT_PAD1);
+	// 感度調整
+	Vector2 movePadPoint = Vector2(padPointX, padPointY) * PadStickSensitivity;
+	m_mousePoint += movePadPoint;
+
+#ifdef _DEBUG
+	// パッドのShareボタンをESCキーにする
+	if (IsPadDown(PAD_INPUT_7)) m_keyState[KEY_INPUT_ESCAPE] = 1;
+#endif // DEBUG
 }
 
 //何かキーが押された瞬間
@@ -57,6 +81,12 @@ bool Input::IsAnyKeyDown()
 		return false;
 	}
 
+	// パッド
+	if ((m_padButton & ~m_padButtonPost) != 0)
+	{
+		return true;
+	}
+
 	//配列から１を探し出す
 	return std::memchr(m_keyState, 1, sizeof(char) * KeyStateNum) != nullptr;
 }
@@ -66,6 +96,12 @@ bool Input::IsAnyKeyPress()
 {
 	//マウス
 	if (m_mouseButton)
+	{
+		return true;
+	}
+
+	// パッド
+	if (m_padButton != 0)
 	{
 		return true;
 	}

@@ -10,6 +10,7 @@ class Input
 private:
 	//キーボード
 	static constexpr int KeyStateNum = 256;	//キー入力状態の要素数
+	static constexpr float PadStickSensitivity = 0.04f;	//スティックの感度
 
 	char m_keyState[KeyStateNum];		//現フレームのキー入力状態
 	char m_keyStatePost[KeyStateNum];	//前フレームのキー入力状態
@@ -20,13 +21,19 @@ private:
 	int m_mouseButton;			//現フレームのマウスボタン入力状態
 	int m_mouseButtonPost;		//前フレームのマウスボタン入力状態
 
+	// パッド
+	int m_padButton;
+	int m_padButtonPost;
+
 	//コンストラクタ
 	Input() :
 		m_keyState{ 0 },
 		m_keyStatePost{ 0 },
 		m_mouseWheel(0),
 		m_mouseButton(0),
-		m_mouseButtonPost(0) {}	//配列の初期化は（）ではなく｛｝を使う
+		m_mouseButtonPost(0),
+		m_padButton(0),
+		m_padButtonPost(0){}	//配列の初期化は（）ではなく｛｝を使う
 
 public:
 	//シングルトン
@@ -104,5 +111,23 @@ public:
 	bool IsMouseUp(int button)
 	{
 		return !(m_mouseButton & button) && (m_mouseButtonPost & button);
+	}
+
+	// パッドボタンが押された瞬間
+	bool IsPadDown(int button)
+	{
+		return (m_padButton & button) && !(m_padButtonPost & button);
+	}
+
+	// パッドボタンが押されている
+	bool IsPadPress(int button)
+	{
+		return (m_padButton & button);
+	}
+
+	// パッドボタンが離された瞬間
+	bool IsPadUp(int button)
+	{
+		return !(m_padButton & button) && (m_padButtonPost & button);
 	}
 };
