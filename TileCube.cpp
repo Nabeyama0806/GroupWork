@@ -5,7 +5,7 @@
 TileCube::TileCube(const Vector3& position, const Vector3& size) :
 	ModelActor("Wall")
 {
-	m_model = new Model("Resource/Model/Brock.mv1");
+	m_model = new Model("Resource/Model/Brockmini.mv1");
 
 	//épê®èÓïÒÇÃí≤êÆ
 	m_transform.position = position;
