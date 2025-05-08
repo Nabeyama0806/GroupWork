@@ -17,7 +17,7 @@ CreateMap::CreateMap(Player* player) :
 	m_player(player),
 	m_mapNode(nullptr),
 	m_isExistenceKey(false),
-	m_mapIndex(static_cast<int>(MapType::Map9))
+	m_mapIndex(static_cast<int>(MapType::Map0))
 {
 	m_player->SetMap(this);
 	LoadMap(false);

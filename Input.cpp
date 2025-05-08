@@ -42,13 +42,10 @@ void Input::Update()
 	if (IsPadPress(PAD_INPUT_LEFT)) m_keyState[KEY_INPUT_A] = 1;
 	if (IsPadPress(PAD_INPUT_DOWN)) m_keyState[KEY_INPUT_S] = 1;
 	if (IsPadPress(PAD_INPUT_RIGHT)) m_keyState[KEY_INPUT_D] = 1;
-	// パッドの4ボタン(△)をSpaceキーにする
-	if (IsPadDown(PAD_INPUT_4)) m_keyState[KEY_INPUT_SPACE] = 1;
+	// パッドの10(右スティック押し込み)をSpaceキーにする
+	if (IsPadDown(PAD_INPUT_10)) m_keyState[KEY_INPUT_SPACE] = 1;
 	// パッドの1ボタン(×)を左クリックにする
 	if (IsPadDown(PAD_INPUT_1)) m_mouseButton |= MOUSE_INPUT_LEFT;
-	// パッドのLRボタンをマウスホイールにする
-	if (IsPadDown(PAD_INPUT_5)) m_mouseWheel = 1;
-	if (IsPadDown(PAD_INPUT_6)) m_mouseWheel = -1;
 
 	// パッドの右スティックでマウスカーソルを動かす
 	int padPointX = 0;
