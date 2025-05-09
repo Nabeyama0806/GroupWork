@@ -57,8 +57,8 @@ void Player::Update()
 	//移動
 	Move();
 
-	//左クリックでボトルを生成
-	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT))
+	// 決定ボタンでボトルを生成
+	if (Input::GetInstance()->NewBottle())
 	{
 		CreateBottle();
 	}
@@ -103,12 +103,10 @@ void Player::Move()
 {
 	//入力方向の取得
 	Vector3 move = Vector3(0, 0, 0);
-	float speedRate = 1.0f;
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_LSHIFT))	speedRate = DashSpeed;
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_W)) move.z = 1;
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_S)) move.z = -1;
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_D)) move.x = 1;
-	if (Input::GetInstance()->IsKeyPress(KEY_INPUT_A)) move.x = -1;
+	if (Input::GetInstance()->MoveUp()) move.z = 1;
+	if (Input::GetInstance()->MoveDown()) move.z = -1;
+	if (Input::GetInstance()->MoveRight()) move.x = 1;
+	if (Input::GetInstance()->MoveLeft()) move.x = -1;
 
 	//カメラの正面ベクトルを作成
 	Vector3 cameraForward = Vector3::Scale(m_camera->GetForward(), Vector3(1, 0, 1)).Normalized();
@@ -121,7 +119,7 @@ void Player::Move()
 	{
 		//移動
 		move.Normalize();
-		m_holdMove = move * Speed * speedRate;
+		m_holdMove = move * Speed;
 		m_transform.position += m_holdMove;
 
 		//回転

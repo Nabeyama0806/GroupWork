@@ -37,15 +37,15 @@ void Input::Update()
 	m_padButtonPost = m_padButton;
 	m_padButton = GetJoypadInputState(DX_INPUT_PAD1);
 
-	//パッドの方向ボタンを押したらWASDが押されたことにする（プレイヤー騙し）
-	if (IsPadPress(PAD_INPUT_UP)) m_keyState[KEY_INPUT_W] = 1;
-	if (IsPadPress(PAD_INPUT_LEFT)) m_keyState[KEY_INPUT_A] = 1;
-	if (IsPadPress(PAD_INPUT_DOWN)) m_keyState[KEY_INPUT_S] = 1;
-	if (IsPadPress(PAD_INPUT_RIGHT)) m_keyState[KEY_INPUT_D] = 1;
-	// パッドの10(右スティック押し込み)をSpaceキーにする
-	if (IsPadDown(PAD_INPUT_10)) m_keyState[KEY_INPUT_SPACE] = 1;
-	// パッドの1ボタン(×)を左クリックにする
-	if (IsPadDown(PAD_INPUT_1)) m_mouseButton |= MOUSE_INPUT_LEFT;
+	// パッドのトリガーの状態を取得
+	XINPUT_STATE state;
+	GetJoypadXInputState(DX_INPUT_PAD1, &state);
+	// 右トリガー
+	m_padRightTriggerPost = m_padRightTrigger;
+	m_padRightTrigger = state.RightTrigger;
+	// 左トリガー
+	m_padLeftTriggerPost = m_padLeftTrigger;
+	m_padLeftTrigger = state.LeftTrigger;
 
 	// パッドの右スティックでマウスカーソルを動かす
 	int padPointX = 0;
@@ -84,6 +84,12 @@ bool Input::IsAnyKeyDown()
 		return true;
 	}
 
+	if (m_padRightTrigger != 0 && m_padRightTriggerPost == 0 ||
+		m_padLeftTrigger  != 0 && m_padLeftTriggerPost  == 0)
+	{
+		return true;
+	}
+
 	//配列から１を探し出す
 	return std::memchr(m_keyState, 1, sizeof(char) * KeyStateNum) != nullptr;
 }
@@ -99,6 +105,11 @@ bool Input::IsAnyKeyPress()
 
 	// パッド
 	if (m_padButton != 0)
+	{
+		return true;
+	}
+
+	if (m_padRightTrigger != 0 || m_padLeftTrigger != 0)
 	{
 		return true;
 	}

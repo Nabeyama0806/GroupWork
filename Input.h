@@ -11,6 +11,7 @@ private:
 	//キーボード
 	static constexpr int KeyStateNum = 256;	//キー入力状態の要素数
 	static constexpr float PadStickSensitivity = 0.04f;	//スティックの感度
+	static constexpr int PadTriggerSensitivity = 100;	//トリガーの感度(100/256)
 
 	char m_keyState[KeyStateNum];		//現フレームのキー入力状態
 	char m_keyStatePost[KeyStateNum];	//前フレームのキー入力状態
@@ -25,6 +26,12 @@ private:
 	int m_padButton;
 	int m_padButtonPost;
 
+	int m_padRightTrigger;	// 右トリガーの状態
+	int m_padRightTriggerPost;
+
+	int m_padLeftTrigger;	// 左トリガーの状態
+	int m_padLeftTriggerPost;
+
 	//コンストラクタ
 	Input() :
 		m_keyState{ 0 },
@@ -33,7 +40,11 @@ private:
 		m_mouseButton(0),
 		m_mouseButtonPost(0),
 		m_padButton(0),
-		m_padButtonPost(0){}	//配列の初期化は（）ではなく｛｝を使う
+		m_padButtonPost(0),
+		m_padRightTrigger(0),
+		m_padRightTriggerPost(0),
+		m_padLeftTrigger(0),
+		m_padLeftTriggerPost(0){}	//配列の初期化は（）ではなく｛｝を使う
 
 public:
 	//シングルトン
@@ -129,5 +140,84 @@ public:
 	bool IsPadUp(int button)
 	{
 		return !(m_padButton & button) && (m_padButtonPost & button);
+	}
+
+	bool IsPadRightTriggerDown()
+	{
+		// トリガーの状態が100以上で、前フレームのトリガーの状態が100未満
+		return m_padRightTrigger >= PadTriggerSensitivity && m_padRightTriggerPost < PadTriggerSensitivity;
+	}
+	
+	bool IsPadRightTriggerUp()
+	{
+		// トリガーの状態が100未満で、前フレームのトリガーの状態が100以上
+		return m_padRightTrigger < PadTriggerSensitivity && m_padRightTriggerPost >= PadTriggerSensitivity;
+	}
+
+	bool IsPadRightTriggerPress()
+	{
+		// トリガーの状態が100以上
+		return m_padRightTrigger >= PadTriggerSensitivity;
+	}
+
+	bool IsPadLeftTriggerDown()
+	{
+		// トリガーの状態が100以上で、前フレームのトリガーの状態が100未満
+		return m_padLeftTrigger >= PadTriggerSensitivity && m_padLeftTriggerPost < PadTriggerSensitivity;
+	}
+
+	bool IsPadLeftTriggerUp()
+	{
+		// トリガーの状態が100未満で、前フレームのトリガーの状態が100以上
+		return m_padLeftTrigger < PadTriggerSensitivity && m_padLeftTriggerPost >= PadTriggerSensitivity;
+	}
+
+	bool IsPadLeftTriggerPress()
+	{
+		// トリガーの状態が100以上
+		return m_padLeftTrigger >= PadTriggerSensitivity;
+	}
+
+	// インプットシステム
+	// 上移動	
+	bool MoveUp()
+	{
+		return m_keyState[KEY_INPUT_W] || (m_padButton & PAD_INPUT_UP);
+	}
+
+	// 下移動
+	bool MoveDown()
+	{
+		return m_keyState[KEY_INPUT_S] || (m_padButton & PAD_INPUT_DOWN);
+	}
+
+	// 左移動
+	bool MoveLeft()
+	{
+		return m_keyState[KEY_INPUT_A] || (m_padButton & PAD_INPUT_LEFT);
+	}
+
+	// 右移動
+	bool MoveRight()
+	{
+		return m_keyState[KEY_INPUT_D] || (m_padButton & PAD_INPUT_RIGHT);
+	}
+
+	// ボトルを投げる
+	bool NewBottle()
+	{
+		return IsMouseDown(MOUSE_INPUT_LEFT) || IsPadRightTriggerDown();
+	}
+
+	// 決定
+	bool IsDecision()
+	{
+		return IsKeyDown(KEY_INPUT_SPACE) || IsPadDown(PAD_INPUT_1);
+	}
+
+	// カメラの視点変更
+	bool IsCameraChange()
+	{
+		return IsKeyDown(KEY_INPUT_SPACE) || IsPadDown(PAD_INPUT_10);
 	}
 };

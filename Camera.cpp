@@ -8,14 +8,14 @@
 void Camera::Update()
 {
 	// カメラの視点移動
-	if (!Input::GetInstance()->IsKeyPress(KEY_INPUT_RSHIFT)) MouseCamera();
+	if (!Input::GetInstance()->IsKeyPress(KEY_INPUT_LSHIFT)) MouseCamera();
 
 	if (!m_isPlayer)
 	{
 		// マウスホイール回転量を距離に加える
-		m_cameraDistance -= Input::GetInstance()->GetMouseHweelRot() * 60;
-		m_cameraDistance -= Input::GetInstance()->IsPadPress(PAD_INPUT_6) * 60;
-		m_cameraDistance += Input::GetInstance()->IsPadPress(PAD_INPUT_5) * 60;
+		m_cameraDistance -= Input::GetInstance()->GetMouseHweelRot() * CameraScaling;
+		if (Input::GetInstance()->IsPadPress(PAD_INPUT_6)) m_cameraDistance -= CameraScaling;
+		if (Input::GetInstance()->IsPadPress(PAD_INPUT_5)) m_cameraDistance += CameraScaling;
 		m_cameraDistance > MaxStageCameraDistance ? m_cameraDistance = MaxStageCameraDistance : m_cameraDistance < MinStageCameraDistance ? m_cameraDistance = MinStageCameraDistance : m_cameraDistance;
 	}
 

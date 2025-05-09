@@ -59,36 +59,22 @@ void UiBottle::Update()
 
 	//‘®«ƒrƒ“‚ÌØ‚è‘Ö‚¦
 	int mouseHweel = Input::GetInstance()->GetMouseHweelRot();
-	if (mouseHweel != 0)
-	{
-		if (mouseHweel < 0)
-		{
-			m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
-				m_select = static_cast<int>(Bottle::Type::Fire) :
-				m_select++;
-		}
-		if (mouseHweel > 0)
-		{
-			m_select == static_cast<int>(Bottle::Type::Fire) ?
-				m_select = static_cast<int>(Bottle::Type::Length) - 1 :
-				m_select--;
-		}
-		SoundManager::Play("Resource/sound/se_bottle_select.mp3");
-	}
-	else if (Input::GetInstance()->IsPadDown(PAD_INPUT_5))
+
+	if (mouseHweel != 0 && mouseHweel < 0 || Input::GetInstance()->IsPadDown(PAD_INPUT_5))
 	{
 		m_select == static_cast<int>(Bottle::Type::Length) - 1 ?
 			m_select = static_cast<int>(Bottle::Type::Fire) :
 			m_select++;
 		SoundManager::Play("Resource/sound/se_bottle_select.mp3");
 	}
-	else if (Input::GetInstance()->IsPadDown(PAD_INPUT_6))
+	if (mouseHweel != 0 && mouseHweel > 0 || Input::GetInstance()->IsPadDown(PAD_INPUT_6))
 	{
 		m_select == static_cast<int>(Bottle::Type::Fire) ?
 			m_select = static_cast<int>(Bottle::Type::Length) - 1 :
 			m_select--;
 		SoundManager::Play("Resource/sound/se_bottle_select.mp3");
 	}
+		
 
 	m_type = static_cast<Bottle::Type>(m_select);
 	m_sprite->Play(TextureName[m_select]);
@@ -116,11 +102,11 @@ void UiBottle::Draw()
 	{
 		m_crossImg->Draw(m_transform);
 	}
-	if (!(m_getBottleFlag & (1 << SelectBottle(m_select + 1))) || m_select == static_cast<int>(Bottle::Type::Wind) && !m_canWind)
+	if (!(m_getBottleFlag & (1 << SelectBottle(m_select + 1))) || SelectBottle(m_select + 1) == static_cast<int>(Bottle::Type::Wind) && !m_canWind)
 	{
 		m_crossImg->Draw(m_nextTransform);
 	}
-	if (!(m_getBottleFlag & (1 << SelectBottle(m_select - 1))) || m_select == static_cast<int>(Bottle::Type::Wind) && !m_canWind)
+	if (!(m_getBottleFlag & (1 << SelectBottle(m_select - 1))) || SelectBottle(m_select - 1) == static_cast<int>(Bottle::Type::Wind) && !m_canWind)
 	{
 		m_crossImg->Draw(m_prevTransform);
 	}
