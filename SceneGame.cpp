@@ -67,6 +67,9 @@ void SceneGame::Initialize()
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
+
+	//セーブデータのマップを読み込み
+	m_map->SetMap(m_mapIndex);
 }
 
 //終了
@@ -128,7 +131,7 @@ SceneBase* SceneGame::Update()
 	}
 
 	//0キーが押されたら視点を切り替える
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE))
+	if (Input::GetInstance()->IsCameraChange())
 	{
 		m_isLookPlayer = !m_isLookPlayer;
 		m_mainCamera->SetLookAt(m_isLookPlayer ? m_player : m_stage, m_isLookPlayer);

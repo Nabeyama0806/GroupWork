@@ -25,13 +25,13 @@ void TitleSelect::Update()
 	SpriteActor::Update();
 
 	//ƒ‚[ƒh‘I‘ğ
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_D))
+	if (Input::GetInstance()->MoveRight())
 	{
 		if (!m_isContinued) return;
 		m_sprite->flipX = true;
 		m_isContinued = false;
 	}
-	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_A))
+	if (Input::GetInstance()->MoveLeft())
 	{
 		if (m_isContinued) return;
 		m_sprite->flipX = false;

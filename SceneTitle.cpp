@@ -56,15 +56,14 @@ SceneBase* SceneTitle::Update()
 	case Phase::Run:
 		
 		//キーが押されたらゲームシーンへ移動
-		if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)
-		||  Input::GetInstance()->IsPadDown(PAD_INPUT_1))
+		if (Input::GetInstance()->IsDecision())
 		{
 			//効果音
 			SoundManager::Play("Resource/sound/se_start.mp3");
 			SoundManager::SoundStop(m_bgm);
 			
 			//セーブデータの読み込み
-			if (!m_select->GetIsContinued()) m_playData->Reset(5);
+			if (!m_select->GetIsContinued()) m_playData->Reset();
 			m_playData->Load();
 			m_phase = Phase::Start;
 		}
