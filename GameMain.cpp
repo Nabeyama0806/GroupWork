@@ -10,9 +10,8 @@
 #include "Input.h"
 #include "Time.h"
 #include "EffectManager.h"
-#include <EffekseerForDXLib.h>
 #include "DxLib.h"
-
+#include <EffekseerForDXLib.h>
 //デストラクタ
 GameMain::~GameMain()
 {
@@ -38,13 +37,7 @@ void GameMain::Run()
 	ChangeWindowMode(GameConfig::WindowMode); //ウィンドウモードで起動
 	SetGraphMode(Screen::Width, Screen::Heigth, GameConfig::ColorBit); //ウィンドウサイズ
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
-
-	//DXライブラリの初期化
-	if (DxLib_Init())
-	{
-		throw - 1;
-	}
-
+	if (DxLib_Init()) throw - 1; //DXライブラリの初期化
 	EffectManager::GetInstance()->Initialize();
 
 	//シーン起動
@@ -89,9 +82,6 @@ void GameMain::Run()
 #ifdef _DEBUG
 		//衝突形状の描画
 		ModelActorCollision::GetInstance()->Draw();
-
-		//画像ローダー
-		//SpriteLoader::GetInstance()->Draw();
 #endif
 		//フェード
 		Fade::GetInstance()->Update(m_screen);

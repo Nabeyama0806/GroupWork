@@ -2,6 +2,10 @@
 #include "SceneBase.h"
 #include "Transform.h"
 #include "Sprite.h"
+#include "PlayData.h"
+
+class Node;
+class TitleSelect;
 
 //タイトルシーン
 class SceneTitle : public SceneBase
@@ -10,8 +14,9 @@ private:
 	//フェーズ
 	enum class Phase
 	{
-		Run,		//実行中
-		OpenBook,	//本を開く
+		Run,			//実行中
+		Start,			//本を開く
+		StageSelect,	//ステージの選択
 
 		Length,
 	};
@@ -38,9 +43,12 @@ private:
 		SpriteAnimation("Resource/Book/open2.png", 10, 13, false),
 	};
 
+	Node* m_rootNode;
+	PlayData* m_playData;
+	Sprite* m_sprite;
+	TitleSelect* m_select;
 	Phase m_phase;
 	Anime m_anime;
-	Sprite* m_sprite;
 	Transform m_transform;
 	int m_bgm;
 
@@ -49,11 +57,17 @@ public:
 	SceneTitle() :
 		m_phase(Phase::Run),
 		m_anime(Anime::Initial),
+		m_rootNode(nullptr),
+		m_playData(nullptr),
 		m_sprite(nullptr),
-		m_bgm(0){}
+		m_select(nullptr),
+		m_bgm(0)
+	{
+		m_playData = new PlayData();
+	}
 
 	virtual void Initialize() override;				//初期化
-	virtual void Finalize() override {};			//終了
+	virtual void Finalize() override;				//終了
 	virtual SceneBase* Update() override;			//更新
 	virtual void Draw() override;					//描画
 };
