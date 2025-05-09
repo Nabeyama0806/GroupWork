@@ -36,6 +36,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="PlayData.cpp" />
     <ClCompile Include="PlayerFoot.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SpriteLoader.cpp" />
@@ -91,6 +92,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="PlayData.h" />
     <ClInclude Include="PlayerFoot.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteLoader.h" />

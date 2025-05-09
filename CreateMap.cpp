@@ -20,7 +20,6 @@ CreateMap::CreateMap(Player* player) :
 	m_mapIndex(static_cast<int>(MapType::Map0))
 {
 	m_player->SetMap(this);
-	LoadMap(false);
 }
 
 void CreateMap::LoadMap(bool nextMap)

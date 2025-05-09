@@ -76,4 +76,10 @@ public:
 	{
 		return m_mapIndex;
 	};
+
+	void SetMapIndex(int num)
+	{
+		m_mapIndex = num;
+		LoadMap(false);
+	}
 };

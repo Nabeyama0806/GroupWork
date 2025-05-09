@@ -50,11 +50,12 @@ private:
 	bool m_isLookPlayer;
 
 	float m_resultTransitionTime;
+	int m_mapIndex;
 	int m_bgm;
 
 public:
 	//コンストラクタ
-	SceneGame(bool isContinued) :
+	SceneGame(int data) :
 		m_rootNode(nullptr), 
 		m_stage(nullptr),
 		m_map(nullptr),
@@ -64,6 +65,7 @@ public:
 		m_uiBottle(nullptr),
 		m_isLookPlayer(true),
 		m_resultTransitionTime(ResultTransitionTime),
+		m_mapIndex(data),
 		m_bgm(0)
 	{
 		//モデルの事前読み込み
