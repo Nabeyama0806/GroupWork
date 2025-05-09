@@ -57,11 +57,11 @@ void SceneGame::Initialize()
 	actorLayer->AddChild(m_map);
 
 	//鍵のUIの表示
-	uiLayer->AddChild(new UiKeyItem(m_player));
+	uiLayer->AddChild(new UiKeyItem(m_player, m_mainCamera));
 
 	//スカイボックス
 	ModelActor* skybox = new ModelActor("Skybox", "Resource/Model/Skybox.mv1");
-	skybox->ChangeScale(1700);
+	skybox->ChangeScale(10000);
 	actorLayer->AddChild(skybox);
 
 	//BGM

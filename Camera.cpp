@@ -13,7 +13,9 @@ void Camera::Update()
 	if (!m_isPlayer)
 	{
 		// マウスホイール回転量を距離に加える
-		m_cameraDistance -= Input::GetInstance()->GetInstance()->GetMouseHweelRot() * 60;
+		m_cameraDistance -= Input::GetInstance()->GetMouseHweelRot() * 60;
+		m_cameraDistance -= Input::GetInstance()->IsPadPress(PAD_INPUT_6) * 60;
+		m_cameraDistance += Input::GetInstance()->IsPadPress(PAD_INPUT_5) * 60;
 		m_cameraDistance > MaxStageCameraDistance ? m_cameraDistance = MaxStageCameraDistance : m_cameraDistance < MinStageCameraDistance ? m_cameraDistance = MinStageCameraDistance : m_cameraDistance;
 	}
 
@@ -51,7 +53,7 @@ void Camera::Update()
 void Camera::Draw()
 {
 	// カメラ座標の設定
-	SetCameraNearFar(10.0f, 10000.0f);
+	SetCameraNearFar(10.0f, 1000000.0f);
 	SetCameraPositionAndTarget_UpVecY(m_cameraPos, m_targetPos);
 	Effekseer_Sync3DSetting();
 }

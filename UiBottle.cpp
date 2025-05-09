@@ -53,10 +53,10 @@ UiBottle::UiBottle(Camera* camera) :
 //更新
 void UiBottle::Update()
 {
+	if (!m_camera->GetIsPlayer()) return;
 	//本来の更新
 	SpriteActor::Update();
 
-	if (!m_camera->GetIsPlayer()) return;
 	//属性ビンの切り替え
 	int mouseHweel = Input::GetInstance()->GetMouseHweelRot();
 	if (mouseHweel != 0)
@@ -105,6 +105,7 @@ void UiBottle::Update()
 //描画
 void UiBottle::Draw()
 {
+	if (!m_camera->GetIsPlayer()) return;
 	//本来の描画
 	SpriteActor::Draw();
 	m_nextImg->Draw(m_nextTransform);
