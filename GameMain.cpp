@@ -12,15 +12,9 @@
 #include "EffectManager.h"
 #include "DxLib.h"
 #include <EffekseerForDXLib.h>
-#include <fstream>
-#include <iostream>
-
 //デストラクタ
 GameMain::~GameMain()
 {
-	//データの書き込み
-	GameMain::DataSeve();
-
 	//自作スクリーンの破棄
 	DeleteGraph(m_screen);
 
@@ -45,9 +39,6 @@ void GameMain::Run()
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 	if (DxLib_Init()) throw - 1; //DXライブラリの初期化
 	EffectManager::GetInstance()->Initialize();
-
-	//データの呼び出し
-	GameMain::DataLoad();
 
 	//シーン起動
 	m_sceneManager = new SceneManager(new SceneTitle());
@@ -103,40 +94,4 @@ void GameMain::Run()
 		//裏画面と表画面をひっくり返す
 		ScreenFlip();
 	}
-}
-
-//データの読み込み
-void GameMain::DataLoad()
-{
-	std::fstream file;
-
-	//セーブ用ファイルを開く
-	file.open("SaveData.txt");
-
-	// オープンできなかったらここで終了
-	if (!file.is_open()) return;
-
-	// ハイスコアデータの書き出し
-	//file.getline();
-
-	// ファイルを閉じる
-	file.close();
-}
-
-//データの書き込み
-void GameMain::DataSeve()
-{
-	std::fstream file;
-
-	//セーブ用ファイルを開く
-	file.open("SaveData.txt");
-
-	// オープンできなかったらここで終了
-	if (!file.is_open()) return;
-
-	// ハイスコアデータの書き出し
-	//file.read();
-
-	// ファイルを閉じる
-	file.close();
 }

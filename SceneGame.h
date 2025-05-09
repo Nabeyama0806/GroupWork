@@ -54,7 +54,7 @@ private:
 
 public:
 	//コンストラクタ
-	SceneGame() :
+	SceneGame(bool isContinued) :
 		m_rootNode(nullptr), 
 		m_stage(nullptr),
 		m_map(nullptr),

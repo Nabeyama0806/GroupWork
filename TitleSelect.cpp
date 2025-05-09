@@ -1,0 +1,40 @@
+#include "TitleSelect.h"
+#include "Input.h"
+#include "Sprite.h"
+
+//コンストラクタ
+TitleSelect::TitleSelect() : 
+	SpriteActor("TitleSelect"),
+	m_isContinued(true)
+{
+	//姿勢情報
+	m_transform.position = Screen::Center;
+
+	//画像の登録
+	m_sprite = new Sprite();
+	m_sprite->Register("Resource/Texture/select_cursor.png");
+}
+
+void TitleSelect::Update()
+{
+	//本来の更新
+	SpriteActor::Update();
+
+	//モード選択
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_D))
+	{
+		if (m_isContinued)
+		{
+			m_sprite->flipX = true;
+			m_isContinued = false;
+		}
+	}
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_A))
+	{
+		if (!m_isContinued)
+		{
+			m_sprite->flipX = false;
+			m_isContinued = true;
+		}
+	}
+}

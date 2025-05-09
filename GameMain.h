@@ -21,10 +21,4 @@ public:
 
 	//メインループ実行
 	void Run();
-
-	//データの読み込み
-	void DataLoad(); 
-
-	//データの書き込み
-	void DataSeve();
 };
