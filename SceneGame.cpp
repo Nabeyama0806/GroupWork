@@ -2,6 +2,7 @@
 #include "SceneResult.h"
 #include "SoundManager.h"
 #include "Screen.h"
+#include "PlayData.h"
 #include "Fade.h"
 #include "Time.h"
 #include "Input.h"
@@ -53,7 +54,7 @@ void SceneGame::Initialize()
 	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
 
 	//マップ
-	m_map = new CreateMap(m_player);
+	m_map = new CreateMap(m_player, m_playData);
 	actorLayer->AddChild(m_map);
 
 	//鍵のUIの表示
@@ -69,7 +70,7 @@ void SceneGame::Initialize()
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
 
 	//セーブデータのマップを読み込み
-	m_map->SetMap(m_mapIndex);
+	m_map->SetMap();
 }
 
 //終了

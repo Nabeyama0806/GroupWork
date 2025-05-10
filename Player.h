@@ -52,7 +52,10 @@ public:
 	{
 		m_getBottleFlag |= 1 << static_cast<int>(type);
 	}
-
+	void SetElement(int bottleBit)
+	{
+		m_getBottleFlag = bottleBit;
+	}
 	int GetElement() const
 	{
 		return m_getBottleFlag;

@@ -1,6 +1,6 @@
 #include "CreateMap.h"
+#include "PlayData.h"
 #include "ModelActor.h"
-#include "Player.h"
 #include "FireGimmick.h"
 #include "WaterGimmick.h"
 #include "WindGimmick.h"
@@ -13,13 +13,22 @@
 #include "GetBottle.h"
 #include "HitCollider.h"
 
-CreateMap::CreateMap(Player* player) :
+CreateMap::CreateMap(Player* player, PlayData* playData) :
+	m_playData(playData),
 	m_player(player),
 	m_mapNode(nullptr),
 	m_isExistenceKey(false),
 	m_mapIndex(static_cast<int>(MapType::Map0))
 {
 	m_player->SetMap(this);
+}
+
+void CreateMap::SetMap()
+{
+	//セーブデータを読み込んでマップ生成
+	m_mapIndex = m_playData->GetMapData();
+	m_player->SetElement(m_playData->GetBottleData());
+	LoadMap(false);
 }
 
 void CreateMap::LoadMap(bool nextMap)
@@ -30,6 +39,7 @@ void CreateMap::LoadMap(bool nextMap)
 	AddChild(m_mapNode);
 	m_spawnPos.clear();
 	m_isExistenceKey = false;
+	m_playData->Save(m_mapIndex, m_player->GetElement());
 
 	for (int i = 0; i < MapHeight; i++)
 	{

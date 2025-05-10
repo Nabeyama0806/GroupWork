@@ -8,28 +8,32 @@ void PlayData::Load()
 	//読み込み
 	std::ifstream file(FileName);  
 
-	if (!file.is_open()) return;
+	int clearMap = 0;
+	int bottleBit = 0;
 
-	int data = 0;
-	file >> data;
+	if (file.is_open())
+	{
+		file >> clearMap >> bottleBit;
+	}
 
-	m_clearMapNum = data;
+	m_clearMapNum = clearMap;
+	m_bottleBit = bottleBit;
 }
 
 //データの書き込み
-void PlayData::Save(int data)
+void PlayData::Save(int mapNum, int bottleBit)
 {
 	//上書き
 	std::ofstream file(FileName);
 
 	if (!file.is_open()) return;
 
-	file << data;
+	file << mapNum << std::endl << bottleBit;
 }
 
 //データの削除
-void PlayData::Reset(int num)
+void PlayData::Reset()
 {
 	//データの初期化
-	Save(num);
+	Save(0, 0);
 }

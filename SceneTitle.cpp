@@ -88,7 +88,7 @@ SceneBase* SceneTitle::Update()
 		if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)
 		||  Input::GetInstance()->IsPadDown(PAD_INPUT_1))
 		{
-			return new SceneGame(m_playData->GetData());
+			return new SceneGame(m_playData);
 		}
 	}
 

@@ -2,8 +2,9 @@
 #include "Node.h"
 #include "LoadMap.h"
 #include "Vector3.h"
+#include "Player.h"
 
-class Player;
+class PlayData;
 
 class CreateMap : public Node
 {
@@ -45,6 +46,7 @@ public:
 		Length,
 	};
 
+	void SetMap();
 	void LoadMap(bool nextMap = true);
 
 private:
@@ -53,9 +55,10 @@ private:
 	static constexpr int MapDepth = 10;		//マップの奥行き
 	static constexpr Vector3 TileSize = Vector3(100, 100, 100);	//開始時の座標
 
+	PlayData* m_playData;
 	Player* m_player;	//プレイヤー
 	Node* m_mapNode;
-	int m_mapIndex;	//マップのインデックス
+	int m_mapIndex;		//マップのインデックス
 	bool m_isExistenceKey;
 
 	std::vector<Vector3> m_spawnPos;
@@ -70,16 +73,10 @@ private:
 	void SelectBlock(CreateMap::TileType tile, const Vector3& position, const Vector3& size);
 
 public:
-	CreateMap(Player* m_player);
+	CreateMap(Player* m_player, PlayData* playData);
 	
 	int GetMapIndex() const
 	{
 		return m_mapIndex;
 	};
-
-	void SetMap(int num)
-	{
-		m_mapIndex = num;
-		LoadMap(false);
-	}
 };

@@ -13,6 +13,7 @@ class CreateMap;
 class UiBottle;
 class Camera;
 class Player;
+class PlayData;
 
 //ゲームシーン
 class SceneGame : public SceneBase
@@ -44,6 +45,7 @@ private:
 	};
 
 	Node* m_rootNode;		//ツリーノード
+	PlayData* m_playData;
 	ModelActor* m_stage;	// 背景ステージ
 	CreateMap* m_map;
 	UiBottle* m_uiBottle;	
@@ -55,13 +57,13 @@ private:
 	bool m_isLookPlayer;
 
 	float m_resultTransitionTime;
-	int m_mapIndex;
 	int m_bgm;
 
 public:
 	//コンストラクタ
-	SceneGame(int data) :
+	SceneGame(PlayData* playData) :
 		m_rootNode(nullptr), 
+		m_playData(playData),
 		m_stage(nullptr),
 		m_map(nullptr),
 		m_player(nullptr),
@@ -70,7 +72,6 @@ public:
 		m_uiBottle(nullptr),
 		m_isLookPlayer(true),
 		m_resultTransitionTime(ResultTransitionTime),
-		m_mapIndex(data),
 		m_bgm(0)
 	{
 		//モデルの事前読み込み
