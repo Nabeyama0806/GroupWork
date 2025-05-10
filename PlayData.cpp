@@ -16,8 +16,8 @@ void PlayData::Load()
 		file >> clearMap >> bottleBit;
 	}
 
-	m_clearMapNum = clearMap;
-	m_bottleBit = bottleBit;
+	m_clearMapNum = DecodeData(clearMap);
+	m_bottleBit = DecodeData(bottleBit);
 }
 
 //データの書き込み
@@ -28,7 +28,7 @@ void PlayData::Save(int mapNum, int bottleBit)
 
 	if (!file.is_open()) return;
 
-	file << mapNum << std::endl << bottleBit;
+	file << EncryptionData(mapNum) << std::endl << EncryptionData(bottleBit);
 }
 
 //データの削除
