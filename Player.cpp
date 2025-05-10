@@ -138,7 +138,7 @@ void Player::Move()
 	}
 	
 	//—‰ºˆ—
-	if (m_transform.position.y < -500)
+	if (m_transform.position.y < FallEndPos)
 	{
 		m_getKey = false;
 		m_map->LoadMap(false);
@@ -156,6 +156,7 @@ void Player::Draw()
 	}
 
 #ifdef _DEBUG	
+	// XYZ‚Ì•ûŒü‚ğ•`‰æ
 	// X
 	DrawLine3D(
 		VGet(m_transform.position.x, m_transform.position.y, m_transform.position.z),

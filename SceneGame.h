@@ -19,6 +19,11 @@ class SceneGame : public SceneBase
 {
 private:
 	static constexpr float ResultTransitionTime = 2.0f;	//プレイヤーが死んでからリザルト画面に遷移するまでの時間
+	
+	// 太陽の数値
+	static constexpr Vector3 SunPosition = Vector3(1000, 1500, 0);
+	static constexpr float SunRange = 20000.0f;
+	static constexpr Vector3 SunAtten = Vector3(0.0f, 0.002f, 0.0f);
 
 	//フェーズ
 	enum class Phase

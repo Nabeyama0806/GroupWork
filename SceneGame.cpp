@@ -28,13 +28,13 @@ void SceneGame::Initialize()
 	Node* actorLayer = new Node();
 	m_rootNode->AddChild(actorLayer);
 
-	// ‘æ“ñ‚Ì‘¾—z
+	// ‘¾—z
 	CreatePointLightHandle(
-		Vector3(1000, 1500, 0),
-		20000.0f,
-		0.0f,
-		0.002f,
-		0.0f);
+		SunPosition,
+		SunRange,
+		SunAtten.x,
+		SunAtten.y,
+		SunAtten.z);
 
 	//UIƒŒƒCƒ„[
 	Node* uiLayer = new Node();

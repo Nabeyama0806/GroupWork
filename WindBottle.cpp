@@ -34,7 +34,7 @@ void WindBottle::Update()
 	m_holdMove = Throw(m_forward);
 	m_transform.position += m_holdMove;
 
-	if (m_transform.position.y < -300)
+	if (m_transform.position.y < FallEndPos)
 	{
 		Destroy();
 		m_player->SetCanWindBottleThrow();

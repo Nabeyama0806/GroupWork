@@ -27,6 +27,7 @@ private:
 
 protected:
 	static constexpr Vector3 ColliderSize = Vector3(2, 2, 2);
+	static constexpr float FallEndPos = -50;// —‰º‚µ‚Äíœ‚³‚ê‚éƒ|ƒWƒVƒ‡ƒ“
 
 	Player* m_player;
 
