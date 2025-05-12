@@ -34,7 +34,15 @@ void CreateMap::SetMap()
 void CreateMap::LoadMap(bool nextMap)
 {
 	if (nextMap) m_mapIndex++;
-	if (m_mapNode) m_mapNode->Destroy();
+	if (m_mapNode)
+	{
+		m_mapNode->Destroy();
+		for (auto child : m_mapNode->GetChildren())
+		{
+			dynamic_cast<ModelActor*>(child)->DeleteCollider();
+		}
+	}
+
 	m_mapNode = new Node();
 	AddChild(m_mapNode);
 	m_spawnPos.clear();

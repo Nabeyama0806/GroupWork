@@ -82,3 +82,13 @@ void ModelActor::TreeUpdate()
 		m_model->Update();
 	}
 }
+
+void ModelActor::DeleteCollider()
+{
+	if (m_collider)
+	{
+		ModelActorCollision::GetInstance()->Remove(this);
+		delete m_collider;
+		m_collider = nullptr;
+	}
+}

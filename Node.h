@@ -49,4 +49,5 @@ public:
 	void AddChild(Node* node, bool isLoad = true);		//子ノードの追加
 	void RemoveChild(Node* node);			//子ノードの削除
 	void Destroy();		//自身の削除
+	std::list<Node*> GetChildren() const { return m_children; }	//子ノードの取得
 };

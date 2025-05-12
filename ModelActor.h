@@ -37,4 +37,6 @@ public:
 	{
 		return m_collider;
 	}
+
+	void DeleteCollider();
 };
