@@ -35,5 +35,5 @@ void PlayData::Save(int mapNum, int bottleBit)
 void PlayData::Reset()
 {
 	//ƒf[ƒ^‚Ì‰Šú‰»
-	Save(0, 0);
+	Save(8, 15);
 }

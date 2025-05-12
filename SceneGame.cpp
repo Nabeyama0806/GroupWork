@@ -70,7 +70,7 @@ void SceneGame::Initialize()
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
 
 	//セーブデータのマップを読み込み
-	m_map->SetMap();
+	m_map->SetMap(m_stageNum);
 }
 
 //終了

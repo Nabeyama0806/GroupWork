@@ -23,10 +23,10 @@ CreateMap::CreateMap(Player* player, PlayData* playData) :
 	m_player->SetMap(this);
 }
 
-void CreateMap::SetMap()
+void CreateMap::SetMap(int stageNum)
 {
 	//セーブデータを読み込んでマップ生成
-	m_mapIndex = m_playData->GetMapData();
+	m_mapIndex = stageNum;
 	m_player->SetElement(m_playData->GetBottleData());
 	LoadMap(false);
 }

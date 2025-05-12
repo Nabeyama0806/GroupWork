@@ -19,9 +19,13 @@ void SceneTitle::Initialize()
 	//アニメーションの登録
 	m_sprite = new Sprite();
 	m_sprite->gridSize = Screen::Size;
-	for (int i = 0; i < static_cast<int>(Anime::Length); ++i)
+	for (int i = 0; i < static_cast<int>(OpenAnime::Length); ++i)
 	{
-		m_sprite->Register(AnimeName[i], AnimeDate[i]);
+		m_sprite->Register(OpenAnimeName[i], OpenAnimeDate[i]);
+	}
+	for (int i = 0; i < static_cast<int>(SelectAnime::Length); ++i)
+	{
+		m_sprite->Register(SelectAnimeName[i], SelectAnimeData[i]);
 	}
 	m_sprite->Load();
 	
@@ -55,7 +59,7 @@ SceneBase* SceneTitle::Update()
 	{
 	case Phase::Run:
 		
-		//キーが押されたらゲームシーンへ移動
+		//キーが押されたらステージ選択へ移動
 		if (Input::GetInstance()->IsDecision())
 		{
 			//効果音
@@ -65,31 +69,51 @@ SceneBase* SceneTitle::Update()
 			//セーブデータの読み込み
 			if (!m_select->GetIsContinued()) m_playData->Reset();
 			m_playData->Load();
+			m_stageNum = m_playData->GetMapData();
 			m_phase = Phase::Start;
 		}
+
 		break;
 
 	case Phase::Start:
 		m_select->Destroy();
 
-		//アニメーションの更新
-		m_sprite->Update();
-		m_sprite->Play(AnimeName[static_cast<int>(m_anime)]);
-		
 		//アニメーションが終わるとステージ選択へ遷移
+		m_sprite->Update();
+		m_sprite->Play(OpenAnimeName[static_cast<int>(m_openAnime)]);
 		if (m_sprite->IsFinishAnime())
 		{
-			if (m_anime == Anime::Initial) m_anime = Anime::Final;
+			if (m_openAnime == OpenAnime::First) m_openAnime = OpenAnime::Second;
 			else m_phase = Phase::StageSelect;
 		}
 		break;
 
 	case Phase::StageSelect:
-		if (Input::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)
-		||  Input::GetInstance()->IsPadDown(PAD_INPUT_1))
+
+		//アニメーションの更新
+		if (m_sprite->IsFinishAnime()) m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::FinishAnime)]);
+		m_sprite->Update();
+
+		//ひとつ前のステージ
+		if (Input::GetInstance()->StageSelectLeft() && m_sprite->IsFinishAnime())
 		{
-			return new SceneGame(m_playData);
+			m_stageNum--;
+
+			if (m_stageNum < 0) m_stageNum = 0;
+			else m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
 		}
+
+		//ひとつ先のステージ
+		if (Input::GetInstance()->StageSelectRight() && m_sprite->IsFinishAnime())
+		{
+			m_stageNum++;
+
+			if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
+			else m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
+		}
+
+		//決定ボタンが押されたらゲーム開始
+		if (Input::GetInstance()->IsDecision()) return new SceneGame(m_playData, m_stageNum);
 	}
 
 	return this;

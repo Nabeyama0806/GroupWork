@@ -46,7 +46,7 @@ public:
 		Length,
 	};
 
-	void SetMap();
+	void SetMap(int stageNum);
 	void LoadMap(bool nextMap = true);
 
 private:

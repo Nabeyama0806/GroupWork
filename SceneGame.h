@@ -57,11 +57,12 @@ private:
 	bool m_isLookPlayer;
 
 	float m_resultTransitionTime;
+	int m_stageNum;
 	int m_bgm;
 
 public:
 	//コンストラクタ
-	SceneGame(PlayData* playData) :
+	SceneGame(PlayData* playData, int stageNum) :
 		m_rootNode(nullptr), 
 		m_playData(playData),
 		m_stage(nullptr),
@@ -72,6 +73,7 @@ public:
 		m_uiBottle(nullptr),
 		m_isLookPlayer(true),
 		m_resultTransitionTime(ResultTransitionTime),
+		m_stageNum(stageNum),
 		m_bgm(0)
 	{
 		//モデルの事前読み込み

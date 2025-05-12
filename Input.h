@@ -182,25 +182,25 @@ public:
 	// è„à⁄ìÆ	
 	bool MoveUp()
 	{
-		return m_keyState[KEY_INPUT_W] || (m_padButton & PAD_INPUT_UP);
+		return IsKeyPress(KEY_INPUT_W) || IsPadPress(PAD_INPUT_UP);
 	}
 
 	// â∫à⁄ìÆ
 	bool MoveDown()
 	{
-		return m_keyState[KEY_INPUT_S] || (m_padButton & PAD_INPUT_DOWN);
+		return IsKeyPress(KEY_INPUT_S) || IsPadPress(PAD_INPUT_DOWN);
 	}
 
 	// ç∂à⁄ìÆ
 	bool MoveLeft()
 	{
-		return m_keyState[KEY_INPUT_A] || (m_padButton & PAD_INPUT_LEFT);
+		return IsKeyPress(KEY_INPUT_A) || IsPadPress(PAD_INPUT_LEFT);
 	}
 
 	// âEà⁄ìÆ
 	bool MoveRight()
 	{
-		return m_keyState[KEY_INPUT_D] || (m_padButton & PAD_INPUT_RIGHT);
+		return IsKeyPress(KEY_INPUT_D) || IsKeyPress(PAD_INPUT_RIGHT);
 	}
 
 	// É{ÉgÉãÇìäÇ∞ÇÈ
@@ -219,5 +219,15 @@ public:
 	bool IsCameraChange()
 	{
 		return IsKeyDown(KEY_INPUT_SPACE) || IsPadDown(PAD_INPUT_10);
+	}
+
+	bool StageSelectLeft()
+	{
+		return IsKeyDown(KEY_INPUT_A) || IsPadDown(PAD_INPUT_LEFT);
+	}
+
+	bool StageSelectRight()
+	{
+		return IsKeyDown(KEY_INPUT_D) || IsPadDown(PAD_INPUT_RIGHT);
 	}
 };

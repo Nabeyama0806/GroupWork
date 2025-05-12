@@ -21,26 +21,45 @@ private:
 		Length,
 	};
 
-	enum class Anime
+	enum class OpenAnime
 	{
-		Initial,	//開始
-		Final,		//終わり
+		First,		
+		Second,		
+
+		Length,
+	};
+	
+	enum class SelectAnime
+	{
+		Prev,
+		Next,
+		FinishAnime,
 
 		Length,
 	};
 
-	//アニメ名
-	const char* AnimeName[static_cast<int>(Anime::Length)] =
+	const char* OpenAnimeName [static_cast<int>(OpenAnime::Length)] =
 	{
 		"Initial",
 		"Final",
 	};
-		
-	//アニメのファイルパス
-	const SpriteAnimation AnimeDate[static_cast<int>(Anime::Length)] =
+	const SpriteAnimation OpenAnimeDate[static_cast<int>(OpenAnime::Length)] =
 	{
 		SpriteAnimation("Resource/LoadBook/open1.png", 10, 20, false),
 		SpriteAnimation("Resource/LoadBook/open2.png", 10, 17, false),
+	};
+
+	const char* SelectAnimeName[static_cast<int>(SelectAnime::Length)] =
+	{
+		"Prev",
+		"Next",
+		"End",
+	};
+	const SpriteAnimation SelectAnimeData[static_cast<int>(SelectAnime::Length)] =
+	{
+		SpriteAnimation("Resource/Book/page_prev.png", 13, 17, false),
+		SpriteAnimation("Resource/Book/page_next.png", 13, 17, false),
+		SpriteAnimation("Resource/Book/0051.png", 1, 1, false),
 	};
 
 	Node* m_rootNode;
@@ -48,19 +67,21 @@ private:
 	Sprite* m_sprite;
 	TitleSelect* m_select;
 	Phase m_phase;
-	Anime m_anime;
+	OpenAnime m_openAnime;
 	Transform m_transform;
+	int m_stageNum;
 	int m_bgm;
 
 public:
 	//コンストラクタ
 	SceneTitle() :
 		m_phase(Phase::Run),
-		m_anime(Anime::Initial),
+		m_openAnime(OpenAnime::First),
 		m_rootNode(nullptr),
 		m_playData(nullptr),
 		m_sprite(nullptr),
 		m_select(nullptr),
+		m_stageNum(0),
 		m_bgm(0)
 	{
 		m_playData = new PlayData();
