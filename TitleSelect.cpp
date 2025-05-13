@@ -7,8 +7,8 @@ TitleSelect::TitleSelect() :
 	SpriteActor("TitleSelect"),
 	m_isContinued(true),
 	m_isKey(false),
-	m_onMouse(false),
-	m_onMousePost(false)
+	m_cursor(false),
+	m_cursorPost(false)
 {
 	//姿勢情報
 	m_transform.position = Screen::Center;
@@ -25,7 +25,7 @@ TitleSelect::TitleSelect() :
 void TitleSelect::Update()
 {
 	// マウスの前のフレームの状態を保存
-	m_onMousePost = m_onMouse;
+	m_cursorPost = m_cursor;
 
 	//本来の更新
 	SpriteActor::Update();
@@ -46,7 +46,7 @@ void TitleSelect::Update()
 			m_isKey = true;
 		}
 
-		if (m_onMousePost && !m_isKey) m_onMouse = false;
+		if (m_cursorPost && !m_isKey) m_cursor = false;
 	}
 	else
 	{
@@ -59,7 +59,7 @@ void TitleSelect::Update()
 //描画
 void TitleSelect::Draw()
 {
-	if (m_onMouse)
+	if (m_cursor)
 	{
 		//本来の描画
 		SpriteActor::Draw();
@@ -69,13 +69,15 @@ void TitleSelect::Draw()
 #ifdef _DEBUG
 	DrawBox
 	(
-		NewGamePos.x - Size.x / 2, NewGamePos.y - Size.y / 2, NewGamePos.x + Size.x / 2, NewGamePos.y + Size.y / 2,
-		GetColor(255, 0, 0), true
+		static_cast<int>(NewGamePos.x - Size.x / 2), static_cast<int>(NewGamePos.y - Size.y / 2),
+		static_cast<int>(NewGamePos.x + Size.x / 2), static_cast<int>(NewGamePos.y + Size.y / 2),
+		GetColor(255, 0, 0), false
 	);
 	DrawBox
 	(
-		ContinuePos.x - Size.x / 2, ContinuePos.y - Size.y / 2, ContinuePos.x + Size.x / 2, ContinuePos.y + Size.y / 2,
-		GetColor(255, 0, 0), true
+		static_cast<int>(ContinuePos.x - Size.x / 2), static_cast<int>(ContinuePos.y - Size.y / 2),
+		static_cast<int>(ContinuePos.x + Size.x / 2), static_cast<int>(ContinuePos.y + Size.y / 2),
+		GetColor(255, 0, 0), false
 	);
 #endif // _DEBUG
 
@@ -83,8 +85,8 @@ void TitleSelect::Draw()
 
 void TitleSelect::StageSelect(bool isContinue)
 {
-	m_onMouse = true;
-	m_onMousePost = false;
+	m_cursor = true;
+	m_cursorPost = false;
 	if (m_isContinued == isContinue) return;
 	m_sprite->flipX = !isContinue;
 	m_isContinued = isContinue;

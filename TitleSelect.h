@@ -12,8 +12,8 @@ private:
 	bool m_isContinued;	//つづきから
 
 	bool m_isKey;		//キーボードでの操作したかどうか
-	bool m_onMouse;		//マウスカーソルがボタンの上にあるかどうか
-	bool m_onMousePost;	//前フレームのマウスカーソルがボタンの上にあるかどうか
+	bool m_cursor;		//マウスカーソルがボタンの上にあるかどうか
+	bool m_cursorPost;	//前フレームのマウスカーソルがボタンの上にあるかどうか
 
 	void StageSelect(bool isContinue);	//ステージ選択
 
@@ -34,6 +34,11 @@ public:
 
 	bool GetOnCursor()
 	{
-		return m_onMouse;
+		return m_cursor;
+	}
+
+	bool GetIsKey()
+	{
+		return m_isKey;
 	}
 };

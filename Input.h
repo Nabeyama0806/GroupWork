@@ -212,7 +212,7 @@ public:
 	// Œˆ’è
 	bool IsDecision()
 	{
-		return IsKeyDown(KEY_INPUT_SPACE) || IsPadDown(PAD_INPUT_1) || IsMouseDown(MOUSE_INPUT_LEFT);
+		return IsKeyDown(KEY_INPUT_SPACE) || IsPadDown(PAD_INPUT_1);
 	}
 
 	// ƒJƒƒ‰‚Ì‹“_•ÏX

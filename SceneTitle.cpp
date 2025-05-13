@@ -58,10 +58,12 @@ SceneBase* SceneTitle::Update()
 	switch (m_phase)
 	{
 	case Phase::Run:
-		
 		//キーが押されたらステージ選択へ移動
-		if (Input::GetInstance()->IsDecision() && m_select->GetOnCursor())
+		if (Input::GetInstance()->IsDecision() && m_select->GetOnCursor() && m_select->GetIsKey() ||
+			Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) && m_select->GetOnCursor() && !m_select->GetIsKey())
 		{
+			if (!m_select->GetOnCursor()) break;
+
 			//効果音
 			SoundManager::Play("Resource/sound/se_start.mp3");
 			SoundManager::SoundStop(m_bgm);
