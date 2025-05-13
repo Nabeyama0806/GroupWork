@@ -11,7 +11,7 @@ TransparentGimmick::TransparentGimmick(const Vector3& position) :
 	m_appearTime(0)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/Model/Brock.mv1");
+	m_model = new Model("Resource/Model/right_block.mv1");
 
 	//姿勢情報
 	m_transform.position = position;

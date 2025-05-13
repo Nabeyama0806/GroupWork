@@ -77,6 +77,9 @@ void SceneGame::Initialize()
 
 	//セーブデータのマップを読み込み
 	m_map->SetMap(m_stageNum);
+
+	SetGlobalAmbientLight(GetColorF(1, 1, 1, 0));
+	SetLightDirection(SunPosition);
 }
 
 //終了
