@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "Sprite.h"
 #include "PlayData.h"
+#include "CreateMap.h"
 
 class Node;
 class TitleSelect;
@@ -62,9 +63,39 @@ private:
 		SpriteAnimation("Resource/Book/0051.png", 1, 1, false),
 	};
 
+	const char* SelectStage[static_cast<int>(CreateMap::MapType::Length)] =
+	{
+		"Map0"
+		"Map1"
+		"Map2",
+		"Map3",
+		"Map4",
+		"Map5",
+		"Map6",
+		"Map7",
+		"Map8",
+		"Map9",
+	};
+	const SpriteAnimation SelectStageData[static_cast<int>(CreateMap::MapType::Length)] =
+	{
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+	};
+
+
+
 	Node* m_rootNode;
 	PlayData* m_playData;
 	Sprite* m_sprite;
+	Sprite* m_stageSprite;
 	TitleSelect* m_select;
 	Phase m_phase;
 	OpenAnime m_openAnime;

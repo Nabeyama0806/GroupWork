@@ -29,6 +29,13 @@ void SceneTitle::Initialize()
 	}
 	m_sprite->Load();
 	
+	m_stageSprite = new Sprite();
+	for (int i = 0; i < static_cast<int>(CreateMap::MapType::Length); ++i)
+	{
+		m_stageSprite->Register(SelectStage[i], SelectStageData[i]);
+	}
+	m_stageSprite->Load();
+
 	//選択用のカーソル
 	m_select = new TitleSelect();
 	m_rootNode->AddChild(m_select);
@@ -95,6 +102,7 @@ SceneBase* SceneTitle::Update()
 		//アニメーションの更新
 		if (m_sprite->IsFinishAnime()) m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::FinishAnime)]);
 		m_sprite->Update();
+		m_stageSprite->Update();
 
 		//ひとつ前のステージ
 		if (Input::GetInstance()->StageSelectLeft() && m_sprite->IsFinishAnime())
@@ -114,8 +122,10 @@ SceneBase* SceneTitle::Update()
 			else m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
 		}
 
+		m_stageSprite->Play(SelectStage[m_stageNum]);
+
 		//決定ボタンが押されたらゲーム開始
-		if (Input::GetInstance()->IsDecision()) return new SceneGame(m_playData, m_stageNum);
+		if (Input::GetInstance()->IsDecision() || Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT)) return new SceneGame(m_playData, m_stageNum);
 	}
 
 	return this;
@@ -126,5 +136,6 @@ void SceneTitle::Draw()
 {
 	//ノードの描画
 	m_sprite->Draw(m_transform);
+	m_stageSprite->Draw(m_transform);
 	m_rootNode->TreeDraw();
 }
