@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "PlayerFoot.h"
+#include "Instructions.h"
 #include "Bottle.h"
 #include "FireBottle.h"
 #include "ThunderBottle.h"
@@ -16,7 +17,7 @@
 #include "Camera.h"
 
 //コンストラクタ
-Player::Player(Camera* camera, UiBottle* uiBottle) :
+Player::Player(Camera* camera, UiBottle* uiBottle, Instructions* instructions) :
 	ModelActor("Player"),
 	m_camera(camera),
 	m_uiBottle(uiBottle),
@@ -28,6 +29,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 	m_isGoal(false),
 	m_getBottleFlag(0),
 	m_playerFoot(nullptr),
+	m_instructions(instructions),
 	m_map(nullptr)
 {
 	//姿勢情報の調整
@@ -44,8 +46,8 @@ Player::Player(Camera* camera, UiBottle* uiBottle) :
 //更新
 void Player::Update()
 {
-	// ゴールしたら動きを封じる
-	if (m_isGoal) return;
+	//動きを封じる
+	if (m_instructions->GetIsDraw() || m_isGoal) return;
 
 	if (!m_camera->GetIsPlayer())
 	{

@@ -14,6 +14,7 @@ class UiBottle;
 class Camera;
 class Player;
 class PlayData;
+class Instructions;
 
 //ゲームシーン
 class SceneGame : public SceneBase
@@ -51,6 +52,7 @@ private:
 	UiBottle* m_uiBottle;	
 	Camera* m_mainCamera;	//プレイヤー
 	Player* m_player;		//プレイヤー
+	Instructions* m_instructions;
 	Phase m_phase;
 	Vector3 cameraPos = Vector3(0, 0, -700);
 
@@ -72,6 +74,7 @@ public:
 		m_mainCamera(nullptr),
 		m_uiBottle(nullptr),
 		m_isLookPlayer(true),
+		m_instructions(nullptr),
 		m_resultTransitionTime(ResultTransitionTime),
 		m_stageNum(stageNum),
 		m_bgm(0)

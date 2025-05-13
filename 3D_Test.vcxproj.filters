@@ -204,6 +204,9 @@
     <ClCompile Include="GetBottle.cpp">
       <Filter>ソース ファイル\Bottle</Filter>
     </ClCompile>
+    <ClCompile Include="Instructions.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneBase.h">
@@ -385,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="KeyItem.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Instructions.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@
 #include "Transform.h"
 #include "ModelActor.h"
 
+class Instructions;
+
 class Camera : public Node
 {
 private:
@@ -27,6 +29,7 @@ private:
 
 	Transform* m_transform;		//姿勢情報
 	ModelActor* m_lookAt;		//注視するオブジェクト
+	Instructions* m_instructions;
 	Vector3 m_targetPos;		//注視点座標
 	Vector3 m_cameraPos;		//カメラ座標
 	Vector3 m_cameraAngle;		//カメラ角度
@@ -51,6 +54,7 @@ public:
 	Camera() :
 		m_transform(nullptr),
 		m_lookAt(nullptr),
+		m_instructions(nullptr),
 		m_lookAtHeight(0),
 		m_cameraDistance(1500),
 		m_stageCameraDistance(1500),
@@ -69,6 +73,11 @@ public:
 		m_lookAtHeight = isPlayer ? PlayerLookAtHeight : StageLookAtHeight;
 		m_cameraDistance = isPlayer ? PlayerCameraDistance : m_stageCameraDistance;
 		m_isPlayer = isPlayer;
+	}
+
+	void SetInstructions(Instructions* instructions)
+	{
+		m_instructions = instructions;
 	}
 
 	bool GetIsPlayer()

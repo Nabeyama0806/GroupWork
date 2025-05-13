@@ -200,7 +200,7 @@ public:
 	// ‰EˆÚ“®
 	bool MoveRight()
 	{
-		return IsKeyPress(KEY_INPUT_D) || IsKeyPress(PAD_INPUT_RIGHT);
+		return IsKeyPress(KEY_INPUT_D) || IsPadPress(PAD_INPUT_RIGHT);
 	}
 
 	// ƒ{ƒgƒ‹‚ð“Š‚°‚é

@@ -2,12 +2,14 @@
 #include "Sprite.h"
 #include "Player.h"
 #include "Camera.h"
+#include "Instructions.h"
 
 //コンストラクタ
-UiKeyItem::UiKeyItem(Player* player, Camera* camera) : 
+UiKeyItem::UiKeyItem(Player* player, Camera* camera, Instructions* instructions) :
 	SpriteActor("UiKey"),
 	m_player(player),
 	m_camera(camera),
+	m_instructions(instructions),
 	m_textureType(TextureType::None)
 {
 	//姿勢情報
@@ -39,8 +41,12 @@ void UiKeyItem::Draw()
 {
 	//カメラがプレイヤーを注視していなければ描画しない
 	if (!m_camera->GetIsPlayer()) return;
+
 	//ステージに鍵が存在してなければ描画しない
 	if (!m_player->GetIsExistenceKey()) return;
+
+	//操作説明画面を表示していれば描画しない
+	if (m_instructions->GetIsDraw()) return;
 
 	//本来の描画
 	SpriteActor::Draw();

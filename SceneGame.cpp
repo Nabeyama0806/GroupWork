@@ -13,6 +13,7 @@
 #include "UiBottle.h"
 #include "CreateMap.h"
 #include "UiKeyItem.h"
+#include "Instructions.h"
 #include "DxLib.h"
 
 //初期化
@@ -29,6 +30,39 @@ void SceneGame::Initialize()
 	Node* actorLayer = new Node();
 	m_rootNode->AddChild(actorLayer);
 
+	//UIレイヤー
+	Node* uiLayer = new Node();
+	m_rootNode->AddChild(uiLayer);
+
+	//操作説明の表示
+	m_instructions = new Instructions();
+	uiLayer->AddChild(m_instructions);
+	m_mainCamera->SetInstructions(m_instructions);
+
+	//ボトルUIの表示
+	m_uiBottle = new UiBottle(m_mainCamera, m_instructions);
+	uiLayer->AddChild(m_uiBottle);
+
+	//プレイヤー
+	m_player = new Player(m_mainCamera, m_uiBottle, m_instructions);
+	actorLayer->AddChild(m_player);
+	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
+
+	//照準の表示
+	uiLayer->AddChild(new SpriteActor("reticle", "Resource/Texture/reticle.png", Screen::Center));
+
+	//鍵のUIの表示
+	uiLayer->AddChild(new UiKeyItem(m_player, m_mainCamera, m_instructions));
+
+	//マップ
+	m_map = new CreateMap(m_player, m_playData);
+	actorLayer->AddChild(m_map);
+
+	//スカイボックス
+	ModelActor* skybox = new ModelActor("Skybox", "Resource/Model/Skybox.mv1");
+	skybox->ChangeScale(10000);
+	actorLayer->AddChild(skybox);
+
 	// 太陽
 	CreatePointLightHandle(
 		SunPosition,
@@ -36,34 +70,6 @@ void SceneGame::Initialize()
 		SunAtten.x,
 		SunAtten.y,
 		SunAtten.z);
-
-	//UIレイヤー
-	Node* uiLayer = new Node();
-	m_rootNode->AddChild(uiLayer);
-
-	//ボトルUIの表示
-	m_uiBottle = new UiBottle(m_mainCamera);
-	uiLayer->AddChild(m_uiBottle);
-
-	//照準の表示
-	uiLayer->AddChild(new SpriteActor("reticle", "Resource/Texture/reticle.png", Screen::Center));
-
-	//プレイヤー
-	m_player = new Player(m_mainCamera, m_uiBottle);
-	actorLayer->AddChild(m_player);
-	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
-
-	//マップ
-	m_map = new CreateMap(m_player, m_playData);
-	actorLayer->AddChild(m_map);
-
-	//鍵のUIの表示
-	uiLayer->AddChild(new UiKeyItem(m_player, m_mainCamera));
-
-	//スカイボックス
-	ModelActor* skybox = new ModelActor("Skybox", "Resource/Model/Skybox.mv1");
-	skybox->ChangeScale(10000);
-	actorLayer->AddChild(skybox);
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/Sound/bgm_game.mp3");

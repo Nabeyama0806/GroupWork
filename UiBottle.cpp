@@ -4,15 +4,17 @@
 #include "WaterBottle.h"
 #include "WindBottle.h"
 #include "SoundManager.h"
+#include "Instructions.h"
 #include "Sprite.h"
 #include "Player.h"
 #include "Camera.h"
 #include "Input.h"
 
 //コンストラクタ
-UiBottle::UiBottle(Camera* camera) :
+UiBottle::UiBottle(Camera* camera, Instructions* instructions) :
 	SpriteActor("UiBottle"),
 	m_camera(camera),
+	m_instructions(instructions),
 	m_type(Bottle::Type::Fire),
 	m_select(0),
 	m_crossDrawFlag(false),
@@ -92,6 +94,8 @@ void UiBottle::Update()
 void UiBottle::Draw()
 {
 	if (!m_camera->GetIsPlayer()) return;
+	if (m_instructions->GetIsDraw()) return;
+
 	//本来の描画
 	SpriteActor::Draw();
 	m_nextImg->Draw(m_nextTransform);

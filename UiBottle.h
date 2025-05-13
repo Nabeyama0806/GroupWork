@@ -4,6 +4,7 @@
 
 class Player;
 class Camera;
+class Instructions;
 
 class UiBottle : public SpriteActor
 {
@@ -31,9 +32,9 @@ private:
 	};
 
 	Sprite* m_crossImg;	// 使用不可時の画像
-
 	Sprite* m_nextImg;	//次の属性の画像
 	Sprite* m_prevImg;	//前の属性の画像
+	Instructions* m_instructions;
 	Transform m_nextTransform;	//次の属性の位置
 	Transform m_prevTransform;	//前の属性の位置
 
@@ -58,7 +59,7 @@ protected:
 
 public:
 	//コンストラクタ
-	UiBottle(Camera* camera);
+	UiBottle(Camera* camera, Instructions* instructions);
 
 	//選択されているボトルの取得
 	Bottle::Type GetType()

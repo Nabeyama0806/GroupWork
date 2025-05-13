@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "Instructions.h"
 #include "Input.h"
 #include "Math.h"
 #include "Screen.h"
@@ -7,6 +8,8 @@
 //更新
 void Camera::Update()
 {
+	if (m_instructions->GetIsDraw()) return;
+
 	// カメラの視点移動
 	if (!Input::GetInstance()->IsKeyPress(KEY_INPUT_LSHIFT)) MouseCamera();
 

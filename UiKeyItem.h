@@ -4,6 +4,7 @@
 
 class Player;
 class Camera;
+class Instructions;
 
 class UiKeyItem : public SpriteActor
 {
@@ -36,6 +37,7 @@ private:
 
 	Player* m_player;
 	Camera* m_camera;	//カメラ
+	Instructions* m_instructions;;
 	TextureType m_textureType;
 
 protected:
@@ -43,5 +45,5 @@ protected:
 	virtual void Draw() override;		//描画
 
 public:
-	UiKeyItem(Player* player, Camera* camera);	//コンストラクタ
+	UiKeyItem(Player* player, Camera* camera, Instructions* instructions);	//コンストラクタ
 };

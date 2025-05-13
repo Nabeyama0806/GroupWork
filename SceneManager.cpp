@@ -86,7 +86,6 @@ void SceneManager::Updeta()
 //•`‰æ
 void SceneManager::Draw()
 {
-
 	switch (m_phase)
 	{
 	case Phase::Run:

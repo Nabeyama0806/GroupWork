@@ -9,6 +9,7 @@ class Camera;
 class UiBottle;
 class Bottle;
 class CreateMap;
+class Instructions;
 
 class Player : public ModelActor
 {
@@ -23,11 +24,12 @@ private:
 	static constexpr int FallEndPos = -500;			// 落下したときのリスポーンする値
 
 	Camera* m_camera;
+	PlayerFoot* m_playerFoot;	//プレイヤーの足
 	UiBottle* m_uiBottle;
 	Vector3 m_holdMove;
 	Vector3 m_spawnPos;			//スポーン地点
-	PlayerFoot* m_playerFoot;	//プレイヤーの足
 	CreateMap* m_map;			//マップ
+	Instructions* m_instructions;
 
 	bool m_onWallHit;			// 壁と接触しているか
 	bool m_isExistenceKey;		// ステージに鍵が存在しているかどうか
@@ -46,7 +48,7 @@ protected:
 
 public:
 	//コンストラクタ
-	Player(Camera* camera, UiBottle* uiBottle);
+	Player(Camera* camera, UiBottle* uiBottle, Instructions* instructions);
 
 	void SetElement(GetBottle::Type type)
 	{
