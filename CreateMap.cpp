@@ -13,10 +13,11 @@
 #include "GetBottle.h"
 #include "HitCollider.h"
 
-CreateMap::CreateMap(Player* player, PlayData* playData) :
+CreateMap::CreateMap(Player* player, PlayData* playData, Camera* camera) :
 	m_playData(playData),
 	m_player(player),
 	m_mapNode(nullptr),
+	m_camera(camera),
 	m_isExistenceKey(false),
 	m_mapIndex(static_cast<int>(MapType::Map0))
 {
@@ -118,7 +119,7 @@ void CreateMap::SelectBlock(CreateMap::TileType tile, const Vector3& position, c
 		break;
 
 	case CreateMap::TileType::Transparent:
-		m_mapNode->AddChild(new TransparentGimmick(position));
+		m_mapNode->AddChild(new TransparentGimmick(position, m_camera));
 		break;
 
 	case CreateMap::TileType::Goal:

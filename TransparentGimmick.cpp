@@ -2,16 +2,18 @@
 #include "BoxCollider.h"
 #include "SoundManager.h"
 #include "Time.h"
+#include "Camera.h"
 #include "Effect.h"
 
 //コンストラクタ
-TransparentGimmick::TransparentGimmick(const Vector3& position) :
+TransparentGimmick::TransparentGimmick(const Vector3& position, Camera* camera) :
 	GimmickBase("Transparent", position),
+	m_camera(camera),
 	m_appear(false),
 	m_appearTime(0)
 {
 	//モデルとエフェクト
-	m_model = new Model("Resource/Model/right_block.mv1");
+	m_model = new Model("Resource/Model/block.mv1");
 
 	//姿勢情報
 	m_transform.position = position;
@@ -40,14 +42,11 @@ void TransparentGimmick::Active()
 //描画
 void TransparentGimmick::Draw()
 {
-	//光っていないときは枠線を表示
-	m_appear ? GimmickBase::Draw() : DrawFrameLine();
-}
-
-//枠線の表示
-void TransparentGimmick::DrawFrameLine()
-{
-	if(m_collider) m_collider->DrawBoxLine(m_transform);
+	//光っていないとき、
+	if (!m_camera->GetIsPlayer() || m_appear)
+	{
+		GimmickBase::Draw();
+	}
 }
 
 //衝突イベント

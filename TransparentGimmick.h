@@ -3,16 +3,16 @@
 #include "Model.h"
 
 class Effect;
+class Camera;
 
 class TransparentGimmick : public GimmickBase
 {
 private:
 	static constexpr float AppearTime = 5.0f;	// 水が上で止まる時間
 
+	Camera* m_camera;
 	bool m_appear;		// 見えるかどうか
 	float m_appearTime;	// 見えている間の時間
-
-	void DrawFrameLine();
 
 protected:
 	//効果の発動
@@ -21,7 +21,7 @@ protected:
 
 public:
 	//コンストラクタ
-	TransparentGimmick(const Vector3& spawnPos);
+	TransparentGimmick(const Vector3& spawnPos, Camera* camera);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;

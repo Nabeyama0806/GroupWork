@@ -49,6 +49,7 @@ public:
 	}
 #endif
 
+private:
 	void DrawBoxLine(const Transform& transform) const
 	{
 		for (int i = -1; i <= 1; ++i)

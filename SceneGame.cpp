@@ -55,7 +55,7 @@ void SceneGame::Initialize()
 	uiLayer->AddChild(new UiKeyItem(m_player, m_mainCamera, m_instructions));
 
 	//マップ
-	m_map = new CreateMap(m_player, m_playData);
+	m_map = new CreateMap(m_player, m_playData, m_mainCamera);
 	actorLayer->AddChild(m_map);
 
 	//スカイボックス

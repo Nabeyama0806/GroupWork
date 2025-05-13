@@ -5,6 +5,7 @@
 #include "Player.h"
 
 class PlayData;
+class Camera;
 
 class CreateMap : public Node
 {
@@ -57,6 +58,7 @@ private:
 
 	PlayData* m_playData;
 	Player* m_player;	//プレイヤー
+	Camera* m_camera;
 	Node* m_mapNode;
 	int m_mapIndex;		//マップのインデックス
 	bool m_isExistenceKey;
@@ -73,7 +75,7 @@ private:
 	void SelectBlock(CreateMap::TileType tile, const Vector3& position, const Vector3& size);
 
 public:
-	CreateMap(Player* m_player, PlayData* playData);
+	CreateMap(Player* m_player, PlayData* playData, Camera* camera);
 	
 	int GetMapIndex() const
 	{
