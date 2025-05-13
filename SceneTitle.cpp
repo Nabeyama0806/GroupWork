@@ -60,7 +60,7 @@ SceneBase* SceneTitle::Update()
 	case Phase::Run:
 		
 		//キーが押されたらステージ選択へ移動
-		if (Input::GetInstance()->IsDecision())
+		if (Input::GetInstance()->IsDecision() && m_select->GetOnCursor())
 		{
 			//効果音
 			SoundManager::Play("Resource/sound/se_start.mp3");
