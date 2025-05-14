@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "SoundLoader.h"
 #include "Input.h"
+#include "Time.h"
 #include "Screen.h"
 #include "TitleSelect.h"
 #include "DxLib.h"
@@ -66,8 +67,8 @@ SceneBase* SceneTitle::Update()
 	{
 	case Phase::Run:
 		//キーが押されたらステージ選択へ移動
-		if (Input::GetInstance()->IsDecision() && m_select->GetOnCursor() && m_select->GetIsKey() ||
-			Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) && m_select->GetOnCursor() && !m_select->GetIsKey())
+		if (Input::GetInstance()->IsDecision() && m_select->GetIsKey() ||
+			Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) && !m_select->GetIsKey())
 		{
 			if (!m_select->GetOnCursor()) break;
 
@@ -112,7 +113,11 @@ SceneBase* SceneTitle::Update()
 				m_stageNum--;
 
 				if (m_stageNum < 0) m_stageNum = 0;
-				else m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
+				else
+				{
+					m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
+					m_elapsedTime = 1.0f;
+				}
 			}
 
 			//ひとつ先のステージ
@@ -121,7 +126,11 @@ SceneBase* SceneTitle::Update()
 				m_stageNum++;
 
 				if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
-				else m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
+				else
+				{
+					m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
+					m_elapsedTime = 1.0f;
+				}
 			}
 		}
 
@@ -137,8 +146,16 @@ SceneBase* SceneTitle::Update()
 //描画
 void SceneTitle::Draw()
 {
+	
 	//ノードの描画
 	m_sprite->Draw(m_transform);
-	if (m_phase == Phase::StageSelect) m_stageSprite->Draw(m_transform);
+	
 	m_rootNode->TreeDraw();
+	// ステージ選択の描画
+	if (m_phase == Phase::StageSelect)
+	{
+		m_elapsedTime -= Time::GetInstance()->GetDeltaTime();
+		if (m_elapsedTime > 0) return;
+		m_stageSprite->Draw(m_transform);
+	}
 }

@@ -60,13 +60,13 @@ private:
 	{
 		SpriteAnimation("Resource/Book/page_prev.png", 13, 17, false),
 		SpriteAnimation("Resource/Book/page_next.png", 13, 17, false),
-		SpriteAnimation("Resource/Book/0051.png", 1, 1, false),
+		SpriteAnimation("Resource/LoadBook/0100.png", 1, 1, false),
 	};
 
 	const char* SelectStage[static_cast<int>(CreateMap::MapType::Length)] =
 	{
-		"Map0"
-		"Map1"
+		"Map0",
+		"Map1",
 		"Map2",
 		"Map3",
 		"Map4",
@@ -78,16 +78,16 @@ private:
 	};
 	const SpriteAnimation SelectStageData[static_cast<int>(CreateMap::MapType::Length)] =
 	{
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/stsge1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map0.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map1.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map2.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map3.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map4.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map5.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map6.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map7.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map8.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/Map9.png", 1, 1, false),
 	};
 
 
@@ -100,6 +100,7 @@ private:
 	Phase m_phase;
 	OpenAnime m_openAnime;
 	Transform m_transform;
+	float m_elapsedTime;
 	int m_stageNum;
 	int m_bgm;
 
@@ -111,7 +112,9 @@ public:
 		m_rootNode(nullptr),
 		m_playData(nullptr),
 		m_sprite(nullptr),
+		m_stageSprite(nullptr),
 		m_select(nullptr),
+		m_elapsedTime(1.0f),
 		m_stageNum(0),
 		m_bgm(0)
 	{
