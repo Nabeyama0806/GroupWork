@@ -103,23 +103,26 @@ SceneBase* SceneTitle::Update()
 		if (m_sprite->IsFinishAnime()) m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::FinishAnime)]);
 		m_sprite->Update();
 		m_stageSprite->Update();
-
-		//ひとつ前のステージ
-		if (Input::GetInstance()->StageSelectLeft() && m_sprite->IsFinishAnime())
+		
+		if (m_sprite->IsFinishAnime())
 		{
-			m_stageNum--;
+			//ひとつ前のステージ
+			if (Input::GetInstance()->StageSelectLeft())
+			{
+				m_stageNum--;
 
-			if (m_stageNum < 0) m_stageNum = 0;
-			else m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
-		}
+				if (m_stageNum < 0) m_stageNum = 0;
+				else m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
+			}
 
-		//ひとつ先のステージ
-		if (Input::GetInstance()->StageSelectRight() && m_sprite->IsFinishAnime())
-		{
-			m_stageNum++;
+			//ひとつ先のステージ
+			if (Input::GetInstance()->StageSelectRight())
+			{
+				m_stageNum++;
 
-			if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
-			else m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
+				if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
+				else m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
+			}
 		}
 
 		m_stageSprite->Play(SelectStage[m_stageNum]);
@@ -136,6 +139,6 @@ void SceneTitle::Draw()
 {
 	//ノードの描画
 	m_sprite->Draw(m_transform);
-	m_stageSprite->Draw(m_transform);
+	if (m_phase == Phase::StageSelect) m_stageSprite->Draw(m_transform);
 	m_rootNode->TreeDraw();
 }
