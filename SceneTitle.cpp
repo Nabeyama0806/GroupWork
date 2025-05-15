@@ -16,6 +16,8 @@ void SceneTitle::Initialize()
 {
 	m_rootNode = new Node();
 	m_transform.position = Screen::Center;
+	m_selectTransform.position = Screen::Center + Vector2(-230, -60);
+	m_selectTransform.scale = Vector2(0.5f, 0.5f);
 
 	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì“o˜^
 	m_sprite = new Sprite();
@@ -116,7 +118,7 @@ SceneBase* SceneTitle::Update()
 				else
 				{
 					m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
-					m_elapsedTime = 1.0f;
+					m_elapsedTime = 0.8f;
 				}
 			}
 
@@ -129,7 +131,7 @@ SceneBase* SceneTitle::Update()
 				else
 				{
 					m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
-					m_elapsedTime = 1.0f;
+					m_elapsedTime = 0.8f;
 				}
 			}
 		}
@@ -156,6 +158,6 @@ void SceneTitle::Draw()
 	{
 		m_elapsedTime -= Time::GetInstance()->GetDeltaTime();
 		if (m_elapsedTime > 0) return;
-		m_stageSprite->Draw(m_transform);
+		m_stageSprite->Draw(m_selectTransform);
 	}
 }

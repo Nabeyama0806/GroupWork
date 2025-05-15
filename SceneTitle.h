@@ -46,8 +46,8 @@ private:
 	};
 	const SpriteAnimation OpenAnimeDate[static_cast<int>(OpenAnime::Length)] =
 	{
-		SpriteAnimation("Resource/LoadBook/open1.png", 10, 20, false),
-		SpriteAnimation("Resource/LoadBook/open2.png", 10, 17, false),
+		SpriteAnimation("Resource/LoadBook/open1.png", 10, 15, false),
+		SpriteAnimation("Resource/LoadBook/open2.png", 10, 20, false),
 	};
 
 	const char* SelectAnimeName[static_cast<int>(SelectAnime::Length)] =
@@ -58,9 +58,9 @@ private:
 	};
 	const SpriteAnimation SelectAnimeData[static_cast<int>(SelectAnime::Length)] =
 	{
-		SpriteAnimation("Resource/Book/page_prev.png", 13, 17, false),
-		SpriteAnimation("Resource/Book/page_next.png", 13, 17, false),
-		SpriteAnimation("Resource/LoadBook/0100.png", 1, 1, false),
+		SpriteAnimation("Resource/LoadBook/prev_page.png", 13, 17, false),
+		SpriteAnimation("Resource/LoadBook/next_page.png", 13, 17, false),
+		SpriteAnimation("Resource/LoadBook/end_page.png", 1, 1, false),
 	};
 
 	const char* SelectStage[static_cast<int>(CreateMap::MapType::Length)] =
@@ -100,6 +100,7 @@ private:
 	Phase m_phase;
 	OpenAnime m_openAnime;
 	Transform m_transform;
+	Transform m_selectTransform;
 	float m_elapsedTime;
 	int m_stageNum;
 	int m_bgm;
@@ -114,7 +115,7 @@ public:
 		m_sprite(nullptr),
 		m_stageSprite(nullptr),
 		m_select(nullptr),
-		m_elapsedTime(1.0f),
+		m_elapsedTime(0),
 		m_stageNum(0),
 		m_bgm(0)
 	{
