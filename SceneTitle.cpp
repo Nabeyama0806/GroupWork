@@ -88,7 +88,7 @@ SceneBase* SceneTitle::Update()
 		break;
 
 	case Phase::Start:
-		m_select->Destroy();
+		m_select->SetPhase(TitleSelect::SelectType::StageSelect);
 
 		//アニメーションが終わるとステージ選択へ遷移
 		m_sprite->Update();
@@ -110,7 +110,7 @@ SceneBase* SceneTitle::Update()
 		if (m_sprite->IsFinishAnime())
 		{
 			//ひとつ前のステージ
-			if (Input::GetInstance()->StageSelectLeft())
+			if (Input::GetInstance()->StageSelectLeft() || m_select->RightButton())
 			{
 				m_stageNum--;
 
@@ -123,7 +123,7 @@ SceneBase* SceneTitle::Update()
 			}
 
 			//ひとつ先のステージ
-			if (Input::GetInstance()->StageSelectRight())
+			if (Input::GetInstance()->StageSelectRight() || m_select->LeftButton())
 			{
 				m_stageNum++;
 
@@ -139,7 +139,10 @@ SceneBase* SceneTitle::Update()
 		m_stageSprite->Play(SelectStage[m_stageNum]);
 
 		//決定ボタンが押されたらゲーム開始
-		if (Input::GetInstance()->IsDecision() || Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT)) return new SceneGame(m_playData, m_stageNum);
+		if (Input::GetInstance()->IsDecision() && m_select->GetIsKey() || m_select->ClickStage())
+		{
+			return new SceneGame(m_playData, m_stageNum);
+		}
 	}
 
 	return this;
