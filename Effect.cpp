@@ -3,7 +3,7 @@
 #include "DxLib.h"
 
 //コンストラクタ
-Effect::Effect(const char* fileName, const int effectSize, const int playInterval) :
+Effect::Effect(const char* fileName, const float effectSize, const int playInterval) :
     m_effectHandle(-1),
     m_playingEffectHandle(-1),
     m_effectPlayInterval(playInterval),

@@ -14,7 +14,7 @@ private:
 
 public:
 	//コンストラクタ
-	Effect(const char* filePath, const int effectSize, const int playInterval = 150);
+	Effect(const char* filePath, const float effectSize, const int playInterval = 150);
 
 	// デストラクタ
 	~Effect();						

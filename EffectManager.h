@@ -17,7 +17,7 @@ public:
 	}
 
 	void Initialize();					// ‰Šú‰»
-	int Load(const char* filePath, int size = 1);		// “Ç‚İ‚İ
+	int Load(const char* filePath, float = 1.0f);		// “Ç‚İ‚İ
 	void Update();						// XV
 	void Draw();						// •`‰æ
 };
