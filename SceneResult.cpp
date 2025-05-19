@@ -1,6 +1,5 @@
 #include "SceneResult.h"
 #include "Input.h"
-#include "Screen.h"
 #include "SceneTitle.h"
 #include "SpriteActor.h"
 #include "Time.h"
@@ -10,8 +9,14 @@ void SceneResult::Initialize()
 {
 	m_rootNode = new Node();
 
-	//背景
-	m_rootNode->AddChild(new SpriteActor("BackGround", "Resource/Texture/title.png", Screen::Center));
+	//アニメーションの登録
+	m_sprite = new Sprite();
+	m_sprite->gridSize = Screen::Size;
+	for (int i = 0; i < static_cast<int>(ClearAnime::Length); ++i)
+	{
+		m_sprite->Register(ClearAnimeName[i], ClearAnimeDate[i]);
+	}
+	m_sprite->Load();
 
 	SetBackgroundColor(255, 255, 255); //背景色の変更
 }
@@ -32,6 +37,13 @@ SceneBase* SceneResult::Update()
 		m_waitTransitionTime -= Time::GetInstance()->GetDeltaTime();
 	}
 
+	m_sprite->Update();
+	m_sprite->Play(ClearAnimeName[static_cast<int>(m_clearAnime)]);
+	if (m_sprite->IsFinishAnime() && m_clearAnime == ClearAnime::First)
+	{
+		m_clearAnime = ClearAnime::Second;
+	}
+
 	//いずれかのキーが押されたらタイトル画面に遷移
 	if (m_waitTransitionTime <= 0 && Input::GetInstance()->IsAnyKeyDown())
 	{
@@ -49,4 +61,6 @@ void SceneResult::Draw()
 {
 	//ノードの更新
 	m_rootNode->TreeDraw();
+
+	m_sprite->Draw(m_transform);
 }
