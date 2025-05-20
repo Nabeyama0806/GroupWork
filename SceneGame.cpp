@@ -1,4 +1,5 @@
 #include "SceneGame.h"
+#include "SceneTitle.h"
 #include "SceneResult.h"
 #include "SoundManager.h"
 #include "Screen.h"
@@ -105,6 +106,12 @@ SceneBase* SceneGame::Update()
 {
 	//ノードの更新
 	m_rootNode->TreeUpdate();
+
+	//F3キーが押されたらスタート画面に遷移
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_F3))
+	{
+		return new SceneTitle();
+	}
 
 	//プレイヤーがゴールすれば次のステージに遷移
 	switch (m_phase)

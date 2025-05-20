@@ -39,31 +39,37 @@ void TitleSelect::Update()
 	m_buttonImg->Update();
 	m_buttonImg->Play(SelectAnimeName[static_cast<int>(m_selectType)]);
 
-	switch (m_selectType)
+	//左右キー、ゲームパッドでの操作
+	if (!IsMouseContain(NewGamePos, StartSize) && !IsMouseContain(ContinuePos, StartSize))
 	{
-	case SelectType::GameSelect:
-		if (!IsMouseContain(NewGamePos, StartSize) && !IsMouseContain(ContinuePos, StartSize))
+		//右ボタンが押されたら前の画面に戻る
+		if (Input::GetInstance()->StageSelectRight())
 		{
-			if (Input::GetInstance()->StageSelectRight())
-			{
-				StageSelect(false);
-				m_isKey = true;
-			}
-			if (Input::GetInstance()->StageSelectLeft())
-			{
-				StageSelect(true);
-				m_isKey = true;
-			}
+			StageSelect(false);
+			m_isKey = true;
+		}
 
-			if (m_cursorPost && !m_isKey) m_cursor = false;
-		}
-		else
+		//左ボタンが押されたらゲーム開始
+		if (Input::GetInstance()->StageSelectLeft())
 		{
-			m_isKey = false;
-			if (IsMouseContain(NewGamePos, StartSize)) StageSelect(true);
-			else if (IsMouseContain(ContinuePos, StartSize)) StageSelect(false);
+			StageSelect(true);
+			m_isKey = true;
 		}
-		break;
+
+		if (m_cursorPost && !m_isKey) m_cursor = false;
+	}
+	//マウスカーソルの操作
+	else
+	{
+		m_isKey = false;
+		if (IsMouseContain(NewGamePos, StartSize))
+		{
+			StageSelect(true);
+		}
+		else if (IsMouseContain(ContinuePos, StartSize))
+		{
+			StageSelect(false);
+		}
 	}
 }
 
@@ -71,20 +77,11 @@ void TitleSelect::Update()
 void TitleSelect::Draw()
 {
 	m_buttonImg->Draw(m_transform);
-	switch (m_selectType)
+	if (m_cursor)
 	{
-	case SelectType::GameSelect:
-		if (m_cursor)
-		{
-			//本来の描画
-			SpriteActor::Draw();
-			m_sprite->Draw(m_transform);
-		}
-		break;
-
-	case SelectType::StageSelect:
-
-		break;
+		//本来の描画
+		SpriteActor::Draw();
+		m_sprite->Draw(m_transform);
 	}
 
 #ifdef _DEBUG
@@ -116,12 +113,6 @@ void TitleSelect::Draw()
 		(
 			static_cast<int>(LeftPos.x - SelectSize.x / 2), static_cast<int>(LeftPos.y - SelectSize.y / 2),
 			static_cast<int>(LeftPos.x + SelectSize.x / 2), static_cast<int>(LeftPos.y + SelectSize.y / 2),
-			GetColor(255, 0, 0), false
-		);
-		DrawBox
-		(
-			static_cast<int>(Screen::Center.x - StageButtonSize.x / 2), static_cast<int>(Screen::Center.y - StageButtonSize.y / 2),
-			static_cast<int>(Screen::Center.x + StageButtonSize.x / 2), static_cast<int>(Screen::Center.y + StageButtonSize.y / 2),
 			GetColor(255, 0, 0), false
 		);
 		break;
@@ -158,6 +149,7 @@ bool TitleSelect::RightButton()
 	{
 		return true;
 	}
+
 	return false;
 }
 
@@ -171,11 +163,45 @@ bool TitleSelect::LeftButton()
 	return false;
 }
 
-bool TitleSelect::ClickStage()
+bool TitleSelect::SelectButtonLeft()
 {
-	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) &&
-		IsMouseContain(Screen::Center, StageButtonSize))
+	if (!Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT)) return false;
+
+	//左ボタンが押されたらゲーム開始
+	if (!IsMouseContain(NewGamePos, StartSize))
 	{
+		if (m_cursorPost && !m_isKey) m_cursor = false;
+		if (Input::GetInstance()->StageSelectLeft())
+		{
+			return true;
+		}
+	}
+	else if (IsMouseContain(NewGamePos, StartSize))
+	{
+		m_isKey = false;
+		StageSelect(true);
+		return true;
+	}
+
+	return false;
+}
+
+bool TitleSelect::SelectButtonRight()
+{
+	if (!Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT)) return false;
+
+	//右ボタンが押されたらゲーム開始
+	if (!IsMouseContain(ContinuePos, StartSize))
+	{
+		if (Input::GetInstance()->StageSelectLeft())
+		{
+			return true;
+		}		
+	}
+	else if (IsMouseContain(ContinuePos, StartSize))
+	{
+		m_isKey = false;
+		StageSelect(false);
 		return true;
 	}
 	return false;

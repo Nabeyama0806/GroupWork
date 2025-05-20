@@ -42,6 +42,8 @@ void SceneTitle::Initialize()
 	//選択用のカーソル
 	m_select = new TitleSelect();
 	m_rootNode->AddChild(m_select);
+	Input::GetInstance()->SetMouseDispFlag(true);
+
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");
@@ -68,6 +70,9 @@ SceneBase* SceneTitle::Update()
 	switch (m_phase)
 	{
 	case Phase::Run:
+		m_select->SetPhase(TitleSelect::SelectType::GameSelect);
+		m_sprite->Play(OpenAnimeName[static_cast<int>(m_openAnime)]);
+
 		//キーが押されたらステージ選択へ移動
 		if (Input::GetInstance()->IsDecision() && m_select->GetIsKey() ||
 			Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) && !m_select->GetIsKey())
@@ -77,20 +82,18 @@ SceneBase* SceneTitle::Update()
 			//効果音
 			SoundManager::Play("Resource/sound/se_start.mp3");
 			SoundManager::SoundStop(m_bgm);
-			
+
 			//セーブデータの読み込み
 			if (!m_select->GetIsContinued()) m_playData->Reset();
 			m_playData->Load();
 			m_stageNum = m_playData->GetMapData();
 			m_phase = Phase::Start;
 		}
-
 		break;
 
 	case Phase::Start:
-		m_select->SetPhase(TitleSelect::SelectType::StageSelect);
-
 		//アニメーションが終わるとステージ選択へ遷移
+		m_select->SetPhase(TitleSelect::SelectType::StageSelect);
 		m_sprite->Update();
 		m_sprite->Play(OpenAnimeName[static_cast<int>(m_openAnime)]);
 		if (m_sprite->IsFinishAnime())
@@ -103,45 +106,53 @@ SceneBase* SceneTitle::Update()
 	case Phase::StageSelect:
 
 		//アニメーションの更新
-		if (m_sprite->IsFinishAnime()) m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::FinishAnime)]);
 		m_sprite->Update();
 		m_stageSprite->Update();
-		
 		if (m_sprite->IsFinishAnime())
 		{
-			//ひとつ前のステージ
-			if (Input::GetInstance()->StageSelectLeft() || m_select->RightButton())
+			m_stageSprite->Play(SelectStage[m_stageNum]);
+			m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::FinishAnime)]);
+		}
+
+		if (!m_sprite->IsFinishAnime()) return this;
+
+		//ひとつ前のステージ
+		if (m_select->RightButton())
+		{
+			m_stageNum--;
+
+			if (m_stageNum < 0) m_stageNum = 0;
+			else
 			{
-				m_stageNum--;
-
-				if (m_stageNum < 0) m_stageNum = 0;
-				else
-				{
-					m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
-					m_elapsedTime = 0.8f;
-				}
-			}
-
-			//ひとつ先のステージ
-			if (Input::GetInstance()->StageSelectRight() || m_select->LeftButton())
-			{
-				m_stageNum++;
-
-				if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
-				else
-				{
-					m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
-					m_elapsedTime = 0.8f;
-				}
+				m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
+				m_elapsedTime = 0.8f;
 			}
 		}
 
-		m_stageSprite->Play(SelectStage[m_stageNum]);
+		//ひとつ先のステージ
+		if (m_select->LeftButton())
+		{
+			m_stageNum++;
 
-		//決定ボタンが押されたらゲーム開始
-		if (Input::GetInstance()->IsDecision() && m_select->GetIsKey() || m_select->ClickStage())
+			if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
+			else
+			{
+				m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
+				m_elapsedTime = 0.8f;
+			}
+		}
+
+		//開始ボタン
+		if (m_select->SelectButtonLeft())
 		{
 			return new SceneGame(m_playData, m_stageNum);
+		}
+
+		//戻るボタン
+		if (m_select->SelectButtonRight())
+		{
+			m_openAnime = OpenAnime::First;
+			m_phase = Phase::Run; 
 		}
 	}
 
@@ -151,16 +162,16 @@ SceneBase* SceneTitle::Update()
 //描画
 void SceneTitle::Draw()
 {
-	
 	//ノードの描画
 	m_sprite->Draw(m_transform);
-	
 	m_rootNode->TreeDraw();
+
 	// ステージ選択の描画
 	if (m_phase == Phase::StageSelect)
-	{
+	{  
+		if (m_sprite->IsFinishAnime()) m_stageSprite->Draw(m_selectTransform);
+
 		m_elapsedTime -= Time::GetInstance()->GetDeltaTime();
 		if (m_elapsedTime > 0) return;
-		m_stageSprite->Draw(m_selectTransform);
 	}
 }

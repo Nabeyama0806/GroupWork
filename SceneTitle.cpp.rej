@@ -1,0 +1,9 @@
+diff a/SceneTitle.cpp b/SceneTitle.cpp	(rejected hunks)
+@@ -82,7 +82,6 @@
+ 			SoundManager::SoundStop(m_bgm);
+ 
+ 			//�Z�[�u�f�[�^�̓ǂݍ���
+-			if (!m_select->GetIsContinued()) m_playData->Reset();
+ 			if (m_isReset)m_playData->Reset();
+ 			m_playData->Load();
+ 			m_stageNum = m_playData->GetMapData();

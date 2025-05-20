@@ -22,8 +22,8 @@ private:
 	};
 	const SpriteAnimation SelectAnimeData[static_cast<int>(SelectType::Length)] =
 	{
-		SpriteAnimation("Resource/Texture/select.png", 1, 1, false),
-		SpriteAnimation("Resource/Texture/arrow.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/save_select.png", 1, 1, false),
+		SpriteAnimation("Resource/Texture/start_select.png", 1, 1, false),
 	};
 
 	static constexpr Vector2 StartSize = Vector2(440, 100);		//ボタンのサイズ
@@ -33,8 +33,6 @@ private:
 	static constexpr Vector2 SelectSize = Vector2(131, 200);	//選択したボタンのサイズ
 	static constexpr Vector2 RightPos = Vector2(165, 385);	//右のボタンの位置
 	static constexpr Vector2 LeftPos = Vector2(1735, 385);	//左のボタンの位置
-
-	static constexpr Vector2 StageButtonSize = Vector2(900, 500);	//ステージのサイズ
 
 	SelectType m_selectType;	//選択したタイプ
 	Sprite* m_buttonImg;	//ボタンの画像
@@ -81,5 +79,7 @@ public:
 
 	bool LeftButton();
 
-	bool ClickStage();
+	bool SelectButtonLeft();
+
+	bool SelectButtonRight();
 };

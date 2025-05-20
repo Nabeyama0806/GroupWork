@@ -11,7 +11,7 @@ class TitleSelect;
 //タイトルシーン
 class SceneTitle : public SceneBase
 {
-private:
+public:
 	//フェーズ
 	enum class Phase
 	{
@@ -22,6 +22,7 @@ private:
 		Length,
 	};
 
+private:
 	enum class OpenAnime
 	{
 		First,		
@@ -60,7 +61,7 @@ private:
 	{
 		SpriteAnimation("Resource/LoadBook/prev_page.png", 13, 17, false),
 		SpriteAnimation("Resource/LoadBook/next_page.png", 13, 17, false),
-		SpriteAnimation("Resource/LoadBook/end_page.png", 1, 1, false),
+		SpriteAnimation("Resource/LoadBook/end_page.png", 1, 16, false),
 	};
 
 	const char* SelectStage[static_cast<int>(CreateMap::MapType::Length)] =
@@ -90,8 +91,6 @@ private:
 		SpriteAnimation("Resource/Texture/Map9.png", 1, 1, false),
 	};
 
-
-
 	Node* m_rootNode;
 	PlayData* m_playData;
 	Sprite* m_sprite;
@@ -101,15 +100,23 @@ private:
 	OpenAnime m_openAnime;
 	Transform m_transform;
 	Transform m_selectTransform;
+	bool m_isReset;
 	float m_elapsedTime;
 	int m_stageNum;
 	int m_bgm;
+
+protected:
+	virtual void Initialize() override;				//初期化
+	virtual void Finalize() override;				//終了
+	virtual SceneBase* Update() override;			//更新
+	virtual void Draw() override;					//描画
 
 public:
 	//コンストラクタ
 	SceneTitle() :
 		m_phase(Phase::Run),
 		m_openAnime(OpenAnime::First),
+		m_isReset(false),
 		m_rootNode(nullptr),
 		m_playData(nullptr),
 		m_sprite(nullptr),
@@ -122,8 +129,8 @@ public:
 		m_playData = new PlayData();
 	}
 
-	virtual void Initialize() override;				//初期化
-	virtual void Finalize() override;				//終了
-	virtual SceneBase* Update() override;			//更新
-	virtual void Draw() override;					//描画
+	void SetPhase(Phase phase)
+	{
+		m_phase = phase;
+	}
 };
