@@ -29,14 +29,21 @@ private:
 	}
 
 public:
+	PlayData() : 
+		m_clearMapNum(0),
+		m_bottleBit(0)
+	{
+		Load();
+	}
+
 	//データの読み込み
 	void Load();
 
 	//データの書き込み
-	void Save(int mapNum, int bottleBit);
+	void Save(int mapNum, int bottleBit, bool overwrite = false);
 
 	//データの削除
-	void Reset();
+	void Reset(bool overwrite = false);
 
 	int GetMapData()
 	{

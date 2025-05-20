@@ -44,7 +44,6 @@ void SceneTitle::Initialize()
 	m_rootNode->AddChild(m_select);
 	Input::GetInstance()->SetMouseDispFlag(true);
 
-
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");
 	SoundManager::Play(m_bgm, DX_PLAYTYPE_LOOP);
@@ -80,12 +79,15 @@ SceneBase* SceneTitle::Update()
 
 			//効果音
 			SoundManager::Play("Resource/sound/se_start.mp3");
-			SoundManager::SoundStop(m_bgm);
 
 			//セーブデータの読み込み
-			if (!m_select->GetIsContinued()) m_playData->Reset();
 			m_playData->Load();
-			m_stageNum = m_playData->GetMapData();
+			if (!m_select->GetIsContinued())
+			{
+				m_stageNum = 0;
+				m_isReset = true;
+			}
+			else  m_stageNum = m_playData->GetMapData();
 			m_phase = Phase::Start;
 		}
 		break;
@@ -103,7 +105,6 @@ SceneBase* SceneTitle::Update()
 		break;
 
 	case Phase::StageSelect:
-
 		//アニメーションの更新
 		m_sprite->Update();
 		if (m_titleAnime == TitleAnime::Close)
@@ -132,36 +133,51 @@ SceneBase* SceneTitle::Update()
 		{
 			m_stageNum--;
 
+			SoundManager::Play("Resource/sound/se_start.mp3");
+
 			if (m_stageNum < 0) m_stageNum = 0;
 			else
 			{
 				m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Prev)]);
-				m_elapsedTime = 0.8f;
 			}
 		}
 
 		//ひとつ先のステージ
 		if (m_select->LeftButton())
 		{
-			m_stageNum++;
-
-			if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
-			else
+			if (!m_isReset)
 			{
-				m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Next)]);
-				m_elapsedTime = 0.8f;
+				m_stageNum++;
+				if (m_stageNum > m_playData->GetMapData())
+				{
+					m_stageNum = m_playData->GetMapData();
+				}
+				else
+				{
+					m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Next)]);
+				}
 			}
+
+			SoundManager::Play("Resource/sound/se_start.mp3");
 		}
 
 		//開始ボタン
 		if (m_select->SelectButtonLeft())
 		{
+			//効果音
+			SoundManager::Play("Resource/sound/se_start.mp3");
+			SoundManager::SoundStop(m_bgm);
+
+			//プレイデータの記録
+			m_playData->Save(m_stageNum, m_playData->GetBottleData());
+
 			return new SceneGame(m_playData, m_stageNum);
 		}
 
 		//戻るボタン
 		if (m_select->SelectButtonRight())
 		{
+			SoundManager::Play("Resource/sound/se_start.mp3");
 			m_titleAnime = TitleAnime::Close;
 		}
 	}
