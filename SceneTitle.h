@@ -23,14 +23,27 @@ public:
 	};
 
 private:
-	enum class OpenAnime
+	static constexpr Vector2 StageTextureOffset = Vector2(-50, 0);	//ステージのテクスチャのオフセット
+	
+	enum class TitleAnime
 	{
-		First,		
-		Second,		
+		Open,
+		Close,
 
 		Length,
 	};
-	
+
+	const char* TitleAnimeName[static_cast<int>(TitleAnime::Length)] =
+	{
+		"Open",
+		"Close",
+	};
+	const SpriteAnimation TitleAnimeData[static_cast<int>(TitleAnime::Length)] =
+	{
+		SpriteAnimation("Resource/LoadBook/open_title.png", 12, 17, false),
+		SpriteAnimation("Resource/LoadBook/close_title.png", 12, 17, false),
+	};
+
 	enum class SelectAnime
 	{
 		Prev,
@@ -38,17 +51,6 @@ private:
 		FinishAnime,
 
 		Length,
-	};
-
-	const char* OpenAnimeName [static_cast<int>(OpenAnime::Length)] =
-	{
-		"Initial",
-		"Final",
-	};
-	const SpriteAnimation OpenAnimeDate[static_cast<int>(OpenAnime::Length)] =
-	{
-		SpriteAnimation("Resource/LoadBook/open1.png", 10, 15, false),
-		SpriteAnimation("Resource/LoadBook/open2.png", 10, 20, false),
 	};
 
 	const char* SelectAnimeName[static_cast<int>(SelectAnime::Length)] =
@@ -97,7 +99,7 @@ private:
 	Sprite* m_stageSprite;
 	TitleSelect* m_select;
 	Phase m_phase;
-	OpenAnime m_openAnime;
+	TitleAnime m_titleAnime;
 	Transform m_transform;
 	Transform m_selectTransform;
 	bool m_isReset;
@@ -115,7 +117,7 @@ public:
 	//コンストラクタ
 	SceneTitle() :
 		m_phase(Phase::Run),
-		m_openAnime(OpenAnime::First),
+		m_titleAnime(TitleAnime::Open),
 		m_isReset(false),
 		m_rootNode(nullptr),
 		m_playData(nullptr),

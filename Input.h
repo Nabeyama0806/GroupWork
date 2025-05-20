@@ -206,13 +206,13 @@ public:
 	// ボトルを投げる
 	bool NewBottle()
 	{
-		return IsMouseDown(MOUSE_INPUT_LEFT) || IsPadRightTriggerDown();
+		return IsMouseDown(MOUSE_INPUT_LEFT) || IsPadRightTriggerDown() || IsPadLeftTriggerDown();
 	}
 
 	// 決定
 	bool IsDecision()
 	{
-		return IsKeyDown(KEY_INPUT_SPACE) || IsPadDown(PAD_INPUT_1);
+		return IsPadDown(PAD_INPUT_1);
 	}
 
 	// カメラの視点変更
@@ -221,13 +221,25 @@ public:
 		return IsKeyDown(KEY_INPUT_SPACE) || IsPadDown(PAD_INPUT_10);
 	}
 
-	bool StageSelectLeft()
+	// タイトルの選択
+	bool TitleSelectLeft()
 	{
-		return IsKeyDown(KEY_INPUT_A) || IsPadDown(PAD_INPUT_LEFT);
+		return IsPadDown(PAD_INPUT_LEFT);
 	}
 
+	bool TitleSelectRight()
+	{
+		return IsPadDown(PAD_INPUT_RIGHT);
+	}
+
+	// タイトルのステージ選択
 	bool StageSelectRight()
 	{
-		return IsKeyDown(KEY_INPUT_D) || IsPadDown(PAD_INPUT_RIGHT);
+		return IsPadDown(PAD_INPUT_5);
+	}
+
+	bool StageSelectLeft()
+	{
+		return IsPadDown(PAD_INPUT_6);
 	}
 };

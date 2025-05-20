@@ -43,14 +43,14 @@ void TitleSelect::Update()
 	if (!IsMouseContain(NewGamePos, StartSize) && !IsMouseContain(ContinuePos, StartSize))
 	{
 		//右ボタンが押されたら前の画面に戻る
-		if (Input::GetInstance()->StageSelectRight())
+		if (Input::GetInstance()->TitleSelectRight())
 		{
 			StageSelect(false);
 			m_isKey = true;
 		}
 
 		//左ボタンが押されたらゲーム開始
-		if (Input::GetInstance()->StageSelectLeft())
+		if (Input::GetInstance()->TitleSelectLeft())
 		{
 			StageSelect(true);
 			m_isKey = true;
@@ -145,7 +145,8 @@ bool TitleSelect::IsMouseContain(const Vector2& position, const Vector2& size)
 bool TitleSelect::RightButton()
 {
 	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) && 
-		IsMouseContain(RightPos, SelectSize))
+		IsMouseContain(RightPos, SelectSize) ||
+		Input::GetInstance()->StageSelectRight())
 	{
 		return true;
 	}
@@ -156,7 +157,8 @@ bool TitleSelect::RightButton()
 bool TitleSelect::LeftButton()
 {
 	if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) &&
-		IsMouseContain(LeftPos, SelectSize))
+		IsMouseContain(LeftPos, SelectSize) ||
+		Input::GetInstance()->StageSelectLeft())
 	{
 		return true;
 	}
@@ -165,18 +167,16 @@ bool TitleSelect::LeftButton()
 
 bool TitleSelect::SelectButtonLeft()
 {
-	if (!Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT)) return false;
-
 	//左ボタンが押されたらゲーム開始
 	if (!IsMouseContain(NewGamePos, StartSize))
 	{
-		if (m_cursorPost && !m_isKey) m_cursor = false;
-		if (Input::GetInstance()->StageSelectLeft())
+		if (Input::GetInstance()->IsDecision() && m_cursor && !m_sprite->flipX)
 		{
 			return true;
 		}
 	}
-	else if (IsMouseContain(NewGamePos, StartSize))
+	// ボタンが押された
+	else if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) && IsMouseContain(NewGamePos, StartSize))
 	{
 		m_isKey = false;
 		StageSelect(true);
@@ -188,21 +188,21 @@ bool TitleSelect::SelectButtonLeft()
 
 bool TitleSelect::SelectButtonRight()
 {
-	if (!Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT)) return false;
-
-	//右ボタンが押されたらゲーム開始
+	//左ボタンが押されたらゲーム開始
 	if (!IsMouseContain(ContinuePos, StartSize))
 	{
-		if (Input::GetInstance()->StageSelectLeft())
+		if (Input::GetInstance()->IsDecision() && m_cursor && m_sprite->flipX)
 		{
 			return true;
-		}		
+		}
 	}
-	else if (IsMouseContain(ContinuePos, StartSize))
+	// ボタンが押された
+	else if (Input::GetInstance()->IsMouseDown(MOUSE_INPUT_LEFT) && IsMouseContain(ContinuePos, StartSize))
 	{
 		m_isKey = false;
-		StageSelect(false);
+		StageSelect(true);
 		return true;
 	}
+
 	return false;
 }

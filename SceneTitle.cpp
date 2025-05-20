@@ -16,15 +16,15 @@ void SceneTitle::Initialize()
 {
 	m_rootNode = new Node();
 	m_transform.position = Screen::Center;
-	m_selectTransform.position = Screen::Center + Vector2(-230, -60);
+	m_selectTransform.position = Screen::Center + StageTextureOffset;
 	m_selectTransform.scale = Vector2(0.5f, 0.5f);
 
 	//アニメーションの登録
 	m_sprite = new Sprite();
 	m_sprite->gridSize = Screen::Size;
-	for (int i = 0; i < static_cast<int>(OpenAnime::Length); ++i)
+	for (int i = 0; i < static_cast<int>(TitleAnime::Length); ++i)
 	{
-		m_sprite->Register(OpenAnimeName[i], OpenAnimeDate[i]);
+		m_sprite->Register(TitleAnimeName[i], TitleAnimeData[i]);
 	}
 	for (int i = 0; i < static_cast<int>(SelectAnime::Length); ++i)
 	{
@@ -70,8 +70,7 @@ SceneBase* SceneTitle::Update()
 	switch (m_phase)
 	{
 	case Phase::Run:
-		m_select->SetPhase(TitleSelect::SelectType::GameSelect);
-		m_sprite->Play(OpenAnimeName[static_cast<int>(m_openAnime)]);
+		m_sprite->Play(TitleAnimeName[static_cast<int>(m_titleAnime)]);
 
 		//キーが押されたらステージ選択へ移動
 		if (Input::GetInstance()->IsDecision() && m_select->GetIsKey() ||
@@ -95,11 +94,11 @@ SceneBase* SceneTitle::Update()
 		//アニメーションが終わるとステージ選択へ遷移
 		m_select->SetPhase(TitleSelect::SelectType::StageSelect);
 		m_sprite->Update();
-		m_sprite->Play(OpenAnimeName[static_cast<int>(m_openAnime)]);
+		m_sprite->Play(TitleAnimeName[static_cast<int>(m_titleAnime)]);
 		if (m_sprite->IsFinishAnime())
 		{
-			if (m_openAnime == OpenAnime::First) m_openAnime = OpenAnime::Second;
-			else m_phase = Phase::StageSelect;
+			m_phase = Phase::StageSelect;
+			m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::FinishAnime)]);
 		}
 		break;
 
@@ -107,6 +106,18 @@ SceneBase* SceneTitle::Update()
 
 		//アニメーションの更新
 		m_sprite->Update();
+		if (m_titleAnime == TitleAnime::Close)
+		{
+			m_select->SetPhase(TitleSelect::SelectType::GameSelect);
+			m_sprite->Play(TitleAnimeName[static_cast<int>(m_titleAnime)]);
+			if (m_sprite->IsFinishAnime())
+			{
+				m_titleAnime = TitleAnime::Open;
+				m_phase = Phase::Run;
+				break;
+			}
+		}
+
 		m_stageSprite->Update();
 		if (m_sprite->IsFinishAnime())
 		{
@@ -137,7 +148,7 @@ SceneBase* SceneTitle::Update()
 			if (m_stageNum > m_playData->GetMapData()) m_stageNum = m_playData->GetMapData();
 			else
 			{
-				m_sprite->Play(SelectAnimeName[static_cast<int>(OpenAnime::Second)]);
+				m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::Next)]);
 				m_elapsedTime = 0.8f;
 			}
 		}
@@ -151,8 +162,7 @@ SceneBase* SceneTitle::Update()
 		//戻るボタン
 		if (m_select->SelectButtonRight())
 		{
-			m_openAnime = OpenAnime::First;
-			m_phase = Phase::Run; 
+			m_titleAnime = TitleAnime::Close;
 		}
 	}
 
