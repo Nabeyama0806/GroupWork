@@ -20,6 +20,8 @@ PlayData::PlayData() :
 	//値の保持
 	m_clearMapNum = DecodeData(clearMap);
 	m_bottleBit = DecodeData(bottleBit);
+
+	//Save(9, 15, true);
 }
 
 //データの書き込み
@@ -29,9 +31,6 @@ void PlayData::Save(int mapNum, int bottleBit, bool overwrite)
 	std::fstream file(FileName);
 	if (!file.is_open()) file.open(FileName, std::ios::out);
 
-	m_clearMapNum = 0;
-	m_bottleBit = 0;
-
 	//上書きするかどうか
 	if (overwrite || m_clearMapNum < mapNum)
 	{
@@ -39,8 +38,8 @@ void PlayData::Save(int mapNum, int bottleBit, bool overwrite)
 		file << EncryptionData(mapNum) << std::endl << EncryptionData(bottleBit);
 
 		//値の保持
-		m_clearMapNum = EncryptionData(mapNum);
-		m_bottleBit = EncryptionData(bottleBit);
+		m_clearMapNum = mapNum;
+		m_bottleBit = bottleBit;
 	}
 
 	file.close();

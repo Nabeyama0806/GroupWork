@@ -35,6 +35,7 @@ Player::Player(Camera* camera, UiBottle* uiBottle, Instructions* instructions) :
 	//p¨î•ñ‚Ì’²®
 	m_transform.scale = Scale;
 
+	//ƒ‚ƒfƒ‹
 	m_model = new Model("Resource/Model/Player.mv1");
 
 	//Õ“Ë”»’è

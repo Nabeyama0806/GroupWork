@@ -7,7 +7,6 @@
 #include "SoundLoader.h"
 #include "PlayData.h"
 #include "Input.h"
-#include "Time.h"
 #include "Screen.h"
 #include "DxLib.h"
 
@@ -214,7 +213,7 @@ void SceneTitle::StartButton()
 	if (!m_sprite->IsFinishAnime()) return;
 
 	//プレイデータの記録
-	m_playData->Save(m_stageNum, m_playData->GetBottleData());
+	m_playData->Save(m_stageNum, m_isReset ? 0 : m_playData->GetBottleData(), true);
 
 	//ゲームシーンの起動
 	m_phase = Phase::GameStart;

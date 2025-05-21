@@ -110,7 +110,6 @@ private:
 	TitleAnime m_titleAnime;
 	Transform m_transform;
 	bool m_isReset;
-	float m_elapsedTime;
 	int m_stageNum;
 	int m_bgm;
 
@@ -141,7 +140,6 @@ public:
 		m_playData(nullptr),
 		m_sprite(nullptr),
 		m_stageSprite(nullptr),
-		m_elapsedTime(0),
 		m_stageNum(0),
 		m_bgm(0)
 	{

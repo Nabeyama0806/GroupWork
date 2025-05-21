@@ -22,8 +22,8 @@ private:
 	};
 	const SpriteAnimation TextureData[static_cast<int>(Device::Length)] =
 	{
-		SpriteAnimation("Resource/Texture/slide1.png", 1, 1, true),
-		SpriteAnimation("Resource/Texture/slide2.png", 1, 1, true),
+		SpriteAnimation("Resource/Texture/tutorial1.jpg", 1, 1, true),
+		SpriteAnimation("Resource/Texture/tutorial2.jpg", 1, 1, true),
 	};
 
 	bool m_isDraw; //•\Ž¦’†‚©‚Ç‚¤‚©
