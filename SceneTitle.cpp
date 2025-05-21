@@ -45,13 +45,13 @@ void SceneTitle::Initialize()
 	Input::GetInstance()->SetMouseDispFlag(true);
 
 	//ƒ{ƒ^ƒ“
-	m_ModeSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/continue.png", Screen::CenterLeft, std::bind(&SceneTitle::ContinueButton, this)));
-	m_ModeSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/newgame.png", Screen::CenterRight, std::bind(&SceneTitle::NewGameButton, this)));
+	m_ModeSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/continue.png", SelectButtonSize, LeftSelectButtonPos, std::bind(&SceneTitle::ContinueButton, this)));
+	m_ModeSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/newgame.png", SelectButtonSize, RightSelectButtonPos, std::bind(&SceneTitle::NewGameButton, this)));
 
-	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/arrow_left.png", Screen::CenterLeft, std::bind(&SceneTitle::LeftArrowButton, this)));
-	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/arrow_right.png", Screen::CenterRight, std::bind(&SceneTitle::RightArrowButton, this)));
-	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/start.png", Screen::BottomLeft, std::bind(&SceneTitle::StartButton, this)));
-	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/back.png", Screen::BottomRight, std::bind(&SceneTitle::BackButton, this)));
+	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/arrow_left.png", ArrowButtonSize, LeftArrowButtonPos, std::bind(&SceneTitle::LeftArrowButton, this)));
+	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/arrow_right.png", ArrowButtonSize, RightArrowButtonPos, std::bind(&SceneTitle::RightArrowButton, this)));
+	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/start.png", SelectButtonSize, LeftSelectButtonPos, std::bind(&SceneTitle::StartButton, this)));
+	m_StageSelectButtonNode->AddChild(new SelectButton("Resource/Texture/Button/back.png", SelectButtonSize, RightSelectButtonPos, std::bind(&SceneTitle::BackButton, this)));
 
 	//BGM
 	m_bgm = SoundLoader::GetInstance()->Load("Resource/sound/bgm_title.mp3");

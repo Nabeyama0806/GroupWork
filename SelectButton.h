@@ -8,9 +8,6 @@ class Button;
 
 class SelectButton : public SpriteActor
 {
-private:
-	static constexpr Vector2 Size = Vector2(440, 100);		//ボタンのサイズ
-
 protected:
 	Button m_button;
 
@@ -21,6 +18,7 @@ public:
 	//コンストラクタ
 	SelectButton(
 		const char* textureName,
+		const Vector2& size,
 		const Vector2& position,
 		std::function<void()> callbackFunction
 	);

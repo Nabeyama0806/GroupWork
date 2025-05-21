@@ -54,5 +54,5 @@ void Button::Draw(const Vector2& position)
 	DrawBox(
 		static_cast<int>(position.x - m_size.x / 2), static_cast<int>(position.y - m_size.y / 2),
 		static_cast<int>(position.x + m_size.x / 2), static_cast<int>(position.y + m_size.y / 2),
-		GetColor(0, 0, 255), 0);
+		GetColor(255, 255, 0), 0);
 }

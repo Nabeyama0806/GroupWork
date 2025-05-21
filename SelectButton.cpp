@@ -4,9 +4,9 @@
 #include "DxLib.h"
 
 //コンストラクタ
-SelectButton::SelectButton(const char* textureName, const Vector2& position, std::function<void()> callbackFunction) :
+SelectButton::SelectButton(const char* textureName, const Vector2& size, const Vector2& position, std::function<void()> callbackFunction) :
 	SpriteActor("SelectButton", textureName, position),
-	m_button(Size, MOUSE_INPUT_LEFT, callbackFunction)
+	m_button(size, MOUSE_INPUT_LEFT, callbackFunction)
 {
 }
 

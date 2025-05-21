@@ -23,7 +23,14 @@ public:
 	};
 
 private:
-	static constexpr Vector2 StageTextureOffset = Vector2(-50, 0);	//ステージのテクスチャのオフセット
+	static constexpr Vector2 SelectButtonSize = Vector2(650, 150);	//矢印ボタンの大きさ
+	static constexpr Vector2 ArrowButtonSize = Vector2(200, 300);	//選択ボタンの大きさ
+	
+	static constexpr Vector2 LeftArrowButtonPos = Vector2(50, 540);		//左矢印ボタンの座標
+	static constexpr Vector2 RightArrowButtonPos = Vector2(1870, 540);	//右矢印ボタンの座標
+
+	static constexpr Vector2 LeftSelectButtonPos = Vector2(350, 980);		//左選択ボタンの座標
+	static constexpr Vector2 RightSelectButtonPos = Vector2(1570, 980);		//右選択ボタンの座標
 
 	enum class TitleAnime
 	{
