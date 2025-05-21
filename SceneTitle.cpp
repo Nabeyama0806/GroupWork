@@ -16,8 +16,6 @@ void SceneTitle::Initialize()
 {
 	m_rootNode = new Node();
 	m_transform.position = Screen::Center;
-	m_selectTransform.position = Screen::Center + StageTextureOffset;
-	m_selectTransform.scale = Vector2(0.5f, 0.5f);
 
 	//アニメーションの登録
 	m_sprite = new Sprite();
@@ -80,8 +78,6 @@ SceneBase* SceneTitle::Update()
 			//効果音
 			SoundManager::Play("Resource/sound/se_start.mp3");
 
-			//セーブデータの読み込み
-			m_playData->Load();
 			if (!m_select->GetIsContinued())
 			{
 				m_stageNum = 0;
@@ -189,16 +185,18 @@ SceneBase* SceneTitle::Update()
 //描画
 void SceneTitle::Draw()
 {
-	//ノードの描画
 	m_sprite->Draw(m_transform);
-	m_rootNode->TreeDraw();
-
 	// ステージ選択の描画
 	if (m_phase == Phase::StageSelect)
 	{  
-		if (m_sprite->IsFinishAnime()) m_stageSprite->Draw(m_selectTransform);
+		if (m_sprite->IsFinishAnime()) m_stageSprite->Draw(m_transform);
 
+		/*
 		m_elapsedTime -= Time::GetInstance()->GetDeltaTime();
 		if (m_elapsedTime > 0) return;
+		*/
 	}
+
+	//ノードの描画
+	m_rootNode->TreeDraw();
 }

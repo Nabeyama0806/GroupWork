@@ -40,8 +40,8 @@ private:
 	};
 	const SpriteAnimation TitleAnimeData[static_cast<int>(TitleAnime::Length)] =
 	{
-		SpriteAnimation("Resource/LoadBook/open_title.png", 12, 17, false),
-		SpriteAnimation("Resource/LoadBook/close_title.png", 12, 17, false),
+		SpriteAnimation("Resource/LoadBook/1920open_title.png", 12, 17, false),
+		SpriteAnimation("Resource/LoadBook/1920close_title.png", 12, 17, false),
 	};
 
 	enum class SelectAnime
@@ -101,7 +101,6 @@ private:
 	Phase m_phase;
 	TitleAnime m_titleAnime;
 	Transform m_transform;
-	Transform m_selectTransform;
 	bool m_isReset;
 	float m_elapsedTime;
 	int m_stageNum;

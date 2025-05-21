@@ -66,6 +66,11 @@ void Player::Update()
 	}
 
 	m_uiBottle->SetGetBottleFlag(m_getBottleFlag, m_canWindBottleThrow);
+
+#ifdef _DEBUG
+	if (Input::GetInstance()->IsKeyDown(KEY_INPUT_0)) m_isGoal = true;
+#endif // _DEBUG
+
 }
 
 //w’è‚³‚ê‚½ƒ{ƒgƒ‹‚Ìì¬
