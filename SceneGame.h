@@ -57,6 +57,7 @@ private:
 	Vector3 cameraPos = Vector3(0, 0, -700);
 
 	bool m_isLookPlayer;
+	bool m_isReset;
 
 	float m_resultTransitionTime;
 	int m_stageNum;
@@ -64,7 +65,7 @@ private:
 
 public:
 	//コンストラクタ
-	SceneGame(PlayData* playData, int stageNum) :
+	SceneGame(PlayData* playData, int stageNum, bool isReset) :
 		m_rootNode(nullptr), 
 		m_playData(playData),
 		m_stage(nullptr),
@@ -74,6 +75,7 @@ public:
 		m_mainCamera(nullptr),
 		m_uiBottle(nullptr),
 		m_isLookPlayer(true),
+		m_isReset(isReset),
 		m_instructions(nullptr),
 		m_resultTransitionTime(ResultTransitionTime),
 		m_stageNum(stageNum),

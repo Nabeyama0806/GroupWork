@@ -62,6 +62,7 @@ private:
 	Node* m_mapNode;
 	int m_mapIndex;		//マップのインデックス
 	bool m_isExistenceKey;
+	bool m_isReset;
 
 	std::vector<Vector3> m_spawnPos;
 
@@ -75,7 +76,7 @@ private:
 	void SelectBlock(CreateMap::TileType tile, const Vector3& position, const Vector3& size);
 
 public:
-	CreateMap(Player* m_player, PlayData* playData, Camera* camera);
+	CreateMap(Player* m_player, PlayData* playData, Camera* camera, bool isReset);
 	
 	int GetMapIndex() const
 	{

@@ -128,7 +128,7 @@ SceneBase* SceneTitle::Update()
 
 		if (!m_sprite->IsFinishAnime()) return this;
 
-		//ひとつ前のステージ
+		//ひとつ先のステージ
 		if (m_select->RightButton())
 		{
 			m_stageNum--;
@@ -142,7 +142,7 @@ SceneBase* SceneTitle::Update()
 			}
 		}
 
-		//ひとつ先のステージ
+		//ひとつ前のステージ
 		if (m_select->LeftButton())
 		{
 			if (!m_isReset)
@@ -171,12 +171,13 @@ SceneBase* SceneTitle::Update()
 			//プレイデータの記録
 			m_playData->Save(m_stageNum, m_playData->GetBottleData());
 
-			return new SceneGame(m_playData, m_stageNum);
+			return new SceneGame(m_playData, m_stageNum, m_isReset);
 		}
 
 		//戻るボタン
 		if (m_select->SelectButtonRight())
 		{
+			m_isReset = false;
 			SoundManager::Play("Resource/sound/se_start.mp3");
 			m_titleAnime = TitleAnime::Close;
 		}

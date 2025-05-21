@@ -13,12 +13,13 @@
 #include "GetBottle.h"
 #include "HitCollider.h"
 
-CreateMap::CreateMap(Player* player, PlayData* playData, Camera* camera) :
+CreateMap::CreateMap(Player* player, PlayData* playData, Camera* camera, bool isReset) :
 	m_playData(playData),
 	m_player(player),
 	m_mapNode(nullptr),
 	m_camera(camera),
 	m_isExistenceKey(false),
+	m_isReset(isReset),
 	m_mapIndex(static_cast<int>(MapType::Map0))
 {
 	m_player->SetMap(this);
@@ -48,7 +49,7 @@ void CreateMap::LoadMap(bool nextMap)
 	AddChild(m_mapNode);
 	m_spawnPos.clear();
 	m_isExistenceKey = false;
-	m_playData->Save(m_mapIndex, m_player->GetElement());
+	m_isReset ? m_playData->Save(m_mapIndex, m_player->GetElement(), true) : m_playData->Save(m_mapIndex, m_player->GetElement());
 
 	for (int i = 0; i < MapHeight; i++)
 	{
