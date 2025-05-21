@@ -31,6 +31,10 @@ void PlayData::Save(int mapNum, int bottleBit, bool overwrite)
 	{
 		file << mapNum << std::endl << bottleBit;
 	}
+	else
+	{
+		file << m_clearMapNum << std::endl << m_bottleBit;
+	}
 }
 
 //ƒf[ƒ^‚Ìíœ
