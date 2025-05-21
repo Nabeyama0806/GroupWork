@@ -13,6 +13,7 @@ void PlayData::Load()
 	int clearMap = 0;
 	int bottleBit = 0;
 	file >> clearMap >> bottleBit;
+	file.close();
 
 	//値の保持
 	m_clearMapNum = clearMap;
@@ -23,23 +24,26 @@ void PlayData::Load()
 void PlayData::Save(int mapNum, int bottleBit, bool overwrite)
 {
 	//ファイルが開けなかったら終了
-	std::ofstream file(FileName);
-	if (!file.is_open()) return;
-
-	//上書き
-	if (m_clearMapNum < mapNum && !overwrite || overwrite)
+	std::fstream file(FileName);
+	if (!file.is_open())
 	{
+		//ファイルが開けなければ新しく作成して開く
+		file.open(FileName, std::ios::out);
+	}
+
+	m_clearMapNum = 0;
+	m_bottleBit = 0;
+
+	//上書きするかどうか
+	if (overwrite || m_clearMapNum < mapNum)
+	{
+		//上書き
 		file << mapNum << std::endl << bottleBit;
-	}
-	else
-	{
-		file << m_clearMapNum << std::endl << m_bottleBit;
-	}
-}
 
-//データの削除
-void PlayData::Reset(bool overwrite)
-{
-	//データの初期化
-	Save(0, 0, overwrite);
+		//値の保持
+		m_clearMapNum = mapNum;
+		m_bottleBit = bottleBit;
+	}
+
+	file.close();
 }

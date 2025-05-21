@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bottle.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CreateMap.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
@@ -40,6 +41,7 @@
     <ClCompile Include="PlayData.cpp" />
     <ClCompile Include="PlayerFoot.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SelectButton.cpp" />
     <ClCompile Include="SpriteLoader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Lerp.cpp" />
@@ -59,7 +61,6 @@
     <ClCompile Include="TileCube.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="SpriteActor.cpp" />
-    <ClCompile Include="TitleSelect.cpp" />
     <ClCompile Include="TransparentGimmick.cpp" />
     <ClCompile Include="UiBottle.cpp" />
     <ClCompile Include="UiKeyItem.cpp" />
@@ -73,6 +74,7 @@
   <ItemGroup>
     <ClInclude Include="Bottle.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CreateMap.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
@@ -96,6 +98,7 @@
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="PlayData.h" />
     <ClInclude Include="PlayerFoot.h" />
+    <ClInclude Include="SelectButton.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteLoader.h" />
     <ClInclude Include="Input.h" />
@@ -120,7 +123,6 @@
     <ClInclude Include="ThunderBottle.h" />
     <ClInclude Include="TileCube.h" />
     <ClInclude Include="Time.h" />
-    <ClInclude Include="TitleSelect.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="SpriteActor.h" />
     <ClInclude Include="TransparentGimmick.h" />

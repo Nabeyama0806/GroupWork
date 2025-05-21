@@ -55,6 +55,12 @@
     <Filter Include="ソース ファイル\Gimmick">
       <UniqueIdentifier>{9df30c46-aa14-46e4-9063-9c0cdcdeb145}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Button">
+      <UniqueIdentifier>{ed5f0331-d415-4a30-8553-97aa3f1dff18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Button">
+      <UniqueIdentifier>{d58e703a-85f4-46f9-b907-423dc38aa1e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -195,9 +201,6 @@
     <ClCompile Include="UiKeyItem.cpp">
       <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="TitleSelect.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="PlayData.cpp">
       <Filter>ソース ファイル\Utility</Filter>
     </ClCompile>
@@ -206,6 +209,12 @@
     </ClCompile>
     <ClCompile Include="Instructions.cpp">
       <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>ソース ファイル\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectButton.cpp">
+      <Filter>ソース ファイル\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -377,9 +386,6 @@
     <ClInclude Include="UiKeyItem.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="TitleSelect.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="PlayData.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
@@ -391,6 +397,12 @@
     </ClInclude>
     <ClInclude Include="Instructions.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>ヘッダー ファイル\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectButton.h">
+      <Filter>ヘッダー ファイル\Button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

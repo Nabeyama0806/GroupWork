@@ -49,7 +49,7 @@ void CreateMap::LoadMap(bool nextMap)
 	AddChild(m_mapNode);
 	m_spawnPos.clear();
 	m_isExistenceKey = false;
-	m_isReset ? m_playData->Save(m_mapIndex, m_player->GetElement(), true) : m_playData->Save(m_mapIndex, m_player->GetElement());
+	m_playData->Save(m_mapIndex, m_player->GetElement(), m_isReset);
 
 	for (int i = 0; i < MapHeight; i++)
 	{

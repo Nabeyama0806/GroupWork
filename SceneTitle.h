@@ -6,7 +6,6 @@
 #include "CreateMap.h"
 
 class Node;
-class TitleSelect;
 
 //タイトルシーン
 class SceneTitle : public SceneBase
@@ -15,16 +14,17 @@ public:
 	//フェーズ
 	enum class Phase
 	{
-		Run,			//実行中
-		Start,			//本を開く
+		ModeSelect,		//モードの選択
+		OpenBook,		//本を開く
 		StageSelect,	//ステージの選択
+		GameStart,		//ゲーム開始
 
 		Length,
 	};
 
 private:
 	static constexpr Vector2 StageTextureOffset = Vector2(-50, 0);	//ステージのテクスチャのオフセット
-	
+
 	enum class TitleAnime
 	{
 		Open,
@@ -94,10 +94,11 @@ private:
 	};
 
 	Node* m_rootNode;
+	Node* m_ModeSelectButtonNode;
+	Node* m_StageSelectButtonNode;
 	PlayData* m_playData;
 	Sprite* m_sprite;
 	Sprite* m_stageSprite;
-	TitleSelect* m_select;
 	Phase m_phase;
 	TitleAnime m_titleAnime;
 	Transform m_transform;
@@ -106,23 +107,33 @@ private:
 	int m_stageNum;
 	int m_bgm;
 
+	void LeftArrowButton();		//ステージ選択用の左矢印ボタン
+	void RightArrowButton();	//ステージ選択用の右矢印ボタン
+
+	void ContinueButton();		//つづきからのボタン
+	void NewGameButton();		//はじめからのボタン
+
+	void StartButton();			//ゲームスタートのボタン	
+	void BackButton();			//戻る用のボタン
+
 protected:
-	virtual void Initialize() override;				//初期化
-	virtual void Finalize() override;				//終了
-	virtual SceneBase* Update() override;			//更新
-	virtual void Draw() override;					//描画
+	virtual void Initialize() override;		//初期化
+	virtual void Finalize() override;		//終了
+	virtual SceneBase* Update() override;	//更新
+	virtual void Draw() override;			//描画
 
 public:
 	//コンストラクタ
 	SceneTitle() :
-		m_phase(Phase::Run),
+		m_phase(Phase::ModeSelect),
 		m_titleAnime(TitleAnime::Open),
 		m_isReset(false),
 		m_rootNode(nullptr),
+		m_ModeSelectButtonNode(nullptr),
+		m_StageSelectButtonNode(nullptr),
 		m_playData(nullptr),
 		m_sprite(nullptr),
 		m_stageSprite(nullptr),
-		m_select(nullptr),
 		m_elapsedTime(0),
 		m_stageNum(0),
 		m_bgm(0)

@@ -42,9 +42,6 @@ public:
 	//データの書き込み
 	void Save(int mapNum, int bottleBit, bool overwrite = false);
 
-	//データの削除
-	void Reset(bool overwrite = false);
-
 	int GetMapData()
 	{
 		return m_clearMapNum;
