@@ -212,7 +212,7 @@ public:
 	// Œˆ’è
 	bool IsDecision()
 	{
-		return IsPadDown(PAD_INPUT_1);
+		return IsPadDown(PAD_INPUT_1) || IsKeyDown(KEY_INPUT_LEFT);
 	}
 
 	// ƒJƒƒ‰‚Ì‹“_•ÏX

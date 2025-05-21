@@ -42,9 +42,8 @@ UiBottle::UiBottle(Camera* camera, Instructions* instructions) :
 	m_crossImg->Load();
 
 	//サイズ調整
-	m_transform.scale = SizeOffset;
-	m_nextTransform.scale = SizeOffset / 2;
-	m_prevTransform.scale = SizeOffset / 2;
+	m_nextTransform.scale = m_transform.scale / 2;
+	m_prevTransform.scale = m_transform.scale / 2;
 
 	//表示する座標の調整
 	m_transform.position = Screen::BottomRight + ScreenOffset;

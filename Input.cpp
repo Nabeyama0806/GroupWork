@@ -54,6 +54,8 @@ void Input::Update()
 	// 感度調整
 	Vector2 movePadPoint = Vector2(padPointX, padPointY) * PadStickSensitivity;
 	m_mousePoint += movePadPoint;
+	// マウスカーソルの位置を設定
+	SetMousePoint(static_cast<int>(m_mousePoint.x), static_cast<int>(m_mousePoint.y));
 
 #ifdef _DEBUG
 	// パッドのShareボタンをESCキーにする
