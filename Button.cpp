@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "SoundManager.h"
 
+// コンストラクタ
 Button::Button(const Vector2& size, int mouseButton, std::function<void()> callbackFunction) :
 	m_size(size),
 	m_mouseButton(mouseButton),
@@ -10,6 +11,7 @@ Button::Button(const Vector2& size, int mouseButton, std::function<void()> callb
 {
 }
 
+//マウスカーソルがボタンの範囲内にあるかを判定
 bool Button::IsMouseContain(const Vector2& position)
 {
 	// 矩形(ボタン)に点(マウス)が含まれているか
@@ -22,6 +24,7 @@ bool Button::IsMouseContain(const Vector2& position)
 	return false;
 }
 
+//更新
 void Button::Update(const Vector2& position)
 {
 	// ボタン上で指定されたマウスボタンが押されたか
@@ -45,6 +48,7 @@ void Button::Update(const Vector2& position)
 	}
 }
 
+//描画
 void Button::Draw(const Vector2& position)
 {
 	//ボタン上にマウスカーソルが無ければ何もしない
