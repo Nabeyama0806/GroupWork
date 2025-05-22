@@ -31,12 +31,6 @@ void PlayerFoot:: Update()
 	if (other->GetName() == "Wall" || other->GetName() == "Fire"  || other->GetName() == "KeyBlock"
 	||	other->GetName() == "Wind" || other->GetName() == "Water" || other->GetName() == "Transparent")
 	{
-		if (other->GetName() == "Transparent")
-		{
-			//“§–¾°‚ªŒõ‚Á‚Ä‚¢‚È‚¯‚ê‚Î“–‚½‚è”»’è‚ğ–³‹‚·‚é
-			if (!dynamic_cast<TransparentGimmick*>(const_cast<ModelActor*>(other))->GetAppear()) return;
-		}
-
 		m_isGrounded = true;
 		
 		m_transform.position.y = other->GetPosition().y + other->GetCollider()->GetSize().y / 2 + ColliderSize.y / 2;
