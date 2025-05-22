@@ -67,9 +67,9 @@ public:
 	}
 
 	//íçéãì_ÇÃéÊìæ
-	void SetLookAt(ModelActor* actor, bool isPlayer)
+	void SetLookAt(bool isPlayer, ModelActor* actor = nullptr)
 	{
-		m_lookAt = actor;
+		if (actor != nullptr) m_lookAt = actor;
 		m_lookAtHeight = isPlayer ? PlayerLookAtHeight : StageLookAtHeight;
 		m_cameraDistance = isPlayer ? PlayerCameraDistance : m_stageCameraDistance;
 		m_isPlayer = isPlayer;

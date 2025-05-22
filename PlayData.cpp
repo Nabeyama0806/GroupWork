@@ -18,8 +18,11 @@ PlayData::PlayData() :
 	file.close();
 
 	//ílÇÃï€éù
-	m_clearMapNum = DecodeData(clearMap);
-	m_bottleBit = DecodeData(bottleBit);
+	/*m_clearMapNum = DecodeData(clearMap);
+	m_bottleBit = DecodeData(bottleBit);*/
+
+	m_clearMapNum = clearMap;
+	m_bottleBit = bottleBit;
 
 	//Save(9, 15, true);
 }
@@ -35,7 +38,8 @@ void PlayData::Save(int mapNum, int bottleBit, bool overwrite)
 	if (overwrite || m_clearMapNum < mapNum)
 	{
 		//è„èëÇ´
-		file << EncryptionData(mapNum) << std::endl << EncryptionData(bottleBit);
+		//file << EncryptionData(mapNum) << std::endl << EncryptionData(bottleBit);
+		file << mapNum << std::endl << bottleBit;
 
 		//ílÇÃï€éù
 		m_clearMapNum = mapNum;

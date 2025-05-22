@@ -25,8 +25,8 @@ private:
 	};
 	const SpriteAnimation ClearAnimeDate[static_cast<int>(ClearAnime::Length)] =
 	{
-		SpriteAnimation("Resource/LoadBook/clear_anime1.png", 13, 10, false),
-		SpriteAnimation("Resource/LoadBook/clear_anime2.png", 13, 10, false),
+		SpriteAnimation("Resource/LoadBook/1920clear_anime1.png", 13, 10, false),
+		SpriteAnimation("Resource/LoadBook/1920clear_anime2.png", 13, 10, false),
 	};
 
 	static constexpr float WaitTransitionTime = 1.5f;

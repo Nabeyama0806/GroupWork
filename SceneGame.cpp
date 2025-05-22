@@ -47,7 +47,7 @@ void SceneGame::Initialize()
 	//プレイヤー
 	m_player = new Player(m_mainCamera, m_uiBottle, m_instructions);
 	actorLayer->AddChild(m_player);
-	m_mainCamera->SetLookAt(m_player, m_isLookPlayer);
+	m_mainCamera->SetLookAt(m_isLookPlayer, m_player);
 
 	//照準の表示
 	uiLayer->AddChild(new SpriteActor("reticle", "Resource/Texture/reticle.png", Screen::Center));
@@ -147,13 +147,6 @@ SceneBase* SceneGame::Update()
 		Fade::GetInstance()->StartFadeIn(1.2f, Fade::Color::White);
 		m_phase = Phase::Run;
 		break;
-	}
-
-	//0キーが押されたら視点を切り替える
-	if (Input::GetInstance()->IsCameraChange())
-	{
-		m_isLookPlayer = !m_isLookPlayer;
-		m_mainCamera->SetLookAt(m_isLookPlayer ? m_player : m_stage, m_isLookPlayer);
 	}
 
 	return this;

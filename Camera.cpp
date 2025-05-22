@@ -8,10 +8,19 @@
 //更新
 void Camera::Update()
 {
-	if (m_instructions->GetIsDraw()) return;
-
 	// カメラの視点移動
-	if (!Input::GetInstance()->IsKeyPress(KEY_INPUT_LSHIFT)) MouseCamera();
+	if (!m_instructions->GetIsDraw())
+	{		
+		MouseCamera();
+		if (Input::GetInstance()->IsCameraChange())
+		{
+			SetLookAt(!m_isPlayer);
+		}
+	}
+	else
+	{
+		Input::GetInstance()->SetMousePoint(static_cast<int>(Screen::Center.x), static_cast<int>(Screen::Center.y));
+	}
 
 	if (!m_isPlayer)
 	{
@@ -24,7 +33,7 @@ void Camera::Update()
 
 	Vector3 tempPosition1;
 	Vector3 tempPosition2;
-	if (m_lookAt != nullptr)
+	if (m_isPlayer)
 	{
 		m_targetPos = m_lookAt->GetPosition();		//注視点を設定
 		m_targetPos.y += m_lookAtHeight;			//注視点のオフセット

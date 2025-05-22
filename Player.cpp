@@ -47,18 +47,19 @@ Player::Player(Camera* camera, UiBottle* uiBottle, Instructions* instructions) :
 //更新
 void Player::Update()
 {
+	//本来の更新
+	ModelActor::Update();
+	
 	//動きを封じる
 	if (m_instructions->GetIsDraw() || m_isGoal) return;
 
-	if (!m_camera->GetIsPlayer())
-	{
-		//本来の更新
-		ModelActor::Update();
-		return;
-	}
+	// カメラがプレイヤー視点かどうか
+	bool isPlayerCamera = m_camera->GetIsPlayer();
 
 	//移動
-	Move();
+	Move(isPlayerCamera);
+
+	if (!isPlayerCamera) return;
 
 	// 決定ボタンでボトルを生成
 	if (Input::GetInstance()->NewBottle())
@@ -107,35 +108,38 @@ void Player::CreateBottle()
 }
 
 //移動
-void Player::Move()
+void Player::Move(bool canMove)
 {
-	//入力方向の取得
-	Vector3 move = Vector3(0, 0, 0);
-	if (Input::GetInstance()->MoveUp()) move.z = 1;
-	if (Input::GetInstance()->MoveDown()) move.z = -1;
-	if (Input::GetInstance()->MoveRight()) move.x = 1;
-	if (Input::GetInstance()->MoveLeft()) move.x = -1;
-
-	//カメラの正面ベクトルを作成
-	Vector3 cameraForward = Vector3::Scale(m_camera->GetForward(), Vector3(1, 0, 1)).Normalized();
-
-	//カメラの向きを考慮した移動量
-	move = cameraForward * move.z + m_camera->GetRight() * move.x;
-
-	//動いている時
-	if (!move.IsZero())
+	if (canMove)
 	{
-		//移動
-		move.Normalize();
-		m_holdMove = move * Speed;
-		m_transform.position += m_holdMove;
+		//入力方向の取得
+		Vector3 move = Vector3(0, 0, 0);
+		if (Input::GetInstance()->MoveUp()) move.z = 1;
+		if (Input::GetInstance()->MoveDown()) move.z = -1;
+		if (Input::GetInstance()->MoveRight()) move.x = 1;
+		if (Input::GetInstance()->MoveLeft()) move.x = -1;
 
-		//回転
-		m_transform.rotation = Quaternion::Slerp(
-			m_transform.rotation,
-			Quaternion::LookRotation(move),
-			0.2f
-		);
+		//カメラの正面ベクトルを作成
+		Vector3 cameraForward = Vector3::Scale(m_camera->GetForward(), Vector3(1, 0, 1)).Normalized();
+
+		//カメラの向きを考慮した移動量
+		move = cameraForward * move.z + m_camera->GetRight() * move.x;
+
+		//動いている時
+		if (!move.IsZero())
+		{
+			//移動
+			move.Normalize();
+			m_holdMove = move * Speed;
+			m_transform.position += m_holdMove;
+
+			//回転
+			m_transform.rotation = Quaternion::Slerp(
+				m_transform.rotation,
+				Quaternion::LookRotation(move),
+				0.2f
+			);
+		}
 	}
 
 	// 重力

@@ -39,7 +39,7 @@ private:
 
 	int m_getBottleFlag;	// ボトルを持っているかどうか
 
-	void Move();			//移動処理
+	void Move(bool canMove);			//移動処理
 	void CreateBottle();	//指定されたボトルの作成
 
 protected:
