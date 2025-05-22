@@ -88,8 +88,8 @@ SceneBase* SceneTitle::Update()
 		m_sprite->Play(TitleAnimeName[static_cast<int>(m_titleAnime)]);
 		if (m_sprite->IsFinishAnime())
 		{
-			m_phase = Phase::StageSelect;
 			m_sprite->Play(SelectAnimeName[static_cast<int>(SelectAnime::FinishAnime)]);
+			m_phase = Phase::StageSelect;
 		}
 		break;
 

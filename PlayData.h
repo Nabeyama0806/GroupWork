@@ -1,30 +1,30 @@
 #pragma once
+#include <cstdint>
 
 class PlayData
 {
 private:
-	 const char* FileName = "SaveData.dat";	//ファイルパス
+	static constexpr int KeyBit = 0x5A5A5A5A;	//XORのキー
+	static constexpr int LoopCount = 10;		//暗号化、複合化のループ回数
 
-	int m_clearMapNum; //クリアしたマップ番号
-	int m_bottleBit;
+	const char* FileName = "SaveData.dat";	//ファイルパス
+
+	int m_clearMapNum;	//クリアしたマップ番号
+	int m_bottleBit;	//取得したボトルのビットフラグ
 
 	//暗号化
-	int EncryptionData(int num) 
+	int EncryptInt(int num)
 	{
-		int temp = num ^ 1;
-		temp = ~temp;
-		temp = (temp << 3) | ((temp >> (32 - 3)) & 0x07);
-		temp ^= (1 << 1);
+		int temp = num ^ KeyBit;	//XOR
+		temp = ~temp;				//ビット反転
 		return temp;
 	}
 
-	//復号化
-	int DecodeData(int num)
+	// 復号化
+	int DecryptInt(int num) 
 	{
-		int temp = num ^ (1 << 1);
-		temp = ((temp >> 3) & 0x1FFFFFFF) | (temp << (32 - 3)); 
-		temp = ~temp;
-		temp ^= 1;
+		int temp = ~num;         //ビット反転
+		temp ^= KeyBit;          //XOR
 		return temp;
 	}
 
