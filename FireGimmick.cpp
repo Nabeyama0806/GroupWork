@@ -12,7 +12,7 @@ FireGimmick::FireGimmick(const Vector3& position) :
 {
 	//モデルとエフェクト
 	m_model = new Model("Resource/Model/Ice.mv1");
-	m_effect = new Effect("Resource/Effect/fire.efk", 10, 70);
+	m_effect = new Effect("Resource/Effect/fire.efk", 15, 70);
 
 	//姿勢情報
 	m_transform.position = position;

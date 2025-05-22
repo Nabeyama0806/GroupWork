@@ -13,7 +13,7 @@ ThunderBottle::ThunderBottle(const Vector3& position, const Vector3& forward, Pl
 {
 	//ÉÇÉfÉã
 	m_model = new Model("Resource/Model/bottle_thunder.mv1");
-	m_effect = new Effect("Resource/Effect/draw.efk", 40, 120);
+	m_effect = new Effect("Resource/Effect/thunder.efk", 40, 120);
 
 	//épê®èÓïÒ
 	m_transform.scale = Scale;
