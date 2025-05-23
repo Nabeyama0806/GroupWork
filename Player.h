@@ -23,6 +23,8 @@ private:
 	static constexpr int AnimeAmount = 1;			//アニメーションの総数
 	static constexpr int FallEndPos = -500;			// 落下したときのリスポーンする値
 
+	static constexpr float PlayerSpeed = 0.85f;	// プレイヤーの移動速度
+
 	Camera* m_camera;
 	PlayerFoot* m_playerFoot;	//プレイヤーの足
 	UiBottle* m_uiBottle;

@@ -76,6 +76,14 @@ SceneBase* SceneTitle::Update()
 	if (m_phase == Phase::ModeSelect) m_ModeSelectButtonNode->TreeUpdate();
 	if (m_phase == Phase::StageSelect) m_StageSelectButtonNode->TreeUpdate();
 
+	// パッドの右スティックでマウスカーソルを動かす
+	int padPointX = 0;
+	int padPointY = 0;
+	DxLib::GetJoypadAnalogInput(&padPointX, &padPointY, DX_INPUT_PAD1);
+	// 感度調整
+	Vector2 movePadPoint = Vector2(padPointX, padPointY);
+	Input::GetInstance()->SetPadStick(movePadPoint);
+
 	switch (m_phase)
 	{
 	case Phase::ModeSelect:

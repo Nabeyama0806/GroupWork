@@ -114,10 +114,10 @@ void Player::Move(bool canMove)
 	{
 		//入力方向の取得
 		Vector3 move = Vector3(0, 0, 0);
-		if (Input::GetInstance()->MoveUp()) move.z = 1;
-		if (Input::GetInstance()->MoveDown()) move.z = -1;
-		if (Input::GetInstance()->MoveRight()) move.x = 1;
-		if (Input::GetInstance()->MoveLeft()) move.x = -1;
+		if (Input::GetInstance()->MoveUp()) move.z = PlayerSpeed;
+		if (Input::GetInstance()->MoveDown()) move.z = -PlayerSpeed;
+		if (Input::GetInstance()->MoveRight()) move.x = PlayerSpeed;
+		if (Input::GetInstance()->MoveLeft()) move.x = -PlayerSpeed;
 
 		//カメラの正面ベクトルを作成
 		Vector3 cameraForward = Vector3::Scale(m_camera->GetForward(), Vector3(1, 0, 1)).Normalized();

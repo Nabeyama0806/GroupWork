@@ -107,18 +107,15 @@ SceneBase* SceneGame::Update()
 	//ノードの更新
 	m_rootNode->TreeUpdate();
 
-	//F3キーが押されたらスタート画面に遷移
-	//if (Input::GetInstance()->IsKeyDown(KEY_INPUT_F3))
-	//{
-	//	//プレイデータの保存
-	//	m_playData->Save(m_stageNum, m_player->GetElement(), m_isReset);
-	//	return new SceneTitle();
-	//}
-
 	//プレイヤーがゴールすれば次のステージに遷移
 	switch (m_phase)
 	{
 	case Phase::Run: //フェードアウト開始
+		if (Input::GetInstance()->IsReLoadMap())
+		{
+			m_map->LoadMap(false);
+		}
+
 		if (m_player->GetIsGoal())
 		{
 			//効果音

@@ -47,19 +47,9 @@ void Input::Update()
 	m_padLeftTriggerPost = m_padLeftTrigger;
 	m_padLeftTrigger = state.LeftTrigger;
 
-	// パッドの右スティックでマウスカーソルを動かす
-	int padPointX = 0;
-	int padPointY = 0;
-	DxLib::GetJoypadAnalogInputRight(&padPointX, &padPointY, DX_INPUT_PAD1);
-	// 感度調整
-	Vector2 movePadPoint = Vector2(padPointX, padPointY) * PadStickSensitivity;
-	m_mousePoint += movePadPoint;
-	// マウスカーソルの位置を設定
-	SetMousePoint(static_cast<int>(m_mousePoint.x), static_cast<int>(m_mousePoint.y));
-
 #ifdef _DEBUG
-	// パッドのShareボタンをESCキーにする
-	if (IsPadDown(PAD_INPUT_7)) m_keyState[KEY_INPUT_ESCAPE] = 1;
+		// パッドのShareボタンをESCキーにする
+		if (IsPadDown(PAD_INPUT_7)) m_keyState[KEY_INPUT_ESCAPE] = 1;
 #endif // DEBUG
 }
 

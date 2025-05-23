@@ -10,7 +10,7 @@ class Input
 private:
 	//キーボード
 	static constexpr int KeyStateNum = 256;	//キー入力状態の要素数
-	static constexpr float PadStickSensitivity = 0.04f;	//スティックの感度
+	static constexpr float PadStickSensitivity = 0.02f;	//スティックの感度
 	static constexpr int PadTriggerSensitivity = 100;	//トリガーの感度(100/256)
 
 	char m_keyState[KeyStateNum];		//現フレームのキー入力状態
@@ -178,6 +178,13 @@ public:
 		return m_padLeftTrigger >= PadTriggerSensitivity;
 	}
 
+	void SetPadStick(Vector2 movePadPoint)
+	{
+		m_mousePoint += movePadPoint * PadStickSensitivity;
+		// マウスカーソルの位置を設定
+		SetMousePoint(static_cast<int>(m_mousePoint.x), static_cast<int>(m_mousePoint.y));
+	}
+
 	// インプットシステム
 	// 上移動	
 	bool MoveUp()
@@ -219,6 +226,11 @@ public:
 	bool IsDecisionUp()
 	{
 		return IsPadUp(PAD_INPUT_1) || IsMouseUp(MOUSE_INPUT_LEFT);
+	}
+
+	bool IsReLoadMap()
+	{
+		return IsKeyDown(KEY_INPUT_R) || IsPadDown(PAD_INPUT_7);
 	}
 
 	// カメラの視点変更

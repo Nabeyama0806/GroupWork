@@ -74,6 +74,14 @@ void Camera::MouseCamera()
 {
 	//マウスでカメラの操作
 	Input::GetInstance()->SetMouseDispFlag(false);
+
+	// パッドの右スティックでマウスカーソルを動かす
+	int padPointX = 0;
+	int padPointY = 0;
+	DxLib::GetJoypadAnalogInputRight(&padPointX, &padPointY, DX_INPUT_PAD1);
+	// 感度調整
+	Vector2 movePadPoint = Vector2(padPointX, padPointY);
+	Input::GetInstance()->SetPadStick(movePadPoint);
 	Vector2 mousePos = Input::GetInstance()->GetMousePoint();
 	m_cameraHAngle -= (mousePos.x - Screen::Center.x) * CameraAngleSpeed;
 	m_cameraVAngle += (mousePos.y - Screen::Center.y) * CameraAngleSpeed;
