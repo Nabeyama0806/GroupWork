@@ -6,10 +6,11 @@
 #include "Time.h"
 
 //コンストラクタ
-KeyGimmick::KeyGimmick(const Vector3& position, Player* player) :
+KeyGimmick::KeyGimmick(const Vector3& position, Player* player, bool isFake) :
 	GimmickBase("KeyBlock", position),
 	m_player(player),
 	m_destroyWall(false),
+	m_isFake(isFake),
 	m_destroyTime(DestroyTime)
 {
 	//モデルとエフェクト
@@ -41,15 +42,22 @@ void KeyGimmick::OnCollision(const ModelActor* other)
 {
 	if (other->GetName() == "Player" || other->GetName() == "PlayerFoot")
 	{
-		
-
 		if (m_player->GetIsKey())
 		{
-			m_destroyWall = true;
-			m_player->UseKey();
+			//自身が偽物ならプレイヤーの座標を戻す
+			if (m_isFake)
+			{
+				m_player->SetSpawnPosition(m_player->GetSpawnPos());
+				Destroy();
+			}
+			else
+			{
+				m_destroyWall = true;
+				m_player->UseKey();
 
-			//効果音
-			SoundManager::Play("Resource/sound/se_open.mp3");
+				//効果音
+				SoundManager::Play("Resource/sound/se_open.mp3");
+			}
 		}
 	}
 }

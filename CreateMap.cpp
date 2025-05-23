@@ -110,7 +110,7 @@ void CreateMap::SelectBlock(CreateMap::TileType tile, const Vector3& position, c
 		break;
 
 	case CreateMap::TileType::KeyBlock:
-		m_mapNode->AddChild(new KeyGimmick(position, m_player));
+		m_mapNode->AddChild(new KeyGimmick(position, m_player, false));
 		break;
 
 	case CreateMap::TileType::KeyItem:
@@ -145,6 +145,10 @@ void CreateMap::SelectBlock(CreateMap::TileType tile, const Vector3& position, c
 	case CreateMap::TileType::WindBottle:
 		if (m_player->GetElement() & (1 << static_cast<int>(GetBottle::Type::Wind))) break;
 		m_mapNode->AddChild(new GetBottle(position, m_player, "Resource/Model/bottle_wind.mv1", GetBottle::Type::Wind));
+		break;
+
+	case CreateMap::TileType::FakeKeyBlock:
+		m_mapNode->AddChild(new KeyGimmick(position, m_player, true));
 		break;
 
 	default:

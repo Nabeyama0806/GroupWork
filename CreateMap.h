@@ -28,6 +28,8 @@ public:
 		WaterBottle,
 		WindBottle,
 
+		FakeKeyBlock,
+
 		Length,
 	};
 

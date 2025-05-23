@@ -116,6 +116,11 @@ public:
 		m_isGoal = false;
 	}
 
+	const Vector3& GetSpawnPos() const 
+	{
+		return m_spawnPos;
+	}
+
 	bool GetIsExistenceKey()
 	{
 		return m_isExistenceKey;

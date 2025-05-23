@@ -13,6 +13,7 @@ private:
 
 	Player* m_player;		//プレイヤー
 	bool m_destroyWall;		// このオブジェクトが消えるかどうか
+	bool m_isFake;			// 偽物かどうか	
 	float m_destroyTime;	// 経過時間
 
 protected:
@@ -21,7 +22,7 @@ protected:
 
 public:
 	//コンストラクタ
-	KeyGimmick(const Vector3& position, Player* player);
+	KeyGimmick(const Vector3& position, Player* player, bool isFake);
 
 	//衝突イベント
 	virtual void OnCollision(const ModelActor* other) override;
