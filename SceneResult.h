@@ -14,19 +14,25 @@ private:
 	{
 		First,
 		Second,
+		Third,
+		Fourth,
 
 		Length,
 	};
 
 	const char* ClearAnimeName[static_cast<int>(ClearAnime::Length)] =
 	{
-		"Initial",
-		"Final",
+		"First",
+		"Second",
+		"Third",
+		"Fourth",
 	};
 	const SpriteAnimation ClearAnimeDate[static_cast<int>(ClearAnime::Length)] =
 	{
-		SpriteAnimation("Resource/LoadBook/1920clear_anime1.png", 13, 10, false),
-		SpriteAnimation("Resource/LoadBook/1920clear_anime2.png", 13, 10, false),
+		SpriteAnimation("Resource/LoadBook/clearscene_anime1.png", 13, 13, false),
+		SpriteAnimation("Resource/LoadBook/clearscene_anime2.png", 13, 13, false),
+		SpriteAnimation("Resource/LoadBook/clearscene_anime3.png", 13, 13, false),
+		SpriteAnimation("Resource/LoadBook/clearscene_anime4.png", 13, 13, false),
 	};
 
 	static constexpr float WaitTransitionTime = 1.5f;

@@ -39,9 +39,9 @@ SceneBase* SceneResult::Update()
 
 	m_sprite->Update();
 	m_sprite->Play(ClearAnimeName[static_cast<int>(m_clearAnime)]);
-	if (m_sprite->IsFinishAnime() && m_clearAnime == ClearAnime::First)
+	if (m_sprite->IsFinishAnime() && m_clearAnime != ClearAnime::Fourth)
 	{
-		m_clearAnime = ClearAnime::Second;
+		m_clearAnime = static_cast<ClearAnime>(static_cast<int>(m_clearAnime) + 1);
 	}
 
 	//いずれかのキーが押されたらタイトル画面に遷移
